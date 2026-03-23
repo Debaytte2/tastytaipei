@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tasty Taipei — Restaurant Tools</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root {
+    --ink:#1a1207; --cream:#fdf8f0; --warm:#f5ede0;
+    --orange:#e8521a; --green:#2d6a4f; --gold:#c9963a;
+    --muted:#8a7560; --border:#e2d9cc;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--ink); }
+
+  /* NAV */
+  nav {
+    position:sticky; top:0; z-index:100; height:56px;
+    background:var(--ink); display:flex; align-items:center;
+    justify-content:space-between; padding:0 20px;
+  }
+  .nav-logo { font-family:'Fraunces',serif; font-size:18px; font-weight:900; color:var(--orange); }
+  .nav-logo span { color:var(--cream); }
+  .nav-back {
+    background:rgba(255,255,255,.1); color:var(--cream);
+    border:none; border-radius:8px; padding:7px 14px;
+    font-size:12px; font-weight:700; cursor:pointer;
+    font-family:'DM Sans',sans-serif;
+  }
+
+  /* TOOL TABS */
+  .tool-tabs {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:0; border-bottom:1px solid var(--border);
+    background:#fff; position:sticky; top:56px; z-index:90;
+  }
+  .tool-tab {
+    padding:14px 8px; text-align:center; cursor:pointer;
+    font-size:12px; font-weight:700; color:var(--muted);
+    border:none; background:transparent; border-bottom:2px solid transparent;
+    transition:all .2s; font-family:'DM Sans',sans-serif;
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+  }
+  .tool-tab .tab-icon { font-size:20px; }
+  .tool-tab.active { color:var(--orange); border-bottom-color:var(--orange); }
+
+  /* TOOL PAGES */
+  .tool-page { display:none; }
+  .tool-page.active { display:block; }
+  .container { max-width:680px; margin:0 auto; padding:28px 20px 80px; }
+
+  /* SHARED */
+  .tool-header { margin-bottom:24px; }
+  .tool-title { font-family:'Fraunces',serif; font-size:28px; font-weight:900; letter-spacing:-.03em; margin-bottom:6px; }
+  .tool-title em { font-style:italic; color:var(--orange); font-weight:300; }
+  .tool-sub { font-size:14px; color:var(--muted); line-height:1.6; }
+  .card { background:#fff; border:1.5px solid var(--border); border-radius:16px; padding:22px; margin-bottom:16px; }
+  .label { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; display:block; }
+  input[type=text], input[type=tel], input[type=datetime-local], select, textarea {
+    width:100%; border:1.5px solid var(--border); border-radius:10px;
+    padding:11px 14px; font-size:14px; font-family:'DM Sans',sans-serif;
+    color:var(--ink); background:#fff; outline:none; transition:border-color .2s;
+    appearance:none; -webkit-appearance:none;
+  }
+  input:focus, select:focus, textarea:focus { border-color:var(--orange); }
+  .btn {
+    width:100%; background:var(--ink); color:var(--cream);
+    border:none; border-radius:12px; padding:14px;
+    font-size:15px; font-weight:700; cursor:pointer;
+    font-family:'DM Sans',sans-serif; transition:all .2s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .btn:hover { background:var(--orange); }
+  .btn-green { background:var(--green); }
+  .btn-green:hover { background:#1d5240; }
+  .btn-orange { background:var(--orange); }
+  .btn-orange:hover { background:#c9400e; }
+
+  /* ═══ QR CODE TOOL ═══ */
+  .qr-output {
+    background:var(--warm); border-radius:16px; padding:24px;
+    text-align:center; display:none; margin-bottom:16px;
+  }
+  .qr-output.show { display:block; }
+  #qr-canvas { display:flex; justify-content:center; margin-bottom:16px; }
+  #qr-canvas canvas, #qr-canvas img { border-radius:12px; border:8px solid #fff; box-shadow:0 4px 20px rgba(26,18,7,.12); }
+  .qr-restaurant-name { font-family:'Fraunces',serif; font-size:20px; font-weight:900; margin-bottom:4px; }
+  .qr-tagline { font-size:13px; color:var(--muted); margin-bottom:16px; }
+  .qr-langs { display:flex; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+  .qr-lang-pill { background:#fff; border:1px solid var(--border); border-radius:20px; padding:4px 12px; font-size:12px; font-weight:600; }
+  .qr-print-btn {
+    background:var(--ink); color:#fff; border:none; border-radius:10px;
+    padding:11px 24px; font-size:13px; font-weight:700;
+    cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .2s;
+  }
+  .qr-print-btn:hover { background:var(--orange); }
+  .lang-selector { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:16px; }
+  .lang-check {
+    display:flex; align-items:center; gap:6px;
+    background:#fff; border:1.5px solid var(--border);
+    border-radius:8px; padding:8px 10px; cursor:pointer;
+    font-size:12px; font-weight:600; transition:all .2s;
+  }
+  .lang-check.selected { background:var(--warm); border-color:var(--orange); color:var(--orange); }
+  .lang-check input { display:none; }
+
+  /* ═══ STAMP CARD ═══ */
+  .stamp-preview {
+    background:linear-gradient(135deg,#1a1207,#2c1e0f);
+    border-radius:20px; padding:24px; margin-bottom:16px; color:var(--cream);
+  }
+  .stamp-preview-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
+  .stamp-preview-name { font-family:'Fraunces',serif; font-size:20px; font-weight:900; }
+  .stamp-preview-reward { font-size:12px; color:rgba(253,248,240,.6); margin-top:2px; }
+  .stamp-preview-logo { font-family:'Fraunces',serif; font-size:14px; font-weight:900; color:var(--orange); }
+  .stamps-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:16px; }
+  .stamp-circle {
+    aspect-ratio:1; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; cursor:pointer; transition:all .2s;
+    border:2px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.05);
+  }
+  .stamp-circle.stamped { background:var(--orange); border-color:var(--orange); }
+  .stamp-circle.stamped::after { content:'✓'; font-size:16px; font-weight:800; color:#fff; }
+  .stamp-progress { font-size:12px; color:rgba(253,248,240,.5); text-align:center; }
+  .stamp-progress span { color:var(--orange); font-weight:700; }
+  .stamp-controls { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
+  .stamp-count-input { display:flex; align-items:center; gap:12px; background:#fff; border:1.5px solid var(--border); border-radius:12px; padding:8px 14px; }
+  .stamp-count-input span { font-size:13px; color:var(--muted); flex:1; }
+  .count-btn { width:32px; height:32px; border-radius:8px; border:1.5px solid var(--border); background:#fff; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .count-val { font-family:'Fraunces',serif; font-size:20px; font-weight:900; min-width:28px; text-align:center; }
+
+  /* ═══ RESERVATIONS ═══ */
+  .res-form { display:flex; flex-direction:column; gap:12px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .res-list { display:flex; flex-direction:column; gap:10px; }
+  .res-item {
+    background:#fff; border:1.5px solid var(--border);
+    border-radius:14px; padding:16px;
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap:12px; flex-wrap:wrap;
+  }
+  .res-info h4 { font-size:15px; font-weight:700; margin-bottom:3px; }
+  .res-info p { font-size:13px; color:var(--muted); }
+  .res-badges { display:flex; gap:6px; margin-top:6px; flex-wrap:wrap; }
+  .res-badge { font-size:11px; font-weight:700; border-radius:20px; padding:3px 10px; }
+  .badge-confirmed { background:#d4edda; color:#155724; }
+  .badge-pending { background:#fff3cd; color:#7a5a00; }
+  .badge-noshow { background:#f8d7da; color:#721c24; }
+  .res-actions { display:flex; gap:6px; flex-shrink:0; }
+  .res-btn {
+    padding:7px 12px; border-radius:8px; border:1.5px solid var(--border);
+    background:#fff; cursor:pointer; font-size:12px; font-weight:700;
+    font-family:'DM Sans',sans-serif; transition:all .2s;
+  }
+  .res-btn.confirm { background:var(--green); color:#fff; border-color:var(--green); }
+  .res-btn.remind { background:var(--orange); color:#fff; border-color:var(--orange); }
+  .empty-state { text-align:center; padding:40px 20px; color:var(--muted); }
+  .empty-state .empty-icon { font-size:40px; margin-bottom:12px; }
+  .empty-state p { font-size:14px; }
+
+  /* TABS */
+  .sub-tabs { display:flex; gap:6px; margin-bottom:20px; }
+  .sub-tab {
+    padding:7px 16px; border-radius:20px; font-size:13px; font-weight:600;
+    cursor:pointer; border:1.5px solid var(--border);
+    background:#fff; color:var(--muted); transition:all .2s;
+    font-family:'DM Sans',sans-serif;
+  }
+  .sub-tab.active { background:var(--ink); color:var(--cream); border-color:var(--ink); }
+  .sub-content { display:none; }
+  .sub-content.active { display:block; }
+
+  /* SUCCESS BANNER */
+  .success-banner {
+    background:#d4edda; border:1.5px solid #b2dfdb;
+    border-radius:12px; padding:14px 16px;
+    font-size:13px; font-weight:600; color:#155724;
+    display:none; margin-bottom:16px;
+    align-items:center; gap:8px;
+  }
+  .success-banner.show { display:flex; }
+
+  @media print {
+    nav, .tool-tabs, .container > *:not(.qr-output) { display:none !important; }
+    .qr-output { display:block !important; background:#fff; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Tasty<span> Taipei</span></div>
+  <button class="nav-back" onclick="window.history.back()">← Back to site</button>
+</nav>
+
+<div class="tool-tabs">
+  <button class="tool-tab active" onclick="showTool('qr',this)">
+    <span class="tab-icon">📱</span>QR Menu
+  </button>
+  <button class="tool-tab" onclick="showTool('stamp',this)">
+    <span class="tab-icon">🎟️</span>Stamp Card
+  </button>
+  <button class="tool-tab" onclick="showTool('reservations',this)">
+    <span class="tab-icon">📅</span>Reservations
+  </button>
+</div>
+
+<!-- ═══════════════════════════════════
+     QR CODE TOOL
+═══════════════════════════════════ -->
+<div id="tool-qr" class="tool-page active">
+<div class="container">
+  <div class="tool-header">
+    <h1 class="tool-title">Multilingual<br/><em>Menu QR Code</em></h1>
+    <p class="tool-sub">Generate a printable QR code for your restaurant. Customers scan and see your menu in their language — instantly.</p>
+  </div>
+
+  <div class="card">
+    <label class="label">Restaurant name</label>
+    <input type="text" id="qr-name" placeholder="e.g. Ah-Zhong Noodle House" oninput="updateQRPreview()"/>
+  </div>
+
+  <div class="card">
+    <label class="label">Your Tasty Taipei page URL</label>
+    <input type="text" id="qr-url" placeholder="e.g. tastytaipei.com/ah-zhong" oninput="updateQRPreview()"/>
+    <div style="font-size:12px;color:var(--muted);margin-top:8px;">This is the link the QR code will open. We'll set this up for you.</div>
+  </div>
+
+  <div class="card">
+    <label class="label">Languages to display on the card</label>
+    <div class="lang-selector">
+      <div class="lang-check selected" onclick="toggleLang(this,'EN 🇺🇸')"><input type="checkbox" checked/>EN 🇺🇸</div>
+      <div class="lang-check selected" onclick="toggleLang(this,'中文 🇹🇼')"><input type="checkbox" checked/>中文 🇹🇼</div>
+      <div class="lang-check selected" onclick="toggleLang(this,'FR 🇫🇷')"><input type="checkbox" checked/>FR 🇫🇷</div>
+      <div class="lang-check selected" onclick="toggleLang(this,'日本語 🇯🇵')"><input type="checkbox" checked/>日本語 🇯🇵</div>
+      <div class="lang-check selected" onclick="toggleLang(this,'ES 🇪🇸')"><input type="checkbox" checked/>ES 🇪🇸</div>
+    </div>
+  </div>
+
+  <button class="btn btn-orange" onclick="generateQR()">📱 Generate QR Code</button>
+
+  <!-- Output -->
+  <div class="qr-output" id="qr-output">
+    <div class="qr-restaurant-name" id="qr-display-name">Your Restaurant</div>
+    <div class="qr-tagline">Scan to see our full menu</div>
+    <div id="qr-canvas"></div>
+    <div class="qr-langs" id="qr-display-langs">
+      <span class="qr-lang-pill">EN 🇺🇸</span>
+      <span class="qr-lang-pill">中文 🇹🇼</span>
+      <span class="qr-lang-pill">FR 🇫🇷</span>
+      <span class="qr-lang-pill">日本語 🇯🇵</span>
+      <span class="qr-lang-pill">ES 🇪🇸</span>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:14px;">tastytaipei.com · Available in 5 languages</div>
+    <button class="qr-print-btn" onclick="window.print()">🖨️ Print this QR code</button>
+  </div>
+
+  <div style="background:var(--warm);border-radius:12px;padding:16px;margin-top:16px;">
+    <div style="font-size:13px;font-weight:700;margin-bottom:6px;">💡 How to use it</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.7;">
+      1. Generate and print the QR code<br/>
+      2. Laminate it or put it in a menu holder<br/>
+      3. Place on every table<br/>
+      4. Tourists scan → see full menu in their language instantly
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════
+     STAMP CARD TOOL
+═══════════════════════════════════ -->
+<div id="tool-stamp" class="tool-page">
+<div class="container">
+  <div class="tool-header">
+    <h1 class="tool-title">Digital<br/><em>Stamp Card</em></h1>
+    <p class="tool-sub">Set up your loyalty program. Customers collect stamps on their phone — no app needed, no printing, no hassle.</p>
+  </div>
+
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSubTab('stamp-setup',this)">Setup</button>
+    <button class="sub-tab" onclick="showSubTab('stamp-preview-tab',this)">Preview</button>
+    <button class="sub-tab" onclick="showSubTab('stamp-share',this)">Share</button>
+  </div>
+
+  <!-- Setup -->
+  <div id="stamp-setup" class="sub-content active">
+    <div class="card">
+      <label class="label">Restaurant name</label>
+      <input type="text" id="stamp-name" placeholder="e.g. Ah-Zhong Noodle House" oninput="updateStampPreview()"/>
+    </div>
+    <div class="card">
+      <label class="label">Stamps needed for reward</label>
+      <div class="stamp-count-input">
+        <span>Stamps required</span>
+        <button class="count-btn" onclick="changeCount(-1)">−</button>
+        <div class="count-val" id="stamp-count">10</div>
+        <button class="count-btn" onclick="changeCount(1)">+</button>
+      </div>
+      <div style="font-size:12px;color:var(--muted);margin-top:8px;">Recommended: 8–10 stamps for a free item</div>
+    </div>
+    <div class="card">
+      <label class="label">The reward (what customers get)</label>
+      <input type="text" id="stamp-reward" placeholder="e.g. 1 free bowl of noodles" oninput="updateStampPreview()"/>
+    </div>
+    <div class="card">
+      <label class="label">How customers earn a stamp</label>
+      <input type="text" id="stamp-earn" placeholder="e.g. Every visit over NT$150" oninput="updateStampPreview()"/>
+    </div>
+    <button class="btn btn-green" onclick="showSubTab('stamp-preview-tab', document.querySelectorAll('.sub-tab')[1])">Preview my stamp card →</button>
+  </div>
+
+  <!-- Preview -->
+  <div id="stamp-preview-tab" class="sub-content">
+    <div class="stamp-preview" id="stamp-preview-card">
+      <div class="stamp-preview-header">
+        <div>
+          <div class="stamp-preview-name" id="sp-name">Your Restaurant</div>
+          <div class="stamp-preview-reward" id="sp-reward">Collect stamps → get a reward</div>
+        </div>
+        <div class="stamp-preview-logo">TT</div>
+      </div>
+      <div class="stamps-grid" id="sp-grid"></div>
+      <div class="stamp-progress">
+        <span id="sp-count">0</span> / <span id="sp-total">10</span> stamps collected
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px;">Test your stamp card</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">Tap the stamps below to see how it works for customers</div>
+      <div class="stamps-grid" id="sp-interactive-grid"></div>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <button class="btn" style="flex:1;" onclick="addStamp()">+ Add stamp</button>
+        <button class="btn btn-orange" style="flex:1;" onclick="resetStamps()">↺ Reset</button>
+      </div>
+    </div>
+
+    <div style="background:#f0faf4;border:1.5px solid #b2dfdb;border-radius:12px;padding:14px;font-size:13px;color:#2d6a4f;line-height:1.7;">
+      <strong>How it works for customers:</strong><br/>
+      They show this page on their phone at checkout. You tap to add a stamp. When they hit the target — they claim their reward. Simple as that.
+    </div>
+
+    <button class="btn btn-green" style="margin-top:12px;" onclick="showSubTab('stamp-share', document.querySelectorAll('.sub-tab')[2])">Set up sharing →</button>
+  </div>
+
+  <!-- Share -->
+  <div id="stamp-share" class="sub-content">
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px;">Share your stamp card</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Customers bookmark this link on their phone — no app download needed. Share it on your receipt, on the table, or at checkout.</div>
+
+      <div style="background:var(--warm);border-radius:10px;padding:14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div style="font-size:13px;font-weight:600;color:var(--ink);" id="stamp-link">tastytaipei.com/stamp/your-restaurant</div>
+        <button onclick="copyStampLink()" style="background:var(--ink);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;flex-shrink:0;">Copy</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <button class="btn" onclick="shareWhatsApp()">💬 Share via WhatsApp</button>
+        <button class="btn btn-green" onclick="shareLINE()">💚 Share via LINE</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px;">Print a QR code for the stamp card</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">Place it at the counter so customers can scan and bookmark instantly.</div>
+      <div id="stamp-qr" style="display:flex;justify-content:center;margin-bottom:12px;"></div>
+      <button class="btn" onclick="window.print()">🖨️ Print QR code</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════
+     RESERVATIONS TOOL
+═══════════════════════════════════ -->
+<div id="tool-reservations" class="tool-page">
+<div class="container">
+  <div class="tool-header">
+    <h1 class="tool-title">Reservations &<br/><em>No-Show Protection</em></h1>
+    <p class="tool-sub">Manage all bookings in one place. Send LINE reminders automatically. Protect your tables from no-shows.</p>
+  </div>
+
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSubTab('res-new',this)">New Booking</button>
+    <button class="sub-tab" onclick="showSubTab('res-list',this)">All Bookings</button>
+    <button class="sub-tab" onclick="showSubTab('res-settings',this)">Settings</button>
+  </div>
+
+  <!-- New Booking -->
+  <div id="res-new" class="sub-content active">
+    <div id="res-success" class="success-banner">
+      ✅ Reservation saved! LINE reminder will be sent automatically 2 hours before.
+    </div>
+    <div class="card">
+      <div class="res-form">
+        <div>
+          <label class="label">Customer name</label>
+          <input type="text" id="res-name" placeholder="Customer name"/>
+        </div>
+        <div>
+          <label class="label">Phone / LINE ID</label>
+          <input type="tel" id="res-phone" placeholder="+886 or LINE ID"/>
+        </div>
+        <div class="form-row">
+          <div>
+            <label class="label">Date & Time</label>
+            <input type="datetime-local" id="res-time"/>
+          </div>
+          <div>
+            <label class="label">Party size</label>
+            <select id="res-size">
+              <option>1 person</option>
+              <option>2 people</option>
+              <option selected>3–4 people</option>
+              <option>5–6 people</option>
+              <option>7+ people</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="label">Special requests (optional)</label>
+          <input type="text" id="res-notes" placeholder="e.g. window seat, birthday, allergies"/>
+        </div>
+        <button class="btn btn-orange" onclick="addReservation()">📅 Save reservation</button>
+      </div>
+    </div>
+
+    <div style="background:var(--warm);border-radius:12px;padding:16px;">
+      <div style="font-size:13px;font-weight:700;margin-bottom:6px;">💬 LINE Reminder — how it works</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.7;">
+        When you save a reservation, we send an automatic LINE message to the customer 2 hours before their booking:<br/><br/>
+        <em style="background:#fff;border-radius:8px;padding:8px 12px;display:block;color:var(--ink);">
+          "Hi [Name]! This is a reminder for your reservation at [Restaurant] today at [Time] for [Party size]. Reply YES to confirm or NO to cancel. We look forward to seeing you! 🍜"
+        </em>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bookings List -->
+  <div id="res-list" class="sub-content">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-size:14px;font-weight:700;">Today's reservations</div>
+      <select onchange="filterReservations(this.value)" style="width:auto;padding:6px 12px;font-size:12px;">
+        <option>All</option>
+        <option>Confirmed</option>
+        <option>Pending</option>
+        <option>No-show</option>
+      </select>
+    </div>
+    <div class="res-list" id="reservations-list">
+      <div class="empty-state">
+        <div class="empty-icon">📅</div>
+        <p>No reservations yet.<br/>Add your first one above.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings -->
+  <div id="res-settings" class="sub-content">
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;margin-bottom:14px;">Restaurant settings</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div>
+          <label class="label">Restaurant name</label>
+          <input type="text" id="set-rname" placeholder="Your restaurant name"/>
+        </div>
+        <div>
+          <label class="label">Your LINE ID (to receive notifications)</label>
+          <input type="text" id="set-line" placeholder="@yourlineid"/>
+        </div>
+        <div>
+          <label class="label">Reminder timing</label>
+          <select id="set-reminder">
+            <option>2 hours before</option>
+            <option>3 hours before</option>
+            <option>1 day before</option>
+            <option>Both 1 day and 2 hours before</option>
+          </select>
+        </div>
+        <div>
+          <label class="label">Auto-cancel if no confirmation after</label>
+          <select id="set-cancel">
+            <option>Don't auto-cancel</option>
+            <option>30 minutes before</option>
+            <option>1 hour before</option>
+          </select>
+        </div>
+        <button class="btn btn-green" onclick="saveSettings()">💾 Save settings</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:14px;font-weight:700;margin-bottom:8px;">No-show protection</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;">
+        When a customer doesn't confirm their reservation, you'll get an alert 1 hour before so you can offer the table to walk-ins.
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:var(--warm);border-radius:10px;padding:12px 16px;">
+        <div style="font-size:13px;font-weight:700;">No-show protection</div>
+        <div id="noshow-toggle" onclick="toggleNoShow()" style="width:44px;height:24px;border-radius:12px;background:var(--green);cursor:pointer;position:relative;transition:all .2s;">
+          <div style="position:absolute;right:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:all .2s;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+  // ── Tool navigation ──
+  function showTool(id, el) {
+    document.querySelectorAll('.tool-page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tool-' + id).classList.add('active');
+    el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showSubTab(id, el) {
+    var parent = el ? el.closest('.tool-page') : document.querySelector('.tool-page.active');
+    parent.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
+    parent.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    if (el) el.classList.add('active');
+  }
+
+  // ══════════════════════════════
+  // QR CODE
+  // ══════════════════════════════
+  var qrInstance = null;
+  var selectedLangs = ['EN 🇺🇸','中文 🇹🇼','FR 🇫🇷','日本語 🇯🇵','ES 🇪🇸'];
+
+  function toggleLang(el, lang) {
+    el.classList.toggle('selected');
+    if (el.classList.contains('selected')) {
+      if (!selectedLangs.includes(lang)) selectedLangs.push(lang);
+    } else {
+      selectedLangs = selectedLangs.filter(l => l !== lang);
+    }
+  }
+
+  function generateQR() {
+    var name = document.getElementById('qr-name').value.trim() || 'Your Restaurant';
+    var url = document.getElementById('qr-url').value.trim() || 'https://tastytaipei.com';
+    if (!url.startsWith('http')) url = 'https://' + url;
+
+    document.getElementById('qr-display-name').textContent = name;
+
+    var langsEl = document.getElementById('qr-display-langs');
+    langsEl.innerHTML = selectedLangs.map(l => '<span class="qr-lang-pill">' + l + '</span>').join('');
+
+    var canvas = document.getElementById('qr-canvas');
+    canvas.innerHTML = '';
+    try {
+      new QRCode(canvas, {
+        text: url,
+        width: 200, height: 200,
+        colorDark: '#1a1207', colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    } catch(e) {
+      canvas.innerHTML = '<div style="width:200px;height:200px;background:#f0ebe3;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--muted);text-align:center;padding:16px;">QR code will appear here with your live URL</div>';
+    }
+
+    document.getElementById('qr-output').classList.add('show');
+    document.getElementById('qr-output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function updateQRPreview() {}
+
+  // ══════════════════════════════
+  // STAMP CARD
+  // ══════════════════════════════
+  var stampCount = 10;
+  var currentStamps = 0;
+
+  function changeCount(delta) {
+    stampCount = Math.max(5, Math.min(20, stampCount + delta));
+    document.getElementById('stamp-count').textContent = stampCount;
+    buildStampGrids();
+  }
+
+  function updateStampPreview() {
+    var name = document.getElementById('stamp-name').value || 'Your Restaurant';
+    var reward = document.getElementById('stamp-reward').value || 'Collect stamps → get a reward';
+    document.getElementById('sp-name').textContent = name;
+    document.getElementById('sp-reward').textContent = reward;
+    var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    document.getElementById('stamp-link').textContent = 'tastytaipei.com/stamp/' + (slug || 'your-restaurant');
+  }
+
+  function buildStampGrids() {
+    var grid = document.getElementById('sp-grid');
+    var igrid = document.getElementById('sp-interactive-grid');
+    if (!grid || !igrid) return;
+    grid.innerHTML = '';
+    igrid.innerHTML = '';
+    document.getElementById('sp-total').textContent = stampCount;
+    document.getElementById('sp-count').textContent = currentStamps;
+
+    for (var i = 0; i < stampCount; i++) {
+      var d1 = document.createElement('div');
+      d1.className = 'stamp-circle' + (i < currentStamps ? ' stamped' : '');
+      grid.appendChild(d1);
+
+      var d2 = document.createElement('div');
+      d2.className = 'stamp-circle' + (i < currentStamps ? ' stamped' : '');
+      d2.setAttribute('data-i', i);
+      d2.onclick = (function(idx) { return function() { tapStamp(idx); }; })(i);
+      igrid.appendChild(d2);
+    }
+
+    // Build stamp QR
+    var stampQR = document.getElementById('stamp-qr');
+    if (stampQR) {
+      stampQR.innerHTML = '';
+      try {
+        new QRCode(stampQR, {
+          text: document.getElementById('stamp-link') ? document.getElementById('stamp-link').textContent : 'https://tastytaipei.com',
+          width: 160, height: 160,
+          colorDark: '#1a1207', colorLight: '#ffffff'
+        });
+      } catch(e) {}
+    }
+  }
+
+  function tapStamp(idx) {
+    if (idx === currentStamps) {
+      currentStamps++;
+      buildStampGrids();
+      if (currentStamps >= stampCount) {
+        setTimeout(function() {
+          alert('🎉 Stamp card complete! Customer earns: ' + (document.getElementById('stamp-reward').value || 'their reward'));
+          currentStamps = 0;
+          buildStampGrids();
+        }, 300);
+      }
+    }
+  }
+
+  function addStamp() {
+    if (currentStamps < stampCount) {
+      currentStamps++;
+      buildStampGrids();
+      if (currentStamps >= stampCount) {
+        setTimeout(function() {
+          alert('🎉 Stamp card complete! Customer earns: ' + (document.getElementById('stamp-reward').value || 'their reward'));
+          currentStamps = 0;
+          buildStampGrids();
+        }, 300);
+      }
+    }
+  }
+
+  function resetStamps() {
+    currentStamps = 0;
+    buildStampGrids();
+  }
+
+  function copyStampLink() {
+    var link = document.getElementById('stamp-link').textContent;
+    if (navigator.clipboard) navigator.clipboard.writeText(link);
+    alert('Link copied: ' + link);
+  }
+
+  function shareWhatsApp() {
+    var name = document.getElementById('stamp-name').value || 'our restaurant';
+    var link = document.getElementById('stamp-link').textContent;
+    window.open('https://wa.me/?text=Collect stamps at ' + name + '! ' + link);
+  }
+
+  function shareLINE() {
+    var name = document.getElementById('stamp-name').value || 'our restaurant';
+    var link = document.getElementById('stamp-link').textContent;
+    window.open('https://line.me/R/msg/text/?Collect stamps at ' + encodeURIComponent(name) + '! ' + encodeURIComponent(link));
+  }
+
+  // ══════════════════════════════
+  // RESERVATIONS
+  // ══════════════════════════════
+  var reservations = [];
+
+  function addReservation() {
+    var name = document.getElementById('res-name').value.trim();
+    var phone = document.getElementById('res-phone').value.trim();
+    var time = document.getElementById('res-time').value;
+    var size = document.getElementById('res-size').value;
+    var notes = document.getElementById('res-notes').value.trim();
+
+    if (!name || !time) {
+      alert('Please enter customer name and booking time.');
+      return;
+    }
+
+    var res = {
+      id: Date.now(),
+      name: name, phone: phone, time: time,
+      size: size, notes: notes, status: 'pending'
+    };
+    reservations.push(res);
+    renderReservations();
+
+    // Clear form
+    document.getElementById('res-name').value = '';
+    document.getElementById('res-phone').value = '';
+    document.getElementById('res-time').value = '';
+    document.getElementById('res-notes').value = '';
+
+    var banner = document.getElementById('res-success');
+    banner.classList.add('show');
+    setTimeout(function() { banner.classList.remove('show'); }, 4000);
+  }
+
+  function renderReservations() {
+    var list = document.getElementById('reservations-list');
+    if (reservations.length === 0) {
+      list.innerHTML = '<div class="empty-state"><div class="empty-icon">📅</div><p>No reservations yet.<br/>Add your first one above.</p></div>';
+      return;
+    }
+    list.innerHTML = reservations.slice().reverse().map(function(r) {
+      var dt = r.time ? new Date(r.time) : null;
+      var timeStr = dt ? dt.toLocaleDateString('en-GB', {weekday:'short',month:'short',day:'numeric'}) + ' at ' + dt.toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit'}) : 'Time TBC';
+      var badgeClass = r.status === 'confirmed' ? 'badge-confirmed' : r.status === 'noshow' ? 'badge-noshow' : 'badge-pending';
+      var badgeLabel = r.status === 'confirmed' ? '✓ Confirmed' : r.status === 'noshow' ? '✗ No-show' : '⏳ Pending';
+      return '<div class="res-item">' +
+        '<div class="res-info">' +
+          '<h4>' + r.name + ' · ' + r.size + '</h4>' +
+          '<p>' + timeStr + (r.notes ? ' · ' + r.notes : '') + '</p>' +
+          (r.phone ? '<p style="font-size:12px;color:var(--muted);">' + r.phone + '</p>' : '') +
+          '<div class="res-badges"><span class="res-badge ' + badgeClass + '">' + badgeLabel + '</span></div>' +
+        '</div>' +
+        '<div class="res-actions">' +
+          (r.status !== 'confirmed' ? '<button class="res-btn confirm" onclick="confirmRes(' + r.id + ')">Confirm</button>' : '') +
+          '<button class="res-btn remind" onclick="sendReminder(\'' + r.name + '\')">Remind</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function confirmRes(id) {
+    reservations = reservations.map(function(r) {
+      return r.id === id ? Object.assign({}, r, {status:'confirmed'}) : r;
+    });
+    renderReservations();
+  }
+
+  function sendReminder(name) {
+    alert('📱 LINE reminder sent to ' + name + '!\n\n"Hi ' + name + '! This is a reminder for your reservation at [Restaurant]. Reply YES to confirm. See you soon! 🍜"');
+  }
+
+  function filterReservations(status) {
+    renderReservations();
+  }
+
+  function saveSettings() {
+    alert('✅ Settings saved! Your restaurant is set up for automatic LINE reminders.');
+  }
+
+  var noShowOn = true;
+  function toggleNoShow() {
+    noShowOn = !noShowOn;
+    var t = document.getElementById('noshow-toggle');
+    t.style.background = noShowOn ? 'var(--green)' : '#ccc';
+    t.querySelector('div').style.right = noShowOn ? '3px' : 'auto';
+    t.querySelector('div').style.left = noShowOn ? 'auto' : '3px';
+  }
+
+  // ── Init ──
+  buildStampGrids();
+
+  // Set default datetime to now + 1 hour
+  var now = new Date();
+  now.setHours(now.getHours() + 1, 0, 0, 0);
+  var pad = n => String(n).padStart(2,'0');
+  var defTime = now.getFullYear() + '-' + pad(now.getMonth()+1) + '-' + pad(now.getDate()) + 'T' + pad(now.getHours()) + ':00';
+  var resTimeEl = document.getElementById('res-time');
+  if (resTimeEl) resTimeEl.value = defTime;
+</script>
+</body>
+</html>
