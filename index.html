@@ -1736,6 +1736,2078 @@
     var chat = document.getElementById('ai-chat');
 
     // Add user bubble
+    var userDiv = document.createElement('div');
+    userDiv.className = 'ai-msg user';
+    userDiv.innerHTML = '<div class="ai-msg-avatar">U</div><div class="ai-msg-bubble">' + escHtml(msg) + '</div>';
+    chat.appendChild(userDiv);
+
+    // Add typing indicator
+    var typing = document.createElement('div');
+    typing.className = 'ai-msg';
+    typing.id = 'ai-typing-indicator';
+    typing.innerHTML = '<div class="ai-msg-avatar">&#x1F916;</div><div class="ai-typing"><span></span><span></span><span></span></div>';
+    chat.appendChild(typing);
+    chat.scrollTop = chat.scrollHeight;
+
+    aiLoading = true;
+    var btn = document.getElementById('ai-send-btn');
+    btn.disabled = true;
+    btn.textContent = '...';
+
+    // Smart local fallback responses for demo/offline use
+    function getLocalResponse(q) {
+      q = q.toLowerCase();
+      if (q.match(/ramen|noodle|麵|拉麵/)) return "🍜 For ramen in Taipei, Da'an and Zhongshan districts are your best bets! Look for spots under NT$200 — a classic beef noodle soup (牛肉麵) runs NT$160–200 and is a must-try. Order the braised beef brisket version with hand-pulled noodles. Spicy scallion noodles are another crowd favourite. Most good spots are open from 11am–9pm and get busy at lunch — arrive early!";
+      if (q.match(/romantic|date|couple|dinner/)) return "🕯️ For a romantic dinner in Taipei, head to Da'an or Xinyi district. Look for Japanese omakase spots (NT$800–2000/person) for something special, or Italian restaurants in the Yongkang Street area for a cozy vibe. Make a reservation in advance — weekends fill up fast. The Xinyi district near Taipei 101 has great upscale options with a nice atmosphere.";
+      if (q.match(/hot pot|火鍋|hotpot/)) return "🍲 Taipei has incredible hot pot! Budget-friendly options run NT$250–400/person for all-you-can-eat. Da'an and Xinyi have the best variety. Look for Sichuan-style mala hot pot if you like spice, or a lighter Taiwanese broth if not. Most spots open from 11am and run late. Group of 2? Many places have individual pots. Tip: go for lunch — cheaper and less crowded!";
+      if (q.match(/bubble tea|boba|珍奶|奶茶/)) return "🧋 Bubble tea is everywhere in Taipei! Zhongshan and Da'an have the most trendy spots. Prices range NT$50–100. Classic milk tea with tapioca pearls is the go-to, but taro, brown sugar, and fresh fruit teas are all excellent. Most shops let you customise sugar level and ice — '少糖去冰' (less sugar, no ice) is a popular local order!";
+      if (q.match(/veg|素食|vegetarian|vegan/)) return "🌱 Taipei is very vegetarian-friendly! Buddhist vegetarian restaurants (素食) are common throughout the city — look for the 素 symbol. Da'an has many modern plant-based cafes. Night markets always have veggie options. Most Taiwanese dishes can be made without meat on request. Ximending and Gongguan areas near NTU have affordable veggie lunch sets from NT$80–150.";
+      if (q.match(/breakfast|brunch|早餐|早午餐/)) return "☀️ Taiwanese breakfast is special! Traditional 早餐店 (breakfast shops) open from 6am with egg sandwiches, scallion pancakes (蛋餅), and soy milk for under NT$80. For brunch, Da'an and Songshan have great café spots (NT$150–320). Fujin Street in Songshan is a local favourite for weekend brunch — cozy cafes with good eggs and coffee. Most open at 9–10am, busy on weekends!";
+      if (q.match(/night market|夜市|shilin|士林/)) return "🌙 Shilin Night Market is the most famous, but locals also love Raohe and Ningxia for a more authentic experience. Must-eats: stinky tofu, oyster omelette (蚵仔煎), scallion pancakes, grilled corn, and tang yuan. Budget NT$200–400 for a full night market feast. Go after 7pm — it gets lively fast. Wear comfortable shoes and bring cash!";
+      if (q.match(/cheap|budget|under|affordable|NT\$|便宜/)) return "💰 Taipei is amazing for budget eating! Under NT$200 you can eat extremely well. Breakfast shops from NT$50, lunch boxes (便當) from NT$80–120, beef noodles from NT$130–180. Convenience stores (7-Eleven, FamilyMart) have surprisingly good hot food. University areas like Gongguan and Shida have the cheapest eats. Night markets are also great value — most snacks NT$50–100.";
+      if (q.match(/hidden gem|secret|local|locals eat/)) return "💎 For true hidden gems, skip the tourist spots and head to side streets in Da'an, Wanhua, or Zhongzheng. Look for restaurants with Chinese-only menus and old plastic stools — that's usually the best food. Yongkang Street in Da'an is touristy but has a few old-school spots. Dihua Street in Datong for traditional snacks. Ask your hotel staff or locals — they always know the best unmarked spots!";
+      if (q.match(/dessert|cake|sweet|甜點|ice cream|冰/)) return "🍰 Taipei has incredible desserts! Shaved ice (剉冰) with toppings is a summer staple, NT$60–100. Pineapple cake (鳳梨酥) is the iconic Taiwanese souvenir sweet. For modern desserts, Da'an has excellent Japanese-style patisseries. Mango shaved ice at a traditional shop is a must in summer. Don't miss tang yuan (湯圓) — chewy rice balls in sweet broth.";
+      if (q.match(/japanese|sushi|日本/)) return "🍣 Taipei has outstanding Japanese food — often as good as Japan itself, at lower prices! Omakase sushi runs NT$800–2000+/person in Da'an or Xinyi. More casual conveyor belt sushi from NT$200–400. Ramen shops are everywhere NT$160–250. Izakayas are popular for evening drinks + food, NT$300–600. Zhongshan district has a strong Japanese dining scene — worth exploring.";
+      return "🍽️ Great question! Taipei's food scene is incredible — from NT$80 beef noodles in a tiny street shop to NT$2000 omakase experiences. The best approach: explore Da'an for cafes and international food, Shilin for night market vibes, Zhongshan for Japanese cuisine, and Wanhua for authentic old Taipei flavours. What specific cuisine or budget are you working with? I can give you more targeted picks!";
+    }
+
+    // Try real API first, fall back to local responses
+    var apiPromise = fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 600,
+        system: "You are Tasty Taipei's friendly AI food assistant. Help find restaurants in Taipei. Be concise (3-5 sentences max), warm, and specific. Include district names, NT$ prices, and what to order. Use 1-2 emojis.",
+        messages: [{ role: 'user', content: msg }]
+      })
+    });
+
+    var timeoutPromise = new Promise(function(_, reject) {
+      setTimeout(function() { reject(new Error('timeout')); }, 5000);
+    });
+
+    Promise.race([apiPromise, timeoutPromise])
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var reply = (data.content && data.content[0] && data.content[0].text)
+          ? data.content[0].text
+          : getLocalResponse(msg);
+        removeTyping();
+        addBotMsg(reply);
+      })
+      .catch(function() {
+        removeTyping();
+        addBotMsg(getLocalResponse(msg));
+      })
+      .finally(function() {
+        aiLoading = false;
+        btn.disabled = false;
+        btn.textContent = 'Ask AI →';
+      });
+  }
+
+    function removeTyping() {
+    var el = document.getElementById('ai-typing-indicator');
+    if (el) el.remove();
+  }
+
+  function addBotMsg(text) {
+    var chat = document.getElementById('ai-chat');
+    var div = document.createElement('div');
+    div.className = 'ai-msg';
+    div.innerHTML = '<div class="ai-msg-avatar">&#x1F916;</div><div class="ai-msg-bubble">' + escHtml(text).replace(/\n/g, '<br/>') + '</div>';
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // ── NEAR ME ──
+  function requestNearMe() {
+    if (!navigator.geolocation) {
+      showToast('Location not supported on this device');
+      return;
+    }
+    showToast('\uD83D\uDCCD Getting your location...');
+    navigator.geolocation.getCurrentPosition(
+      function(pos) {
+        showToast('\u2705 Found you! Showing nearby restaurants...');
+      },
+      function() {
+        showToast('\uD83D\uDCCD Enable location to see nearby spots!');
+      }
+    );
+  }
+
+</script>
+
+<!-- ══════════════════════════════════
+     LIST YOUR RESTAURANT MODAL
+══════════════════════════════════ -->
+<div id="modal-overlay" onclick="closeModal()" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(26,18,7,.6);backdrop-filter:blur(6px);"></div>
+
+<div id="modal" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:1001;background:var(--cream);border-radius:24px 24px 0 0;max-height:90vh;overflow-y:auto;transform:translateY(100%);transition:transform .4s cubic-bezier(.32,0,.67,0);">
+  <div style="display:flex;justify-content:center;padding:14px 0 0;"><div style="width:40px;height:4px;border-radius:2px;background:var(--border);"></div></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px 0;">
+    <div style="font-family:'Fraunces',serif;font-size:16px;font-weight:900;color:var(--orange);">Tasty <span style="color:var(--ink);">Taipei</span></div>
+    <div style="display:flex;gap:3px;background:#f0ebe3;border-radius:8px;padding:3px;">
+      <button onclick="modalLang('en')" id="ml-en" style="padding:5px 12px;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;border:none;background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;">EN</button>
+      <button onclick="modalLang('zh')" id="ml-zh" style="padding:5px 12px;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;">中文</button>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 20px 0;">
+    <button onclick="modalTab('why')" id="mt-why" style="padding:10px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;transition:all .2s;">Why Join</button>
+    <button onclick="modalTab('plans')" id="mt-plans" style="padding:10px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;background:#f0ebe3;color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .2s;">Plans &amp; Pricing</button>
+    <button onclick="modalTab('features')" id="mt-features" style="padding:10px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;background:#f0ebe3;color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .2s;">✨ Features</button>
+    <button onclick="modalTab('signup')" id="mt-signup" style="padding:10px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;background:#f0ebe3;color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .2s;">🎁 Free Trial</button>
+  </div>
+  <div style="padding:18px 20px 40px;">
+    <div id="modal-why">
+      <div class="ml-en">
+        <div style="background:var(--ink);border-radius:18px;padding:24px 20px;margin-bottom:16px;position:relative;overflow:hidden;">
+          <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(232,82,26,.15);"></div>
+          <div style="display:inline-block;background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:10px;">Restaurant Partner Invitation</div>
+          <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:900;color:var(--cream);line-height:1.05;margin-bottom:8px;">Reach <em style="font-style:italic;color:var(--orange);font-weight:300;">thousands</em> of international &amp; local hungry customers</div>
+          <div style="font-size:13px;color:rgba(253,248,240,.55);line-height:1.6;margin-bottom:16px;">Tasty Taipei connects tourists, expats, and locals directly to your restaurant in 5 languages.</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+            <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:10px 6px;text-align:center;"><div style="font-family:'Fraunces',serif;font-size:16px;font-weight:900;color:var(--cream);">Free</div><div style="font-size:10px;color:rgba(253,248,240,.45);margin-top:2px;">To start</div></div>
+            <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:10px 6px;text-align:center;"><div style="font-family:'Fraunces',serif;font-size:16px;font-weight:900;color:var(--cream);">4 Weeks</div><div style="font-size:10px;color:rgba(253,248,240,.45);margin-top:2px;">Free trial</div></div>
+            <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:10px 6px;text-align:center;"><div style="font-family:'Fraunces',serif;font-size:16px;font-weight:900;color:var(--cream);">5 Langs</div><div style="font-size:10px;color:rgba(253,248,240,.45);margin-top:2px;">EN·中·FR·日·ES</div></div>
+          </div>
+        </div>
+        <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:900;margin-bottom:12px;letter-spacing:-.02em;">The problem — and how we fix it</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;display:flex;gap:10px;"><span style="font-size:18px;flex-shrink:0;">📍</span><div><div style="font-size:13px;font-weight:700;margin-bottom:2px;">Google Maps shows outdated info</div><div style="font-size:12px;color:var(--muted);">Wrong hours, bad photos — customers give up before arriving</div></div></div>
+          <div style="text-align:center;color:var(--orange);font-size:16px;font-weight:700;">↓</div>
+          <div style="background:#f0faf4;border:1.5px solid #b2dfdb;border-radius:12px;padding:12px;display:flex;gap:10px;"><span style="font-size:18px;flex-shrink:0;">✓</span><div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:2px;">Clean, real, up-to-date page — with direct action buttons</div><div style="font-size:12px;color:#4a7c62;">Real menu, real photos, reserve &amp; order in one tap</div></div></div>
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;display:flex;gap:10px;margin-top:4px;"><span style="font-size:18px;flex-shrink:0;">🌍</span><div><div style="font-size:13px;font-weight:700;margin-bottom:2px;">International customers can't find hidden gems</div><div style="font-size:12px;color:var(--muted);">Great restaurants get passed over due to lack of visibility</div></div></div>
+          <div style="text-align:center;color:var(--orange);font-size:16px;font-weight:700;">↓</div>
+          <div style="background:#f0faf4;border:1.5px solid #b2dfdb;border-radius:12px;padding:12px;display:flex;gap:10px;"><span style="font-size:18px;flex-shrink:0;">✓</span><div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:2px;">We put you in front of international &amp; local customers</div><div style="font-size:12px;color:#4a7c62;">Thousands of hungry customers searching for great Taipei food</div></div></div>
+        </div>
+        <div style="background:linear-gradient(135deg,#fff7f3,#fff);border:2px solid var(--orange);border-radius:16px;padding:20px;text-align:center;">
+          <div style="display:inline-block;background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:10px;">🎁 Free Trial — Limited Spots</div>
+          <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px;">Try it free for 4 weeks</div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;">No cost. No contract. No risk. We set everything up — you keep running your restaurant.</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;text-align:left;">
+            <div style="display:flex;gap:8px;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:500;"><span style="color:var(--green);font-weight:800;">✓</span>Your own restaurant page on Tasty Taipei</div>
+            <div style="display:flex;gap:8px;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:500;"><span style="color:var(--green);font-weight:800;">✓</span>Professional photos taken by us</div>
+            <div style="display:flex;gap:8px;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:500;"><span style="color:var(--green);font-weight:800;">✓</span>Full menu listed in 5 languages</div>
+            <div style="display:flex;gap:8px;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:500;"><span style="color:var(--green);font-weight:800;">✓</span>Reserve, pickup &amp; delivery buttons</div>
+            <div style="display:flex;gap:8px;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:500;"><span style="color:var(--green);font-weight:800;">✓</span>Full results report after 4 weeks</div>
+          </div>
+          <button onclick="modalTab('signup')" style="background:var(--ink);color:var(--cream);border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;">🎁 Start Free Trial →</button>
+        </div>
+      </div>
+      <div class="ml-zh" style="display:none;">
+        <div style="background:var(--ink);border-radius:18px;padding:24px 20px;margin-bottom:16px;position:relative;overflow:hidden;">
+          <div style="position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(232,82,26,.15);"></div>
+          <div style="display:inline-block;background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:10px;">餐廳合作夥伴邀請</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:22px;font-weight:700;color:var(--cream);line-height:1.1;margin-bottom:8px;">觸及<em style="font-style:normal;color:var(--orange);">數千名</em>國際與在地的饕客</div>
+          <div style="font-size:13px;color:rgba(253,248,240,.55);line-height:1.6;margin-bottom:16px;font-family:'Noto Sans TC',sans-serif;">Tasty Taipei 以 5 種語言，將觀光客、外籍人士和在地人直接連結到你的餐廳。</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+            <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:10px 6px;text-align:center;"><div style="font-family:'Noto Sans TC',sans-serif;font-size:14px;font-weight:700;color:var(--cream);">免費</div><div style="font-size:10px;color:rgba(253,248,240,.45);margin-top:2px;font-family:'Noto Sans TC',sans-serif;">立即開始</div></div>
+            <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:10px 6px;text-align:center;"><div style="font-family:'Noto Sans TC',sans-serif;font-size:14px;font-weight:700;color:var(--cream);">4 週</div><div style="font-size:10px;color:rgba(253,248,240,.45);margin-top:2px;font-family:'Noto Sans TC',sans-serif;">免費試用</div></div>
+            <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:10px 6px;text-align:center;"><div style="font-family:'Noto Sans TC',sans-serif;font-size:14px;font-weight:700;color:var(--cream);">5 語言</div><div style="font-size:10px;color:rgba(253,248,240,.45);margin-top:2px;font-family:'Noto Sans TC',sans-serif;">中·英·法·日·西</div></div>
+          </div>
+        </div>
+        <div style="font-family:'Noto Sans TC',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;">問題所在——以及我們如何解決</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;display:flex;gap:10px;"><span style="font-size:18px;flex-shrink:0;">📍</span><div><div style="font-size:13px;font-weight:700;margin-bottom:2px;font-family:'Noto Sans TC',sans-serif;">Google Maps 資訊過時</div><div style="font-size:12px;color:var(--muted);font-family:'Noto Sans TC',sans-serif;">錯誤的資訊讓顧客還沒來就已放棄</div></div></div>
+          <div style="text-align:center;color:var(--orange);font-size:16px;font-weight:700;">↓</div>
+          <div style="background:#f0faf4;border:1.5px solid #b2dfdb;border-radius:12px;padding:12px;display:flex;gap:10px;"><span style="font-size:18px;flex-shrink:0;">✓</span><div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:2px;font-family:'Noto Sans TC',sans-serif;">清晰即時的頁面——含直接行動按鈕</div><div style="font-size:12px;color:#4a7c62;font-family:'Noto Sans TC',sans-serif;">真實菜單、專業照片、一鍵預訂或點餐</div></div></div>
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;display:flex;gap:10px;margin-top:4px;"><span style="font-size:18px;flex-shrink:0;">🌍</span><div><div style="font-size:13px;font-weight:700;margin-bottom:2px;font-family:'Noto Sans TC',sans-serif;">國際顧客找不到隱藏版美食</div><div style="font-size:12px;color:var(--muted);font-family:'Noto Sans TC',sans-serif;">優秀餐廳因曝光不足而被觀光客忽略</div></div></div>
+          <div style="text-align:center;color:var(--orange);font-size:16px;font-weight:700;">↓</div>
+          <div style="background:#f0faf4;border:1.5px solid #b2dfdb;border-radius:12px;padding:12px;display:flex;gap:10px;"><span style="font-size:18px;flex-shrink:0;">✓</span><div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:2px;font-family:'Noto Sans TC',sans-serif;">我們讓你被國際與在地顧客同時看見</div><div style="font-size:12px;color:#4a7c62;font-family:'Noto Sans TC',sans-serif;">數千名積極搜尋台北美食的國際和在地饕客</div></div></div>
+        </div>
+        <div style="background:linear-gradient(135deg,#fff7f3,#fff);border:2px solid var(--orange);border-radius:16px;padding:20px;text-align:center;">
+          <div style="display:inline-block;background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:10px;">🎁 免費試用——名額有限</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:20px;font-weight:700;margin-bottom:6px;">免費試用 4 週</div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;font-family:'Noto Sans TC',sans-serif;">零費用。零合約。零風險。我們負責所有設定——你繼續經營餐廳。</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;text-align:left;">
+            <div style="display:flex;gap:8px;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:500;font-family:'Noto Sans TC',sans-serif;"><span style="color:var(--green);font-weight:800;">✓</span>在 Tasty Taipei 擁有專屬餐廳頁面</div>
+            <div style="display:flex;gap:8px;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:500;font-family:'Noto Sans TC',sans-serif;"><span style="color:var(--green);font-weight:800;">✓</span>由我們拍攝專業餐廳照片</div>
+            <div style="display:flex;gap:8px;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:500;font-family:'Noto Sans TC',sans-serif;"><span style="color:var(--green);font-weight:800;">✓</span>完整菜單以 5 種語言呈現</div>
+            <div style="display:flex;gap:8px;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:500;font-family:'Noto Sans TC',sans-serif;"><span style="color:var(--green);font-weight:800;">✓</span>訂位、自取與外送按鈕</div>
+            <div style="display:flex;gap:8px;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:500;font-family:'Noto Sans TC',sans-serif;"><span style="color:var(--green);font-weight:800;">✓</span>4 週後提供完整成效報告</div>
+          </div>
+          <button onclick="modalTab('signup')" style="background:var(--ink);color:var(--cream);border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans TC',sans-serif;width:100%;">🎁 開始免費試用 →</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-features" style="display:none;">
+      <div class="ml-en">
+        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px;">Tools your competitors don't give you</div>
+        <div style="font-size:13px;color:#8a7560;margin-bottom:20px;line-height:1.6;">Every restaurant on Tasty Taipei gets these free during your trial.</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#fff7f3;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📱</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Multilingual Menu QR Code</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">Tourists scan and see your full menu in their language — EN, 中文, FR, 日本語, ES. Zero effort from you.</div><div style="display:inline-block;background:#fff7f3;color:#e8521a;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">🔥 Tourists love this</div></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#f0faf4;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🎟️</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Digital Stamp Card</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">Customers collect stamps on their phone. No app needed. Builds loyalty without any extra work from you.</div><div style="display:inline-block;background:#f0faf4;color:#2d6a4f;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">♻️ Brings regulars back</div></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">💬</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">LINE Reservation Reminders</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">Automatic LINE reminder sent 2 hours before every booking. Reduces no-shows dramatically.</div><div style="display:inline-block;background:#e8f5e9;color:#2d6a4f;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">📉 Cuts no-shows</div></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#fff8e0;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">✅</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">No-Show Protection</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">Customers confirm with one tap. If no response, you know in advance and can give the table away.</div><div style="display:inline-block;background:#fff8e0;color:#c9963a;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">💰 Protects your revenue</div></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#fce4ec;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📊</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Monthly Customer Report</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">Every month — how many people visited, where they are from, which dishes got attention. Data you never had before.</div><div style="display:inline-block;background:#fce4ec;color:#c0392b;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">📈 Know your customers</div></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#e8f0fe;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">✏️</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Menu Updates via WhatsApp</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">New dish? Price change? Just WhatsApp us and we update your menu within the hour. No tech skills needed.</div><div style="display:inline-block;background:#e8f0fe;color:#1e5fa8;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">⚡ Done in minutes</div></div>
+          </div>
+        </div>
+        <button onclick="modalTab('signup')" style="background:#1a1207;color:#fdf8f0;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;margin-top:20px;">🎁 Start Free Trial →</button>
+      </div>
+      <div class="ml-zh" style="display:none;font-family:'Noto Sans TC',sans-serif;">
+        <div style="font-size:20px;font-weight:700;margin-bottom:6px;">競爭對手沒有提供的工具</div>
+        <div style="font-size:13px;color:#8a7560;margin-bottom:20px;line-height:1.6;">每家加入 Tasty Taipei 的餐廳都能免費使用這些功能。</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#fff7f3;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📱</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">多語言菜單 QR Code</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">觀光客掃描後即可用自己的語言查看完整菜單。你完全不需要做任何事。</div><div style="display:inline-block;background:#fff7f3;color:#e8521a;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">🔥 觀光客超愛</div></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#f0faf4;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🎟️</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">數位集點卡</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">顧客在手機上集點，不需要下載 App。完全不需要額外工作就能建立忠誠度。</div><div style="display:inline-block;background:#f0faf4;color:#2d6a4f;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">♻️ 讓常客回流</div></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">💬</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">LINE 訂位提醒</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">每次訂位前 2 小時自動發送 LINE 提醒，大幅減少爽約情況。</div><div style="display:inline-block;background:#e8f5e9;color:#2d6a4f;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">📉 減少爽約</div></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#fff8e0;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">✅</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">爽約保護</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">顧客一鍵確認訂位。如果沒有回應，你可以提前知道並將位子讓給其他客人。</div><div style="display:inline-block;background:#fff8e0;color:#c9963a;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">💰 保護收入</div></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#fce4ec;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📊</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">每月顧客報告</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">每個月清楚的報告——瀏覽數、來源地區、最受歡迎的菜色。</div><div style="display:inline-block;background:#fce4ec;color:#c0392b;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">📈 了解顧客</div></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#e8f0fe;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">✏️</div>
+            <div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">WhatsApp 菜單更新</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">傳 WhatsApp 給我們，一小時內更新菜單。不需要任何技術能力。</div><div style="display:inline-block;background:#e8f0fe;color:#1e5fa8;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">⚡ 幾分鐘完成</div></div>
+          </div>
+        </div>
+        <button onclick="modalTab('signup')" style="background:#1a1207;color:#fdf8f0;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans TC',sans-serif;width:100%;margin-top:20px;">🎁 開始免費試用 →</button>
+      </div>
+    </div>
+
+    <div id="modal-signup" style="display:none;">
+      <div class="ml-en">
+        <div style="background:#e8521a;border-radius:16px;padding:20px 20px 16px;margin-bottom:20px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:8px;">🎁</div>
+          <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:900;color:#fff;margin-bottom:4px;">Start your free 4-week trial</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.75);">No cost. No contract. We set everything up for you.</div>
+        </div>
+        <div id="signup-success-en" style="display:none;background:#d4edda;border:1.5px solid #b2dfdb;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:13px;font-weight:700;color:#155724;">
+          ✅ Thank you! We'll contact you within 24 hours to get started.
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8a7560;margin-bottom:6px;">Your name</div>
+            <input id="sf-name" type="text" placeholder="Your full name" style="width:100%;border:1.5px solid #e2d9cc;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'DM Sans',sans-serif;color:#1a1207;outline:none;"/>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8a7560;margin-bottom:6px;">Restaurant name</div>
+            <input id="sf-restaurant" type="text" placeholder="e.g. Ah-Zhong Noodle House" style="width:100%;border:1.5px solid #e2d9cc;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'DM Sans',sans-serif;color:#1a1207;outline:none;"/>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8a7560;margin-bottom:6px;">Phone number / LINE ID</div>
+            <input id="sf-phone" type="tel" placeholder="+886 or LINE ID" style="width:100%;border:1.5px solid #e2d9cc;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'DM Sans',sans-serif;color:#1a1207;outline:none;"/>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8a7560;margin-bottom:6px;">Email address</div>
+            <input id="sf-email" type="email" placeholder="your@email.com" style="width:100%;border:1.5px solid #e2d9cc;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'DM Sans',sans-serif;color:#1a1207;outline:none;"/>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8a7560;margin-bottom:6px;">Restaurant district</div>
+            <select id="sf-district" style="width:100%;border:1.5px solid #e2d9cc;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'DM Sans',sans-serif;color:#1a1207;outline:none;background:#fff;">
+              <option value="">Select district...</option>
+              <option>Da'an</option>
+              <option>Xinyi</option>
+              <option>Zhongzheng</option>
+              <option>Songshan</option>
+              <option>Shilin</option>
+              <option>Zhongshan</option>
+              <option>Wanhua</option>
+              <option>Wenshan</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <button onclick="submitSignup()" style="width:100%;background:#e8521a;color:#fff;border:none;border-radius:12px;padding:15px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:10px;">Submit — start my free trial 🎉</button>
+        <div style="font-size:12px;color:#8a7560;text-align:center;line-height:1.6;">By submitting you agree to be contacted by Tasty Taipei within 24 hours. No payment required.</div>
+      </div>
+      <div class="ml-zh" style="display:none;font-family:'Noto Sans TC',sans-serif;">
+        <div style="background:#e8521a;border-radius:16px;padding:20px 20px 16px;margin-bottom:20px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:8px;">🎁</div>
+          <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;">開始你的 4 週免費試用</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.75);">零費用。零合約。我們負責所有設定。</div>
+        </div>
+        <div id="signup-success-zh" style="display:none;background:#d4edda;border:1.5px solid #b2dfdb;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:13px;font-weight:700;color:#155724;">
+          ✅ 謝謝你！我們會在 24 小時內與你聯繫。
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8a7560;margin-bottom:6px;">你的姓名</div>
+            <input id="sf-name-zh" type="text" placeholder="你的全名" style="width:100%;border:1.5px solid #e2d9cc;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'Noto Sans TC',sans-serif;color:#1a1207;outline:none;"/>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8a7560;margin-bottom:6px;">餐廳名稱</div>
+            <input id="sf-restaurant-zh" type="text" placeholder="例如：阿忠麵館" style="width:100%;border:1.5px solid #e2d9cc;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'Noto Sans TC',sans-serif;color:#1a1207;outline:none;"/>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8a7560;margin-bottom:6px;">電話號碼 / LINE ID</div>
+            <input id="sf-phone-zh" type="tel" placeholder="+886 或 LINE ID" style="width:100%;border:1.5px solid #e2d9cc;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'Noto Sans TC',sans-serif;color:#1a1207;outline:none;"/>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8a7560;margin-bottom:6px;">電子信箱</div>
+            <input id="sf-email-zh" type="email" placeholder="your@email.com" style="width:100%;border:1.5px solid #e2d9cc;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'Noto Sans TC',sans-serif;color:#1a1207;outline:none;"/>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8a7560;margin-bottom:6px;">餐廳所在區域</div>
+            <select id="sf-district-zh" style="width:100%;border:1.5px solid #e2d9cc;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'Noto Sans TC',sans-serif;color:#1a1207;outline:none;background:#fff;">
+              <option value="">選擇區域...</option>
+              <option>大安區</option>
+              <option>信義區</option>
+              <option>中正區</option>
+              <option>松山區</option>
+              <option>士林區</option>
+              <option>中山區</option>
+              <option>萬華區</option>
+              <option>文山區</option>
+              <option>其他</option>
+            </select>
+          </div>
+        </div>
+        <button onclick="submitSignupZh()" style="width:100%;background:#e8521a;color:#fff;border:none;border-radius:12px;padding:15px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Noto Sans TC',sans-serif;margin-bottom:10px;">送出申請 — 開始免費試用 🎉</button>
+        <div style="font-size:12px;color:#8a7560;text-align:center;line-height:1.6;">提交後，Tasty Taipei 將在 24 小時內與你聯繫。無需付費。</div>
+      </div>
+    </div>
+
+    <div id="modal-plans" style="display:none;">
+      <div class="ml-en">
+        <div style="background:var(--green);border-radius:14px;padding:16px;margin-bottom:14px;display:flex;gap:12px;align-items:flex-start;"><span style="font-size:26px;flex-shrink:0;">🎁</span><div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:3px;">Start with a free 4-week trial</div><div style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.6;">No card. No contract. See results first, then decide.</div></div></div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px;"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Basic</div><div style="font-family:'Fraunces',serif;font-size:32px;font-weight:900;line-height:1;">NT$800</div><div style="font-size:12px;color:var(--muted);margin-bottom:12px;">per month after trial</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Restaurant page on Tasty Taipei</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Full menu in 5 languages</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Contact, hours &amp; location</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Reserve, pickup &amp; delivery buttons</div></div></div>
+          <div style="background:#fff7f3;border:2px solid var(--orange);border-radius:16px;padding:20px;position:relative;"><div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;white-space:nowrap;">Most Popular</div><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Featured</div><div style="font-family:'Fraunces',serif;font-size:32px;font-weight:900;line-height:1;">NT$1,500</div><div style="font-size:12px;color:var(--muted);margin-bottom:12px;">per month after trial</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Everything in Basic</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Homepage placement</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>"Top Pick" badge on your card</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Priority in search results</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Monthly performance report</div></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">🎁</div><div style="font-size:12px;font-weight:700;margin-bottom:2px;">Free to start</div><div style="font-size:11px;color:var(--muted);">No card needed</div></div>
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">📊</div><div style="font-size:12px;font-weight:700;margin-bottom:2px;">Full reports</div><div style="font-size:11px;color:var(--muted);">See who found you</div></div>
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">🤝</div><div style="font-size:12px;font-weight:700;margin-bottom:2px;">No contracts</div><div style="font-size:11px;color:var(--muted);">Cancel anytime</div></div>
+        </div>
+      </div>
+      <div class="ml-zh" style="display:none;font-family:'Noto Sans TC',sans-serif;">
+        <div style="background:var(--green);border-radius:14px;padding:16px;margin-bottom:14px;display:flex;gap:12px;align-items:flex-start;"><span style="font-size:26px;flex-shrink:0;">🎁</span><div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:3px;">從 4 週免費試用開始</div><div style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.6;">不需信用卡。不需簽約。先看成果，再決定。</div></div></div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px;"><div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">基本方案</div><div style="font-family:'Fraunces',serif;font-size:32px;font-weight:900;line-height:1;">NT$800</div><div style="font-size:12px;color:var(--muted);margin-bottom:12px;font-family:'Noto Sans TC',sans-serif;">試用期後每月</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Tasty Taipei 餐廳專頁</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>5 種語言完整菜單</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>聯絡方式、營業時間與位置</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>訂位、自取與外送按鈕</div></div></div>
+          <div style="background:#fff7f3;border:2px solid var(--orange);border-radius:16px;padding:20px;position:relative;"><div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;white-space:nowrap;">最受歡迎</div><div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">精選方案</div><div style="font-family:'Fraunces',serif;font-size:32px;font-weight:900;line-height:1;">NT$1,500</div><div style="font-size:12px;color:var(--muted);margin-bottom:12px;font-family:'Noto Sans TC',sans-serif;">試用期後每月</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>包含基本方案所有功能</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>首頁精選位置</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>「精選推薦」標章</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>搜尋結果優先排序</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>每月成效報告</div></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">🎁</div><div style="font-size:12px;font-weight:700;margin-bottom:2px;">免費開始</div><div style="font-size:11px;color:var(--muted);">無需信用卡</div></div>
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">📊</div><div style="font-size:12px;font-weight:700;margin-bottom:2px;">完整報告</div><div style="font-size:11px;color:var(--muted);">清楚看到成效</div></div>
+          <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">🤝</div><div style="font-size:12px;font-weight:700;margin-bottom:2px;">無合約</div><div style="font-size:11px;color:var(--muted);">隨時取消</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>  .nav-logo span { color: var(--ink); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    color: var(--muted); transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: var(--cream);
+    border: none; border-radius: 8px; padding: 9px 20px;
+    font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: background .2s, transform .15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nav-cta:hover { background: var(--orange); transform: translateY(-1px); }
+  .nav-cta-mobile {
+    display: none;
+    background: var(--orange); color: #fff;
+    border: none; border-radius: 8px; padding: 9px 16px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* ─── HERO ─── */
+  #home {
+    min-height: 88vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 60px 40px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 20% 30%, rgba(232,82,26,.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 80% 70%, rgba(201,150,58,.07) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9963a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 18px; z-index: 1;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block; width: 28px; height: 1px; background: var(--orange);
+  }
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 800; line-height: .95;
+    text-align: center; z-index: 1;
+    letter-spacing: -.04em; margin-bottom: 22px;
+    max-width: 800px;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--orange); font-weight: 300;
+  }
+  .hero-sub {
+    font-size: 18px; color: var(--muted); text-align: center;
+    z-index: 1; max-width: 480px; line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  /* Search */
+  .search-box {
+    z-index: 1; width: 100%; max-width: 620px;
+    background: #fff; border-radius: 16px;
+    padding: 8px 8px 8px 20px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 8px 40px rgba(26,18,7,.12), 0 1px 0 var(--border);
+    border: 1.5px solid var(--border);
+    transition: box-shadow .2s, border-color .2s;
+  }
+  .search-box:focus-within {
+    box-shadow: 0 8px 48px rgba(232,82,26,.18);
+    border-color: var(--orange);
+  }
+  .search-icon { color: var(--muted); font-size: 18px; flex-shrink: 0; }
+  .search-box input {
+    flex: 1; border: none; outline: none;
+    font-size: 15px; font-family: 'DM Sans', sans-serif;
+    color: var(--ink); background: transparent;
+  }
+  .search-box input::placeholder { color: var(--muted); }
+  .search-btn {
+    background: var(--orange); color: #fff;
+    border: none; border-radius: 10px; padding: 12px 24px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background .2s, transform .15s;
+    white-space: nowrap;
+  }
+  .search-btn:hover { background: #c9400e; transform: translateY(-1px); }
+  .search-hints {
+    z-index: 1; display: flex; gap: 8px; flex-wrap: wrap;
+    justify-content: center; margin-top: 14px;
+  }
+  .hint-chip {
+    background: rgba(255,255,255,.7); border: 1px solid var(--border);
+    border-radius: 20px; padding: 5px 14px; font-size: 12px;
+    color: var(--muted); cursor: pointer; transition: all .2s;
+  }
+  .hint-chip:hover { background: #fff; color: var(--orange); border-color: var(--orange); }
+
+  /* Stats bar */
+  .stats-bar {
+    z-index: 1; display: flex; gap: 40px;
+    margin-top: 56px; padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Fraunces', serif; font-size: 32px; font-weight: 800;
+    color: var(--ink); line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 500; }
+
+  /* ─── CATEGORIES ─── */
+  .section { padding: 72px 40px; max-width: 1200px; margin: 0 auto; }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 32px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif; font-size: 34px; font-weight: 800;
+    letter-spacing: -.03em; line-height: 1;
+  }
+  .see-all {
+    font-size: 13px; font-weight: 600; color: var(--orange);
+    text-decoration: none; cursor: pointer;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .see-all:hover { text-decoration: underline; }
+
+  .cats-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 768px) {
+    .cats-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  }
+  @media (max-width: 480px) {
+    .cats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  }
+  .cat-card {
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 20px 12px 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    cursor: pointer; transition: all .22s;
+    text-decoration: none; color: var(--ink);
+    position: relative; overflow: hidden;
+  }
+  .cat-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(232,82,26,.06) 0%, transparent 70%);
+    opacity: 0; transition: opacity .22s;
+  }
+  .cat-card:hover {
+    border-color: var(--orange); transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(232,82,26,.14);
+  }
+  .cat-card:hover::before { opacity: 1; }
+  .cat-emoji { font-size: 30px; transition: transform .2s; }
+  .cat-card:hover .cat-emoji { transform: scale(1.12); }
+  .cat-name { font-size: 11.5px; font-weight: 600; text-align: center; letter-spacing: .01em; }
+
+  /* ─── RESTAURANT CARDS ─── */
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .r-card {
+    background: var(--card-bg); border-radius: 16px;
+    overflow: hidden; border: 1.5px solid var(--border);
+    transition: all .25s; cursor: pointer;
+    text-decoration: none; color: inherit;
+    display: block;
+  }
+  .r-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(26,18,7,.12);
+    border-color: rgba(232,82,26,.3);
+  }
+  .r-card-img {
+    width: 100%; height: 200px; object-fit: cover;
+    background: linear-gradient(135deg, #f5dfc0 0%, #e8c89a 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px; position: relative; overflow: hidden;
+  }
+  .r-card-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(26,18,7,.15) 100%);
+  }
+  .r-card-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+  }
+  .r-card-body { padding: 16px 18px 18px; }
+  .r-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .r-card-name {
+    font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700;
+    line-height: 1.2; letter-spacing: -.02em;
+  }
+  .r-rating {
+    font-size: 13px; font-weight: 600; color: var(--gold);
+    display: flex; align-items: center; gap: 3px; white-space: nowrap;
+  }
+  .r-cuisine {
+    font-size: 12px; color: var(--muted); margin-top: 3px; font-weight: 500;
+  }
+  .r-tags { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+  .r-meta {
+    display: flex; gap: 16px; margin-top: 12px;
+    padding-top: 12px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--muted);
+  }
+  .r-meta span { display: flex; align-items: center; gap: 4px; }
+
+  /* ─── FEATURED BANNER ─── */
+  .featured-banner {
+    margin: 0 40px 0;
+    background: var(--ink); border-radius: 20px;
+    padding: 48px 56px; display: flex;
+    align-items: center; justify-content: space-between;
+    gap: 32px; overflow: hidden; position: relative;
+  }
+  .featured-banner::before {
+    content: ''; position: absolute; right: -60px; top: -60px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,82,26,.3) 0%, transparent 70%);
+  }
+  .featured-banner::after {
+    content: '🍜'; position: absolute; right: 56px; top: 50%;
+    transform: translateY(-50%); font-size: 96px; opacity: .25;
+  }
+  .fb-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 12px;
+  }
+  .fb-title {
+    font-family: 'Fraunces', serif; font-size: 36px; font-weight: 800;
+    color: var(--cream); letter-spacing: -.03em; line-height: 1.1;
+    max-width: 400px; margin-bottom: 16px;
+  }
+  .fb-desc { font-size: 14px; color: rgba(253,248,240,.6); max-width: 380px; line-height: 1.6; }
+  .fb-btn {
+    background: var(--orange); color: #fff; border: none;
+    border-radius: 12px; padding: 14px 28px; font-size: 14px;
+    font-weight: 700; cursor: pointer; white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+    transition: all .2s; flex-shrink: 0;
+  }
+  .fb-btn:hover { background: var(--orange-light); transform: scale(1.03); }
+
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink); color: rgba(253,248,240,.5);
+    padding: 48px 40px; display: flex;
+    align-items: center; justify-content: space-between; gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 800; color: var(--cream);
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-links { display: flex; gap: 24px; font-size: 13px; }
+  .footer-links a { color: rgba(253,248,240,.5); text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-copy { font-size: 12px; }
+
+  /* ─── RESTAURANT PAGE ─── */
+  #restaurant-page {
+    display: none;
+    min-height: 100vh; background: var(--cream);
+  }
+
+  .rp-hero {
+    height: 380px; background: linear-gradient(135deg, #f5dfc0, #e5c49a);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 100px; position: relative; overflow: hidden;
+  }
+  .rp-hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(26,18,7,.5) 100%);
+  }
+  .rp-back {
+    position: absolute; top: 80px; left: 32px; z-index: 10;
+    background: rgba(255,255,255,.9); border: none; border-radius: 10px;
+    padding: 10px 16px; font-size: 13px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+    font-family: 'DM Sans', sans-serif; transition: all .2s;
+  }
+  .rp-back:hover { background: #fff; transform: translateX(-2px); }
+
+  .rp-header-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 24px 40px; z-index: 5;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+  }
+  .rp-name {
+    font-family: 'Fraunces', serif; font-size: 42px; font-weight: 800;
+    color: #fff; letter-spacing: -.03em; line-height: 1.05;
+    text-shadow: 0 2px 12px rgba(0,0,0,.3);
+  }
+  .rp-cuisine-hero { font-size: 14px; color: rgba(255,255,255,.8); margin-top: 4px; }
+  .rp-rating-big {
+    background: rgba(255,255,255,.95); border-radius: 12px;
+    padding: 10px 16px; text-align: center; flex-shrink: 0;
+  }
+  .rp-rating-num {
+    font-family: 'Fraunces', serif; font-size: 28px; font-weight: 800;
+    color: var(--gold); line-height: 1;
+  }
+  .rp-rating-stars { font-size: 11px; color: var(--gold); }
+  .rp-rating-count { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  .rp-content {
+    max-width: 1000px; margin: 0 auto; padding: 32px 40px 80px;
+  }
+  .rp-actions {
+    display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap;
+  }
+  .rp-action-btn {
+    flex: 1; min-width: 140px; padding: 14px 20px;
+    border-radius: 12px; border: none; font-size: 14px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    gap: 8px; transition: all .2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-reserve {
+    background: var(--ink); color: var(--cream);
+  }
+  .btn-reserve:hover { background: #2c2010; transform: translateY(-2px); }
+  .btn-pickup {
+    background: #fff7e0; color: #7a5a00;
+    border: 1.5px solid #f0d060;
+  }
+  .btn-pickup:hover { background: #fff3cc; transform: translateY(-2px); }
+  .btn-delivery {
+    background: var(--orange); color: #fff;
+  }
+  .btn-delivery:hover { background: #c9400e; transform: translateY(-2px); }
+
+  .rp-tags { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+
+  .rp-info-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px; margin-bottom: 36px;
+  }
+  .rp-info-card {
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: 12px; padding: 16px;
+  }
+  .rp-info-label { font-size: 10px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .rp-info-val { font-size: 14px; font-weight: 600; color: var(--ink); }
+
+  /* Menu */
+  .menu-section h2 {
+    font-family: 'Fraunces', serif; font-size: 26px; font-weight: 800;
+    letter-spacing: -.02em; margin-bottom: 20px;
+  }
+  .menu-cats { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .menu-cat {
+    padding: 7px 16px; border-radius: 20px; border: 1.5px solid var(--border);
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s;
+    background: #fff;
+  }
+  .menu-cat.active, .menu-cat:hover {
+    background: var(--ink); color: var(--cream); border-color: var(--ink);
+  }
+  .menu-items { display: flex; flex-direction: column; gap: 12px; }
+  .menu-item {
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 16px 18px;
+    display: flex; align-items: center; gap: 16px;
+    transition: border-color .2s;
+  }
+  .menu-item:hover { border-color: var(--orange); }
+  .menu-item-emoji {
+    font-size: 36px; width: 56px; height: 56px;
+    background: var(--warm); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .menu-item-info { flex: 1; }
+  .menu-item-name { font-size: 15px; font-weight: 700; }
+  .menu-item-desc { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .menu-item-price {
+    font-family: 'Fraunces', serif; font-size: 18px; font-weight: 800;
+    color: var(--orange);
+  }
+  .menu-item-add {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--ink); color: #fff; border: none;
+    font-size: 18px; cursor: pointer; transition: all .2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .menu-item-add:hover { background: var(--orange); transform: scale(1.1); }
+
+  /* Reviews */
+  .reviews-section { margin-top: 40px; }
+  .reviews-section h2 {
+    font-family: 'Fraunces', serif; font-size: 26px; font-weight: 800;
+    letter-spacing: -.02em; margin-bottom: 20px;
+  }
+  .reviews-list { display: flex; flex-direction: column; gap: 14px; }
+  .review-card {
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 18px;
+  }
+  .review-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .review-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--orange); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; flex-shrink: 0;
+  }
+  .review-name { font-size: 14px; font-weight: 700; }
+  .review-date { font-size: 11px; color: var(--muted); }
+  .review-stars { font-size: 12px; color: var(--gold); margin-left: auto; }
+  .review-text { font-size: 13px; line-height: 1.6; color: #4a3f32; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate { animation: fadeUp .5s ease forwards; }
+  .delay-1 { animation-delay: .1s; opacity: 0; }
+  .delay-2 { animation-delay: .2s; opacity: 0; }
+  .delay-3 { animation-delay: .3s; opacity: 0; }
+  .delay-4 { animation-delay: .45s; opacity: 0; }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--ink); color: var(--cream); padding: 12px 24px;
+    border-radius: 12px; font-size: 13px; font-weight: 600;
+    box-shadow: 0 8px 32px rgba(0,0,0,.25); z-index: 9999;
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+    white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-cta-mobile { display: flex; align-items: center; }
+    #home { padding: 60px 20px 60px; }
+    .hero-title { font-size: 40px; }
+    .stats-bar { gap: 24px; }
+    .section { padding: 48px 20px; }
+    .featured-banner { margin: 0 20px; padding: 32px 28px; flex-direction: column; }
+    .featured-banner::after { display: none; }
+    .ai-section { margin: 0 20px 48px; padding: 32px 28px; flex-direction: column; }
+    footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+    .rp-content { padding: 24px 20px 60px; }
+    .rp-info-grid { grid-template-columns: 1fr 1fr; }
+    .rp-header-overlay { padding: 16px 20px; }
+    .rp-name { font-size: 28px; }
+    .rp-back { top: 72px; left: 16px; }
+  }
+
+  /* ─── DISTRICT BROWSING ─── */
+  .districts-section {
+    padding: 72px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .districts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  @media (max-width: 900px) { .districts-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .districts-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+  .district-card {
+    position: relative; border-radius: 18px; overflow: hidden;
+    cursor: pointer; aspect-ratio: 4/3;
+    transition: transform .25s, box-shadow .25s;
+    border: 1.5px solid var(--border);
+  }
+  .district-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(26,18,7,.18); }
+  .district-card-bg {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+  }
+  .district-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,18,7,.75) 0%, rgba(26,18,7,.1) 60%, transparent 100%);
+  }
+  .district-card-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 16px;
+  }
+  .district-name {
+    font-family: 'Fraunces', serif; font-size: 18px; font-weight: 800;
+    color: #fff; letter-spacing: -.02em; line-height: 1.1;
+  }
+  .district-count { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 3px; font-weight: 500; }
+  .district-vibe {
+    display: inline-block; margin-top: 6px;
+    background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 20px; padding: 3px 10px;
+    font-size: 10px; font-weight: 600; color: #fff;
+    letter-spacing: .04em; text-transform: uppercase;
+  }
+
+  /* ─── NEAR ME ─── */
+  .near-me-section {
+    margin: 0 40px 72px;
+    background: linear-gradient(135deg, #1a1207 0%, #2d1f0e 100%);
+    border-radius: 24px; padding: 56px;
+    display: flex; align-items: center; gap: 56px;
+    position: relative; overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    .near-me-section { margin: 0 20px 48px; padding: 32px 28px; flex-direction: column; gap: 32px; }
+    .districts-section { padding: 48px 20px; }
+  }
+  .near-me-section::before {
+    content: ''; position: absolute; right: -80px; top: -80px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,82,26,.2) 0%, transparent 70%);
+  }
+  .near-me-map-preview {
+    flex-shrink: 0; width: 280px; height: 200px;
+    background: rgba(255,255,255,.06); border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px; position: relative; z-index: 1;
+    cursor: pointer; transition: background .2s;
+    overflow: hidden;
+  }
+  .near-me-map-preview:hover { background: rgba(255,255,255,.1); }
+  .map-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 24px; width: 100%; }
+  .map-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.12); }
+  .map-dot.active { background: var(--orange); box-shadow: 0 0 10px rgba(232,82,26,.7); }
+  .map-dot.semi { background: rgba(255,255,255,.35); }
+  .map-pin-label { font-size: 11px; color: rgba(255,255,255,.5); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .near-me-content { flex: 1; position: relative; z-index: 1; }
+  .near-me-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .near-me-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--orange); }
+  .near-me-title {
+    font-family: 'Fraunces', serif; font-size: 32px; font-weight: 800;
+    color: var(--cream); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 12px;
+  }
+  .near-me-title em { font-style: italic; color: var(--orange); font-weight: 300; }
+  .near-me-desc { font-size: 14px; color: rgba(253,248,240,.55); line-height: 1.7; margin-bottom: 24px; max-width: 360px; }
+  .near-me-btn {
+    background: var(--orange); color: #fff; border: none;
+    border-radius: 12px; padding: 14px 28px;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background .2s, transform .15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .near-me-btn:hover { background: #c9400e; transform: translateY(-2px); }
+  .near-me-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .near-me-chip {
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px; padding: 5px 14px;
+    font-size: 12px; color: rgba(255,255,255,.7); cursor: pointer; transition: all .2s;
+  }
+  .near-me-chip:hover { background: rgba(255,255,255,.15); color: #fff; }
+
+  /* ─── AI ASSISTANT FUNCTIONAL ─── */
+  .ai-section {
+    margin: 0 40px 72px;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 40%, #fff7ed 100%);
+    border-radius: 24px;
+    border: 1.5px solid #bbf7d0;
+    overflow: hidden;
+  }
+  .ai-header {
+    padding: 40px 48px 0;
+    display: flex; align-items: flex-start; gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .ai-section { margin: 0 20px 48px; }
+    .ai-header { padding: 28px 24px 0; }
+    .ai-body { padding: 0 24px 28px !important; }
+  }
+  .ai-icon-wrap {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(45,106,79,.25);
+  }
+  .ai-header-text h3 {
+    font-family: 'Fraunces', serif; font-size: 24px; font-weight: 800;
+    letter-spacing: -.02em; margin-bottom: 4px;
+  }
+  .ai-header-text p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .ai-body { padding: 20px 48px 40px; }
+  .ai-chat-window {
+    background: #fff; border-radius: 16px;
+    border: 1.5px solid var(--border);
+    margin-bottom: 14px;
+    min-height: 140px; max-height: 320px;
+    overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    scroll-behavior: smooth;
+  }
+  .ai-chat-window::-webkit-scrollbar { width: 4px; }
+  .ai-chat-window::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .ai-msg { display: flex; gap: 8px; align-items: flex-start; }
+  .ai-msg.user { flex-direction: row-reverse; }
+  .ai-msg-avatar {
+    width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: #fff; font-weight: 700;
+  }
+  .ai-msg.user .ai-msg-avatar { background: var(--orange); }
+  .ai-msg-bubble {
+    background: var(--warm); border-radius: 12px 12px 12px 3px;
+    padding: 10px 14px; font-size: 13px; line-height: 1.65;
+    max-width: 85%; color: var(--ink);
+  }
+  .ai-msg.user .ai-msg-bubble {
+    background: var(--orange); color: #fff;
+    border-radius: 12px 12px 3px 12px;
+  }
+  .ai-typing { display: flex; gap: 4px; align-items: center; padding: 10px 14px; background: var(--warm); border-radius: 12px; width: fit-content; }
+  .ai-typing span { width: 6px; height: 6px; background: var(--muted); border-radius: 50%; animation: typingBounce 1.2s ease infinite; }
+  .ai-typing span:nth-child(2) { animation-delay: .2s; }
+  .ai-typing span:nth-child(3) { animation-delay: .4s; }
+  @keyframes typingBounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+  .ai-input-row { display: flex; gap: 10px; }
+  .ai-input {
+    flex: 1; border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 12px 16px; font-size: 14px; font-family: 'DM Sans', sans-serif;
+    color: var(--ink); outline: none; background: #fff; transition: border-color .2s;
+  }
+  .ai-input:focus { border-color: var(--green); }
+  .ai-send-btn {
+    background: var(--green); color: #fff; border: none;
+    border-radius: 12px; padding: 12px 20px;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: background .2s;
+    white-space: nowrap;
+  }
+  .ai-send-btn:hover { background: #1d5238; }
+  .ai-send-btn:disabled { background: var(--border); cursor: not-allowed; color: var(--muted); }
+  .ai-example-prompts { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .ai-prompt-chip {
+    background: rgba(45,106,79,.08); border: 1px solid rgba(45,106,79,.2);
+    border-radius: 20px; padding: 5px 14px;
+    font-size: 12px; color: var(--green); cursor: pointer; transition: all .2s; font-weight: 500;
+  }
+  .ai-prompt-chip:hover { background: rgba(45,106,79,.15); }
+
+  /* ─── HERO FEATURE CARD ─── */
+  .hero-feature-card {
+    z-index: 1; background: #fff; border-radius: 20px;
+    padding: 18px 22px; border: 1.5px solid var(--border);
+    box-shadow: 0 12px 48px rgba(26,18,7,.1);
+    display: flex; gap: 14px; align-items: center;
+    max-width: 400px; width: 100%; margin-top: 28px;
+    transition: transform .2s, box-shadow .2s; cursor: pointer;
+  }
+  .hero-feature-card:hover { transform: translateY(-3px); box-shadow: 0 20px 56px rgba(26,18,7,.15); }
+  .hfc-emoji {
+    font-size: 36px; width: 60px; height: 60px;
+    background: var(--warm); border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .hfc-name { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700; letter-spacing: -.02em; }
+  .hfc-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .hfc-meta { display: flex; gap: 10px; margin-top: 7px; align-items: center; flex-wrap: wrap; }
+  .hfc-rating { font-size: 12px; font-weight: 700; color: var(--gold); }
+  .hfc-tag-green { font-size: 10px; font-weight: 600; background: #d4edda; color: #1a5c33; padding: 2px 8px; border-radius: 20px; }
+  .hfc-live { font-size: 10px; color: var(--muted); margin-left: auto; display: flex; align-items: center; gap: 4px; }
+  .hfc-live::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: livePulse 2s infinite; }
+  @keyframes livePulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+  /* ─── FILTER BAR ─── */
+  .filter-bar {
+    background: #fff; border-bottom: 1px solid var(--border);
+    padding: 8px 20px; display: flex; gap: 6px;
+    overflow-x: auto; align-items: center;
+    scrollbar-width: none; position: sticky; top: 64px; z-index: 50;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: 20px; padding: 6px 12px;
+    font-size: 12px; font-weight: 600; color: var(--ink);
+    cursor: pointer; white-space: nowrap; transition: all .2s;
+    font-family: 'DM Sans', sans-serif; flex-shrink: 0;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--ink); color: var(--cream); border-color: var(--ink);
+  }
+  .filter-btn .arrow { font-size: 10px; opacity: .6; }
+  .filter-divider {
+    width: 1px; height: 20px; background: var(--border);
+    flex-shrink: 0; margin: 0 4px;
+  }
+  .filter-dropdown {
+    position: fixed; top: auto;
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 8px;
+    box-shadow: 0 8px 32px rgba(26,18,7,.2);
+    z-index: 9999; min-width: 180px; display: none;
+  }
+  .filter-dropdown.open { display: block; }
+  .filter-option {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 12px; border-radius: 8px; cursor: pointer;
+    font-size: 13px; font-weight: 500; transition: background .15s;
+  }
+  .filter-option:hover { background: var(--warm); }
+  .filter-option.selected { background: var(--warm); font-weight: 700; }
+  .filter-option.selected::after { content: '✓'; color: var(--green); font-weight: 800; }
+  .filter-wrap { position: relative; }
+  @media (max-width: 768px) {
+    .filter-bar { padding: 6px 12px; top: 64px; gap: 5px; }
+  }
+</style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vzvl62tnrr");
+</script>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAV
+══════════════════════════════════ -->
+<nav>
+  <div class="nav-logo" onclick="showHome()">Tasty<span> Taipei</span></div>
+  <div class="nav-links">
+    <a href="#" onclick="document.getElementById('home-page').scrollIntoView({behavior:'smooth'});return false;">Discover</a>
+    <a href="#" onclick="showToast('Coming soon — location features!');return false;">Near Me</a>
+    <a href="#" onclick="document.querySelector('.cats-grid').scrollIntoView({behavior:'smooth'});return false;">Categories</a>
+    <a href="#" onclick="openModal();return false;">For Restaurants</a>
+    <button class="nav-cta" onclick="openModal()">List Your Restaurant →</button>
+  </div>
+  <button class="nav-cta-mobile" onclick="openModal()">List Restaurant</button>
+</nav>
+
+
+<!-- ─── FILTER BAR ─── -->
+<div class="filter-bar" id="filter-bar">
+  <div class="filter-wrap">
+    <button class="filter-btn" onclick="toggleFilter('price-dd',this)">
+      💰 Price <span class="arrow">▾</span>
+    </button>
+    <div class="filter-dropdown" id="price-dd">
+      <div class="filter-option" onclick="selectFilter('price','Under NT$150',this)">Under NT$150</div>
+      <div class="filter-option" onclick="selectFilter('price','NT$150–300',this)">NT$150–300</div>
+      <div class="filter-option" onclick="selectFilter('price','NT$300–600',this)">NT$300–600</div>
+      <div class="filter-option" onclick="selectFilter('price','NT$600+',this)">NT$600+</div>
+    </div>
+  </div>
+  <div class="filter-wrap">
+    <button class="filter-btn" onclick="toggleFilter('dist-dd',this)">
+      📍 Distance <span class="arrow">▾</span>
+    </button>
+    <div class="filter-dropdown" id="dist-dd">
+      <div class="filter-option" onclick="selectFilter('dist','Under 5 min',this)">Under 5 min</div>
+      <div class="filter-option" onclick="selectFilter('dist','Under 10 min',this)">Under 10 min</div>
+      <div class="filter-option" onclick="selectFilter('dist','Under 20 min',this)">Under 20 min</div>
+      <div class="filter-option" onclick="selectFilter('dist','Any distance',this)">Any distance</div>
+    </div>
+  </div>
+  <div class="filter-wrap">
+    <button class="filter-btn" onclick="toggleFilter('rating-dd',this)">
+      ⭐ Rating <span class="arrow">▾</span>
+    </button>
+    <div class="filter-dropdown" id="rating-dd">
+      <div class="filter-option" onclick="selectFilter('rating','4.8+',this)">⭐ 4.8 &amp; above</div>
+      <div class="filter-option" onclick="selectFilter('rating','4.5+',this)">⭐ 4.5 &amp; above</div>
+      <div class="filter-option" onclick="selectFilter('rating','4.0+',this)">⭐ 4.0 &amp; above</div>
+      <div class="filter-option" onclick="selectFilter('rating','Any',this)">Any rating</div>
+    </div>
+  </div>
+  <div class="filter-divider"></div>
+  <button class="filter-btn" onclick="toggleServiceFilter('dine',this)">🪑 Dine-in</button>
+  <button class="filter-btn" onclick="toggleServiceFilter('pickup',this)">📦 Pickup</button>
+  <button class="filter-btn" onclick="toggleServiceFilter('delivery',this)">🛵 Delivery</button>
+  <div class="filter-divider"></div>
+  <div class="filter-wrap">
+    <button class="filter-btn" onclick="toggleFilter('cuisine-dd',this)">
+      🍽 Cuisine <span class="arrow">▾</span>
+    </button>
+    <div class="filter-dropdown" id="cuisine-dd">
+      <div class="filter-option" onclick="selectFilter('cuisine','Breakfast',this)">🍳 Breakfast</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Night Market',this)">🌙 Night Market</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Taiwanese',this)">🇹🇼 Taiwanese</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Japanese',this)">🍣 Japanese</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Korean',this)">🥘 Korean</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Chinese',this)">🥡 Chinese</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Thai',this)">🍛 Thai</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Vietnamese',this)">🍶 Vietnamese</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Indian',this)">🫕 Indian</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Mexican',this)">🌮 Mexican</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','American',this)">🍔 American</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Italian',this)">🍝 Italian</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','French',this)">🥖 French</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Mediterranean',this)">🫒 Mediterranean</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Middle Eastern',this)">🧆 Middle Eastern</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Spanish',this)">🥘 Spanish</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Hot Pot',this)">🍲 Hot Pot</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','BBQ',this)">🍖 BBQ</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Seafood',this)">🦞 Seafood</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Street Food',this)">🌯 Street Food</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Vegetarian',this)">🌱 Vegetarian</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Vegan',this)">🥗 Vegan</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Halal',this)">🌿 Halal</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Desserts',this)">🍰 Desserts</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Café',this)">☕ Café</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Bubble Tea',this)">🧋 Bubble Tea</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Brunch',this)">🥞 Brunch</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Late Night',this)">🦉 Late Night</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Noodles',this)">🍜 Noodles</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Dumplings',this)">🥟 Dumplings</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Bakery',this)">🥐 Bakery</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Western',this)">🍔 Western</div>
+    </div>
+  </div>
+  <div class="filter-wrap">
+    <button class="filter-btn" onclick="toggleFilter('sort-dd',this)">
+      ↕ Sort <span class="arrow">▾</span>
+    </button>
+    <div class="filter-dropdown" id="sort-dd">
+      <div class="filter-option selected" onclick="selectFilter('sort','Top Rated',this)">Top Rated</div>
+      <div class="filter-option" onclick="selectFilter('sort','Nearest',this)">Nearest</div>
+      <div class="filter-option" onclick="selectFilter('sort','Price: Low',this)">Price: Low to High</div>
+      <div class="filter-option" onclick="selectFilter('sort','Price: High',this)">Price: High to Low</div>
+      <div class="filter-option" onclick="selectFilter('sort','Most Popular',this)">Most Popular</div>
+    </div>
+  </div>
+  <button class="filter-btn" id="clear-filters" onclick="clearFilters()" style="display:none;color:var(--orange);border-color:rgba(232,82,26,.3);">✕ Clear</button>
+</div>
+
+<!-- ══════════════════════════════════
+     HOME PAGE
+══════════════════════════════════ -->
+<div id="home-page">
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-bg"></div>
+
+    <p class="hero-eyebrow animate">Taipei's Food Discovery Platform</p>
+
+    <h1 class="hero-title animate delay-1">
+      Find your next<br/><em>favourite meal</em><br/>in Taipei
+    </h1>
+
+    <p class="hero-sub animate delay-2">
+      Discover hidden gems, compare menus, and order or reserve — all in one place.
+    </p>
+
+    <div class="search-box animate delay-3">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search restaurants, dishes, cuisines…" id="searchInput" onkeydown="handleSearch(event)"/>
+      <button class="search-btn" onclick="handleSearchClick()">Search</button>
+    </div>
+
+    <div class="search-hints animate delay-4">
+      <span class="hint-chip" onclick="searchFor('ramen')">🍜 Ramen</span>
+      <span class="hint-chip" onclick="searchFor('bubble tea')">🧋 Bubble Tea</span>
+      <span class="hint-chip" onclick="searchFor('hot pot')">🍲 Hot Pot</span>
+      <span class="hint-chip" onclick="searchFor('night market')">🌙 Night Market</span>
+      <span class="hint-chip" onclick="searchFor('vegetarian')">🥗 Vegetarian</span>
+    </div>
+
+    <div class="hero-feature-card animate delay-4" onclick="showRestaurant()">
+      <div class="hfc-emoji">🍜</div>
+      <div style="flex:1;min-width:0;">
+        <div class="hfc-name">Ah-Zhong Noodle House</div>
+        <div class="hfc-sub">Taiwanese · Da'an District</div>
+        <div class="hfc-meta">
+          <span class="hfc-rating">⭐ 4.9</span>
+          <span class="hfc-tag-green">🔥 Trending</span>
+          <span class="hfc-live">Live now</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-bar animate delay-4">
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Restaurants</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Districts</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.8★</div>
+        <div class="stat-label">Avg Rating</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Languages</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">Browse by Category</h2>
+      <a class="see-all" onclick="showToast('All categories coming soon!')">See all →</a>
+    </div>
+        <div class="cats-grid">
+      <a class="cat-card" onclick="showToast('Showing Breakfast...')"><span class="cat-emoji">🍳</span><span class="cat-name">Breakfast</span></a>
+      <a class="cat-card" onclick="showToast('Showing Brunch...')"><span class="cat-emoji">🥞</span><span class="cat-name">Brunch</span></a>
+      <a class="cat-card" onclick="showToast('Showing Lunch...')"><span class="cat-emoji">🍱</span><span class="cat-name">Lunch</span></a>
+      <a class="cat-card" onclick="showToast('Showing Dinner...')"><span class="cat-emoji">🍽️</span><span class="cat-name">Dinner</span></a>
+      <a class="cat-card" onclick="showToast('Showing Night Market...')"><span class="cat-emoji">🌙</span><span class="cat-name">Night Market</span></a>
+      <a class="cat-card" onclick="showToast('Showing Late Night...')"><span class="cat-emoji">🦉</span><span class="cat-name">Late Night</span></a>
+      <a class="cat-card" onclick="showToast('Showing Cafés...')"><span class="cat-emoji">☕</span><span class="cat-name">Cafés</span></a>
+      <a class="cat-card" onclick="showToast('Showing Bubble Tea...')"><span class="cat-emoji">🧋</span><span class="cat-name">Bubble Tea</span></a>
+      <a class="cat-card" onclick="showToast('Showing Desserts...')"><span class="cat-emoji">🍰</span><span class="cat-name">Desserts</span></a>
+      <a class="cat-card" onclick="showToast('Showing Ice Cream...')"><span class="cat-emoji">🍦</span><span class="cat-name">Ice Cream</span></a>
+      <a class="cat-card" onclick="showToast('Showing Bakery...')"><span class="cat-emoji">🥐</span><span class="cat-name">Bakery</span></a>
+      <a class="cat-card" onclick="showToast('Showing Noodles...')"><span class="cat-emoji">🍜</span><span class="cat-name">Noodles</span></a>
+      <a class="cat-card" onclick="showToast('Showing Dumplings...')"><span class="cat-emoji">🥟</span><span class="cat-name">Dumplings</span></a>
+      <a class="cat-card" onclick="showToast('Showing Hot Pot...')"><span class="cat-emoji">🍲</span><span class="cat-name">Hot Pot</span></a>
+      <a class="cat-card" onclick="showToast('Showing BBQ...')"><span class="cat-emoji">🍖</span><span class="cat-name">BBQ</span></a>
+      <a class="cat-card" onclick="showToast('Showing Seafood...')"><span class="cat-emoji">🦞</span><span class="cat-name">Seafood</span></a>
+      <a class="cat-card" onclick="showToast('Showing Taiwanese...')"><span class="cat-emoji">🇹🇼</span><span class="cat-name">Taiwanese</span></a>
+      <a class="cat-card" onclick="showToast('Showing Japanese...')"><span class="cat-emoji">🍣</span><span class="cat-name">Japanese</span></a>
+      <a class="cat-card" onclick="showToast('Showing Korean...')"><span class="cat-emoji">🥘</span><span class="cat-name">Korean</span></a>
+      <a class="cat-card" onclick="showToast('Showing Chinese...')"><span class="cat-emoji">🥡</span><span class="cat-name">Chinese</span></a>
+      <a class="cat-card" onclick="showToast('Showing Thai...')"><span class="cat-emoji">🍛</span><span class="cat-name">Thai</span></a>
+      <a class="cat-card" onclick="showToast('Showing Vietnamese...')"><span class="cat-emoji">🍶</span><span class="cat-name">Vietnamese</span></a>
+      <a class="cat-card" onclick="showToast('Showing Indian...')"><span class="cat-emoji">🫕</span><span class="cat-name">Indian</span></a>
+      <a class="cat-card" onclick="showToast('Showing Mexican...')"><span class="cat-emoji">🌮</span><span class="cat-name">Mexican</span></a>
+      <a class="cat-card" onclick="showToast('Showing American...')"><span class="cat-emoji">🍔</span><span class="cat-name">American</span></a>
+      <a class="cat-card" onclick="showToast('Showing Italian...')"><span class="cat-emoji">🍝</span><span class="cat-name">Italian</span></a>
+      <a class="cat-card" onclick="showToast('Showing French...')"><span class="cat-emoji">🥖</span><span class="cat-name">French</span></a>
+      <a class="cat-card" onclick="showToast('Showing Mediterranean...')"><span class="cat-emoji">🫒</span><span class="cat-name">Mediterranean</span></a>
+      <a class="cat-card" onclick="showToast('Showing Middle Eastern...')"><span class="cat-emoji">🧆</span><span class="cat-name">Middle Eastern</span></a>
+      <a class="cat-card" onclick="showToast('Showing Spanish...')"><span class="cat-emoji">🥘</span><span class="cat-name">Spanish</span></a>
+      <a class="cat-card" onclick="showToast('Showing Western...')"><span class="cat-emoji">🥩</span><span class="cat-name">Western</span></a>
+      <a class="cat-card" onclick="showToast('Showing Street Food...')"><span class="cat-emoji">🌯</span><span class="cat-name">Street Food</span></a>
+      <a class="cat-card" onclick="showToast('Showing Vegetarian...')"><span class="cat-emoji">🥗</span><span class="cat-name">Vegetarian</span></a>
+      <a class="cat-card" onclick="showToast('Showing Vegan...')"><span class="cat-emoji">🌱</span><span class="cat-name">Vegan</span></a>
+      <a class="cat-card" onclick="showToast('Showing Halal...')"><span class="cat-emoji">🌿</span><span class="cat-name">Halal</span></a>
+      <a class="cat-card" onclick="showToast('Showing Healthy...')"><span class="cat-emoji">🥙</span><span class="cat-name">Healthy</span></a>
+    </div>
+  </div>
+
+  <!-- FEATURED BANNER -->
+  <div class="featured-banner">
+    <div>
+      <div class="fb-label">✦ Featured this week</div>
+      <h2 class="fb-title">Top 10 Hidden Gems in Da'an District</h2>
+      <p class="fb-desc">Local favourites that don't show up on Google. Curated by residents, loved by expats.</p>
+    </div>
+    <button class="fb-btn" onclick="showToast('Featured list coming soon!')">Explore the list →</button>
+  </div>
+
+  <!-- TOP PICKS -->
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">Top Picks Near You</h2>
+      <a class="see-all" onclick="showToast('All restaurants coming soon!')">View all →</a>
+    </div>
+    <div class="restaurants-grid">
+
+      <a class="r-card" onclick="showRestaurant()">
+        <div class="r-card-img">
+          🍜
+          <div class="r-card-badge"><span class="tag tag-popular">🔥 Popular</span></div>
+        </div>
+        <div class="r-card-body">
+          <div class="r-card-top">
+            <div>
+              <div class="r-card-name">Ah-Zhong Noodle House</div>
+              <div class="r-cuisine">Taiwanese · Noodles · Beef</div>
+            </div>
+            <div class="r-rating">⭐ 4.9</div>
+          </div>
+          <div class="r-tags">
+            <span class="tag tag-dine">🪑 Dine-in</span>
+            <span class="tag tag-pickup">📦 Pickup</span>
+          </div>
+          <div class="r-meta">
+            <span>📍 Da'an</span>
+            <span>⏱ 10 min</span>
+            <span>💰 NT$120–200</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="r-card" onclick="showRestaurant()">
+        <div class="r-card-img" style="background: linear-gradient(135deg, #d4edda, #a8d5b5);">
+          🥟
+        </div>
+        <div class="r-card-body">
+          <div class="r-card-top">
+            <div>
+              <div class="r-card-name">Din Tai Fung — Xinyi</div>
+              <div class="r-cuisine">Taiwanese · Dim Sum · Soup Dumplings</div>
+            </div>
+            <div class="r-rating">⭐ 4.8</div>
+          </div>
+          <div class="r-tags">
+            <span class="tag tag-dine">🪑 Dine-in</span>
+            <span class="tag tag-delivery">🛵 Delivery</span>
+          </div>
+          <div class="r-meta">
+            <span>📍 Xinyi</span>
+            <span>⏱ 20 min</span>
+            <span>💰 NT$250–600</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="r-card" onclick="showRestaurant()">
+        <div class="r-card-img" style="background: linear-gradient(135deg, #fde2d4, #f5c4a8);">
+          🍱
+        </div>
+        <div class="r-card-body">
+          <div class="r-card-top">
+            <div>
+              <div class="r-card-name">Mala Bento House</div>
+              <div class="r-cuisine">Sichuan · Spicy · Bento</div>
+            </div>
+            <div class="r-rating">⭐ 4.7</div>
+          </div>
+          <div class="r-tags">
+            <span class="tag tag-pickup">📦 Pickup</span>
+            <span class="tag tag-delivery">🛵 Delivery</span>
+          </div>
+          <div class="r-meta">
+            <span>📍 Zhongzheng</span>
+            <span>⏱ 15 min</span>
+            <span>💰 NT$100–180</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="r-card" onclick="showRestaurant()">
+        <div class="r-card-img" style="background: linear-gradient(135deg, #e8f0fe, #c5d5f5);">
+          ☕
+        </div>
+        <div class="r-card-body">
+          <div class="r-card-top">
+            <div>
+              <div class="r-card-name">Fujin Street Café</div>
+              <div class="r-cuisine">Café · Brunch · Sandwiches</div>
+            </div>
+            <div class="r-rating">⭐ 4.6</div>
+          </div>
+          <div class="r-tags">
+            <span class="tag tag-dine">🪑 Dine-in</span>
+            <span class="tag tag-pickup">📦 Pickup</span>
+          </div>
+          <div class="r-meta">
+            <span>📍 Songshan</span>
+            <span>⏱ 5 min</span>
+            <span>💰 NT$150–320</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="r-card" onclick="showRestaurant()">
+        <div class="r-card-img" style="background: linear-gradient(135deg, #fff8e0, #f5e4a0);">
+          🍣
+        </div>
+        <div class="r-card-body">
+          <div class="r-card-top">
+            <div>
+              <div class="r-card-name">Sakura Sushi Bar</div>
+              <div class="r-cuisine">Japanese · Sushi · Omakase</div>
+            </div>
+            <div class="r-rating">⭐ 4.9</div>
+          </div>
+          <div class="r-tags">
+            <span class="tag tag-dine">🪑 Dine-in</span>
+          </div>
+          <div class="r-meta">
+            <span>📍 Da'an</span>
+            <span>⏱ 12 min</span>
+            <span>💰 NT$800–2000</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="r-card" onclick="showRestaurant()">
+        <div class="r-card-img" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);">
+          🌮
+        </div>
+        <div class="r-card-body">
+          <div class="r-card-top">
+            <div>
+              <div class="r-card-name">Shilin Night Bites</div>
+              <div class="r-cuisine">Street Food · Taiwanese · Snacks</div>
+            </div>
+            <div class="r-rating">⭐ 4.5</div>
+          </div>
+          <div class="r-tags">
+            <span class="tag tag-dine">🪑 Dine-in</span>
+            <span class="tag tag-pickup">📦 Pickup</span>
+          </div>
+          <div class="r-meta">
+            <span>📍 Shilin</span>
+            <span>⏱ 18 min</span>
+            <span>💰 NT$50–150</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- DISTRICT BROWSING -->
+  <div class="districts-section">
+    <div class="section-header">
+      <h2 class="section-title">Explore by District</h2>
+      <a class="see-all" onclick="showToast('All districts coming soon!')">View all →</a>
+    </div>
+    <div class="districts-grid">
+      <div class="district-card" onclick="showToast('Showing Da'an restaurants...')" style="">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#f5dfc0,#e8c89a);">🏘️</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Da'an</div>
+          <div class="district-count">58 restaurants</div>
+          <div class="district-vibe">Trendy · Cafés</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Xinyi restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#d4edda,#a8d5b5);">🏙️</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Xinyi</div>
+          <div class="district-count">44 restaurants</div>
+          <div class="district-vibe">Upscale · Fine Dining</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Shilin restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#fde2d4,#f5c4a8);">🌙</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Shilin</div>
+          <div class="district-count">32 restaurants</div>
+          <div class="district-vibe">Night Market · Street Food</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Zhongshan restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#e8f0fe,#c5d5f5);">☕</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Zhongshan</div>
+          <div class="district-count">39 restaurants</div>
+          <div class="district-vibe">Local · Hidden Gems</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Zhongzheng restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#fef9e0,#f5e8a0);">🏛️</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Zhongzheng</div>
+          <div class="district-count">27 restaurants</div>
+          <div class="district-vibe">Historic · Local</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Wanhua restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">🏮</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Wanhua</div>
+          <div class="district-count">21 restaurants</div>
+          <div class="district-vibe">Authentic · Old Taipei</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Songshan restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#e0f7fa,#b2ebf2);">🎨</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Songshan</div>
+          <div class="district-count">18 restaurants</div>
+          <div class="district-vibe">Creative · Brunch</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('More districts coming soon!')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7);">🗺️</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">More soon</div>
+          <div class="district-count">12 districts total</div>
+          <div class="district-vibe">All of Taipei</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEAR ME -->
+  <div class="near-me-section">
+    <div class="near-me-map-preview" onclick="requestNearMe()">
+      <div class="map-grid">
+        <div class="map-dot"></div><div class="map-dot semi"></div><div class="map-dot"></div><div class="map-dot active"></div><div class="map-dot"></div>
+        <div class="map-dot semi"></div><div class="map-dot"></div><div class="map-dot active"></div><div class="map-dot"></div><div class="map-dot semi"></div>
+        <div class="map-dot"></div><div class="map-dot active"></div><div class="map-dot"></div><div class="map-dot semi"></div><div class="map-dot"></div>
+        <div class="map-dot semi"></div><div class="map-dot"></div><div class="map-dot semi"></div><div class="map-dot active"></div><div class="map-dot"></div>
+        <div class="map-dot"></div><div class="map-dot semi"></div><div class="map-dot"></div><div class="map-dot"></div><div class="map-dot semi"></div>
+      </div>
+      <div class="map-pin-label">📍 Tap to locate me</div>
+    </div>
+    <div class="near-me-content">
+      <div class="near-me-label">Location Features</div>
+      <h2 class="near-me-title">Restaurants <em>right<br/>around you</em></h2>
+      <p class="near-me-desc">Share your location and instantly see the best-rated restaurants within walking distance — sorted by cuisine, price, and open now.</p>
+      <button class="near-me-btn" onclick="requestNearMe()">📍 Find Food Near Me</button>
+      <div class="near-me-chips">
+        <span class="near-me-chip" onclick="requestNearMe()">Open now</span>
+        <span class="near-me-chip" onclick="requestNearMe()">Under 5 min walk</span>
+        <span class="near-me-chip" onclick="requestNearMe()">Top rated</span>
+        <span class="near-me-chip" onclick="requestNearMe()">Under NT$200</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI FOOD ASSISTANT -->
+  <div class="ai-section">
+    <div class="ai-header">
+      <div class="ai-icon-wrap">🤖</div>
+      <div class="ai-header-text">
+        <h3>AI Food Assistant</h3>
+        <p>Ask anything about Taipei food — in English, 中文, Français, 日本語, or Español. Get personalised, curated recommendations instantly.</p>
+      </div>
+    </div>
+    <div class="ai-body">
+      <div class="ai-example-prompts">
+        <span class="ai-prompt-chip" onclick="aiSendPrompt('Best ramen under NT$200')">🍜 Best ramen under NT$200</span>
+        <span class="ai-prompt-chip" onclick="aiSendPrompt('Romantic dinner spot in Taipei')">🕯 Romantic dinner spot</span>
+        <span class="ai-prompt-chip" onclick="aiSendPrompt('素食友好的餐廳推薦')">🌱 素食友好餐廳</span>
+        <span class="ai-prompt-chip" onclick="aiSendPrompt('Best hot pot under NT$400')">🍲 Hot pot deals</span>
+        <span class="ai-prompt-chip" onclick="aiSendPrompt('Hidden gems in Da'an')">💎 Hidden gems</span>
+      </div>
+      <div class="ai-chat-window" id="ai-chat">
+        <div class="ai-msg">
+          <div class="ai-msg-avatar">🤖</div>
+          <div class="ai-msg-bubble">Hi! I'm Tasty Taipei's AI assistant 🍽️ Ask me anything about restaurants in Taipei — what are you craving?</div>
+        </div>
+      </div>
+      <div class="ai-input-row">
+        <input class="ai-input" id="ai-input" type="text" placeholder="e.g. Best bubble tea in Zhongshan..." onkeydown="if(event.key==='Enter')aiSend()"/>
+        <button class="ai-send-btn" id="ai-send-btn" onclick="aiSend()">Ask AI →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Tasty<span> Taipei</span></div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#" onclick="openModal();return false;">For Restaurants</a>
+      <a href="#">Blog</a>
+      <a href="#">LINE Bot</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Tasty Taipei — Built with ♥ in Taiwan</div>
+  </footer>
+
+</div><!-- /home-page -->
+
+
+<!-- ══════════════════════════════════
+     RESTAURANT PAGE
+══════════════════════════════════ -->
+<div id="restaurant-page">
+
+  <div class="rp-hero">
+    🍜
+    <button class="rp-back" onclick="showHome()">← Back to results</button>
+    <div class="rp-header-overlay">
+      <div>
+        <div class="rp-name">Ah-Zhong Noodle House</div>
+        <div class="rp-cuisine-hero">Taiwanese · Noodles · Beef · Da'an District</div>
+      </div>
+      <div class="rp-rating-big">
+        <div class="rp-rating-num">4.9</div>
+        <div class="rp-rating-stars">★★★★★</div>
+        <div class="rp-rating-count">284 reviews</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rp-content">
+
+    <!-- Action Buttons -->
+    <div class="rp-actions">
+      <button class="rp-action-btn btn-reserve" onclick="showToast('🗓 Reservation request sent!')">
+        🗓 Reserve a Table
+      </button>
+      <button class="rp-action-btn btn-pickup" onclick="showToast('📦 Pickup order started!')">
+        📦 Order Pickup
+      </button>
+      <button class="rp-action-btn btn-delivery" onclick="openDelivery()">
+        🛵 Order Delivery
+      </button>
+      <button class="rp-action-btn" onclick="updateMenu()" style="background:#25d366;color:#fff;min-width:140px;">
+        ✏️ Update Menu
+      </button>
+    </div>
+
+    <!-- Tags -->
+    <div class="rp-tags">
+      <span class="tag tag-dine">🪑 Dine-in</span>
+      <span class="tag tag-pickup">📦 Pickup</span>
+      <span class="tag tag-delivery">🛵 Delivery via Uber Eats</span>
+      <span class="tag tag-popular">🔥 Popular</span>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="rp-info-grid">
+      <div class="rp-info-card">
+        <div class="rp-info-label">📍 Location</div>
+        <div class="rp-info-val">12 Yongkang St<br/>Da'an, Taipei</div>
+      </div>
+      <div class="rp-info-card">
+        <div class="rp-info-label">🕐 Hours</div>
+        <div class="rp-info-val">Mon–Sat<br/>11:00 – 21:00</div>
+      </div>
+      <div class="rp-info-card">
+        <div class="rp-info-label">💰 Price Range</div>
+        <div class="rp-info-val">NT$120 – 200<br/>per person</div>
+      </div>
+      <div class="rp-info-card">
+        <div class="rp-info-label">📞 Phone</div>
+        <div class="rp-info-val">+886 2 2321 0000</div>
+      </div>
+      <div class="rp-info-card">
+        <div class="rp-info-label">🚇 MRT</div>
+        <div class="rp-info-val">Dongmen Station<br/>Exit 5 · 3 min walk</div>
+      </div>
+      <div class="rp-info-card">
+        <div class="rp-info-label">🌐 Languages</div>
+        <div class="rp-info-val">中文 · English · Français<br/>日本語 · Español</div>
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <div class="menu-section">
+      <h2>Menu</h2>
+      <div class="menu-cats">
+        <button class="menu-cat active">All</button>
+        <button class="menu-cat" onclick="activateCat(this)">Noodles</button>
+        <button class="menu-cat" onclick="activateCat(this)">Sides</button>
+        <button class="menu-cat" onclick="activateCat(this)">Drinks</button>
+        <button class="menu-cat" onclick="activateCat(this)">Specials</button>
+      </div>
+      <div class="menu-items">
+        <div class="menu-item">
+          <div class="menu-item-emoji">🍜</div>
+          <div class="menu-item-info">
+            <div class="menu-item-name">Braised Beef Noodle Soup</div>
+            <div class="menu-item-desc">Slow-cooked beef brisket, hand-pulled noodles, rich bone broth</div>
+          </div>
+          <div class="menu-item-price">NT$160</div>
+          <button class="menu-item-add" onclick="showToast('Added to cart 🛒')">+</button>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-emoji">🌶️</div>
+          <div class="menu-item-info">
+            <div class="menu-item-name">Spicy Scallion Noodles</div>
+            <div class="menu-item-desc">House chili oil, crispy scallion, soft-boiled egg</div>
+          </div>
+          <div class="menu-item-price">NT$120</div>
+          <button class="menu-item-add" onclick="showToast('Added to cart 🛒')">+</button>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-emoji">🥟</div>
+          <div class="menu-item-info">
+            <div class="menu-item-name">Pan-Fried Pork Dumplings (6 pcs)</div>
+            <div class="menu-item-desc">Crispy bottom, juicy filling, house dipping sauce</div>
+          </div>
+          <div class="menu-item-price">NT$95</div>
+          <button class="menu-item-add" onclick="showToast('Added to cart 🛒')">+</button>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-emoji">🥬</div>
+          <div class="menu-item-info">
+            <div class="menu-item-name">Garlic Stir-Fried Water Spinach</div>
+            <div class="menu-item-desc">Fresh greens, garlic, oyster sauce</div>
+          </div>
+          <div class="menu-item-price">NT$75</div>
+          <button class="menu-item-add" onclick="showToast('Added to cart 🛒')">+</button>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-emoji">🧋</div>
+          <div class="menu-item-info">
+            <div class="menu-item-name">Barley Tea (Cold)</div>
+            <div class="menu-item-desc">House-brewed, lightly sweet, refreshing</div>
+          </div>
+          <div class="menu-item-price">NT$35</div>
+          <button class="menu-item-add" onclick="showToast('Added to cart 🛒')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="reviews-section">
+      <h2>Reviews <span style="font-size:16px;font-family:'DM Sans';font-weight:400;color:var(--muted)">— 284 total</span></h2>
+      <div class="reviews-list">
+        <div class="review-card">
+          <div class="review-top">
+            <div class="review-avatar">S</div>
+            <div>
+              <div class="review-name">Sophie L.</div>
+              <div class="review-date">March 2025 · 🇫🇷 France</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <div class="review-text">The braised beef noodles are incredible — rich, deep broth and perfectly chewy noodles. One of the best bowls I've had in Taipei. The staff are super friendly too, even with my limited Mandarin!</div>
+        </div>
+        <div class="review-card">
+          <div class="review-top">
+            <div class="review-avatar" style="background:var(--green)">K</div>
+            <div>
+              <div class="review-name">Kenji T.</div>
+              <div class="review-date">February 2025 · 🇯🇵 Japan</div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <div class="review-text">Hidden gem on Yongkang Street. The scallion noodles are addictive — perfectly balanced spicy-savoury. Went back three times in one week. Pickup is seamless, great for a quick lunch.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-top">
+            <div class="review-avatar" style="background:var(--gold)">M</div>
+            <div>
+              <div class="review-name">Marco R.</div>
+              <div class="review-date">January 2025 · 🇮🇹 Italy</div>
+            </div>
+            <div class="review-stars">★★★★☆</div>
+          </div>
+          <div class="review-text">Excellent quality at very reasonable prices. Feels like a proper local place — no tourist gimmicks. Dumplings are a must-order. Can get busy at lunch, arrive early!</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /rp-content -->
+</div><!-- /restaurant-page -->
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+<script>
+  // Page switching
+  function showRestaurant() {
+    document.getElementById("home-page").style.display = "none";
+    document.getElementById("restaurant-page").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  function showHome() {
+    document.getElementById("home-page").style.display = "block";
+    document.getElementById("restaurant-page").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // Toast
+  function showToast(msg) {
+    var t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(function() { t.classList.remove("show"); }, 2600);
+  }
+
+  // Search
+  function handleSearch(e) {
+    if (e.key === "Enter") handleSearchClick();
+  }
+  function handleSearchClick() {
+    var q = document.getElementById("searchInput").value.trim();
+    if (q) showToast("Searching for: " + q);
+  }
+  function searchFor(q) {
+    document.getElementById("searchInput").value = q;
+    showToast("Searching for: " + q);
+  }
+
+  // Menu cats
+  function activateCat(el) {
+    document.querySelectorAll(".menu-cat").forEach(function(c) { c.classList.remove("active"); });
+    el.classList.add("active");
+  }
+  document.querySelectorAll(".menu-cat").forEach(function(c) {
+    c.addEventListener("click", function() { activateCat(c); });
+  });
+
+  // Filters
+  var activeFilters = {};
+  function toggleFilter(ddId, btn) {
+    var dd = document.getElementById(ddId);
+    var isOpen = dd.classList.contains("open");
+    document.querySelectorAll(".filter-dropdown").forEach(function(d) { d.classList.remove("open"); d.style.display="none"; });
+    document.querySelectorAll(".filter-btn").forEach(function(b) { b.style.borderColor = ""; });
+    if (!isOpen) {
+      var rect = btn.getBoundingClientRect();
+      dd.style.display = "block";
+      dd.style.top = (rect.bottom + 6) + "px";
+      dd.style.left = Math.min(rect.left, window.innerWidth - 200) + "px";
+      dd.classList.add("open");
+      btn.style.borderColor = "#e8521a";
+    }
+  }
+  function selectFilter(type, val, el) {
+    var dd = el.closest(".filter-dropdown");
+    dd.querySelectorAll(".filter-option").forEach(function(o) { o.classList.remove("selected"); });
+    el.classList.add("selected");
+    dd.classList.remove("open"); dd.style.display = "none";
+    activeFilters[type] = val;
+    var btn = dd.previousElementSibling;
+    btn.style.background = "#1a1207";
+    btn.style.color = "#fdf8f0";
+    btn.style.borderColor = "#1a1207";
+    document.getElementById("clear-filters").style.display = "inline-flex";
+    showToast("Filter: " + val);
+  }
+  function toggleServiceFilter(type, btn) {
+    btn.classList.toggle("active");
+    if (btn.classList.contains("active")) {
+      activeFilters[type] = true;
+      document.getElementById("clear-filters").style.display = "inline-flex";
+    } else {
+      delete activeFilters[type];
+    }
+  }
+  function clearFilters() {
+    activeFilters = {};
+    document.querySelectorAll(".filter-btn").forEach(function(b) {
+      b.classList.remove("active");
+      b.style.background = "";
+      b.style.color = "";
+      b.style.borderColor = "";
+    });
+    document.querySelectorAll(".filter-option").forEach(function(o) { o.classList.remove("selected"); });
+    document.getElementById("clear-filters").style.display = "none";
+    showToast("Filters cleared");
+  }
+  document.addEventListener("click", function(e) {
+    if (!e.target.closest(".filter-wrap")) {
+      document.querySelectorAll(".filter-dropdown").forEach(function(d) { d.classList.remove("open"); d.style.display="none"; });
+      document.querySelectorAll(".filter-btn").forEach(function(b) { b.style.borderColor = ""; });
+    }
+  });
+
+  // Delivery
+  function openDelivery() {
+    showToast("Redirecting to Uber Eats...");
+  }
+
+  // Menu update
+  function updateMenu() {
+    window.open("https://line.me/ti/p/chrixx7");
+  }
+
+  // Modal
+  function openModal() {
+    document.getElementById("modal-overlay").style.display = "block";
+    var m = document.getElementById("modal");
+    m.style.display = "block";
+    setTimeout(function() { m.style.transform = "translateY(0)"; }, 10);
+    document.body.style.overflow = "hidden";
+  }
+  function closeModal() {
+    var m = document.getElementById("modal");
+    m.style.transform = "translateY(100%)";
+    setTimeout(function() {
+      m.style.display = "none";
+      document.getElementById("modal-overlay").style.display = "none";
+    }, 400);
+    document.body.style.overflow = "";
+  }
+  function modalTab(id) {
+    ["modal-why","modal-plans","modal-features","modal-signup"].forEach(function(p) {
+      var panel = document.getElementById(p);
+      if (panel) panel.style.display = "none";
+    });
+    var panel = document.getElementById("modal-" + id);
+    if (panel) panel.style.display = "block";
+    ["mt-why","mt-plans","mt-features","mt-signup"].forEach(function(b) {
+      var btn = document.getElementById(b);
+      if (!btn) return;
+      btn.style.background = "#f0ebe3";
+      btn.style.color = "#8a7560";
+    });
+    var active = document.getElementById("mt-" + id);
+    if (active) { active.style.background = "#e8521a"; active.style.color = "#fff"; }
+    var m = document.getElementById("modal");
+    if (m) m.scrollTop = 0;
+  }
+  function modalLang(lang) {
+    document.getElementById("ml-en").style.background = lang === "en" ? "#1a1207" : "transparent";
+    document.getElementById("ml-en").style.color = lang === "en" ? "#fdf8f0" : "#8a7560";
+    document.getElementById("ml-zh").style.background = lang === "zh" ? "#1a1207" : "transparent";
+    document.getElementById("ml-zh").style.color = lang === "zh" ? "#fdf8f0" : "#8a7560";
+    document.querySelectorAll(".ml-en").forEach(function(e) { e.style.display = lang === "en" ? "block" : "none"; });
+    document.querySelectorAll(".ml-zh").forEach(function(e) { e.style.display = lang === "zh" ? "block" : "none"; });
+  }
+
+  // Signup
+  function submitSignup() {
+    var name = document.getElementById("sf-name").value.trim();
+    var restaurant = document.getElementById("sf-restaurant").value.trim();
+    var phone = document.getElementById("sf-phone").value.trim();
+    if (!name || !restaurant || !phone) {
+      alert("Please fill in your name, restaurant name, and phone number.");
+      return;
+    }
+    window.open("https://line.me/ti/p/chrixx7");
+    document.getElementById("signup-success-en").style.display = "block";
+    document.getElementById("sf-name").value = "";
+    document.getElementById("sf-restaurant").value = "";
+    document.getElementById("sf-phone").value = "";
+    document.getElementById("sf-email").value = "";
+    document.getElementById("sf-district").value = "";
+  }
+  function submitSignupZh() {
+    var name = document.getElementById("sf-name-zh").value.trim();
+    var restaurant = document.getElementById("sf-restaurant-zh").value.trim();
+    var phone = document.getElementById("sf-phone-zh").value.trim();
+    if (!name || !restaurant || !phone) {
+      alert("Please fill in the required fields.");
+      return;
+    }
+    window.open("https://line.me/ti/p/chrixx7");
+    document.getElementById("signup-success-zh").style.display = "block";
+    document.getElementById("sf-name-zh").value = "";
+    document.getElementById("sf-restaurant-zh").value = "";
+    document.getElementById("sf-phone-zh").value = "";
+    document.getElementById("sf-email-zh").value = "";
+    document.getElementById("sf-district-zh").value = "";
+  }
+
+  // ── AI FOOD ASSISTANT ──
+  var aiLoading = false;
+
+  function aiSendPrompt(text) {
+    document.getElementById('ai-input').value = text;
+    aiSend();
+  }
+
+  function aiSend() {
+    if (aiLoading) return;
+    var input = document.getElementById('ai-input');
+    var msg = input.value.trim();
+    if (!msg) return;
+    input.value = '';
+    var chat = document.getElementById('ai-chat');
+
+    // Add user bubble
     var userMsg = document.createElement('div');
     userMsg.className = 'ai-msg user';
     userMsg.innerHTML = '<div class="ai-msg-avatar">U</div><div class="ai-msg-bubble">' + escHtml(msg) + '</div>';
