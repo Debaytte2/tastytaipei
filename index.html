@@ -837,11 +837,11 @@
 <nav>
   <div class="nav-logo" onclick="showHome()">Tasty<span> Taipei</span></div>
   <div class="nav-links">
-    <a href="#" onclick="document.getElementById('home-page').scrollIntoView({behavior:'smooth'});return false;">Discover</a>
-    <a href="#" onclick="showToast('Coming soon — location features!');return false;">Near Me</a>
-    <a href="#" onclick="document.querySelector('.cats-grid').scrollIntoView({behavior:'smooth'});return false;">Categories</a>
-    <a href="#" onclick="openModal();return false;">For Restaurants</a>
-    <button class="nav-cta" onclick="openModal()">List Your Restaurant →</button>
+    <a href="#" onclick="document.getElementById('home-page').scrollIntoView({behavior:'smooth'});return false;" data-i18n="nav_discover">Discover</a>
+    <a href="#" onclick="showToast('Coming soon — location features!');return false;" data-i18n="nav_nearme">Near Me</a>
+    <a href="#" onclick="document.querySelector('.cats-grid').scrollIntoView({behavior:'smooth'});return false;" data-i18n="nav_categories">Categories</a>
+    <a href="#" onclick="openModal();return false;" data-i18n="nav_forrestaurants">For Restaurants</a>
+    <button class="nav-cta" onclick="openModal()" data-i18n="nav_listbtn">List Your Restaurant →</button>
   </div>
   <button class="nav-cta-mobile" onclick="openModal()">List Restaurant</button>
 </nav>
@@ -950,28 +950,28 @@
   <section id="home">
     <div class="hero-bg"></div>
 
-    <p class="hero-eyebrow animate">Taipei's Food Discovery Platform</p>
+    <p class="hero-eyebrow animate" data-i18n="hero_eyebrow">Taipei's Food Discovery Platform</p>
 
     <h1 class="hero-title animate delay-1">
       Find your next<br/><em>favourite meal</em><br/>in Taipei
     </h1>
 
-    <p class="hero-sub animate delay-2">
+    <p class="hero-sub animate delay-2" data-i18n="hero_sub">
       Discover hidden gems, compare menus, and order or reserve — all in one place.
     </p>
 
     <div class="search-box animate delay-3">
       <span class="search-icon">🔍</span>
       <input type="text" placeholder="Search restaurants, dishes, cuisines…" id="searchInput" onkeydown="handleSearch(event)"/>
-      <button class="search-btn" onclick="handleSearchClick()">Search</button>
+      <button class="search-btn" onclick="handleSearchClick()" data-i18n="search_btn">Search</button>
     </div>
 
     <div class="search-hints animate delay-4">
-      <span class="hint-chip" onclick="searchFor('ramen')">🍜 Ramen</span>
-      <span class="hint-chip" onclick="searchFor('bubble tea')">🧋 Bubble Tea</span>
-      <span class="hint-chip" onclick="searchFor('hot pot')">🍲 Hot Pot</span>
-      <span class="hint-chip" onclick="searchFor('night market')">🌙 Night Market</span>
-      <span class="hint-chip" onclick="searchFor('vegetarian')">🥗 Vegetarian</span>
+      <span class="hint-chip" onclick="searchFor('ramen')" data-i18n="hint_ramen">🍜 Ramen</span>
+      <span class="hint-chip" onclick="searchFor('bubble tea')" data-i18n="hint_bubbletea">🧋 Bubble Tea</span>
+      <span class="hint-chip" onclick="searchFor('hot pot')" data-i18n="hint_hotpot">🍲 Hot Pot</span>
+      <span class="hint-chip" onclick="searchFor('night market')" data-i18n="hint_nightmarket">🌙 Night Market</span>
+      <span class="hint-chip" onclick="searchFor('vegetarian')" data-i18n="hint_vegetarian">🥗 Vegetarian</span>
     </div>
 
     <div class="hero-feature-card animate delay-4" onclick="showRestaurant()">
@@ -1003,19 +1003,19 @@
     <div class="stats-bar animate delay-4">
       <div class="stat">
         <div class="stat-num">200+</div>
-        <div class="stat-label">Restaurants</div>
+        <div class="stat-label" data-i18n="stat_restaurants">Restaurants</div>
       </div>
       <div class="stat">
         <div class="stat-num">12</div>
-        <div class="stat-label">Districts</div>
+        <div class="stat-label" data-i18n="stat_districts">Districts</div>
       </div>
       <div class="stat">
         <div class="stat-num">4.8★</div>
-        <div class="stat-label">Avg Rating</div>
+        <div class="stat-label" data-i18n="stat_rating">Avg Rating</div>
       </div>
       <div class="stat">
         <div class="stat-num">5</div>
-        <div class="stat-label">Languages</div>
+        <div class="stat-label" data-i18n="stat_languages">Languages</div>
       </div>
     </div>
   </section>
@@ -1023,7 +1023,7 @@
   <!-- CATEGORIES -->
   <div class="section">
     <div class="section-header">
-      <h2 class="section-title">Browse by Category</h2>
+      <h2 class="section-title" data-i18n="sec_categories">Browse by Category</h2>
       <a class="see-all" onclick="showToast('All categories coming soon!')">See all →</a>
     </div>
         <div class="cats-grid">
@@ -1069,17 +1069,17 @@
   <!-- FEATURED BANNER -->
   <div class="featured-banner">
     <div>
-      <div class="fb-label">✦ Featured this week</div>
-      <h2 class="fb-title">Top 10 Hidden Gems in Da'an District</h2>
-      <p class="fb-desc">Local favourites that don't show up on Google. Curated by residents, loved by expats.</p>
+      <div class="fb-label" data-i18n="fb_label">✦ Featured this week</div>
+      <h2 class="fb-title" data-i18n="fb_title">Top 10 Hidden Gems in Da'an District</h2>
+      <p class="fb-desc" data-i18n="fb_desc">Local favourites that don't show up on Google. Curated by residents, loved by expats.</p>
     </div>
-    <button class="fb-btn" onclick="showToast('Featured list coming soon!')">Explore the list →</button>
+    <button class="fb-btn" onclick="showToast(showHiddenGems()" data-i18n="fb_btn">Explore the list →</button>
   </div>
 
   <!-- TOP PICKS -->
   <div class="section">
     <div class="section-header">
-      <h2 class="section-title">Top Picks Near You</h2>
+      <h2 class="section-title" data-i18n="sec_toppicks">Top Picks Near You</h2>
       <a class="see-all" onclick="showToast('All restaurants coming soon!')">View all →</a>
     </div>
     <div class="restaurants-grid">
@@ -1234,12 +1234,12 @@
   <!-- DISTRICT BROWSING -->
   <div class="districts-section">
     <div class="section-header">
-      <h2 class="section-title">Explore by District</h2>
+      <h2 class="section-title" data-i18n="sec_districts">Explore by District</h2>
       <a class="see-all" onclick="showToast('All districts coming soon!')">View all →</a>
     </div>
     <div class="districts-grid">
       <div class="district-card" onclick="showToast('Showing Da'an restaurants...')" style="">
-        <div class="district-card-bg" style="background:linear-gradient(135deg,#f5dfc0,#e8c89a);">🏘️</div>
+        <div class="district-card-bg" style="background:url('https://images.unsplash.com/photo-1478144592103-25e218a04891?w=600&h=450&fit=crop&auto=format') center/cover;"></div>
         <div class="district-card-overlay"></div>
         <div class="district-card-content">
           <div class="district-name">Da'an</div>
@@ -1248,7 +1248,7 @@
         </div>
       </div>
       <div class="district-card" onclick="showToast('Showing Xinyi restaurants...')">
-        <div class="district-card-bg" style="background:linear-gradient(135deg,#d4edda,#a8d5b5);">🏙️</div>
+        <div class="district-card-bg" style="background:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=450&fit=crop&auto=format') center/cover;"></div>
         <div class="district-card-overlay"></div>
         <div class="district-card-content">
           <div class="district-name">Xinyi</div>
@@ -1257,7 +1257,7 @@
         </div>
       </div>
       <div class="district-card" onclick="showToast('Showing Shilin restaurants...')">
-        <div class="district-card-bg" style="background:linear-gradient(135deg,#fde2d4,#f5c4a8);">🌙</div>
+        <div class="district-card-bg" style="background:url('https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=600&h=450&fit=crop&auto=format') center/cover;"></div>
         <div class="district-card-overlay"></div>
         <div class="district-card-content">
           <div class="district-name">Shilin</div>
@@ -1266,7 +1266,7 @@
         </div>
       </div>
       <div class="district-card" onclick="showToast('Showing Zhongshan restaurants...')">
-        <div class="district-card-bg" style="background:linear-gradient(135deg,#e8f0fe,#c5d5f5);">☕</div>
+        <div class="district-card-bg" style="background:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=450&fit=crop&auto=format') center/cover;"></div>
         <div class="district-card-overlay"></div>
         <div class="district-card-content">
           <div class="district-name">Zhongshan</div>
@@ -1275,7 +1275,7 @@
         </div>
       </div>
       <div class="district-card" onclick="showToast('Showing Zhongzheng restaurants...')">
-        <div class="district-card-bg" style="background:linear-gradient(135deg,#fef9e0,#f5e8a0);">🏛️</div>
+        <div class="district-card-bg" style="background:url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&h=450&fit=crop&auto=format') center/cover;"></div>
         <div class="district-card-overlay"></div>
         <div class="district-card-content">
           <div class="district-name">Zhongzheng</div>
@@ -1284,7 +1284,7 @@
         </div>
       </div>
       <div class="district-card" onclick="showToast('Showing Wanhua restaurants...')">
-        <div class="district-card-bg" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">🏮</div>
+        <div class="district-card-bg" style="background:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=450&fit=crop&auto=format') center/cover;"></div>
         <div class="district-card-overlay"></div>
         <div class="district-card-content">
           <div class="district-name">Wanhua</div>
@@ -1293,7 +1293,7 @@
         </div>
       </div>
       <div class="district-card" onclick="showToast('Showing Songshan restaurants...')">
-        <div class="district-card-bg" style="background:linear-gradient(135deg,#e0f7fa,#b2ebf2);">🎨</div>
+        <div class="district-card-bg" style="background:url('https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=600&h=450&fit=crop&auto=format') center/cover;"></div>
         <div class="district-card-overlay"></div>
         <div class="district-card-content">
           <div class="district-name">Songshan</div>
@@ -1302,7 +1302,7 @@
         </div>
       </div>
       <div class="district-card" onclick="showToast('More districts coming soon!')">
-        <div class="district-card-bg" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7);">🗺️</div>
+        <div class="district-card-bg" style="background:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=450&fit=crop&auto=format') center/cover;"></div>
         <div class="district-card-overlay"></div>
         <div class="district-card-content">
           <div class="district-name">More soon</div>
@@ -1326,10 +1326,10 @@
       <div class="map-pin-label">📍 Tap to locate me</div>
     </div>
     <div class="near-me-content">
-      <div class="near-me-label">Location Features</div>
+      <div class="near-me-label" data-i18n="nearme_label">Location Features</div>
       <h2 class="near-me-title">Restaurants <em>right<br/>around you</em></h2>
       <p class="near-me-desc">Share your location and instantly see the best-rated restaurants within walking distance — sorted by cuisine, price, and open now.</p>
-      <button class="near-me-btn" onclick="requestNearMe()">📍 Find Food Near Me</button>
+      <button class="near-me-btn" onclick="requestNearMe()" data-i18n="nearme_btn">📍 Find Food Near Me</button>
       <div class="near-me-chips">
         <span class="near-me-chip" onclick="requestNearMe()">Open now</span>
         <span class="near-me-chip" onclick="requestNearMe()">Under 5 min walk</span>
@@ -1344,8 +1344,8 @@
     <div class="ai-header">
       <div class="ai-icon-wrap">🤖</div>
       <div class="ai-header-text">
-        <h3>AI Food Assistant</h3>
-        <p>Ask anything about Taipei food — in English, 中文, Français, 日本語, or Español. Get personalised, curated recommendations instantly.</p>
+        <h3 data-i18n="ai_title">AI Food Assistant</h3>
+        <p data-i18n="ai_sub">Ask anything about Taipei food — in English, 中文, Français, 日本語, or Español. Get personalised, curated recommendations instantly.</p>
       </div>
     </div>
     <div class="ai-body">
@@ -1889,78 +1889,263 @@
 
   // ── LANGUAGE SWITCHER ──
   var currentLang = 'en';
-  var langContent = {
+
+  // ── FULL LANGUAGE SYSTEM ──
+  var currentLang = 'en';
+
+  var i18n = {
     en: {
-      heroTitle: 'Find your next<br/><em>favourite meal</em><br/>in Taipei',
-      heroSub: 'Discover hidden gems, compare menus, and order or reserve — all in one place.',
-      searchPlaceholder: 'Search restaurants, dishes, cuisines…',
-      searchBtn: 'Search',
-      aiPlaceholder: 'e.g. Best bubble tea in Zhongshan...',
-      aiSendBtn: 'Ask AI →'
+      nav_discover:       'Discover',
+      nav_nearme:         'Near Me',
+      nav_categories:     'Categories',
+      nav_forrestaurants: 'For Restaurants',
+      nav_listbtn:        'List Your Restaurant →',
+      hero_eyebrow:       "Taipei's Food Discovery Platform",
+      hero_title:         'Find your next<br/><em>favourite meal</em><br/>in Taipei',
+      hero_sub:           'Discover hidden gems, compare menus, and order or reserve — all in one place.',
+      search_btn:         'Search',
+      search_placeholder: 'Search restaurants, dishes, cuisines…',
+      stat_restaurants:   'Restaurants',
+      stat_districts:     'Districts',
+      stat_rating:        'Avg Rating',
+      stat_languages:     'Languages',
+      sec_categories:     'Browse by Category',
+      sec_toppicks:       'Top Picks Near You',
+      sec_districts:      'Explore by District',
+      fb_label:           '✦ Featured this week',
+      fb_title:           "Top 10 Hidden Gems in Da'an District",
+      fb_desc:            "Local favourites that don't show up on Google. Curated by residents, loved by expats.",
+      fb_btn:             'Explore the list →',
+      hint_ramen:         '🍜 Ramen',
+      hint_bubbletea:     '🧋 Bubble Tea',
+      hint_hotpot:        '🍲 Hot Pot',
+      hint_nightmarket:   '🌙 Night Market',
+      hint_vegetarian:    '🥗 Vegetarian',
+      ai_title:           'AI Food Assistant',
+      ai_sub:             'Ask anything about Taipei food — in English, 中文, Français, 日本語, or Español. Get personalised, curated recommendations instantly.',
+      ai_placeholder:     'e.g. Best bubble tea in Zhongshan…',
+      ai_sendbtn:         'Ask AI →',
+      nearme_label:       'Location Features',
+      nearme_btn:         '📍 Find Food Near Me',
     },
     zh: {
-      heroTitle: '在台北找到你的<br/><em>下一頓美食</em>',
-      heroSub: '探索隱藏寶藏，比較菜單，一站式訂位或點餐。',
-      searchPlaceholder: '搜尋餐廳、料理、美食類型…',
-      searchBtn: '搜尋',
-      aiPlaceholder: '例如：中山區最好喝的珍奶…',
-      aiSendBtn: '問 AI →'
+      nav_discover:       '探索',
+      nav_nearme:         '附近',
+      nav_categories:     '分類',
+      nav_forrestaurants: '餐廳合作',
+      nav_listbtn:        '刊登你的餐廳 →',
+      hero_eyebrow:       '台北美食探索平台',
+      hero_title:         '在台北找到你的<br/><em>下一頓美食</em>',
+      hero_sub:           '探索隱藏寶藏，比較菜單，一站式訂位或點餐。',
+      search_btn:         '搜尋',
+      search_placeholder: '搜尋餐廳、料理、美食類型…',
+      stat_restaurants:   '間餐廳',
+      stat_districts:     '個區域',
+      stat_rating:        '平均評分',
+      stat_languages:     '種語言',
+      sec_categories:     '按分類瀏覽',
+      sec_toppicks:       '附近精選',
+      sec_districts:      '依區域探索',
+      fb_label:           '✦ 本週精選',
+      fb_title:           '大安區 10 大隱藏版美食',
+      fb_desc:            '在地人私藏、外籍人士最愛的隱藏版好店，Google 上找不到。',
+      fb_btn:             '查看名單 →',
+      hint_ramen:         '🍜 拉麵',
+      hint_bubbletea:     '🧋 珍奶',
+      hint_hotpot:        '🍲 火鍋',
+      hint_nightmarket:   '🌙 夜市',
+      hint_vegetarian:    '🥗 素食',
+      ai_title:           'AI 美食助理',
+      ai_sub:             '用中文、英文、法文、日文或西班牙文詢問任何台北美食問題，立即獲得個人化推薦。',
+      ai_placeholder:     '例如：中山區最好喝的珍奶…',
+      ai_sendbtn:         '詢問 AI →',
+      nearme_label:       '位置功能',
+      nearme_btn:         '📍 尋找附近美食',
     },
     fr: {
-      heroTitle: 'Trouvez votre prochain<br/><em>repas favori</em><br/>à Taipei',
-      heroSub: 'Découvrez des pépites cachées, comparez les menus, commandez ou réservez.',
-      searchPlaceholder: 'Rechercher restaurants, plats, cuisines…',
-      searchBtn: 'Chercher',
-      aiPlaceholder: 'ex. Meilleur bubble tea à Zhongshan...',
-      aiSendBtn: 'Demander →'
+      nav_discover:       'Découvrir',
+      nav_nearme:         'Près de moi',
+      nav_categories:     'Catégories',
+      nav_forrestaurants: 'Pour les restaurants',
+      nav_listbtn:        'Référencer votre restaurant →',
+      hero_eyebrow:       'La plateforme de découverte culinaire de Taipei',
+      hero_title:         'Trouvez votre prochain<br/><em>repas favori</em><br/>à Taipei',
+      hero_sub:           'Découvrez des pépites cachées, comparez les menus, commandez ou réservez.',
+      search_btn:         'Chercher',
+      search_placeholder: 'Rechercher restaurants, plats, cuisines…',
+      stat_restaurants:   'Restaurants',
+      stat_districts:     'Quartiers',
+      stat_rating:        'Note moyenne',
+      stat_languages:     'Langues',
+      sec_categories:     'Parcourir par catégorie',
+      sec_toppicks:       'Meilleures adresses près de vous',
+      sec_districts:      'Explorer par quartier',
+      fb_label:           '✦ À la une cette semaine',
+      fb_title:           'Top 10 des pépites cachées à Da\'an',
+      fb_desc:            'Les favoris des locaux absents de Google. Sélectionnés par des résidents.',
+      fb_btn:             'Explorer la liste →',
+      hint_ramen:         '🍜 Ramen',
+      hint_bubbletea:     '🧋 Bubble Tea',
+      hint_hotpot:        '🍲 Hot Pot',
+      hint_nightmarket:   '🌙 Marché nocturne',
+      hint_vegetarian:    '🥗 Végétarien',
+      ai_title:           'Assistant IA Culinaire',
+      ai_sub:             'Posez n\'importe quelle question sur la cuisine de Taipei — en français, anglais, chinois, japonais ou espagnol.',
+      ai_placeholder:     'ex. Meilleur bubble tea à Zhongshan…',
+      ai_sendbtn:         'Demander →',
+      nearme_label:       'Fonctionnalité de localisation',
+      nearme_btn:         '📍 Trouver à manger près de moi',
     },
     ja: {
-      heroTitle: '台北で次の<br/><em>お気に入りのグルメ</em><br/>を見つけよう',
-      heroSub: '隠れた名店を発掘し、メニューを比較して、予約・注文をワンストップで。',
-      searchPlaceholder: 'レストラン、料理、ジャンルで検索…',
-      searchBtn: '検索',
-      aiPlaceholder: '例：中山のおすすめタピオカ店…',
-      aiSendBtn: 'AIに聞く →'
+      nav_discover:       '探す',
+      nav_nearme:         '近く',
+      nav_categories:     'カテゴリー',
+      nav_forrestaurants: 'レストランの方へ',
+      nav_listbtn:        'レストランを掲載する →',
+      hero_eyebrow:       '台北のグルメ探索プラットフォーム',
+      hero_title:         '台北で次の<br/><em>お気に入りのグルメ</em><br/>を見つけよう',
+      hero_sub:           '隠れた名店を発掘し、メニューを比較して、予約・注文をワンストップで。',
+      search_btn:         '検索',
+      search_placeholder: 'レストラン、料理、ジャンルで検索…',
+      stat_restaurants:   'レストラン',
+      stat_districts:     '地区',
+      stat_rating:        '平均評価',
+      stat_languages:     '言語対応',
+      sec_categories:     'カテゴリーで探す',
+      sec_toppicks:       'あなたの近くのおすすめ',
+      sec_districts:      '地区別に探す',
+      fb_label:           '✦ 今週のおすすめ',
+      fb_title:           '大安区の隠れた名店トップ10',
+      fb_desc:            'Googleには載っていない地元のお気に入り。住民がキュレーション。',
+      fb_btn:             'リストを見る →',
+      hint_ramen:         '🍜 ラーメン',
+      hint_bubbletea:     '🧋 タピオカ',
+      hint_hotpot:        '🍲 鍋料理',
+      hint_nightmarket:   '🌙 夜市',
+      hint_vegetarian:    '🥗 ベジタリアン',
+      ai_title:           'AI グルメアシスタント',
+      ai_sub:             '日本語、英語、中国語、フランス語、スペイン語で台北のグルメについて何でも聞いてください。',
+      ai_placeholder:     '例：中山のおすすめタピオカ店…',
+      ai_sendbtn:         'AIに聞く →',
+      nearme_label:       '現在地機能',
+      nearme_btn:         '📍 近くの飲食店を探す',
     },
     es: {
-      heroTitle: 'Encuentra tu próxima<br/><em>comida favorita</em><br/>en Taipei',
-      heroSub: 'Descubre joyas escondidas, compara menús y reserva u ordena en un solo lugar.',
-      searchPlaceholder: 'Buscar restaurantes, platos, cocinas…',
-      searchBtn: 'Buscar',
-      aiPlaceholder: 'ej. Mejor bubble tea en Zhongshan...',
-      aiSendBtn: 'Preguntar →'
+      nav_discover:       'Descubrir',
+      nav_nearme:         'Cerca de mí',
+      nav_categories:     'Categorías',
+      nav_forrestaurants: 'Para restaurantes',
+      nav_listbtn:        'Listar tu restaurante →',
+      hero_eyebrow:       'La plataforma de descubrimiento gastronómico de Taipei',
+      hero_title:         'Encuentra tu próxima<br/><em>comida favorita</em><br/>en Taipei',
+      hero_sub:           'Descubre joyas escondidas, compara menús y reserva u ordena en un solo lugar.',
+      search_btn:         'Buscar',
+      search_placeholder: 'Buscar restaurantes, platos, cocinas…',
+      stat_restaurants:   'Restaurantes',
+      stat_districts:     'Distritos',
+      stat_rating:        'Valoración media',
+      stat_languages:     'Idiomas',
+      sec_categories:     'Explorar por categoría',
+      sec_toppicks:       'Mejores opciones cerca de ti',
+      sec_districts:      'Explorar por distrito',
+      fb_label:           '✦ Destacado esta semana',
+      fb_title:           'Top 10 joyas ocultas en Da\'an',
+      fb_desc:            'Favoritos locales que no aparecen en Google. Seleccionados por residentes.',
+      fb_btn:             'Explorar la lista →',
+      hint_ramen:         '🍜 Ramen',
+      hint_bubbletea:     '🧋 Bubble Tea',
+      hint_hotpot:        '🍲 Hot Pot',
+      hint_nightmarket:   '🌙 Mercado nocturno',
+      hint_vegetarian:    '🥗 Vegetariano',
+      ai_title:           'Asistente de IA Gastronómico',
+      ai_sub:             'Pregunta cualquier cosa sobre la comida de Taipei en español, inglés, chino, francés o japonés.',
+      ai_placeholder:     'ej. Mejor bubble tea en Zhongshan…',
+      ai_sendbtn:         'Preguntar →',
+      nearme_label:       'Función de ubicación',
+      nearme_btn:         '📍 Encontrar comida cerca de mí',
     }
   };
 
   function setLang(lang) {
+    if (!i18n[lang]) return;
     currentLang = lang;
-    // Update buttons
+    var t = i18n[lang];
+
+    // Update lang buttons
     ['en','zh','fr','ja','es'].forEach(function(l) {
       var btn = document.getElementById('lang-' + l);
       if (btn) btn.classList.toggle('active', l === lang);
     });
-    var lc = langContent[lang];
-    if (!lc) return;
-    // Update hero title
-    var title = document.querySelector('.hero-title');
-    if (title) title.innerHTML = lc.heroTitle;
-    // Update hero sub
-    var sub = document.querySelector('.hero-sub');
-    if (sub) sub.textContent = lc.heroSub;
-    // Update search placeholder
+
+    // Update all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (!t[key]) return;
+      if (el.tagName === 'INPUT') {
+        el.placeholder = t[key];
+      } else if (key === 'hero_title') {
+        el.innerHTML = t[key];
+      } else {
+        el.textContent = t[key];
+      }
+    });
+
+    // Update hero title separately (uses innerHTML for <em> and <br/>)
+    var heroTitle = document.querySelector('.hero-title');
+    if (heroTitle && t.hero_title) heroTitle.innerHTML = t.hero_title;
+
+    // Update search input placeholder
     var si = document.getElementById('searchInput');
-    if (si) si.placeholder = lc.searchPlaceholder;
-    // Update search button
-    var sb = document.querySelector('.search-btn');
-    if (sb) sb.textContent = lc.searchBtn;
-    // Update AI placeholder
+    if (si) si.placeholder = t.search_placeholder || t.search_btn;
+
+    // Update AI input placeholder
     var ai = document.getElementById('ai-input');
-    if (ai) ai.placeholder = lc.aiPlaceholder;
-    // Update AI send button text
+    if (ai && t.ai_placeholder) ai.placeholder = t.ai_placeholder;
+
+    // Update AI send button
     var asb = document.getElementById('ai-send-btn');
-    if (asb && !asb.disabled) asb.textContent = lc.aiSendBtn;
+    if (asb && !asb.disabled && t.ai_sendbtn) asb.textContent = t.ai_sendbtn;
+
+    // Apply appropriate font family for CJK languages
+    var body = document.body;
+    if (lang === 'zh' || lang === 'ja') {
+      body.style.fontFamily = "'Noto Sans TC', 'DM Sans', sans-serif";
+    } else {
+      body.style.fontFamily = "'DM Sans', sans-serif";
+    }
   }
 
+
+
+  // ── HIDDEN GEMS (Featured Banner) ──
+  function showHiddenGems() {
+    // Show all cards since all are "hidden gems" on a new platform
+    var grid = document.querySelector('.restaurants-grid');
+    var section = grid ? grid.closest('.section') : null;
+    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    var cards = document.querySelectorAll('.r-card');
+    cards.forEach(function(card) { card.style.display = 'block'; });
+
+    // Update title
+    if (section) {
+      var titleEl = section.querySelector('.section-title');
+      if (titleEl) titleEl.textContent = "Hidden Gems in Da'an & Beyond";
+      var seeAll = section.querySelector('.see-all');
+      if (seeAll) {
+        seeAll.textContent = '✕ Clear';
+        seeAll.onclick = function() { clearCategoryFilter(); return false; };
+      }
+    }
+
+    // Highlight all cards briefly
+    cards.forEach(function(card) {
+      card.style.borderColor = 'var(--orange)';
+      setTimeout(function() { card.style.borderColor = ''; }, 1800);
+    });
+
+    showToast('✨ ' + cards.length + ' hidden gems — curated for you!');
+  }
 
   // ── CATEGORY FILTERING ──
   var activeCategoryFilter = null;
