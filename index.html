@@ -1869,6 +1869,21 @@
       .replace(/"/g, '&quot;');
   }
 
+var apiPromise = fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+      body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 600,
+        system: (function(){ var li={en:'Respond in English.',zh:'請完全以繁體中文回覆。',fr:'Réponds entièrement en français.',ja:'すべて日本語で回答してください。',es:'Responde completamente en español.'};
+          return "You are Tasty Taipei's friendly AI food assistant. Help find great restaurants in Taipei. Be concise, warm, specific — district names, NT$ prices, what to order. 1-2 emojis. "+(li[currentLang]||li.en); })(),
+        messages: [{ role: 'user', content: msg }] })
+    });
+    var timeoutPromise = new Promise(function(_,reject){ setTimeout(function(){ reject(new Error('timeout')); }, 6000); });
+    Promise.race([apiPromise, timeoutPromise])
+      .then(function(r){ return r.json(); })
+      .then(function(data){ var reply=(data.content&&data.content[0]&&data.content[0].text)?data.content[0].text:getLocalResponse(msg); removeTyping(); addBotMsg(reply); })
+      .catch(function(){ removeTyping(); addBotMsg(getLocalResponse(msg)); })
+      .finally(function(){ aiLoading=false; btn.disabled=false; btn.textContent=(i18n[currentLang]||i18n.en).ai_sendbtn||'Ask AI →'; });
+  }
   // ── NEAR ME ──
   function requestNearMe() {
     if (!navigator.geolocation) {
