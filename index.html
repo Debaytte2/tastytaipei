@@ -187,8 +187,8 @@
     margin-bottom: 32px;
   }
   .section-title {
-    font-family: 'Fraunces', serif; font-size: 32px; font-weight: 800;
-    letter-spacing: -.03em;
+    font-family: 'Fraunces', serif; font-size: 34px; font-weight: 800;
+    letter-spacing: -.03em; line-height: 1;
   }
   .see-all {
     font-size: 13px; font-weight: 600; color: var(--orange);
@@ -199,22 +199,36 @@
 
   .cats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 768px) {
+    .cats-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  }
+  @media (max-width: 480px) {
+    .cats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   }
   .cat-card {
     background: #fff; border: 1.5px solid var(--border);
-    border-radius: 14px; padding: 18px 12px;
+    border-radius: 14px; padding: 20px 12px 16px;
     display: flex; flex-direction: column; align-items: center; gap: 8px;
-    cursor: pointer; transition: all .2s;
+    cursor: pointer; transition: all .22s;
     text-decoration: none; color: var(--ink);
+    position: relative; overflow: hidden;
+  }
+  .cat-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(232,82,26,.06) 0%, transparent 70%);
+    opacity: 0; transition: opacity .22s;
   }
   .cat-card:hover {
-    border-color: var(--orange); transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(232,82,26,.12);
+    border-color: var(--orange); transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(232,82,26,.14);
   }
-  .cat-emoji { font-size: 28px; }
-  .cat-name { font-size: 12px; font-weight: 600; text-align: center; }
+  .cat-card:hover::before { opacity: 1; }
+  .cat-emoji { font-size: 30px; transition: transform .2s; }
+  .cat-card:hover .cat-emoji { transform: scale(1.12); }
+  .cat-name { font-size: 11.5px; font-weight: 600; text-align: center; letter-spacing: .01em; }
 
   /* ─── RESTAURANT CARDS ─── */
   .restaurants-grid {
@@ -235,7 +249,7 @@
     border-color: rgba(232,82,26,.3);
   }
   .r-card-img {
-    width: 100%; height: 185px; object-fit: cover;
+    width: 100%; height: 200px; object-fit: cover;
     background: linear-gradient(135deg, #f5dfc0 0%, #e8c89a 100%);
     display: flex; align-items: center; justify-content: center;
     font-size: 64px; position: relative; overflow: hidden;
@@ -304,37 +318,6 @@
   }
   .fb-btn:hover { background: var(--orange-light); transform: scale(1.03); }
 
-  /* ─── AI CHIP ─── */
-  .ai-section {
-    background: linear-gradient(135deg, #f0faf4 0%, #e8f5e9 100%);
-    border: 1.5px solid #b2dfdb; border-radius: 20px;
-    padding: 48px 52px; margin: 0 40px 72px;
-    display: flex; gap: 48px; align-items: center;
-  }
-  .ai-icon {
-    font-size: 56px; flex-shrink: 0;
-    width: 96px; height: 96px; background: #fff;
-    border-radius: 24px; display: flex; align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 24px rgba(45,106,79,.12);
-  }
-  .ai-content h3 {
-    font-family: 'Fraunces', serif; font-size: 28px; font-weight: 800;
-    letter-spacing: -.02em; margin-bottom: 8px; color: var(--green);
-  }
-  .ai-content p { font-size: 15px; color: #4a7c62; line-height: 1.6; margin-bottom: 20px; }
-  .ai-examples { display: flex; flex-wrap: wrap; gap: 8px; }
-  .ai-ex {
-    background: #fff; border: 1.5px solid #b2dfdb;
-    border-radius: 20px; padding: 7px 14px;
-    font-size: 12px; color: var(--green); font-weight: 500;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .ai-badge {
-    background: var(--green); color: #fff;
-    font-size: 10px; font-weight: 700; border-radius: 4px; padding: 2px 6px;
-    letter-spacing: .05em; text-transform: uppercase;
-  }
 
   /* ─── FOOTER ─── */
   footer {
@@ -547,12 +530,234 @@
     .rp-back { top: 72px; left: 16px; }
   }
 
+  /* ─── DISTRICT BROWSING ─── */
+  .districts-section {
+    padding: 72px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .districts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  @media (max-width: 900px) { .districts-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .districts-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+  .district-card {
+    position: relative; border-radius: 18px; overflow: hidden;
+    cursor: pointer; aspect-ratio: 4/3;
+    transition: transform .25s, box-shadow .25s;
+    border: 1.5px solid var(--border);
+  }
+  .district-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(26,18,7,.18); }
+  .district-card-bg {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+  }
+  .district-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,18,7,.75) 0%, rgba(26,18,7,.1) 60%, transparent 100%);
+  }
+  .district-card-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 16px;
+  }
+  .district-name {
+    font-family: 'Fraunces', serif; font-size: 18px; font-weight: 800;
+    color: #fff; letter-spacing: -.02em; line-height: 1.1;
+  }
+  .district-count { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 3px; font-weight: 500; }
+  .district-vibe {
+    display: inline-block; margin-top: 6px;
+    background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 20px; padding: 3px 10px;
+    font-size: 10px; font-weight: 600; color: #fff;
+    letter-spacing: .04em; text-transform: uppercase;
+  }
+
+  /* ─── NEAR ME ─── */
+  .near-me-section {
+    margin: 0 40px 72px;
+    background: linear-gradient(135deg, #1a1207 0%, #2d1f0e 100%);
+    border-radius: 24px; padding: 56px;
+    display: flex; align-items: center; gap: 56px;
+    position: relative; overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    .near-me-section { margin: 0 20px 48px; padding: 32px 28px; flex-direction: column; gap: 32px; }
+    .districts-section { padding: 48px 20px; }
+  }
+  .near-me-section::before {
+    content: ''; position: absolute; right: -80px; top: -80px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,82,26,.2) 0%, transparent 70%);
+  }
+  .near-me-map-preview {
+    flex-shrink: 0; width: 280px; height: 200px;
+    background: rgba(255,255,255,.06); border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px; position: relative; z-index: 1;
+    cursor: pointer; transition: background .2s;
+    overflow: hidden;
+  }
+  .near-me-map-preview:hover { background: rgba(255,255,255,.1); }
+  .map-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 24px; width: 100%; }
+  .map-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.12); }
+  .map-dot.active { background: var(--orange); box-shadow: 0 0 10px rgba(232,82,26,.7); }
+  .map-dot.semi { background: rgba(255,255,255,.35); }
+  .map-pin-label { font-size: 11px; color: rgba(255,255,255,.5); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .near-me-content { flex: 1; position: relative; z-index: 1; }
+  .near-me-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .near-me-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--orange); }
+  .near-me-title {
+    font-family: 'Fraunces', serif; font-size: 32px; font-weight: 800;
+    color: var(--cream); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 12px;
+  }
+  .near-me-title em { font-style: italic; color: var(--orange); font-weight: 300; }
+  .near-me-desc { font-size: 14px; color: rgba(253,248,240,.55); line-height: 1.7; margin-bottom: 24px; max-width: 360px; }
+  .near-me-btn {
+    background: var(--orange); color: #fff; border: none;
+    border-radius: 12px; padding: 14px 28px;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background .2s, transform .15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .near-me-btn:hover { background: #c9400e; transform: translateY(-2px); }
+  .near-me-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .near-me-chip {
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px; padding: 5px 14px;
+    font-size: 12px; color: rgba(255,255,255,.7); cursor: pointer; transition: all .2s;
+  }
+  .near-me-chip:hover { background: rgba(255,255,255,.15); color: #fff; }
+
+  /* ─── AI ASSISTANT FUNCTIONAL ─── */
+  .ai-section {
+    margin: 0 40px 72px;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 40%, #fff7ed 100%);
+    border-radius: 24px;
+    border: 1.5px solid #bbf7d0;
+    overflow: hidden;
+  }
+  .ai-header {
+    padding: 40px 48px 0;
+    display: flex; align-items: flex-start; gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .ai-section { margin: 0 20px 48px; }
+    .ai-header { padding: 28px 24px 0; }
+    .ai-body { padding: 0 24px 28px !important; }
+  }
+  .ai-icon-wrap {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(45,106,79,.25);
+  }
+  .ai-header-text h3 {
+    font-family: 'Fraunces', serif; font-size: 24px; font-weight: 800;
+    letter-spacing: -.02em; margin-bottom: 4px;
+  }
+  .ai-header-text p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .ai-body { padding: 20px 48px 40px; }
+  .ai-chat-window {
+    background: #fff; border-radius: 16px;
+    border: 1.5px solid var(--border);
+    margin-bottom: 14px;
+    min-height: 140px; max-height: 320px;
+    overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    scroll-behavior: smooth;
+  }
+  .ai-chat-window::-webkit-scrollbar { width: 4px; }
+  .ai-chat-window::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .ai-msg { display: flex; gap: 8px; align-items: flex-start; }
+  .ai-msg.user { flex-direction: row-reverse; }
+  .ai-msg-avatar {
+    width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: #fff; font-weight: 700;
+  }
+  .ai-msg.user .ai-msg-avatar { background: var(--orange); }
+  .ai-msg-bubble {
+    background: var(--warm); border-radius: 12px 12px 12px 3px;
+    padding: 10px 14px; font-size: 13px; line-height: 1.65;
+    max-width: 85%; color: var(--ink);
+  }
+  .ai-msg.user .ai-msg-bubble {
+    background: var(--orange); color: #fff;
+    border-radius: 12px 12px 3px 12px;
+  }
+  .ai-typing { display: flex; gap: 4px; align-items: center; padding: 10px 14px; background: var(--warm); border-radius: 12px; width: fit-content; }
+  .ai-typing span { width: 6px; height: 6px; background: var(--muted); border-radius: 50%; animation: typingBounce 1.2s ease infinite; }
+  .ai-typing span:nth-child(2) { animation-delay: .2s; }
+  .ai-typing span:nth-child(3) { animation-delay: .4s; }
+  @keyframes typingBounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+  .ai-input-row { display: flex; gap: 10px; }
+  .ai-input {
+    flex: 1; border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 12px 16px; font-size: 14px; font-family: 'DM Sans', sans-serif;
+    color: var(--ink); outline: none; background: #fff; transition: border-color .2s;
+  }
+  .ai-input:focus { border-color: var(--green); }
+  .ai-send-btn {
+    background: var(--green); color: #fff; border: none;
+    border-radius: 12px; padding: 12px 20px;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: background .2s;
+    white-space: nowrap;
+  }
+  .ai-send-btn:hover { background: #1d5238; }
+  .ai-send-btn:disabled { background: var(--border); cursor: not-allowed; color: var(--muted); }
+  .ai-example-prompts { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .ai-prompt-chip {
+    background: rgba(45,106,79,.08); border: 1px solid rgba(45,106,79,.2);
+    border-radius: 20px; padding: 5px 14px;
+    font-size: 12px; color: var(--green); cursor: pointer; transition: all .2s; font-weight: 500;
+  }
+  .ai-prompt-chip:hover { background: rgba(45,106,79,.15); }
+
+  /* ─── HERO FEATURE CARD ─── */
+  .hero-feature-card {
+    z-index: 1; background: #fff; border-radius: 20px;
+    padding: 18px 22px; border: 1.5px solid var(--border);
+    box-shadow: 0 12px 48px rgba(26,18,7,.1);
+    display: flex; gap: 14px; align-items: center;
+    max-width: 400px; width: 100%; margin-top: 28px;
+    transition: transform .2s, box-shadow .2s; cursor: pointer;
+  }
+  .hero-feature-card:hover { transform: translateY(-3px); box-shadow: 0 20px 56px rgba(26,18,7,.15); }
+  .hfc-emoji {
+    font-size: 36px; width: 60px; height: 60px;
+    background: var(--warm); border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .hfc-name { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700; letter-spacing: -.02em; }
+  .hfc-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .hfc-meta { display: flex; gap: 10px; margin-top: 7px; align-items: center; flex-wrap: wrap; }
+  .hfc-rating { font-size: 12px; font-weight: 700; color: var(--gold); }
+  .hfc-tag-green { font-size: 10px; font-weight: 600; background: #d4edda; color: #1a5c33; padding: 2px 8px; border-radius: 20px; }
+  .hfc-live { font-size: 10px; color: var(--muted); margin-left: auto; display: flex; align-items: center; gap: 4px; }
+  .hfc-live::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: livePulse 2s infinite; }
+  @keyframes livePulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
   /* ─── FILTER BAR ─── */
   .filter-bar {
     background: #fff; border-bottom: 1px solid var(--border);
     padding: 8px 20px; display: flex; gap: 6px;
     overflow-x: auto; align-items: center;
-    scrollbar-width: none; position: sticky; top: 56px; z-index: 50;
+    scrollbar-width: none; position: sticky; top: 64px; z-index: 50;
     -webkit-overflow-scrolling: touch;
   }
   .filter-bar::-webkit-scrollbar { display: none; }
@@ -590,7 +795,7 @@
   .filter-option.selected::after { content: '✓'; color: var(--green); font-weight: 800; }
   .filter-wrap { position: relative; }
   @media (max-width: 768px) {
-    .filter-bar { padding: 6px 12px; top: 50px; gap: 5px; }
+    .filter-bar { padding: 6px 12px; top: 64px; gap: 5px; }
   }
 </style>
 <script type="text/javascript">
@@ -690,26 +895,12 @@
       <div class="filter-option" onclick="selectFilter('cuisine','Desserts',this)">🍰 Desserts</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Café',this)">☕ Café</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Bubble Tea',this)">🧋 Bubble Tea</div>
-    </div>
       <div class="filter-option" onclick="selectFilter('cuisine','Brunch',this)">🥞 Brunch</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Night Market',this)">🌙 Night Market</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Late Night',this)">🦉 Late Night</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Taiwanese',this)">🇹🇼 Taiwanese</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Japanese',this)">🍣 Japanese</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Korean',this)">🥘 Korean</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Western',this)">🍔 Western</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Italian',this)">🍝 Italian</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Hot Pot',this)">🍲 Hot Pot</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','BBQ',this)">🍖 BBQ</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Seafood',this)">🦞 Seafood</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Noodles',this)">🍜 Noodles</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Dumplings',this)">🥟 Dumplings</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Café',this)">☕ Café</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Bubble Tea',this)">🧋 Bubble Tea</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Desserts',this)">🍰 Desserts</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Bakery',this)">🥐 Bakery</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Street Food',this)">🌮 Street Food</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Vegetarian',this)">🌱 Vegetarian</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','Western',this)">🍔 Western</div>
     </div>
   </div>
   <div class="filter-wrap">
@@ -758,6 +949,19 @@
       <span class="hint-chip" onclick="searchFor('hot pot')">🍲 Hot Pot</span>
       <span class="hint-chip" onclick="searchFor('night market')">🌙 Night Market</span>
       <span class="hint-chip" onclick="searchFor('vegetarian')">🥗 Vegetarian</span>
+    </div>
+
+    <div class="hero-feature-card animate delay-4" onclick="showRestaurant()">
+      <div class="hfc-emoji">🍜</div>
+      <div style="flex:1;min-width:0;">
+        <div class="hfc-name">Ah-Zhong Noodle House</div>
+        <div class="hfc-sub">Taiwanese · Da'an District</div>
+        <div class="hfc-meta">
+          <span class="hfc-rating">⭐ 4.9</span>
+          <span class="hfc-tag-green">🔥 Trending</span>
+          <span class="hfc-live">Live now</span>
+        </div>
+      </div>
     </div>
 
     <div class="stats-bar animate delay-4">
@@ -991,19 +1195,140 @@
     </div>
   </div>
 
-  <!-- AI FEATURE -->
+  <!-- DISTRICT BROWSING -->
+  <div class="districts-section">
+    <div class="section-header">
+      <h2 class="section-title">Explore by District</h2>
+      <a class="see-all" onclick="showToast('All districts coming soon!')">View all →</a>
+    </div>
+    <div class="districts-grid">
+      <div class="district-card" onclick="showToast('Showing Da'an restaurants...')" style="">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#f5dfc0,#e8c89a);">🏘️</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Da'an</div>
+          <div class="district-count">58 restaurants</div>
+          <div class="district-vibe">Trendy · Cafés</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Xinyi restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#d4edda,#a8d5b5);">🏙️</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Xinyi</div>
+          <div class="district-count">44 restaurants</div>
+          <div class="district-vibe">Upscale · Fine Dining</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Shilin restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#fde2d4,#f5c4a8);">🌙</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Shilin</div>
+          <div class="district-count">32 restaurants</div>
+          <div class="district-vibe">Night Market · Street Food</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Zhongshan restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#e8f0fe,#c5d5f5);">☕</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Zhongshan</div>
+          <div class="district-count">39 restaurants</div>
+          <div class="district-vibe">Local · Hidden Gems</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Zhongzheng restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#fef9e0,#f5e8a0);">🏛️</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Zhongzheng</div>
+          <div class="district-count">27 restaurants</div>
+          <div class="district-vibe">Historic · Local</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Wanhua restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">🏮</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Wanhua</div>
+          <div class="district-count">21 restaurants</div>
+          <div class="district-vibe">Authentic · Old Taipei</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('Showing Songshan restaurants...')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#e0f7fa,#b2ebf2);">🎨</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">Songshan</div>
+          <div class="district-count">18 restaurants</div>
+          <div class="district-vibe">Creative · Brunch</div>
+        </div>
+      </div>
+      <div class="district-card" onclick="showToast('More districts coming soon!')">
+        <div class="district-card-bg" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7);">🗺️</div>
+        <div class="district-card-overlay"></div>
+        <div class="district-card-content">
+          <div class="district-name">More soon</div>
+          <div class="district-count">12 districts total</div>
+          <div class="district-vibe">All of Taipei</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEAR ME -->
+  <div class="near-me-section">
+    <div class="near-me-map-preview" onclick="requestNearMe()">
+      <div class="map-grid">
+        <div class="map-dot"></div><div class="map-dot semi"></div><div class="map-dot"></div><div class="map-dot active"></div><div class="map-dot"></div>
+        <div class="map-dot semi"></div><div class="map-dot"></div><div class="map-dot active"></div><div class="map-dot"></div><div class="map-dot semi"></div>
+        <div class="map-dot"></div><div class="map-dot active"></div><div class="map-dot"></div><div class="map-dot semi"></div><div class="map-dot"></div>
+        <div class="map-dot semi"></div><div class="map-dot"></div><div class="map-dot semi"></div><div class="map-dot active"></div><div class="map-dot"></div>
+        <div class="map-dot"></div><div class="map-dot semi"></div><div class="map-dot"></div><div class="map-dot"></div><div class="map-dot semi"></div>
+      </div>
+      <div class="map-pin-label">📍 Tap to locate me</div>
+    </div>
+    <div class="near-me-content">
+      <div class="near-me-label">Location Features</div>
+      <h2 class="near-me-title">Restaurants <em>right<br/>around you</em></h2>
+      <p class="near-me-desc">Share your location and instantly see the best-rated restaurants within walking distance — sorted by cuisine, price, and open now.</p>
+      <button class="near-me-btn" onclick="requestNearMe()">📍 Find Food Near Me</button>
+      <div class="near-me-chips">
+        <span class="near-me-chip" onclick="requestNearMe()">Open now</span>
+        <span class="near-me-chip" onclick="requestNearMe()">Under 5 min walk</span>
+        <span class="near-me-chip" onclick="requestNearMe()">Top rated</span>
+        <span class="near-me-chip" onclick="requestNearMe()">Under NT$200</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI FOOD ASSISTANT -->
   <div class="ai-section">
-    <div class="ai-icon">🤖</div>
-    <div class="ai-content">
-      <h3>Ask our AI Food Assistant</h3>
-      <p>Find exactly what you're craving — in English, 中文, Français, 日本語, or Español. Ask anything and get curated, real recommendations.</p>
-      <div class="ai-examples">
-        <span class="ai-ex"><span class="ai-badge">AI</span>"Best ramen under NT$200 near me"</span>
-        <span class="ai-ex"><span class="ai-badge">AI</span>"Romantic restaurant for a date in Taipei"</span>
-        <span class="ai-ex"><span class="ai-badge">AI</span>"素食友好的餐廳推薦"</span>
-        <span class="ai-ex"><span class="ai-badge">AI</span>"Meilleur hot-pot pas cher"</span>
-        <span class="ai-ex"><span class="ai-badge">AI</span>"台北でおすすめのラーメン屋さん"</span>
-        <span class="ai-ex"><span class="ai-badge">AI</span>"Mejores restaurantes baratos en Taipei"</span>
+    <div class="ai-header">
+      <div class="ai-icon-wrap">🤖</div>
+      <div class="ai-header-text">
+        <h3>AI Food Assistant</h3>
+        <p>Ask anything about Taipei food — in English, 中文, Français, 日本語, or Español. Get personalised, curated recommendations instantly.</p>
+      </div>
+    </div>
+    <div class="ai-body">
+      <div class="ai-example-prompts">
+        <span class="ai-prompt-chip" onclick="aiSendPrompt('Best ramen under NT$200')">🍜 Best ramen under NT$200</span>
+        <span class="ai-prompt-chip" onclick="aiSendPrompt('Romantic dinner spot in Taipei')">🕯 Romantic dinner spot</span>
+        <span class="ai-prompt-chip" onclick="aiSendPrompt('素食友好的餐廳推薦')">🌱 素食友好餐廳</span>
+        <span class="ai-prompt-chip" onclick="aiSendPrompt('Best hot pot under NT$400')">🍲 Hot pot deals</span>
+        <span class="ai-prompt-chip" onclick="aiSendPrompt('Hidden gems in Da'an')">💎 Hidden gems</span>
+      </div>
+      <div class="ai-chat-window" id="ai-chat">
+        <div class="ai-msg">
+          <div class="ai-msg-avatar">🤖</div>
+          <div class="ai-msg-bubble">Hi! I'm Tasty Taipei's AI assistant 🍽️ Ask me anything about restaurants in Taipei — what are you craving?</div>
+        </div>
+      </div>
+      <div class="ai-input-row">
+        <input class="ai-input" id="ai-input" type="text" placeholder="e.g. Best bubble tea in Zhongshan..." onkeydown="if(event.key==='Enter')aiSend()"/>
+        <button class="ai-send-btn" id="ai-send-btn" onclick="aiSend()">Ask AI →</button>
       </div>
     </div>
   </div>
@@ -1018,7 +1343,7 @@
       <a href="#">LINE Bot</a>
       <a href="#">Contact</a>
     </div>
-    <div class="footer-copy">© 2025 Tasty Taipei — Built with ♥ in Taiwan</div>
+    <div class="footer-copy">© 2026 Tasty Taipei — Built with ♥ in Taiwan</div>
   </footer>
 
 </div><!-- /home-page -->
@@ -1393,6 +1718,110 @@
     document.getElementById("sf-email-zh").value = "";
     document.getElementById("sf-district-zh").value = "";
   }
+
+  // ── AI FOOD ASSISTANT ──
+  var aiLoading = false;
+
+  function aiSendPrompt(text) {
+    document.getElementById('ai-input').value = text;
+    aiSend();
+  }
+
+  function aiSend() {
+    if (aiLoading) return;
+    var input = document.getElementById('ai-input');
+    var msg = input.value.trim();
+    if (!msg) return;
+    input.value = '';
+    var chat = document.getElementById('ai-chat');
+
+    // Add user bubble
+    var userMsg = document.createElement('div');
+    userMsg.className = 'ai-msg user';
+    userMsg.innerHTML = '<div class="ai-msg-avatar">U</div><div class="ai-msg-bubble">' + escHtml(msg) + '</div>';
+    chat.appendChild(userMsg);
+
+    // Add typing indicator
+    var typing = document.createElement('div');
+    typing.className = 'ai-msg';
+    typing.id = 'ai-typing-indicator';
+    typing.innerHTML = '<div class="ai-msg-avatar">&#x1F916;</div><div class="ai-typing"><span></span><span></span><span></span></div>';
+    chat.appendChild(typing);
+    chat.scrollTop = chat.scrollHeight;
+
+    aiLoading = true;
+    var btn = document.getElementById('ai-send-btn');
+    btn.disabled = true;
+    btn.textContent = '...';
+
+    fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: 'You are Tasty Taipei's friendly AI food assistant. Help tourists, expats, and locals find great restaurants in Taipei, Taiwan. You know the food scene well — night markets, local beef noodle shops, trendy cafes, and hidden gems. Keep answers concise and warm. Give specific recommendations with district, price range in NT$, and what to order. Support replies in the same language the user writes in (English, \u4e2d\u6587, Fran\u00e7ais, \u65e5\u672c\u8a9e, Espa\u00f1ol). Use emojis naturally. Note that restaurant names you mention are examples of the kind of place found on the Tasty Taipei platform.',
+        messages: [{ role: 'user', content: msg }]
+      })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var reply = (data.content && data.content[0] && data.content[0].text)
+        ? data.content[0].text
+        : 'Sorry, I could not get a response. Please try again!';
+      removeTyping();
+      addBotMsg(reply);
+    })
+    .catch(function() {
+      removeTyping();
+      addBotMsg('Oops! Something went wrong connecting to the AI. Please try again.');
+    })
+    .finally(function() {
+      aiLoading = false;
+      btn.disabled = false;
+      btn.textContent = 'Ask AI →';
+    });
+  }
+
+  function removeTyping() {
+    var el = document.getElementById('ai-typing-indicator');
+    if (el) el.remove();
+  }
+
+  function addBotMsg(text) {
+    var chat = document.getElementById('ai-chat');
+    var div = document.createElement('div');
+    div.className = 'ai-msg';
+    div.innerHTML = '<div class="ai-msg-avatar">&#x1F916;</div><div class="ai-msg-bubble">' + escHtml(text).replace(/\n/g, '<br/>') + '</div>';
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // ── NEAR ME ──
+  function requestNearMe() {
+    if (!navigator.geolocation) {
+      showToast('Location not supported on this device');
+      return;
+    }
+    showToast('\uD83D\uDCCD Getting your location...');
+    navigator.geolocation.getCurrentPosition(
+      function(pos) {
+        showToast('\u2705 Found you! Showing nearby restaurants...');
+      },
+      function() {
+        showToast('\uD83D\uDCCD Enable location to see nearby spots!');
+      }
+    );
+  }
+
 </script>
 
 <!-- ══════════════════════════════════
