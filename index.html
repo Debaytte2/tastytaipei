@@ -248,6 +248,11 @@
     box-shadow: 0 16px 48px rgba(26,18,7,.12);
     border-color: rgba(232,82,26,.3);
   }
+  .r-card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block; transition: transform .4s ease;
+  }
+  .r-card:hover .r-card-img img { transform: scale(1.06); }
   .r-card-img {
     width: 100%; height: 200px; object-fit: cover;
     background: linear-gradient(135deg, #f5dfc0 0%, #e8c89a 100%);
@@ -752,6 +757,24 @@
   .hfc-live::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: livePulse 2s infinite; }
   @keyframes livePulse { 0%,100%{opacity:1} 50%{opacity:.35} }
 
+
+  /* ─── LANGUAGE SWITCHER ─── */
+  .lang-switcher {
+    z-index: 1; display: flex; align-items: center; gap: 4px;
+    background: rgba(255,255,255,.72); border: 1.5px solid var(--border);
+    border-radius: 40px; padding: 5px 6px; backdrop-filter: blur(8px);
+    margin-top: 18px; flex-wrap: wrap; justify-content: center;
+  }
+  .lang-btn {
+    padding: 5px 13px; border-radius: 20px; border: none;
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    background: transparent; color: var(--muted);
+    font-family: 'DM Sans', sans-serif; transition: all .18s; white-space: nowrap;
+  }
+  .lang-btn.active { background: var(--ink); color: var(--cream); box-shadow: 0 2px 8px rgba(26,18,7,.18); }
+  .lang-btn:hover:not(.active) { color: var(--ink); background: rgba(255,255,255,.9); }
+  .lang-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+
   /* ─── FILTER BAR ─── */
   .filter-bar {
     background: #fff; border-bottom: 1px solid var(--border);
@@ -964,6 +987,19 @@
       </div>
     </div>
 
+    <!-- LANGUAGE SWITCHER -->
+    <div class="lang-switcher animate delay-4">
+      <button class="lang-btn active" id="lang-en" onclick="setLang('en')">🇬🇧 English</button>
+      <div class="lang-dot"></div>
+      <button class="lang-btn" id="lang-zh" onclick="setLang('zh')" style="font-family:'Noto Sans TC',sans-serif;">🇹🇼 中文</button>
+      <div class="lang-dot"></div>
+      <button class="lang-btn" id="lang-fr" onclick="setLang('fr')">🇫🇷 Français</button>
+      <div class="lang-dot"></div>
+      <button class="lang-btn" id="lang-ja" onclick="setLang('ja')" style="font-family:'Noto Sans TC',sans-serif;">🇯🇵 日本語</button>
+      <div class="lang-dot"></div>
+      <button class="lang-btn" id="lang-es" onclick="setLang('es')">🇪🇸 Español</button>
+    </div>
+
     <div class="stats-bar animate delay-4">
       <div class="stat">
         <div class="stat-num">200+</div>
@@ -991,42 +1027,42 @@
       <a class="see-all" onclick="showToast('All categories coming soon!')">See all →</a>
     </div>
         <div class="cats-grid">
-      <a class="cat-card" onclick="showToast('Showing Breakfast...')"><span class="cat-emoji">🍳</span><span class="cat-name">Breakfast</span></a>
-      <a class="cat-card" onclick="showToast('Showing Brunch...')"><span class="cat-emoji">🥞</span><span class="cat-name">Brunch</span></a>
-      <a class="cat-card" onclick="showToast('Showing Lunch...')"><span class="cat-emoji">🍱</span><span class="cat-name">Lunch</span></a>
-      <a class="cat-card" onclick="showToast('Showing Dinner...')"><span class="cat-emoji">🍽️</span><span class="cat-name">Dinner</span></a>
-      <a class="cat-card" onclick="showToast('Showing Night Market...')"><span class="cat-emoji">🌙</span><span class="cat-name">Night Market</span></a>
-      <a class="cat-card" onclick="showToast('Showing Late Night...')"><span class="cat-emoji">🦉</span><span class="cat-name">Late Night</span></a>
-      <a class="cat-card" onclick="showToast('Showing Cafés...')"><span class="cat-emoji">☕</span><span class="cat-name">Cafés</span></a>
-      <a class="cat-card" onclick="showToast('Showing Bubble Tea...')"><span class="cat-emoji">🧋</span><span class="cat-name">Bubble Tea</span></a>
-      <a class="cat-card" onclick="showToast('Showing Desserts...')"><span class="cat-emoji">🍰</span><span class="cat-name">Desserts</span></a>
-      <a class="cat-card" onclick="showToast('Showing Ice Cream...')"><span class="cat-emoji">🍦</span><span class="cat-name">Ice Cream</span></a>
-      <a class="cat-card" onclick="showToast('Showing Bakery...')"><span class="cat-emoji">🥐</span><span class="cat-name">Bakery</span></a>
-      <a class="cat-card" onclick="showToast('Showing Noodles...')"><span class="cat-emoji">🍜</span><span class="cat-name">Noodles</span></a>
-      <a class="cat-card" onclick="showToast('Showing Dumplings...')"><span class="cat-emoji">🥟</span><span class="cat-name">Dumplings</span></a>
-      <a class="cat-card" onclick="showToast('Showing Hot Pot...')"><span class="cat-emoji">🍲</span><span class="cat-name">Hot Pot</span></a>
-      <a class="cat-card" onclick="showToast('Showing BBQ...')"><span class="cat-emoji">🍖</span><span class="cat-name">BBQ</span></a>
-      <a class="cat-card" onclick="showToast('Showing Seafood...')"><span class="cat-emoji">🦞</span><span class="cat-name">Seafood</span></a>
-      <a class="cat-card" onclick="showToast('Showing Taiwanese...')"><span class="cat-emoji">🇹🇼</span><span class="cat-name">Taiwanese</span></a>
-      <a class="cat-card" onclick="showToast('Showing Japanese...')"><span class="cat-emoji">🍣</span><span class="cat-name">Japanese</span></a>
-      <a class="cat-card" onclick="showToast('Showing Korean...')"><span class="cat-emoji">🥘</span><span class="cat-name">Korean</span></a>
-      <a class="cat-card" onclick="showToast('Showing Chinese...')"><span class="cat-emoji">🥡</span><span class="cat-name">Chinese</span></a>
-      <a class="cat-card" onclick="showToast('Showing Thai...')"><span class="cat-emoji">🍛</span><span class="cat-name">Thai</span></a>
-      <a class="cat-card" onclick="showToast('Showing Vietnamese...')"><span class="cat-emoji">🍶</span><span class="cat-name">Vietnamese</span></a>
-      <a class="cat-card" onclick="showToast('Showing Indian...')"><span class="cat-emoji">🫕</span><span class="cat-name">Indian</span></a>
-      <a class="cat-card" onclick="showToast('Showing Mexican...')"><span class="cat-emoji">🌮</span><span class="cat-name">Mexican</span></a>
-      <a class="cat-card" onclick="showToast('Showing American...')"><span class="cat-emoji">🍔</span><span class="cat-name">American</span></a>
-      <a class="cat-card" onclick="showToast('Showing Italian...')"><span class="cat-emoji">🍝</span><span class="cat-name">Italian</span></a>
-      <a class="cat-card" onclick="showToast('Showing French...')"><span class="cat-emoji">🥖</span><span class="cat-name">French</span></a>
-      <a class="cat-card" onclick="showToast('Showing Mediterranean...')"><span class="cat-emoji">🫒</span><span class="cat-name">Mediterranean</span></a>
-      <a class="cat-card" onclick="showToast('Showing Middle Eastern...')"><span class="cat-emoji">🧆</span><span class="cat-name">Middle Eastern</span></a>
-      <a class="cat-card" onclick="showToast('Showing Spanish...')"><span class="cat-emoji">🥘</span><span class="cat-name">Spanish</span></a>
-      <a class="cat-card" onclick="showToast('Showing Western...')"><span class="cat-emoji">🥩</span><span class="cat-name">Western</span></a>
-      <a class="cat-card" onclick="showToast('Showing Street Food...')"><span class="cat-emoji">🌯</span><span class="cat-name">Street Food</span></a>
-      <a class="cat-card" onclick="showToast('Showing Vegetarian...')"><span class="cat-emoji">🥗</span><span class="cat-name">Vegetarian</span></a>
-      <a class="cat-card" onclick="showToast('Showing Vegan...')"><span class="cat-emoji">🌱</span><span class="cat-name">Vegan</span></a>
-      <a class="cat-card" onclick="showToast('Showing Halal...')"><span class="cat-emoji">🌿</span><span class="cat-name">Halal</span></a>
-      <a class="cat-card" onclick="showToast('Showing Healthy...')"><span class="cat-emoji">🥙</span><span class="cat-name">Healthy</span></a>
+      <a class="cat-card" onclick="filterByCategory('breakfast', 'Breakfast')"><span class="cat-emoji">🍳</span><span class="cat-name">Breakfast</span></a>
+      <a class="cat-card" onclick="filterByCategory('brunch', 'Brunch')"><span class="cat-emoji">🥞</span><span class="cat-name">Brunch</span></a>
+      <a class="cat-card" onclick="filterByCategory('lunch', 'Lunch')"><span class="cat-emoji">🍱</span><span class="cat-name">Lunch</span></a>
+      <a class="cat-card" onclick="filterByCategory('dinner', 'Dinner')"><span class="cat-emoji">🍽️</span><span class="cat-name">Dinner</span></a>
+      <a class="cat-card" onclick="filterByCategory('night market', 'Night Market')"><span class="cat-emoji">🌙</span><span class="cat-name">Night Market</span></a>
+      <a class="cat-card" onclick="filterByCategory('latenight', 'Late Night')"><span class="cat-emoji">🦉</span><span class="cat-name">Late Night</span></a>
+      <a class="cat-card" onclick="filterByCategory('cafe', 'Cafés')"><span class="cat-emoji">☕</span><span class="cat-name">Cafés</span></a>
+      <a class="cat-card" onclick="filterByCategory('bubble tea', 'Bubble Tea')"><span class="cat-emoji">🧋</span><span class="cat-name">Bubble Tea</span></a>
+      <a class="cat-card" onclick="filterByCategory('desserts', 'Desserts')"><span class="cat-emoji">🍰</span><span class="cat-name">Desserts</span></a>
+      <a class="cat-card" onclick="filterByCategory('ice cream', 'Ice Cream')"><span class="cat-emoji">🍦</span><span class="cat-name">Ice Cream</span></a>
+      <a class="cat-card" onclick="filterByCategory('bakery', 'Bakery')"><span class="cat-emoji">🥐</span><span class="cat-name">Bakery</span></a>
+      <a class="cat-card" onclick="filterByCategory('noodles', 'Noodles')"><span class="cat-emoji">🍜</span><span class="cat-name">Noodles</span></a>
+      <a class="cat-card" onclick="filterByCategory('dumplings', 'Dumplings')"><span class="cat-emoji">🥟</span><span class="cat-name">Dumplings</span></a>
+      <a class="cat-card" onclick="filterByCategory('hot pot', 'Hot Pot')"><span class="cat-emoji">🍲</span><span class="cat-name">Hot Pot</span></a>
+      <a class="cat-card" onclick="filterByCategory('bbq', 'BBQ')"><span class="cat-emoji">🍖</span><span class="cat-name">BBQ</span></a>
+      <a class="cat-card" onclick="filterByCategory('seafood', 'Seafood')"><span class="cat-emoji">🦞</span><span class="cat-name">Seafood</span></a>
+      <a class="cat-card" onclick="filterByCategory('taiwanese', 'Taiwanese')"><span class="cat-emoji">🇹🇼</span><span class="cat-name">Taiwanese</span></a>
+      <a class="cat-card" onclick="filterByCategory('japanese', 'Japanese')"><span class="cat-emoji">🍣</span><span class="cat-name">Japanese</span></a>
+      <a class="cat-card" onclick="filterByCategory('korean', 'Korean')"><span class="cat-emoji">🥘</span><span class="cat-name">Korean</span></a>
+      <a class="cat-card" onclick="filterByCategory('chinese', 'Chinese')"><span class="cat-emoji">🥡</span><span class="cat-name">Chinese</span></a>
+      <a class="cat-card" onclick="filterByCategory('thai', 'Thai')"><span class="cat-emoji">🍛</span><span class="cat-name">Thai</span></a>
+      <a class="cat-card" onclick="filterByCategory('vietnamese', 'Vietnamese')"><span class="cat-emoji">🍶</span><span class="cat-name">Vietnamese</span></a>
+      <a class="cat-card" onclick="filterByCategory('indian', 'Indian')"><span class="cat-emoji">🫕</span><span class="cat-name">Indian</span></a>
+      <a class="cat-card" onclick="filterByCategory('mexican', 'Mexican')"><span class="cat-emoji">🌮</span><span class="cat-name">Mexican</span></a>
+      <a class="cat-card" onclick="filterByCategory('american', 'American')"><span class="cat-emoji">🍔</span><span class="cat-name">American</span></a>
+      <a class="cat-card" onclick="filterByCategory('italian', 'Italian')"><span class="cat-emoji">🍝</span><span class="cat-name">Italian</span></a>
+      <a class="cat-card" onclick="filterByCategory('french', 'French')"><span class="cat-emoji">🥖</span><span class="cat-name">French</span></a>
+      <a class="cat-card" onclick="filterByCategory('mediterranean', 'Mediterranean')"><span class="cat-emoji">🫒</span><span class="cat-name">Mediterranean</span></a>
+      <a class="cat-card" onclick="filterByCategory('middle eastern', 'Middle Eastern')"><span class="cat-emoji">🧆</span><span class="cat-name">Middle Eastern</span></a>
+      <a class="cat-card" onclick="filterByCategory('spanish', 'Spanish')"><span class="cat-emoji">🥘</span><span class="cat-name">Spanish</span></a>
+      <a class="cat-card" onclick="filterByCategory('western', 'Western')"><span class="cat-emoji">🥩</span><span class="cat-name">Western</span></a>
+      <a class="cat-card" onclick="filterByCategory('street food', 'Street Food')"><span class="cat-emoji">🌯</span><span class="cat-name">Street Food</span></a>
+      <a class="cat-card" onclick="filterByCategory('vegetarian', 'Vegetarian')"><span class="cat-emoji">🥗</span><span class="cat-name">Vegetarian</span></a>
+      <a class="cat-card" onclick="filterByCategory('vegan', 'Vegan')"><span class="cat-emoji">🌱</span><span class="cat-name">Vegan</span></a>
+      <a class="cat-card" onclick="filterByCategory('halal', 'Halal')"><span class="cat-emoji">🌿</span><span class="cat-name">Halal</span></a>
+      <a class="cat-card" onclick="filterByCategory('healthy', 'Healthy')"><span class="cat-emoji">🥙</span><span class="cat-name">Healthy</span></a>
     </div>
   </div>
 
@@ -1048,9 +1084,9 @@
     </div>
     <div class="restaurants-grid">
 
-      <a class="r-card" onclick="showRestaurant()">
+      <a class="r-card" onclick="showRestaurant()" data-cats="taiwanese,noodles,beef,lunch,dinner,latenight,street food">
         <div class="r-card-img">
-          🍜
+          <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop&auto=format" alt="Taiwanese beef noodle soup" loading="lazy" onerror="this.style.display='none'"/>
           <div class="r-card-badge"><span class="tag tag-popular">🔥 Popular</span></div>
         </div>
         <div class="r-card-body">
@@ -1073,9 +1109,9 @@
         </div>
       </a>
 
-      <a class="r-card" onclick="showRestaurant()">
-        <div class="r-card-img" style="background: linear-gradient(135deg, #d4edda, #a8d5b5);">
-          🥟
+      <a class="r-card" onclick="showRestaurant()" data-cats="taiwanese,dumplings,dimsum,lunch,dinner,chinese">
+        <div class="r-card-img">
+          <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&h=400&fit=crop&auto=format" alt="Soup dumplings" loading="lazy" onerror="this.style.display='none'"/>
         </div>
         <div class="r-card-body">
           <div class="r-card-top">
@@ -1097,9 +1133,9 @@
         </div>
       </a>
 
-      <a class="r-card" onclick="showRestaurant()">
-        <div class="r-card-img" style="background: linear-gradient(135deg, #fde2d4, #f5c4a8);">
-          🍱
+      <a class="r-card" onclick="showRestaurant()" data-cats="chinese,sichuan,spicy,bento,lunch,dinner">
+        <div class="r-card-img">
+          <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&h=400&fit=crop&auto=format" alt="Spicy bento" loading="lazy" onerror="this.style.display='none'"/>
         </div>
         <div class="r-card-body">
           <div class="r-card-top">
@@ -1121,9 +1157,9 @@
         </div>
       </a>
 
-      <a class="r-card" onclick="showRestaurant()">
-        <div class="r-card-img" style="background: linear-gradient(135deg, #e8f0fe, #c5d5f5);">
-          ☕
+      <a class="r-card" onclick="showRestaurant()" data-cats="cafe,brunch,breakfast,western,sandwiches,coffee">
+        <div class="r-card-img">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop&auto=format" alt="Cafe brunch" loading="lazy" onerror="this.style.display='none'"/>
         </div>
         <div class="r-card-body">
           <div class="r-card-top">
@@ -1145,9 +1181,9 @@
         </div>
       </a>
 
-      <a class="r-card" onclick="showRestaurant()">
-        <div class="r-card-img" style="background: linear-gradient(135deg, #fff8e0, #f5e4a0);">
-          🍣
+      <a class="r-card" onclick="showRestaurant()" data-cats="japanese,sushi,omakase,dinner,seafood,fish">
+        <div class="r-card-img">
+          <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&h=400&fit=crop&auto=format" alt="Japanese sushi" loading="lazy" onerror="this.style.display='none'"/>
         </div>
         <div class="r-card-body">
           <div class="r-card-top">
@@ -1168,9 +1204,9 @@
         </div>
       </a>
 
-      <a class="r-card" onclick="showRestaurant()">
-        <div class="r-card-img" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);">
-          🌮
+      <a class="r-card" onclick="showRestaurant()" data-cats="street food,taiwanese,snacks,night market,latenight,bbq">
+        <div class="r-card-img">
+          <img src="https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=600&h=400&fit=crop&auto=format" alt="Night market street food" loading="lazy" onerror="this.style.display='none'"/>
         </div>
         <div class="r-card-body">
           <div class="r-card-top">
@@ -1354,8 +1390,8 @@
 ══════════════════════════════════ -->
 <div id="restaurant-page">
 
-  <div class="rp-hero">
-    🍜
+  <div class="rp-hero" style="background-image:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1200&h=500&fit=crop&auto=format');background-size:cover;background-position:center;">
+    
     <button class="rp-back" onclick="showHome()">← Back to results</button>
     <div class="rp-header-overlay">
       <div>
@@ -1848,6 +1884,162 @@
         showToast('\uD83D\uDCCD Enable location to see nearby spots!');
       }
     );
+  }
+
+
+  // ── LANGUAGE SWITCHER ──
+  var currentLang = 'en';
+  var langContent = {
+    en: {
+      heroTitle: 'Find your next<br/><em>favourite meal</em><br/>in Taipei',
+      heroSub: 'Discover hidden gems, compare menus, and order or reserve — all in one place.',
+      searchPlaceholder: 'Search restaurants, dishes, cuisines…',
+      searchBtn: 'Search',
+      aiPlaceholder: 'e.g. Best bubble tea in Zhongshan...',
+      aiSendBtn: 'Ask AI →'
+    },
+    zh: {
+      heroTitle: '在台北找到你的<br/><em>下一頓美食</em>',
+      heroSub: '探索隱藏寶藏，比較菜單，一站式訂位或點餐。',
+      searchPlaceholder: '搜尋餐廳、料理、美食類型…',
+      searchBtn: '搜尋',
+      aiPlaceholder: '例如：中山區最好喝的珍奶…',
+      aiSendBtn: '問 AI →'
+    },
+    fr: {
+      heroTitle: 'Trouvez votre prochain<br/><em>repas favori</em><br/>à Taipei',
+      heroSub: 'Découvrez des pépites cachées, comparez les menus, commandez ou réservez.',
+      searchPlaceholder: 'Rechercher restaurants, plats, cuisines…',
+      searchBtn: 'Chercher',
+      aiPlaceholder: 'ex. Meilleur bubble tea à Zhongshan...',
+      aiSendBtn: 'Demander →'
+    },
+    ja: {
+      heroTitle: '台北で次の<br/><em>お気に入りのグルメ</em><br/>を見つけよう',
+      heroSub: '隠れた名店を発掘し、メニューを比較して、予約・注文をワンストップで。',
+      searchPlaceholder: 'レストラン、料理、ジャンルで検索…',
+      searchBtn: '検索',
+      aiPlaceholder: '例：中山のおすすめタピオカ店…',
+      aiSendBtn: 'AIに聞く →'
+    },
+    es: {
+      heroTitle: 'Encuentra tu próxima<br/><em>comida favorita</em><br/>en Taipei',
+      heroSub: 'Descubre joyas escondidas, compara menús y reserva u ordena en un solo lugar.',
+      searchPlaceholder: 'Buscar restaurantes, platos, cocinas…',
+      searchBtn: 'Buscar',
+      aiPlaceholder: 'ej. Mejor bubble tea en Zhongshan...',
+      aiSendBtn: 'Preguntar →'
+    }
+  };
+
+  function setLang(lang) {
+    currentLang = lang;
+    // Update buttons
+    ['en','zh','fr','ja','es'].forEach(function(l) {
+      var btn = document.getElementById('lang-' + l);
+      if (btn) btn.classList.toggle('active', l === lang);
+    });
+    var lc = langContent[lang];
+    if (!lc) return;
+    // Update hero title
+    var title = document.querySelector('.hero-title');
+    if (title) title.innerHTML = lc.heroTitle;
+    // Update hero sub
+    var sub = document.querySelector('.hero-sub');
+    if (sub) sub.textContent = lc.heroSub;
+    // Update search placeholder
+    var si = document.getElementById('searchInput');
+    if (si) si.placeholder = lc.searchPlaceholder;
+    // Update search button
+    var sb = document.querySelector('.search-btn');
+    if (sb) sb.textContent = lc.searchBtn;
+    // Update AI placeholder
+    var ai = document.getElementById('ai-input');
+    if (ai) ai.placeholder = lc.aiPlaceholder;
+    // Update AI send button text
+    var asb = document.getElementById('ai-send-btn');
+    if (asb && !asb.disabled) asb.textContent = lc.aiSendBtn;
+  }
+
+
+  // ── CATEGORY FILTERING ──
+  var activeCategoryFilter = null;
+
+  function filterByCategory(keyword, displayName) {
+    activeCategoryFilter = keyword;
+
+    // Scroll to restaurant section smoothly
+    var grid = document.querySelector('.restaurants-grid');
+    var section = grid ? grid.closest('.section') : null;
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Update section title
+    var titleEl = section ? section.querySelector('.section-title') : null;
+    if (titleEl) titleEl.textContent = displayName;
+
+    // Show/hide cards based on match
+    var cards = document.querySelectorAll('.r-card');
+    var visibleCount = 0;
+    cards.forEach(function(card) {
+      var cats = (card.getAttribute('data-cats') || '').toLowerCase();
+      var match = cats.indexOf(keyword.toLowerCase()) > -1;
+      card.style.display = match ? 'block' : 'none';
+      if (match) visibleCount++;
+    });
+
+    // Highlight active category card
+    document.querySelectorAll('.cat-card').forEach(function(c) {
+      var isActive = c.getAttribute('onclick') && c.getAttribute('onclick').indexOf("'" + keyword + "'") > -1;
+      c.style.borderColor = isActive ? 'var(--orange)' : '';
+      c.style.background  = isActive ? '#fff7f3' : '';
+    });
+
+    // Show "no results" message or toast
+    if (visibleCount === 0) {
+      showToast('No ' + displayName + ' restaurants yet — coming soon! 🍽️');
+      // Reset after toast so cards are not all hidden
+      setTimeout(function() {
+        cards.forEach(function(card) { card.style.display = 'block'; });
+        if (titleEl) titleEl.textContent = 'Top Picks Near You';
+        document.querySelectorAll('.cat-card').forEach(function(c) {
+          c.style.borderColor = '';
+          c.style.background  = '';
+        });
+        activeCategoryFilter = null;
+      }, 2600);
+    } else {
+      showToast(visibleCount + ' ' + displayName + ' spot' + (visibleCount > 1 ? 's' : '') + ' found ✨');
+    }
+
+    // Update "see all" link to allow reset
+    var seeAll = section ? section.querySelector('.see-all') : null;
+    if (seeAll && visibleCount > 0) {
+      seeAll.textContent = '✕ Clear filter';
+      seeAll.onclick = function() { clearCategoryFilter(); return false; };
+    }
+  }
+
+  function clearCategoryFilter() {
+    activeCategoryFilter = null;
+    document.querySelectorAll('.r-card').forEach(function(card) {
+      card.style.display = 'block';
+    });
+    document.querySelectorAll('.cat-card').forEach(function(c) {
+      c.style.borderColor = '';
+      c.style.background  = '';
+    });
+    var section = document.querySelector('.restaurants-grid').closest('.section');
+    if (section) {
+      var titleEl = section.querySelector('.section-title');
+      if (titleEl) titleEl.textContent = 'Top Picks Near You';
+      var seeAll = section.querySelector('.see-all');
+      if (seeAll) {
+        seeAll.textContent = 'View all →';
+        seeAll.onclick = function() { showToast('All restaurants coming soon!'); return false; };
+      }
+    }
   }
 
 </script>
