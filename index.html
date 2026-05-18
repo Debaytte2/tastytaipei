@@ -520,14 +520,14 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 
       <!-- 8. Smoothie House -->
       <a class="r-card" id="card-smoothie" data-cats="desserts,fruit,taiwanese,healthy,lunch,snacks,ice cream" onclick="showRestaurant('smoothie')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1505394033641-40908e00b978?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Fresh fruit dessert shaved ice" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-smoothie').style.display='flex'"/><div id="img-placeholder-smoothie" class="r-card-img-placeholder" style="display:none">🍧</div></div>
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Fresh fruit shaved ice dessert bowl" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-smoothie').style.display='flex'"/><div id="img-placeholder-smoothie" class="r-card-img-placeholder" style="display:none">🍧</div></div>
         <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Smoothie House</div><div class="r-cuisine">Taiwanese · Fresh Fruit · Shaved Ice</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Da'an (Yongkang St)</span><span>💰 NT$120–220</span></div></div>
       </a>
 
-      <!-- 9. Bopiliao Old Street Stinky Tofu -->
-      <a class="r-card" id="card-stinkytofu" data-cats="taiwanese,street food,snacks,fried,latenight,night market" onclick="showRestaurant('stinkytofu')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwanese fried street food snacks" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-stinkytofu').style.display='flex'"/><div id="img-placeholder-stinkytofu" class="r-card-img-placeholder" style="display:none">🧆</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Laojia Stinky Tofu</div><div class="r-cuisine">Taiwanese · Stinky Tofu · Street Food</div></div><div class="r-rating">⭐ 4.6</div></div><div class="r-tags"><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Wanhua</span><span>💰 NT$50–100</span></div></div>
+      <!-- 9. Xiaolongkan Hot Pot -->
+      <a class="r-card" id="card-hotpot" data-cats="chinese,hotpot,sichuan,spicy,dinner,sharing,taiwanese" onclick="showRestaurant('hotpot')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Sichuan hot pot boiling broth" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-hotpot').style.display='flex'"/><div id="img-placeholder-hotpot" class="r-card-img-placeholder" style="display:none">🍲</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Trending</span></div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Xiaolongkan Hot Pot</div><div class="r-cuisine">Sichuan · Hot Pot · Mala · Sharing</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span></div><div class="r-meta"><span>📍 Da'an</span><span>💰 NT$400–700</span></div></div>
       </a>
 
       <!-- 10. Chun Shui Tang -->
@@ -636,64 +636,31 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 </div>
 
 <div id="restaurant-page" style="display:none;">
-  <div class="rp-hero" style="background-image:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1200&h=500&fit=crop&q=80&fm=jpg');background-size:cover;background-position:center;">
+  <div class="rp-hero" id="rp-hero" style="background-size:cover;background-position:center;">
     <button class="rp-back" onclick="showHome()"><span data-i18n="rp_back">← Back to results</span></button>
     <div class="rp-header-overlay">
       <div>
-        <div class="rp-name" id="rp-name">Ah-Zhong Noodle House</div>
-        <div class="rp-cuisine-hero" id="rp-cuisine">Taiwanese · Noodles · Beef · Da'an District</div>
+        <div class="rp-name" id="rp-name"></div>
+        <div class="rp-cuisine-hero" id="rp-cuisine"></div>
       </div>
       <div class="rp-rating-big">
-        <div class="rp-rating-num" id="rp-rating-num">4.9</div>
+        <div class="rp-rating-num" id="rp-rating-num"></div>
         <div class="rp-rating-stars">★★★★★</div>
-        <div class="rp-rating-count" data-i18n="rp_reviewcount">284 reviews</div>
+        <div class="rp-rating-count" id="rp-review-count">284 reviews</div>
       </div>
     </div>
   </div>
   <div class="rp-content">
-    <div class="rp-actions">
-      <button class="rp-action-btn btn-reserve" onclick="showToast('🗓 Reservation request sent!')">🗓 <span data-i18n="rp_reserve">Reserve a Table</span></button>
-      <button class="rp-action-btn btn-pickup" onclick="showToast('📦 Pickup order started!')">📦 <span data-i18n="rp_pickup">Order Pickup</span></button>
-      <button class="rp-action-btn btn-delivery" onclick="showToast('🛵 Redirecting to delivery...')">🛵 <span data-i18n="rp_delivery">Order Delivery</span></button>
-      <button class="rp-action-btn" onclick="window.open('https://line.me/ti/p/chrixx7')" style="background:#25d366;color:#fff;min-width:140px;">✏️ <span data-i18n="rp_updatemenu">Update Menu</span></button>
-    </div>
-    <div class="rp-tags">
-      <span class="tag tag-dine">🪑 Dine-in</span>
-      <span class="tag tag-pickup">📦 Pickup</span>
-      <span class="tag tag-delivery">🛵 Delivery via Uber Eats</span>
-      <span class="tag tag-popular">🔥 Popular</span>
-    </div>
-    <div class="rp-info-grid">
-      <div class="rp-info-card"><div class="rp-info-label">📍 Location</div><div class="rp-info-val">12 Yongkang St<br/>Da'an, Taipei</div></div>
-      <div class="rp-info-card"><div class="rp-info-label">🕐 Hours</div><div class="rp-info-val">Mon–Sat<br/>11:00 – 21:00</div></div>
-      <div class="rp-info-card"><div class="rp-info-label">💰 Price Range</div><div class="rp-info-val">NT$120 – 200<br/>per person</div></div>
-      <div class="rp-info-card"><div class="rp-info-label">📞 Phone</div><div class="rp-info-val">+886 2 2321 0000</div></div>
-      <div class="rp-info-card"><div class="rp-info-label">🚇 MRT</div><div class="rp-info-val">Dongmen Station<br/>Exit 5 · 3 min walk</div></div>
-      <div class="rp-info-card"><div class="rp-info-label">🌐 Languages</div><div class="rp-info-val">中文 · English · Français<br/>日本語 · Español</div></div>
-    </div>
+    <div class="rp-actions" id="rp-actions"></div>
+    <div class="rp-tags" id="rp-tags"></div>
+    <div class="rp-info-grid" id="rp-info-grid"></div>
     <div class="menu-section">
       <h2 data-i18n="rp_menu">Menu</h2>
-      <div class="menu-cats">
-        <button class="menu-cat active" onclick="activateCat(this)">All</button>
-        <button class="menu-cat" onclick="activateCat(this)">Noodles</button>
-        <button class="menu-cat" onclick="activateCat(this)">Sides</button>
-        <button class="menu-cat" onclick="activateCat(this)">Drinks</button>
-      </div>
-      <div class="menu-items">
-        <div class="menu-item"><div class="menu-item-emoji">🍜</div><div class="menu-item-info"><div class="menu-item-name">Braised Beef Noodle Soup</div><div class="menu-item-desc">Slow-cooked beef brisket, hand-pulled noodles, rich bone broth</div></div><div class="menu-item-price">NT$160</div><button class="menu-item-add" onclick="showToast('Added to cart 🛒')">+</button></div>
-        <div class="menu-item"><div class="menu-item-emoji">🌶️</div><div class="menu-item-info"><div class="menu-item-name">Spicy Scallion Noodles</div><div class="menu-item-desc">House chili oil, crispy scallion, soft-boiled egg</div></div><div class="menu-item-price">NT$120</div><button class="menu-item-add" onclick="showToast('Added to cart 🛒')">+</button></div>
-        <div class="menu-item"><div class="menu-item-emoji">🥟</div><div class="menu-item-info"><div class="menu-item-name">Pan-Fried Pork Dumplings (6 pcs)</div><div class="menu-item-desc">Crispy bottom, juicy filling, house dipping sauce</div></div><div class="menu-item-price">NT$95</div><button class="menu-item-add" onclick="showToast('Added to cart 🛒')">+</button></div>
-        <div class="menu-item"><div class="menu-item-emoji">🥬</div><div class="menu-item-info"><div class="menu-item-name">Garlic Stir-Fried Water Spinach</div><div class="menu-item-desc">Fresh greens, garlic, oyster sauce</div></div><div class="menu-item-price">NT$75</div><button class="menu-item-add" onclick="showToast('Added to cart 🛒')">+</button></div>
-        <div class="menu-item"><div class="menu-item-emoji">🧋</div><div class="menu-item-info"><div class="menu-item-name">Barley Tea (Cold)</div><div class="menu-item-desc">House-brewed, lightly sweet, refreshing</div></div><div class="menu-item-price">NT$35</div><button class="menu-item-add" onclick="showToast('Added to cart 🛒')">+</button></div>
-      </div>
+      <div class="menu-items" id="rp-menu-items"></div>
     </div>
     <div class="reviews-section">
-      <h2 data-i18n="rp_reviews_title">Reviews <span style="font-size:16px;font-family:'DM Sans';font-weight:400;color:var(--muted)">— 284 total</span></h2>
-      <div class="reviews-list">
-        <div class="review-card"><div class="review-top"><div class="review-avatar">S</div><div><div class="review-name">Sophie L.</div><div class="review-date">March 2025 · 🇫🇷 France</div></div><div class="review-stars">★★★★★</div></div><div class="review-text">The braised beef noodles are incredible — rich, deep broth and perfectly chewy noodles. One of the best bowls I've had in Taipei. The staff are super friendly too!</div></div>
-        <div class="review-card"><div class="review-top"><div class="review-avatar" style="background:var(--green)">K</div><div><div class="review-name">Kenji T.</div><div class="review-date">February 2025 · 🇯🇵 Japan</div></div><div class="review-stars">★★★★★</div></div><div class="review-text">Hidden gem on Yongkang Street. The scallion noodles are addictive — perfectly balanced spicy-savoury. Went back three times in one week!</div></div>
-        <div class="review-card"><div class="review-top"><div class="review-avatar" style="background:var(--gold)">M</div><div><div class="review-name">Marco R.</div><div class="review-date">January 2025 · 🇮🇹 Italy</div></div><div class="review-stars">★★★★☆</div></div><div class="review-text">Excellent quality at very reasonable prices. Feels like a proper local place — no tourist gimmicks. Dumplings are a must-order. Arrive early!</div></div>
-      </div>
+      <h2 data-i18n="rp_reviews_title">Reviews</h2>
+      <div class="reviews-list" id="rp-reviews"></div>
     </div>
   </div>
 </div>
@@ -803,14 +770,14 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 
     <div id="modal-features" style="display:none;">
       <div class="ml-en">
-        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px;">Tools your competitors don't have</div>
-        <div style="font-size:13px;color:#8a7560;margin-bottom:20px;">Every restaurant on Tasty Taipei gets these free during your trial.</div>
+        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:900;letter-spacing:-.02em;margin-bottom:4px;">What Google Maps can't do for you</div>
+        <div style="font-size:13px;color:#8a7560;margin-bottom:20px;">These are the gaps your restaurant falls through every day on every other platform.</div>
         <div style="display:flex;flex-direction:column;gap:12px;">
-          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;"><div style="width:44px;height:44px;border-radius:12px;background:#fff7f3;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📱</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Multilingual Menu QR Code</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">Tourists scan and see your full menu in their language — EN, 中文, FR, 日本語, ES.</div><div style="display:inline-block;background:#fff7f3;color:#e8521a;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">🔥 Tourists love this</div></div></div>
-          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;"><div style="width:44px;height:44px;border-radius:12px;background:#f0faf4;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🎟️</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Digital Stamp Card</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">Customers collect stamps on their phone. No app needed. Brings regulars back.</div><div style="display:inline-block;background:#f0faf4;color:#2d6a4f;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">♻️ Builds loyalty</div></div></div>
-          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;"><div style="width:44px;height:44px;border-radius:12px;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">💬</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">LINE Reservation Reminders</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">Automatic LINE reminder sent 2 hours before every booking. Reduces no-shows dramatically.</div><div style="display:inline-block;background:#e8f5e9;color:#2d6a4f;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">📉 Cuts no-shows</div></div></div>
-          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;"><div style="width:44px;height:44px;border-radius:12px;background:#fce4ec;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📊</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Monthly Customer Report</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">How many people visited, where they're from, which dishes got attention. Data you never had before.</div><div style="display:inline-block;background:#fce4ec;color:#c0392b;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">📈 Know your customers</div></div></div>
-          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;"><div style="width:44px;height:44px;border-radius:12px;background:#e8f0fe;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">✏️</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Menu Updates via WhatsApp</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">New dish? Price change? Just WhatsApp us and we update your menu within the hour.</div><div style="display:inline-block;background:#e8f0fe;color:#1e5fa8;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">⚡ Done in minutes</div></div></div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;"><div style="width:44px;height:44px;border-radius:12px;background:#fff7f3;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🌍</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Your menu in 5 languages — instantly</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">A French tourist walks in and can't read your menu. They leave. We fix that — your full menu in EN, 中文, FR, 日本語, and ES, always up to date.</div><div style="display:inline-block;background:#fff7f3;color:#e8521a;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">Google Maps shows your name. We show your food.</div></div></div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;"><div style="width:44px;height:44px;border-radius:12px;background:#f0faf4;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🇯🇵</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Tourists find you before they land</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">Visitors from Japan, France, and the US plan their Taipei food trips weeks in advance. They search in their own language. We make sure your restaurant shows up.</div><div style="display:inline-block;background:#f0faf4;color:#2d6a4f;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">TripAdvisor won't do this for a small restaurant</div></div></div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;"><div style="width:44px;height:44px;border-radius:12px;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📍</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">You control your own page</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">On Google Maps, strangers write your description. On Tasty Taipei, you decide exactly what customers see — your story, your best dishes, your photos.</div><div style="display:inline-block;background:#e8f5e9;color:#2d6a4f;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">Your restaurant, told your way</div></div></div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;"><div style="width:44px;height:44px;border-radius:12px;background:#fce4ec;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🔗</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Reserve, pickup, and delivery — one page</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">Customers can reserve a table, order pickup, or get delivery all from your Tasty Taipei page. No more sending people to three different apps — one link does everything.</div><div style="display:inline-block;background:#fce4ec;color:#c0392b;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">Less friction = more orders</div></div></div>
+          <div style="background:#fff;border:1.5px solid #e2d9cc;border-radius:16px;padding:18px;display:flex;gap:14px;"><div style="width:44px;height:44px;border-radius:12px;background:#e8f0fe;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">✏️</div><div><div style="font-size:15px;font-weight:700;margin-bottom:4px;">Menu changes done in minutes, not weeks</div><div style="font-size:13px;color:#8a7560;line-height:1.6;margin-bottom:6px;">New seasonal dish? Price change? Just LINE us. We update your listing within the hour — in all 5 languages. On every other platform, your outdated menu stays up forever.</div><div style="display:inline-block;background:#e8f0fe;color:#1e5fa8;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;">No login. No learning curve. Just LINE us.</div></div></div>
         </div>
         <button onclick="modalTab('signup')" style="background:#1a1207;color:#fdf8f0;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;margin-top:20px;">🎁 Start Free Trial →</button>
       </div>
@@ -866,16 +833,310 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 
 <script>
 var currentRestaurantId = null;
+var homeScrollY = 0;
+
+var restaurantData = {
+  dintaifung: {
+    name: 'Din Tai Fung',
+    cuisine: 'Taiwanese · Xiao Long Bao · Dim Sum · Xinyi District',
+    rating: '4.9', reviews: '1,842 reviews',
+    img: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['🪑 Dine-in','🛵 Delivery'],
+    location: '194 Xinyi Rd, Sec 2<br>Xinyi, Taipei', hours: 'Mon–Fri 11:00–21:00<br>Sat–Sun 10:00–21:00',
+    price: 'NT$300 – 600<br>per person', phone: '+886 2 2321 8928',
+    mrt: 'Dongmen Station<br>Exit 5 · 5 min walk',
+    menu: [
+      {e:'🥟',n:'Xiao Long Bao (10 pcs)',d:'Steamed pork soup dumplings, the original',p:'NT$230'},
+      {e:'🍚',n:'Steamed Shrimp & Pork Fried Rice',d:'Wok-tossed with egg and scallion',p:'NT$280'},
+      {e:'🥬',n:'Sautéed Spinach with Garlic',d:'Fresh spinach, garlic oil, house seasoning',p:'NT$160'},
+      {e:'🍜',n:'Spicy Dumpling in Chili Sauce (6 pcs)',d:'Silky dumpling skin, numbing chili sauce',p:'NT$190'},
+    ],
+    reviews: [
+      {i:'S',n:'Sarah M.',d:'April 2026 · 🇬🇧 UK',r:'★★★★★',t:'Worth every minute of the queue. The soup dumplings are perfect — thin skin, rich broth, the real deal.'},
+      {i:'H',n:'Hiroshi K.',d:'March 2026 · 🇯🇵 Japan',r:'★★★★★',t:'Classic for a reason. The fried rice is underrated. Came twice in three days.'},
+      {i:'L',n:'Léa B.',d:'February 2026 · 🇫🇷 France',r:'★★★★☆',t:'Exceptional food. Touristy but deserves the reputation. Go early to avoid the wait.'},
+    ]
+  },
+  ningxia: {
+    name: 'Ningxia Night Market',
+    cuisine: 'Street Food · Oyster Vermicelli · Taiwanese · Datong District',
+    rating: '4.8', reviews: '3,210 reviews',
+    img: 'https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['🪑 Dine-in','📦 Pickup'],
+    location: 'Ningxia Rd<br>Datong, Taipei', hours: 'Daily 18:00–01:00',
+    price: 'NT$40 – 150<br>per person', phone: 'Walk-in only',
+    mrt: 'Zhongshan Station<br>Exit 6 · 10 min walk',
+    menu: [
+      {e:'🦪',n:'Oyster Vermicelli (蚵仔麵線)',d:'Thick vermicelli, oysters, sweet potato starch broth',p:'NT$50'},
+      {e:'🧆',n:'Deep-Fried Taro Ball',d:'Crispy outside, soft taro inside',p:'NT$45'},
+      {e:'🥜',n:'Peanut Ice Cream Roll',d:'Shaved ice, peanut brittle, coriander, ice cream',p:'NT$60'},
+      {e:'🍢',n:'Grilled Corn on the Cob',d:'Charcoal grilled, soy glaze',p:'NT$40'},
+    ],
+    revs: [
+      {i:'A',n:'Anna T.',d:'May 2026 · 🇩🇪 Germany',r:'★★★★★',t:'The most authentic night market in Taipei — locals, not tourists. Oyster vermicelli is a must.'},
+      {i:'J',n:'James L.',d:'March 2026 · 🇦🇺 Australia',r:'★★★★★',t:'Go hungry. Everything is cheap and delicious. The peanut ice cream roll is life-changing.'},
+      {i:'Y',n:'Yuki S.',d:'January 2026 · 🇯🇵 Japan',r:'★★★★☆',t:'Very lively, very local. Busy on weekends but worth it. Exactly what street food should be.'},
+    ]
+  },
+  yongkang: {
+    name: 'Yongkang Beef Noodle',
+    cuisine: 'Taiwanese · Beef Noodle · Braised · Da\'an District',
+    rating: '4.8', reviews: '986 reviews',
+    img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['🪑 Dine-in','📦 Pickup'],
+    location: '17 Jinhua St<br>Da\'an, Taipei', hours: 'Daily 11:00–21:00<br>Closed Tuesdays',
+    price: 'NT$180 – 280<br>per person', phone: '+886 2 2351 1051',
+    mrt: 'Dongmen Station<br>Exit 5 · 8 min walk',
+    menu: [
+      {e:'🍜',n:'Braised Beef Noodle Soup',d:'Slow-cooked brisket, hand-cut noodles, rich spiced broth',p:'NT$200'},
+      {e:'🌶️',n:'Spicy Beef Tendon Noodles',d:'Mala-spiced tendon, chewy noodles, chili oil',p:'NT$220'},
+      {e:'🥟',n:'Steamed Pork Dumplings (6 pcs)',d:'Thin skin, juicy filling',p:'NT$110'},
+      {e:'🥬',n:'Pickled Mustard Greens',d:'House-fermented, tangy side',p:'NT$40'},
+    ],
+    revs: [
+      {i:'T',n:'Thomas W.',d:'April 2026 · 🇺🇸 USA',r:'★★★★★',t:'Best beef noodles I\'ve had in Taiwan. The broth is deep and complex. No frills, just exceptional food.'},
+      {i:'C',n:'Chen Li.',d:'March 2026 · 🇹🇼 Taiwan',r:'★★★★★',t:'My family has been coming here for 20 years. Still the best.'},
+      {i:'R',n:'Rina M.',d:'February 2026 · 🇰🇷 Korea',r:'★★★★☆',t:'Very popular at lunch, queue outside. The spicy tendon noodles are incredible.'},
+    ]
+  },
+  tigersugar: {
+    name: 'Tiger Sugar',
+    cuisine: 'Bubble Tea · Brown Sugar · Boba · Zhongshan District',
+    rating: '4.7', reviews: '2,104 reviews',
+    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['📦 Pickup','🛵 Delivery'],
+    location: '17 Zhongshan N Rd, Sec 2<br>Zhongshan, Taipei', hours: 'Daily 11:00–22:00',
+    price: 'NT$65 – 95<br>per drink', phone: '+886 2 2563 0099',
+    mrt: 'Zhongshan Station<br>Exit 2 · 3 min walk',
+    menu: [
+      {e:'🧋',n:'Brown Sugar Boba Milk (Tiger Series)',d:'Signature tiger-stripe cup, fresh milk, chewy tapioca',p:'NT$80'},
+      {e:'🍵',n:'Brown Sugar Matcha Latte',d:'Ceremonial grade matcha, tiger caramel, boba',p:'NT$90'},
+      {e:'🧋',n:'Taro Milk Tea with Boba',d:'Creamy taro, house milk tea, large tapioca',p:'NT$75'},
+      {e:'🥛',n:'Fresh Milk with Pudding',d:'House-set egg pudding, fresh Taiwanese milk',p:'NT$85'},
+    ],
+    revs: [
+      {i:'E',n:'Emma P.',d:'May 2026 · 🇬🇧 UK',r:'★★★★★',t:'The brown sugar boba is genuinely different from everywhere else. Richer, more caramel-forward. Worth the hype.'},
+      {i:'D',n:'David C.',d:'April 2026 · 🇨🇦 Canada',r:'★★★★★',t:'Queued for 15 mins and zero regrets. Best boba I\'ve had in Asia.'},
+      {i:'N',n:'Nadia F.',d:'February 2026 · 🇫🇷 France',r:'★★★★☆',t:'Very sweet but very good. The tiger stripes are beautiful. Great for Instagram too!'},
+    ]
+  },
+  aychung: {
+    name: 'Ay-Chung Flour-Rice Noodle',
+    cuisine: 'Taiwanese · Oyster Noodle · Street Food · Wanhua',
+    rating: '4.7', reviews: '1,543 reviews',
+    img: 'https://images.unsplash.com/photo-1552611052-33e04de081de?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['📦 Pickup'],
+    location: '8-1 Xining S Rd<br>Wanhua (Ximending), Taipei', hours: 'Daily 11:00–22:30',
+    price: 'NT$55 – 75<br>per bowl', phone: '+886 2 2388 8808',
+    mrt: 'Ximen Station<br>Exit 6 · 2 min walk',
+    menu: [
+      {e:'🍲',n:'Oyster Vermicelli (蚵仔麵線)',d:'Oysters, intestine, thick noodles in starch broth',p:'NT$60'},
+      {e:'🦪',n:'Oyster Only Vermicelli',d:'Extra oysters, no intestine, classic broth',p:'NT$65'},
+      {e:'🍲',n:'Large Bowl',d:'Double portion, same great recipe',p:'NT$75'},
+    ],
+    revs: [
+      {i:'B',n:'Ben K.',d:'April 2026 · 🇺🇸 USA',r:'★★★★★',t:'An institution. Been serving the same recipe for decades. Eat standing up on the street like everyone else.'},
+      {i:'M',n:'Mei L.',d:'March 2026 · 🇹🇼 Taiwan',r:'★★★★★',t:'The queue moves fast. Best oyster noodles in the city. NT$60 for something this good is unreal.'},
+      {i:'P',n:'Pablo G.',d:'January 2026 · 🇪🇸 Spain',r:'★★★★☆',t:'Strange concept for a European but absolutely delicious. The broth is thick and savoury. Loved it.'},
+    ]
+  },
+  addiction: {
+    name: 'Addiction Aquatic Development',
+    cuisine: 'Seafood Market · Sashimi · Japanese · Zhongshan District',
+    rating: '4.8', reviews: '762 reviews',
+    img: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['🪑 Dine-in','📦 Pickup'],
+    location: '18 Zhongshan N Rd, Sec 6<br>Zhongshan, Taipei', hours: 'Daily 06:00–22:00',
+    price: 'NT$300 – 800<br>per person', phone: '+886 2 2508 1268',
+    mrt: 'Jiantan Station<br>Exit 1 · 10 min walk',
+    menu: [
+      {e:'🐟',n:'Daily Sashimi Set',d:'Chef\'s selection of seasonal fresh fish, wasabi, soy',p:'NT$380'},
+      {e:'🦞',n:'Grilled Lobster',d:'Half lobster, garlic butter, charcoal grilled',p:'NT$680'},
+      {e:'🍣',n:'Premium Salmon Sashimi (8 pcs)',d:'Atlantic salmon, just cut, served on ice',p:'NT$320'},
+      {e:'🦐',n:'Boiled Tiger Prawns',d:'Fresh, sweet, served with ponzu dipping sauce',p:'NT$280'},
+    ],
+    revs: [
+      {i:'G',n:'Grace H.',d:'May 2026 · 🇸🇬 Singapore',r:'★★★★★',t:'The freshest seafood in Taipei. It\'s a market and a restaurant — you pick what you want and they prepare it. Brilliant.'},
+      {i:'F',n:'François D.',d:'March 2026 · 🇫🇷 France',r:'★★★★★',t:'As good as any Tokyo fish market. The sashimi is outstanding. Worth the trip.'},
+      {i:'V',n:'Valentina R.',d:'February 2026 · 🇮🇹 Italy',r:'★★★★☆',t:'Go early for the best selection. The grilled lobster is special. Pricier than street food but worth it.'},
+    ]
+  },
+  mume: {
+    name: 'Mume',
+    cuisine: 'Modern European · Seasonal · Fine Dining · Da\'an District',
+    rating: '4.9', reviews: '418 reviews',
+    img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['🪑 Dine-in'],
+    location: '28 Siwei Rd<br>Da\'an, Taipei', hours: 'Tue–Sun 12:00–14:00, 18:00–22:00<br>Closed Mondays',
+    price: 'NT$1,800 – 3,500<br>per person', phone: '+886 2 2700 0901',
+    mrt: 'Xinyi Anhe Station<br>Exit 2 · 6 min walk',
+    menu: [
+      {e:'🍽️',n:'Seasonal Tasting Menu (6 courses)',d:'Chef\'s market-driven selection, changes weekly',p:'NT$2,800'},
+      {e:'🥗',n:'Burrata with Fermented Tomato',d:'House burrata, fermented cherry tomato, olive oil',p:'NT$480'},
+      {e:'🐟',n:'Grilled Local Fish',d:'Whole fish, seasonal herbs, citrus butter',p:'NT$680'},
+      {e:'🍮',n:'Miso Caramel Dessert',d:'Miso ice cream, caramel, sesame tuile',p:'NT$320'},
+    ],
+    revs: [
+      {i:'O',n:'Olivia S.',d:'April 2026 · 🇬🇧 UK',r:'★★★★★',t:'One of the best meals of my life. The tasting menu is creative, elegant, and genuinely delicious. Book weeks ahead.'},
+      {i:'K',n:'Kai W.',d:'March 2026 · 🇩🇪 Germany',r:'★★★★★',t:'Top-tier cooking in a beautiful setting. They take local ingredients seriously. Outstanding wine list too.'},
+      {i:'I',n:'Isabella M.',d:'January 2026 · 🇮🇹 Italy',r:'★★★★★',t:'Exceptional. The fermented tomato dish alone is worth the visit. Taipei\'s best fine dining.'},
+    ]
+  },
+  smoothie: {
+    name: 'Smoothie House',
+    cuisine: 'Taiwanese · Fresh Fruit · Shaved Ice · Da\'an District',
+    rating: '4.7', reviews: '654 reviews',
+    img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['🪑 Dine-in','📦 Pickup'],
+    location: '1 Yongkang St<br>Da\'an, Taipei', hours: 'Daily 12:00–22:00',
+    price: 'NT$120 – 220<br>per person', phone: '+886 2 2351 6268',
+    mrt: 'Dongmen Station<br>Exit 5 · 2 min walk',
+    menu: [
+      {e:'🍧',n:'Mango Shaved Ice',d:'Fresh Irwin mango, shaved milk ice, mango sorbet',p:'NT$180'},
+      {e:'🍓',n:'Strawberry Fruit Plate',d:'Fresh strawberries, condensed milk, seasonal fruits',p:'NT$160'},
+      {e:'🫐',n:'Mixed Berry Smoothie',d:'Blended fresh berries, yogurt, honey',p:'NT$140'},
+      {e:'🥭',n:'Mango Smoothie',d:'100% fresh Taiwanese mango, no sugar added',p:'NT$150'},
+    ],
+    revs: [
+      {i:'Z',n:'Zoe C.',d:'May 2026 · 🇦🇺 Australia',r:'★★★★★',t:'The mango shaved ice is extraordinary. Only possible in Taiwan with these mangoes. Go in summer.'},
+      {i:'W',n:'Wei L.',d:'April 2026 · 🇹🇼 Taiwan',r:'★★★★★',t:'Yongkang Street institution. The fruit quality is always perfect. Best dessert stop after Din Tai Fung nearby.'},
+      {i:'N',n:'Nour A.',d:'February 2026 · 🇱🇧 Lebanon',r:'★★★★☆',t:'Perfect summer treat. Very fresh, not too sweet. The portions are generous.'},
+    ]
+  },
+  hotpot: {
+    name: 'Xiaolongkan Hot Pot',
+    cuisine: 'Sichuan · Hot Pot · Mala · Da\'an District',
+    rating: '4.7', reviews: '1,103 reviews',
+    img: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['🪑 Dine-in'],
+    location: '270 Fuxing S Rd, Sec 1<br>Da\'an, Taipei', hours: 'Daily 11:30–01:00',
+    price: 'NT$400 – 700<br>per person', phone: '+886 2 2700 7676',
+    mrt: 'Da\'an Station<br>Exit 5 · 5 min walk',
+    menu: [
+      {e:'🍲',n:'Mala Spicy Broth (per person)',d:'Sichuan peppercorn, dried chili, numbing heat',p:'NT$180'},
+      {e:'🥩',n:'Premium Wagyu Beef Slices',d:'Thinly sliced, cooks in seconds, melt-in-mouth',p:'NT$380'},
+      {e:'🦐',n:'Fresh Prawn Platter',d:'Head-on tiger prawns, served raw for the pot',p:'NT$280'},
+      {e:'🥬',n:'Vegetable & Tofu Set',d:'Napa cabbage, silken tofu, enoki, lotus root',p:'NT$120'},
+      {e:'🍜',n:'Hand-Made Noodles',d:'Thick wheat noodles to finish your broth',p:'NT$60'},
+    ],
+    revs: [
+      {i:'J',n:'Jake R.',d:'May 2026 · 🇺🇸 USA',r:'★★★★★',t:'The mala broth is perfectly numbing — not just hot, actually complex. Great quality meat. A perfect group dinner.'},
+      {i:'W',n:'Wei C.',d:'April 2026 · 🇹🇼 Taiwan',r:'★★★★★',t:'One of the best hot pot chains in Taipei. Ingredients are always fresh. The sauce bar is incredible.'},
+      {i:'S',n:'Sofia M.',d:'February 2026 · 🇪🇸 Spain',r:'★★★★☆',t:'Never had hot pot before — now obsessed. Staff were helpful explaining what to order. Fun, communal dining.'},
+    ]
+  },
+  chunshuitang: {
+    name: 'Chun Shui Tang',
+    cuisine: 'Bubble Tea · Taiwanese Café · The Originator · Da\'an District',
+    rating: '4.7', reviews: '1,228 reviews',
+    img: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['🪑 Dine-in','📦 Pickup'],
+    location: '168 Fuxing S Rd, Sec 2<br>Da\'an, Taipei', hours: 'Daily 10:30–22:00',
+    price: 'NT$80 – 250<br>per person', phone: '+886 2 2709 1629',
+    mrt: 'Da\'an Station<br>Exit 5 · 4 min walk',
+    menu: [
+      {e:'🧋',n:'Original Pearl Milk Tea',d:'The recipe that started it all — black tea, milk, tapioca',p:'NT$90'},
+      {e:'🍵',n:'Taro Ball Grass Jelly',d:'Purple taro balls, grass jelly, brown sugar syrup',p:'NT$120'},
+      {e:'🥘',n:'Shrimp Wonton Soup',d:'House-made wontons, clear pork broth, scallion',p:'NT$180'},
+      {e:'🍱',n:'Taiwanese Bento Set',d:'Rice, braised pork, pickled veg, soft egg',p:'NT$220'},
+    ],
+    revs: [
+      {i:'C',n:'Clara B.',d:'May 2026 · 🇧🇷 Brazil',r:'★★★★★',t:'The birthplace of bubble tea! You have to come here. The original pearl milk tea is perfectly balanced — not too sweet.'},
+      {i:'A',n:'Alex T.',d:'March 2026 · 🇺🇸 USA',r:'★★★★★',t:'Historical and delicious. The food menu is underrated — the wonton soup is excellent.'},
+      {i:'S',n:'Seo-Yeon K.',d:'February 2026 · 🇰🇷 Korea',r:'★★★★☆',t:'A pilgrimage for boba lovers. The taro balls are soft and fresh. Nice atmosphere too.'},
+    ]
+  },
+  raw: {
+    name: 'RAW',
+    cuisine: 'Modern Taiwanese · Seasonal · Michelin · Zhongshan District',
+    rating: '4.9', reviews: '523 reviews',
+    img: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['🪑 Dine-in'],
+    location: '301 Lequn 3rd Rd<br>Zhongshan, Taipei', hours: 'Wed–Sun 12:00–14:00, 18:30–21:30<br>Closed Mon–Tue',
+    price: 'NT$2,800 – 4,500<br>per person', phone: '+886 2 8501 5800',
+    mrt: 'Jiannan Rd Station<br>Exit 2 · 8 min walk',
+    menu: [
+      {e:'🍽️',n:'Seasonal Tasting Menu (8 courses)',d:'André Chiang\'s vision of modern Taiwanese cuisine',p:'NT$3,800'},
+      {e:'🥂',n:'Wine Pairing (per person)',d:'Sommelier-selected wines to match each course',p:'NT$2,200'},
+      {e:'🍵',n:'Tea Pairing',d:'Curated Taiwanese high mountain teas',p:'NT$800'},
+    ],
+    revs: [
+      {i:'M',n:'Maxime L.',d:'April 2026 · 🇫🇷 France',r:'★★★★★',t:'One of the top ten meals of my life. RAW redefines what Taiwanese cuisine can be. Book 4–6 weeks ahead.'},
+      {i:'J',n:'Julia W.',d:'March 2026 · 🇨🇭 Switzerland',r:'★★★★★',t:'Michelin quality through and through. Each course is a work of art. The tea pairing is extraordinary.'},
+      {i:'R',n:'Ren Y.',d:'January 2026 · 🇸🇬 Singapore',r:'★★★★★',t:'The best restaurant in Taipei, full stop. Impeccable service, creative food, beautiful space. Don\'t miss it.'},
+    ]
+  },
+  raohe: {
+    name: 'Raohe Night Market',
+    cuisine: 'Street Food · Pepper Buns · Taiwanese · Songshan District',
+    rating: '4.8', reviews: '2,876 reviews',
+    img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=500&fit=crop&q=80&fm=jpg',
+    tags: ['🪑 Dine-in','📦 Pickup'],
+    location: 'Raohe St<br>Songshan, Taipei', hours: 'Daily 17:00–00:00',
+    price: 'NT$40 – 200<br>per person', phone: 'Walk-in only',
+    mrt: 'Songshan Station<br>Exit 5 · 3 min walk',
+    menu: [
+      {e:'🥟',n:'Fuzhou Pepper Bun (胡椒餅)',d:'Baked dough, pork & scallion filling, black pepper',p:'NT$55'},
+      {e:'🌽',n:'Grilled Corn',d:'Charcoal grilled, soy butter glaze',p:'NT$50'},
+      {e:'🍢',n:'Grilled Squid',d:'Whole squid, sweet soy marinade, chili',p:'NT$120'},
+      {e:'🧃',n:'Fresh Sugar Cane Juice',d:'Cold-pressed fresh cane, no added sugar',p:'NT$40'},
+    ],
+    revs: [
+      {i:'L',n:'Liam O.',d:'May 2026 · 🇮🇪 Ireland',r:'★★★★★',t:'The pepper buns from the temple entrance stall are incredible. Queue is long but moves fast. Go at dusk.'},
+      {i:'Y',n:'Yoshi N.',d:'April 2026 · 🇯🇵 Japan',r:'★★★★★',t:'More local than Shilin. Better food, friendlier atmosphere. The squid is superb.'},
+      {i:'C',n:'Carmen V.',d:'February 2026 · 🇲🇽 Mexico',r:'★★★★☆',t:'Night markets are a highlight of Taipei. Raohe has the best pepper buns anywhere. Come hungry.'},
+    ]
+  }
+};
+
 function showRestaurant(id) {
-  currentRestaurantId = id || 'ahzhong';
+  var d = restaurantData[id];
+  if (!d) { showToast('Restaurant details coming soon!'); return; }
+  currentRestaurantId = id;
+  homeScrollY = window.scrollY;
+
+  document.getElementById('rp-hero').style.backgroundImage = "url('" + d.img + "')";
+  document.getElementById('rp-name').textContent = d.name;
+  document.getElementById('rp-cuisine').textContent = d.cuisine;
+  document.getElementById('rp-rating-num').textContent = d.rating;
+  document.getElementById('rp-review-count').textContent = (d.reviews && typeof d.reviews === 'string') ? d.reviews : '200+ reviews';
+
+  var tags = document.getElementById('rp-tags');
+  tags.innerHTML = d.tags.map(function(t){ return '<span class="tag tag-dine">'+t+'</span>'; }).join('');
+
+  document.getElementById('rp-actions').innerHTML =
+    '<button class="rp-action-btn btn-reserve" onclick="showToast(\'🗓 Reservation request sent!\')">🗓 Reserve a Table</button>' +
+    '<button class="rp-action-btn btn-pickup" onclick="showToast(\'📦 Pickup order started!\')">📦 Order Pickup</button>' +
+    '<button class="rp-action-btn btn-delivery" onclick="showToast(\'🛵 Redirecting to delivery...\')">🛵 Delivery</button>' +
+    '<button class="rp-action-btn" onclick="window.open(\'https://line.me/ti/p/chrixx7\')" style="background:#25d366;color:#fff;">✏️ Update Menu</button>';
+
+  document.getElementById('rp-info-grid').innerHTML =
+    '<div class="rp-info-card"><div class="rp-info-label">📍 Location</div><div class="rp-info-val">'+d.location+'</div></div>' +
+    '<div class="rp-info-card"><div class="rp-info-label">🕐 Hours</div><div class="rp-info-val">'+d.hours+'</div></div>' +
+    '<div class="rp-info-card"><div class="rp-info-label">💰 Price Range</div><div class="rp-info-val">'+d.price+'</div></div>' +
+    '<div class="rp-info-card"><div class="rp-info-label">📞 Phone</div><div class="rp-info-val">'+d.phone+'</div></div>' +
+    '<div class="rp-info-card"><div class="rp-info-label">🚇 MRT</div><div class="rp-info-val">'+d.mrt+'</div></div>' +
+    '<div class="rp-info-card"><div class="rp-info-label">🌐 Languages</div><div class="rp-info-val">中文 · English · Français<br>日本語 · Español</div></div>';
+
+  var menuItems = d.menu || [];
+  document.getElementById('rp-menu-items').innerHTML = menuItems.map(function(m){
+    return '<div class="menu-item"><div class="menu-item-emoji">'+m.e+'</div><div class="menu-item-info"><div class="menu-item-name">'+m.n+'</div><div class="menu-item-desc">'+m.d+'</div></div><div class="menu-item-price">'+m.p+'</div><button class="menu-item-add" onclick="showToast(\'Added to cart 🛒\')">+</button></div>';
+  }).join('');
+
+  var revList = d.revs || [];
+  document.getElementById('rp-reviews').innerHTML = revList.map(function(r){
+    return '<div class="review-card"><div class="review-top"><div class="review-avatar">'+r.i+'</div><div><div class="review-name">'+r.n+'</div><div class="review-date">'+r.d+'</div></div><div class="review-stars">'+r.r+'</div></div><div class="review-text">'+r.t+'</div></div>';
+  }).join('');
+
   document.getElementById('home-page').style.display = 'none';
   document.getElementById('restaurant-page').style.display = 'block';
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
 function showHome() {
-  document.getElementById('home-page').style.display = 'block';
   document.getElementById('restaurant-page').style.display = 'none';
-  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('home-page').style.display = 'block';
+  window.scrollTo({top: homeScrollY, behavior: 'smooth'});
 }
 function showHiddenGems() { showToast('Hidden gems guide coming to the blog — follow @tastytaipei_com'); }
 function showToast(msg) {
