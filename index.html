@@ -395,11 +395,11 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <div class="lang-dot"></div>
       <button class="lang-btn" id="lang-es" onclick="setLang('es')">🇪🇸 Español</button>
     </div>
-    <div class="hero-feature-card animate delay-4" onclick="showRestaurant('ahzhong')">
-      <div class="hfc-emoji"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=120&h=120&fit=crop&q=80&fm=jpg" referrerpolicy="no-referrer" style="width:60px;height:60px;object-fit:cover;display:block;" alt="noodles" onerror="this.parentElement.innerHTML='🍜'"/></div>
+    <div class="hero-feature-card animate delay-4" onclick="showRestaurant('dintaifung')">
+      <div class="hfc-emoji"><img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=120&h=120&fit=crop&q=80&fm=jpg" referrerpolicy="no-referrer" style="width:60px;height:60px;object-fit:cover;display:block;" alt="xiao long bao" onerror="this.parentElement.innerHTML='🥟'"/></div>
       <div style="flex:1;min-width:0;">
-        <div class="hfc-name">Ah-Zhong Noodle House</div>
-        <div class="hfc-sub">Taiwanese · Da'an District</div>
+        <div class="hfc-name">Din Tai Fung</div>
+        <div class="hfc-sub">Taiwanese · Xinyi District</div>
         <div class="hfc-meta">
           <span class="hfc-rating">⭐ 4.9</span>
           <span class="hfc-tag-green" data-i18n="hfc_trending">🔥 Trending</span>
@@ -475,30 +475,79 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <a class="see-all" id="toppicks-seeall" data-i18n="view_all" onclick="clearCategoryFilter();return false;">View all →</a>
     </div>
     <div class="restaurants-grid" id="restaurants-grid">
-      <a class="r-card" id="card-ahzhong" data-cats="taiwanese,noodles,beef,lunch,dinner,latenight,street food" onclick="showRestaurant('ahzhong')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwanese beef noodle soup" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-ahzhong').style.display='flex'"/><div id="img-placeholder-ahzhong" class="r-card-img-placeholder" style="display:none">🍜</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Popular</span></div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Ah-Zhong Noodle House</div><div class="r-cuisine" data-i18n="rc_ahzhong">Taiwanese · Noodles · Beef</div></div><div class="r-rating">⭐ 4.9</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Da'an</span><span>⏱ 10 min</span><span>💰 NT$120–200</span></div></div>
-      </a>
+
+      <!-- 1. Din Tai Fung -->
       <a class="r-card" id="card-dintaifung" data-cats="taiwanese,dumplings,dimsum,lunch,dinner,chinese" onclick="showRestaurant('dintaifung')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Soup dumplings" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-dtf').style.display='flex'"/><div id="img-placeholder-dtf" class="r-card-img-placeholder" style="display:none">🥟</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Din Tai Fung — Xinyi</div><div class="r-cuisine" data-i18n="rc_dintaifung">Taiwanese · Dim Sum · Soup Dumplings</div></div><div class="r-rating">⭐ 4.8</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-delivery">🛵 Delivery</span></div><div class="r-meta"><span>📍 Xinyi</span><span>⏱ 20 min</span><span>💰 NT$250–600</span></div></div>
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Soup dumplings xiao long bao" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-dtf').style.display='flex'"/><div id="img-placeholder-dtf" class="r-card-img-placeholder" style="display:none">🥟</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Iconic</span></div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Din Tai Fung</div><div class="r-cuisine">Taiwanese · Xiao Long Bao · Dim Sum</div></div><div class="r-rating">⭐ 4.9</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span></div><div class="r-meta"><span>📍 Xinyi</span><span>💰 NT$300–600</span></div></div>
       </a>
-      <a class="r-card" id="card-mala" data-cats="chinese,sichuan,spicy,bento,lunch,dinner" onclick="showRestaurant('mala')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Spicy bento" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-mala').style.display='flex'"/><div id="img-placeholder-mala" class="r-card-img-placeholder" style="display:none">🌶️</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Mala Bento House</div><div class="r-cuisine" data-i18n="rc_mala">Sichuan · Spicy · Bento</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-pickup">📦 Pickup</span><span class="tag tag-delivery">🛵 Delivery</span></div><div class="r-meta"><span>📍 Zhongzheng</span><span>⏱ 15 min</span><span>💰 NT$100–180</span></div></div>
+
+      <!-- 2. Ningxia Night Market -->
+      <a class="r-card" id="card-ningxia" data-cats="street food,taiwanese,snacks,night market,latenight,oyster" onclick="showRestaurant('ningxia')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwan night market street food" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-ningxia').style.display='flex'"/><div id="img-placeholder-ningxia" class="r-card-img-placeholder" style="display:none">🌙</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Trending</span></div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Ningxia Night Market</div><div class="r-cuisine">Street Food · Oyster Vermicelli · Taiwanese</div></div><div class="r-rating">⭐ 4.8</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Datong</span><span>💰 NT$40–150</span></div></div>
       </a>
-      <a class="r-card" id="card-fujin" data-cats="cafe,brunch,breakfast,western,sandwiches,coffee" onclick="showRestaurant('fujin')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Cafe brunch" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-fujin').style.display='flex'"/><div id="img-placeholder-fujin" class="r-card-img-placeholder" style="display:none">☕</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Fujin Street Café</div><div class="r-cuisine" data-i18n="rc_fujin">Café · Brunch · Sandwiches</div></div><div class="r-rating">⭐ 4.6</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Songshan</span><span>⏱ 5 min</span><span>💰 NT$150–320</span></div></div>
+
+      <!-- 3. Yongkang Beef Noodle -->
+      <a class="r-card" id="card-yongkang" data-cats="taiwanese,noodles,beef,lunch,dinner,soup" onclick="showRestaurant('yongkang')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwanese beef noodle soup" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-yongkang').style.display='flex'"/><div id="img-placeholder-yongkang" class="r-card-img-placeholder" style="display:none">🍜</div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Yongkang Beef Noodle</div><div class="r-cuisine">Taiwanese · Beef Noodle · Braised</div></div><div class="r-rating">⭐ 4.8</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Da'an</span><span>💰 NT$180–280</span></div></div>
       </a>
-      <a class="r-card" id="card-sakura" data-cats="japanese,sushi,omakase,dinner,seafood,fish" onclick="showRestaurant('sakura')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Japanese sushi" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-sakura').style.display='flex'"/><div id="img-placeholder-sakura" class="r-card-img-placeholder" style="display:none">🍣</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Sakura Sushi Bar</div><div class="r-cuisine" data-i18n="rc_sakura">Japanese · Sushi · Omakase</div></div><div class="r-rating">⭐ 4.9</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span></div><div class="r-meta"><span>📍 Da'an</span><span>⏱ 12 min</span><span>💰 NT$800–2000</span></div></div>
+
+      <!-- 4. Tiger Sugar -->
+      <a class="r-card" id="card-tigersugar" data-cats="bubble tea,drinks,taiwanese,desserts,takeaway" onclick="showRestaurant('tigersugar')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Brown sugar bubble tea boba" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-tigersugar').style.display='flex'"/><div id="img-placeholder-tigersugar" class="r-card-img-placeholder" style="display:none">🧋</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Popular</span></div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Tiger Sugar</div><div class="r-cuisine">Bubble Tea · Brown Sugar · Boba</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-pickup">📦 Pickup</span><span class="tag tag-delivery">🛵 Delivery</span></div><div class="r-meta"><span>📍 Zhongshan</span><span>💰 NT$65–95</span></div></div>
       </a>
-      <a class="r-card" id="card-shilin" data-cats="street food,taiwanese,snacks,night market,latenight,bbq" onclick="showRestaurant('shilin')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Night market" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-shilin').style.display='flex'"/><div id="img-placeholder-shilin" class="r-card-img-placeholder" style="display:none">🌙</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Shilin Night Bites</div><div class="r-cuisine" data-i18n="rc_shilin">Street Food · Taiwanese · Snacks</div></div><div class="r-rating">⭐ 4.5</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Shilin</span><span>⏱ 18 min</span><span>💰 NT$50–150</span></div></div>
+
+      <!-- 5. Ay-Chung Flour-Rice Noodle -->
+      <a class="r-card" id="card-aychung" data-cats="taiwanese,street food,noodles,lunch,dinner,snacks,ximending" onclick="showRestaurant('aychung')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1552611052-33e04de081de?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwanese rice noodle oyster vermicelli" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-aychung').style.display='flex'"/><div id="img-placeholder-aychung" class="r-card-img-placeholder" style="display:none">🍲</div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Ay-Chung Flour-Rice Noodle</div><div class="r-cuisine">Taiwanese · Oyster Noodle · Street Food</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Wanhua (Ximending)</span><span>💰 NT$55–75</span></div></div>
       </a>
+
+      <!-- 6. Addiction Aquatic Development -->
+      <a class="r-card" id="card-addiction" data-cats="japanese,seafood,sushi,sashimi,lunch,dinner,market" onclick="showRestaurant('addiction')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Fresh sashimi seafood market" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-addiction').style.display='flex'"/><div id="img-placeholder-addiction" class="r-card-img-placeholder" style="display:none">🐟</div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Addiction Aquatic Development</div><div class="r-cuisine">Seafood Market · Sashimi · Japanese</div></div><div class="r-rating">⭐ 4.8</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Zhongshan</span><span>💰 NT$300–800</span></div></div>
+      </a>
+
+      <!-- 7. Mume -->
+      <a class="r-card" id="card-mume" data-cats="western,fine dining,brunch,seasonal,dinner,fusion" onclick="showRestaurant('mume')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Fine dining modern cuisine plating" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-mume').style.display='flex'"/><div id="img-placeholder-mume" class="r-card-img-placeholder" style="display:none">🍽️</div><div class="r-card-badge"><span class="tag tag-popular">⭐ Award-winning</span></div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Mume</div><div class="r-cuisine">Modern European · Seasonal · Fine Dining</div></div><div class="r-rating">⭐ 4.9</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span></div><div class="r-meta"><span>📍 Da'an</span><span>💰 NT$1800–3500</span></div></div>
+      </a>
+
+      <!-- 8. Smoothie House -->
+      <a class="r-card" id="card-smoothie" data-cats="desserts,fruit,taiwanese,healthy,lunch,snacks,ice cream" onclick="showRestaurant('smoothie')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1505394033641-40908e00b978?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Fresh fruit dessert shaved ice" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-smoothie').style.display='flex'"/><div id="img-placeholder-smoothie" class="r-card-img-placeholder" style="display:none">🍧</div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Smoothie House</div><div class="r-cuisine">Taiwanese · Fresh Fruit · Shaved Ice</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Da'an (Yongkang St)</span><span>💰 NT$120–220</span></div></div>
+      </a>
+
+      <!-- 9. Bopiliao Old Street Stinky Tofu -->
+      <a class="r-card" id="card-stinkytofu" data-cats="taiwanese,street food,snacks,fried,latenight,night market" onclick="showRestaurant('stinkytofu')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwanese fried street food snacks" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-stinkytofu').style.display='flex'"/><div id="img-placeholder-stinkytofu" class="r-card-img-placeholder" style="display:none">🧆</div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Laojia Stinky Tofu</div><div class="r-cuisine">Taiwanese · Stinky Tofu · Street Food</div></div><div class="r-rating">⭐ 4.6</div></div><div class="r-tags"><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Wanhua</span><span>💰 NT$50–100</span></div></div>
+      </a>
+
+      <!-- 10. Chun Shui Tang -->
+      <a class="r-card" id="card-chunshuitang" data-cats="bubble tea,taiwanese,cafe,desserts,lunch,brunch" onclick="showRestaurant('chunshuitang')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwanese bubble tea milk tea" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-chunshuitang').style.display='flex'"/><div id="img-placeholder-chunshuitang" class="r-card-img-placeholder" style="display:none">🧋</div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Chun Shui Tang</div><div class="r-cuisine">Bubble Tea · Taiwanese Café · Originator</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Da'an</span><span>💰 NT$80–250</span></div></div>
+      </a>
+
+      <!-- 11. RAW -->
+      <a class="r-card" id="card-raw" data-cats="fine dining,taiwanese,fusion,dinner,seasonal,modern" onclick="showRestaurant('raw')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Modern Taiwanese fine dining cuisine" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-raw').style.display='flex'"/><div id="img-placeholder-raw" class="r-card-img-placeholder" style="display:none">🍽️</div><div class="r-card-badge"><span class="tag tag-popular">⭐ Michelin</span></div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">RAW</div><div class="r-cuisine">Modern Taiwanese · Seasonal · Michelin</div></div><div class="r-rating">⭐ 4.9</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span></div><div class="r-meta"><span>📍 Zhongshan</span><span>💰 NT$2800–4500</span></div></div>
+      </a>
+
+      <!-- 12. Raohe Night Market -->
+      <a class="r-card" id="card-raohe" data-cats="street food,taiwanese,night market,latenight,snacks,bbq,pepper bun" onclick="showRestaurant('raohe')">
+        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Raohe night market Taiwan food stalls" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-raohe').style.display='flex'"/><div id="img-placeholder-raohe" class="r-card-img-placeholder" style="display:none">🌙</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Must-try</span></div></div>
+        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Raohe Night Market</div><div class="r-cuisine">Street Food · Pepper Buns · Taiwanese</div></div><div class="r-rating">⭐ 4.8</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Songshan</span><span>💰 NT$40–200</span></div></div>
+      </a>
+
     </div>
   </div>
 
