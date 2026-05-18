@@ -848,7 +848,13 @@ function activateCat(el) {
   el.classList.add('active');
 }
 function filterByCategory(cat, label) { showToast('Showing: ' + label); }
-function clearCategoryFilter() { showToast('Showing all restaurants'); }
+function clearCategoryFilter() {
+  document.querySelectorAll('.r-card').forEach(function(c){ c.style.display=''; });
+  document.querySelectorAll('.filter-option').forEach(function(o){ o.classList.remove('selected'); });
+  var grid = document.getElementById('restaurants-grid');
+  if (grid) { grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  showToast('Showing all restaurants');
+}
 var activeFilters = {};
 function toggleFilter(ddId, btn) {
   var dd = document.getElementById(ddId);
