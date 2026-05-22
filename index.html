@@ -374,7 +374,7 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
     <p class="hero-sub animate delay-2" data-i18n="hero_sub">The restaurants Taipei residents actually eat at. Discover them before everyone else does.</p>
     <div class="search-box animate delay-3">
       <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Search restaurants, dishes, cuisines…" onkeydown="if(event.key==='Enter')handleSearchClick()"/>
+      <input type="text" id="searchInput" placeholder="Search restaurants, dishes, cuisines…" oninput="applyFilters()" onkeydown="if(event.key==='Enter')handleSearchClick()"/>
       <button class="search-btn" data-i18n="search_btn" onclick="handleSearchClick()">Search</button>
     </div>
     <div class="search-hints animate delay-4">
@@ -1145,27 +1145,68 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(function(){ t.classList.remove('show'); }, 2600);
 }
-function handleSearchClick() {
-  var q = document.getElementById('searchInput').value.trim();
-  if (q) showToast('Searching for: ' + q);
+var activeFilters = {};
+function applyFilters() {
+  var query = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+  var cards = document.querySelectorAll('#restaurants-grid .r-card');
+  var visible = 0;
+  cards.forEach(function(card) {
+    var name = (card.querySelector('.r-card-name') || {textContent:''}).textContent.toLowerCase();
+    var cuisine = (card.querySelector('.r-cuisine') || {textContent:''}).textContent.toLowerCase();
+    var cats = (card.getAttribute('data-cats') || '').toLowerCase();
+    var meta = (card.querySelector('.r-meta') || {textContent:''}).textContent.toLowerCase();
+    var matchesQuery = !query || (name + ' ' + cuisine + ' ' + cats + ' ' + meta).indexOf(query) !== -1;
+    var matchesPrice = true;
+    if (activeFilters.price) {
+      var pm = meta.match(/nt\$(\d+)/); var minP = pm ? parseInt(pm[1]) : 0;
+      if (activeFilters.price === 'Under NT$150') matchesPrice = minP < 150;
+      else if (activeFilters.price === 'NT$150–300') matchesPrice = minP >= 150 && minP < 300;
+      else if (activeFilters.price === 'NT$300–600') matchesPrice = minP >= 300 && minP < 600;
+      else if (activeFilters.price === 'NT$600+') matchesPrice = minP >= 600;
+    }
+    var matchesRating = true;
+    if (activeFilters.rating && activeFilters.rating !== 'Any') {
+      var rEl = card.querySelector('.r-rating'); var rText = rEl ? rEl.textContent : '';
+      var rNum = rText.match(/[\d.]+/); matchesRating = rNum ? parseFloat(rNum[0]) >= parseFloat(activeFilters.rating) : false;
+    }
+    var matchesDine = !activeFilters.dine || card.querySelector('.tag-dine') !== null;
+    var matchesPickup = !activeFilters.pickup || card.querySelector('.tag-pickup') !== null;
+    var matchesDelivery = !activeFilters.delivery || card.querySelector('.tag-delivery') !== null;
+    var matchesCuisine = !activeFilters.cuisine || cats.indexOf(activeFilters.cuisine.toLowerCase()) !== -1;
+    var matchesCat = !activeFilters.category || cats.indexOf(activeFilters.category.toLowerCase()) !== -1;
+    var show = matchesQuery && matchesPrice && matchesRating && matchesDine && matchesPickup && matchesDelivery && matchesCuisine && matchesCat;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  var grid = document.getElementById('restaurants-grid');
+  var noMsg = document.getElementById('no-results-msg');
+  if (!noMsg && grid) {
+    noMsg = document.createElement('div');
+    noMsg.id = 'no-results-msg';
+    noMsg.style.cssText = 'grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);font-size:15px;font-weight:500;';
+    noMsg.textContent = 'No restaurants match your search. Try different keywords or filters.';
+    grid.appendChild(noMsg);
+  }
+  if (noMsg) noMsg.style.display = visible === 0 ? '' : 'none';
+  if ((query || Object.keys(activeFilters).length) && grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+function handleSearchClick() { applyFilters(); }
 function searchFor(q) {
   document.getElementById('searchInput').value = q;
-  showToast('Searching for: ' + q);
+  applyFilters();
 }
 function activateCat(el) {
   document.querySelectorAll('.menu-cat').forEach(function(c){ c.classList.remove('active'); });
   el.classList.add('active');
 }
-function filterByCategory(cat, label) { showToast('Showing: ' + label); }
-function clearCategoryFilter() {
-  document.querySelectorAll('.r-card').forEach(function(c){ c.style.display=''; });
-  document.querySelectorAll('.filter-option').forEach(function(o){ o.classList.remove('selected'); });
-  var grid = document.getElementById('restaurants-grid');
-  if (grid) { grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  showToast('Showing all restaurants');
+function filterByCategory(cat) {
+  activeFilters.category = cat;
+  applyFilters();
 }
-var activeFilters = {};
+function clearCategoryFilter() {
+  delete activeFilters.category;
+  applyFilters();
+}
 function toggleFilter(ddId, btn) {
   var dd = document.getElementById(ddId);
   var isOpen = dd.classList.contains('open');
@@ -1189,7 +1230,7 @@ function selectFilter(type, val, el) {
   var btn = dd.previousElementSibling;
   btn.style.background='#1a1207'; btn.style.color='#fdf8f0'; btn.style.borderColor='#1a1207';
   document.getElementById('clear-filters').style.display = 'inline-flex';
-  showToast('Filter: ' + val);
+  applyFilters();
 }
 function toggleServiceFilter(type, btn) {
   btn.classList.toggle('active');
@@ -1197,13 +1238,15 @@ function toggleServiceFilter(type, btn) {
     activeFilters[type] = true;
     document.getElementById('clear-filters').style.display = 'inline-flex';
   } else { delete activeFilters[type]; }
+  applyFilters();
 }
 function clearFilters() {
   activeFilters = {};
+  document.getElementById('searchInput').value = '';
   document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); b.style.background=''; b.style.color=''; b.style.borderColor=''; });
   document.querySelectorAll('.filter-option').forEach(function(o){ o.classList.remove('selected'); });
   document.getElementById('clear-filters').style.display = 'none';
-  showToast('Filters cleared');
+  applyFilters();
 }
 document.addEventListener('click', function(e) {
   if (!e.target.closest('.filter-wrap')) {
