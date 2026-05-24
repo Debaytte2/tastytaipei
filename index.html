@@ -159,6 +159,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(253,248,240,.92);backdrop-
 @media(max-width:768px){.districts-section{padding:48px 20px;}}
 .district-card{position:relative;border-radius:18px;overflow:hidden;cursor:pointer;aspect-ratio:4/3;transition:transform .25s,box-shadow .25s;border:1.5px solid var(--border);}
 .district-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(26,18,7,.18);}
+.district-card.active{box-shadow:0 0 0 3px var(--orange),0 20px 48px rgba(232,82,26,.25);}
 .district-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
 .district-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,18,7,.75) 0%,rgba(26,18,7,.1) 60%,transparent 100%);}
 .district-card-content{position:absolute;bottom:0;left:0;right:0;padding:16px;}
@@ -335,7 +336,7 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <div class="filter-option" onclick="selectFilter('cuisine','Breakfast',this)">🍳 Breakfast</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Brunch',this)">🥞 Brunch</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Night Market',this)">🌙 Night Market</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Late Night',this)">🦉 Late Night</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','latenight',this)">🦉 Late Night</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Taiwanese',this)">🇹🇼 Taiwanese</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Japanese',this)">🍣 Japanese</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Korean',this)">🥘 Korean</div>
@@ -347,7 +348,7 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <div class="filter-option" onclick="selectFilter('cuisine','Seafood',this)">🦞 Seafood</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Western',this)">🍔 Western</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Italian',this)">🍝 Italian</div>
-      <div class="filter-option" onclick="selectFilter('cuisine','Café',this)">☕ Café</div>
+      <div class="filter-option" onclick="selectFilter('cuisine','cafe',this)">☕ Café</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Bubble Tea',this)">🧋 Bubble Tea</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Desserts',this)">🍰 Desserts</div>
       <div class="filter-option" onclick="selectFilter('cuisine','Vegetarian',this)">🌱 Vegetarian</div>
@@ -476,79 +477,7 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <a class="see-all" id="toppicks-seeall" data-i18n="view_all" onclick="clearCategoryFilter();return false;">View all →</a>
     </div>
     <div class="restaurants-grid" id="restaurants-grid">
-
-      <!-- 1. Din Tai Fung -->
-      <a class="r-card" id="card-dintaifung" data-cats="taiwanese,dumplings,dimsum,lunch,dinner,chinese" onclick="showRestaurant('dintaifung')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Soup dumplings xiao long bao" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-dtf').style.display='flex'"/><div id="img-placeholder-dtf" class="r-card-img-placeholder" style="display:none">🥟</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Iconic</span></div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Din Tai Fung</div><div class="r-cuisine">Taiwanese · Xiao Long Bao · Dim Sum</div></div><div class="r-rating">⭐ 4.9</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span></div><div class="r-meta"><span>📍 Xinyi</span><span>💰 NT$300–600</span></div></div>
-      </a>
-
-      <!-- 2. Ningxia Night Market -->
-      <a class="r-card" id="card-ningxia" data-cats="street food,taiwanese,snacks,night market,latenight,oyster" onclick="showRestaurant('ningxia')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwan night market street food" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-ningxia').style.display='flex'"/><div id="img-placeholder-ningxia" class="r-card-img-placeholder" style="display:none">🌙</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Trending</span></div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Ningxia Night Market</div><div class="r-cuisine">Street Food · Oyster Vermicelli · Taiwanese</div></div><div class="r-rating">⭐ 4.8</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Datong</span><span>💰 NT$40–150</span></div></div>
-      </a>
-
-      <!-- 3. Yongkang Beef Noodle -->
-      <a class="r-card" id="card-yongkang" data-cats="taiwanese,noodles,beef,lunch,dinner,soup" onclick="showRestaurant('yongkang')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwanese beef noodle soup" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-yongkang').style.display='flex'"/><div id="img-placeholder-yongkang" class="r-card-img-placeholder" style="display:none">🍜</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Yongkang Beef Noodle</div><div class="r-cuisine">Taiwanese · Beef Noodle · Braised</div></div><div class="r-rating">⭐ 4.8</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Da'an</span><span>💰 NT$180–280</span></div></div>
-      </a>
-
-      <!-- 4. Tiger Sugar -->
-      <a class="r-card" id="card-tigersugar" data-cats="bubble tea,drinks,taiwanese,desserts,takeaway" onclick="showRestaurant('tigersugar')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Brown sugar bubble tea boba" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-tigersugar').style.display='flex'"/><div id="img-placeholder-tigersugar" class="r-card-img-placeholder" style="display:none">🧋</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Popular</span></div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Tiger Sugar</div><div class="r-cuisine">Bubble Tea · Brown Sugar · Boba</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-pickup">📦 Pickup</span><span class="tag tag-delivery">🛵 Delivery</span></div><div class="r-meta"><span>📍 Zhongshan</span><span>💰 NT$65–95</span></div></div>
-      </a>
-
-      <!-- 5. Ay-Chung Flour-Rice Noodle -->
-      <a class="r-card" id="card-aychung" data-cats="taiwanese,street food,noodles,lunch,dinner,snacks,ximending" onclick="showRestaurant('aychung')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwanese rice noodle oyster vermicelli" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-aychung').style.display='flex'"/><div id="img-placeholder-aychung" class="r-card-img-placeholder" style="display:none">🍲</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Ay-Chung Flour-Rice Noodle</div><div class="r-cuisine">Taiwanese · Oyster Noodle · Street Food</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Wanhua (Ximending)</span><span>💰 NT$55–75</span></div></div>
-      </a>
-
-      <!-- 6. Addiction Aquatic Development -->
-      <a class="r-card" id="card-addiction" data-cats="japanese,seafood,sushi,sashimi,lunch,dinner,market" onclick="showRestaurant('addiction')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Fresh sashimi seafood market" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-addiction').style.display='flex'"/><div id="img-placeholder-addiction" class="r-card-img-placeholder" style="display:none">🐟</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Addiction Aquatic Development</div><div class="r-cuisine">Seafood Market · Sashimi · Japanese</div></div><div class="r-rating">⭐ 4.8</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Zhongshan</span><span>💰 NT$300–800</span></div></div>
-      </a>
-
-      <!-- 7. Mume -->
-      <a class="r-card" id="card-mume" data-cats="western,fine dining,brunch,seasonal,dinner,fusion" onclick="showRestaurant('mume')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Fine dining modern cuisine plating" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-mume').style.display='flex'"/><div id="img-placeholder-mume" class="r-card-img-placeholder" style="display:none">🍽️</div><div class="r-card-badge"><span class="tag tag-popular">⭐ Award-winning</span></div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Mume</div><div class="r-cuisine">Modern European · Seasonal · Fine Dining</div></div><div class="r-rating">⭐ 4.9</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span></div><div class="r-meta"><span>📍 Da'an</span><span>💰 NT$1800–3500</span></div></div>
-      </a>
-
-      <!-- 8. Smoothie House -->
-      <a class="r-card" id="card-smoothie" data-cats="desserts,fruit,taiwanese,healthy,lunch,snacks,ice cream" onclick="showRestaurant('smoothie')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1488900128323-21503983a07e?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Fresh fruit shaved ice dessert bowl" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-smoothie').style.display='flex'"/><div id="img-placeholder-smoothie" class="r-card-img-placeholder" style="display:none">🍧</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Smoothie House</div><div class="r-cuisine">Taiwanese · Fresh Fruit · Shaved Ice</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Da'an (Yongkang St)</span><span>💰 NT$120–220</span></div></div>
-      </a>
-
-      <!-- 9. Xiaolongkan Hot Pot -->
-      <a class="r-card" id="card-hotpot" data-cats="chinese,hotpot,sichuan,spicy,dinner,sharing,taiwanese" onclick="showRestaurant('hotpot')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Sichuan hot pot boiling broth" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-hotpot').style.display='flex'"/><div id="img-placeholder-hotpot" class="r-card-img-placeholder" style="display:none">🍲</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Trending</span></div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Xiaolongkan Hot Pot</div><div class="r-cuisine">Sichuan · Hot Pot · Mala · Sharing</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span></div><div class="r-meta"><span>📍 Da'an</span><span>💰 NT$400–700</span></div></div>
-      </a>
-
-      <!-- 10. Chun Shui Tang -->
-      <a class="r-card" id="card-chunshuitang" data-cats="bubble tea,taiwanese,cafe,desserts,lunch,brunch" onclick="showRestaurant('chunshuitang')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1558857563-b371033873b8?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Taiwanese bubble tea milk tea" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-chunshuitang').style.display='flex'"/><div id="img-placeholder-chunshuitang" class="r-card-img-placeholder" style="display:none">🧋</div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Chun Shui Tang</div><div class="r-cuisine">Bubble Tea · Taiwanese Café · Originator</div></div><div class="r-rating">⭐ 4.7</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Da'an</span><span>💰 NT$80–250</span></div></div>
-      </a>
-
-      <!-- 11. RAW -->
-      <a class="r-card" id="card-raw" data-cats="fine dining,taiwanese,fusion,dinner,seasonal,modern" onclick="showRestaurant('raw')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Modern Taiwanese fine dining cuisine" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-raw').style.display='flex'"/><div id="img-placeholder-raw" class="r-card-img-placeholder" style="display:none">🍽️</div><div class="r-card-badge"><span class="tag tag-popular">⭐ Michelin</span></div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">RAW</div><div class="r-cuisine">Modern Taiwanese · Seasonal · Michelin</div></div><div class="r-rating">⭐ 4.9</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span></div><div class="r-meta"><span>📍 Zhongshan</span><span>💰 NT$2800–4500</span></div></div>
-      </a>
-
-      <!-- 12. Raohe Night Market -->
-      <a class="r-card" id="card-raohe" data-cats="street food,taiwanese,night market,latenight,snacks,bbq,pepper bun" onclick="showRestaurant('raohe')">
-        <div class="r-card-img"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop&q=80&fm=jpg" alt="Raohe night market Taiwan food stalls" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';document.getElementById('img-placeholder-raohe').style.display='flex'"/><div id="img-placeholder-raohe" class="r-card-img-placeholder" style="display:none">🌙</div><div class="r-card-badge"><span class="tag tag-popular">🔥 Must-try</span></div></div>
-        <div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">Raohe Night Market</div><div class="r-cuisine">Street Food · Pepper Buns · Taiwanese</div></div><div class="r-rating">⭐ 4.8</div></div><div class="r-tags"><span class="tag tag-dine">🪑 Dine-in</span><span class="tag tag-pickup">📦 Pickup</span></div><div class="r-meta"><span>📍 Songshan</span><span>💰 NT$40–200</span></div></div>
-      </a>
-
+      <div style="grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);">Loading restaurants…</div>
     </div>
   </div>
 
@@ -558,14 +487,14 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <a class="see-all" onclick="showToast('All 12 Taipei districts covered')">→</a>
     </div>
     <div class="districts-grid">
-      <div class="district-card" onclick="showToast('Da\'an restaurants loading...')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1478144592103-25e218a04891?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Da'an</div><div class="district-count">Da'an · Trending now</div><div class="district-vibe">Trendy · Cafés</div></div></div>
-      <div class="district-card" onclick="showToast('Xinyi restaurants loading...')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1715517129243-a7e2402c5b38?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Xinyi</div><div class="district-count">Xinyi · Filling fast</div><div class="district-vibe">Upscale · Fine Dining</div></div></div>
-      <div class="district-card" onclick="showToast('Shilin restaurants loading...')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Shilin</div><div class="district-count">Shilin · Night market hub</div><div class="district-vibe">Night Market · Street Food</div></div></div>
-      <div class="district-card" onclick="showToast('Zhongshan restaurants loading...')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Zhongshan</div><div class="district-count">Zhongshan · Local favourites</div><div class="district-vibe">Local · Hidden Gems</div></div></div>
-      <div class="district-card" onclick="showToast('Zhongzheng restaurants loading...')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Zhongzheng</div><div class="district-count">Zhongzheng · Historic flavours</div><div class="district-vibe">Historic · Local</div></div></div>
-      <div class="district-card" onclick="showToast('Wanhua restaurants loading...')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Wanhua</div><div class="district-count">Wanhua · Old Taipei soul</div><div class="district-vibe">Authentic · Old Taipei</div></div></div>
-      <div class="district-card" onclick="showToast('Songshan restaurants loading...')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Songshan</div><div class="district-count">Songshan · Creative dining</div><div class="district-vibe">Creative · Brunch</div></div></div>
-      <div class="district-card" onclick="showToast('More districts being added now')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">More soon</div><div class="district-count">All of Taipei covered</div><div class="district-vibe">All of Taipei</div></div></div>
+      <div class="district-card" data-district="Da'an" onclick="filterByDistrict(&quot;Da'an&quot;)"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1478144592103-25e218a04891?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Da'an</div><div class="district-count" id="dc-count-daan"></div><div class="district-vibe">Trendy · Cafés</div></div></div>
+      <div class="district-card" data-district="Xinyi" onclick="filterByDistrict('Xinyi')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1715517129243-a7e2402c5b38?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Xinyi</div><div class="district-count" id="dc-count-xinyi"></div><div class="district-vibe">Upscale · Fine Dining</div></div></div>
+      <div class="district-card" data-district="Shilin" onclick="filterByDistrict('Shilin')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Shilin</div><div class="district-count" id="dc-count-shilin"></div><div class="district-vibe">Night Market · Street Food</div></div></div>
+      <div class="district-card" data-district="Zhongshan" onclick="filterByDistrict('Zhongshan')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Zhongshan</div><div class="district-count" id="dc-count-zhongshan"></div><div class="district-vibe">Local · Hidden Gems</div></div></div>
+      <div class="district-card" data-district="Zhongzheng" onclick="filterByDistrict('Zhongzheng')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Zhongzheng</div><div class="district-count" id="dc-count-zhongzheng"></div><div class="district-vibe">Historic · Local</div></div></div>
+      <div class="district-card" data-district="Wanhua" onclick="filterByDistrict('Wanhua')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Wanhua</div><div class="district-count" id="dc-count-wanhua"></div><div class="district-vibe">Authentic · Old Taipei</div></div></div>
+      <div class="district-card" data-district="Songshan" onclick="filterByDistrict('Songshan')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Songshan</div><div class="district-count" id="dc-count-songshan"></div><div class="district-vibe">Creative · Brunch</div></div></div>
+      <div class="district-card" data-district="Datong" onclick="filterByDistrict('Datong')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Datong</div><div class="district-count" id="dc-count-datong"></div><div class="district-vibe">Night Market · Heritage</div></div></div>
     </div>
   </div>
 
@@ -835,8 +764,7 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 <script>
 var currentRestaurantId = null;
 var homeScrollY = 0;
-
-var restaurantData = {
+var _restaurantData_REMOVED = {
   dintaifung: {
     name: 'Din Tai Fung',
     cuisine: 'Taiwanese · Xiao Long Bao · Dim Sum · Xinyi District',
@@ -1091,19 +1019,24 @@ var restaurantData = {
 };
 
 function showRestaurant(id) {
-  var d = restaurantData[id];
+  var d = null;
+  if (window.allRestaurants) {
+    for (var i = 0; i < window.allRestaurants.length; i++) {
+      if (window.allRestaurants[i].id === id) { d = window.allRestaurants[i]; break; }
+    }
+  }
   if (!d) { showToast('Restaurant details coming soon!'); return; }
   currentRestaurantId = id;
   homeScrollY = window.scrollY;
 
-  document.getElementById('rp-hero').style.backgroundImage = "url('" + d.img + "')";
+  document.getElementById('rp-hero').style.backgroundImage = "url('" + d.image_url + "')";
   document.getElementById('rp-name').textContent = d.name;
   document.getElementById('rp-cuisine').textContent = d.cuisine;
   document.getElementById('rp-rating-num').textContent = d.rating;
-  document.getElementById('rp-review-count').textContent = (d.reviews && typeof d.reviews === 'string') ? d.reviews : '200+ reviews';
+  document.getElementById('rp-review-count').textContent = d.review_count || '200+ reviews';
 
-  var tags = document.getElementById('rp-tags');
-  tags.innerHTML = d.tags.map(function(t){ return '<span class="tag tag-dine">'+t+'</span>'; }).join('');
+  var tagMap = {dine:'<span class="tag tag-dine">🪑 Dine-in</span>',pickup:'<span class="tag tag-pickup">📦 Pickup</span>',delivery:'<span class="tag tag-delivery">🛵 Delivery</span>'};
+  document.getElementById('rp-tags').innerHTML = d.tags.map(function(t){ return tagMap[t]||''; }).join('');
 
   document.getElementById('rp-actions').innerHTML =
     '<button class="rp-action-btn btn-reserve" onclick="showToast(\'🗓 Reservation request sent!\')">🗓 Reserve a Table</button>' +
@@ -1112,21 +1045,21 @@ function showRestaurant(id) {
     '<button class="rp-action-btn" onclick="window.open(\'https://line.me/ti/p/chrixx7\')" style="background:#25d366;color:#fff;">✏️ Update Menu</button>';
 
   document.getElementById('rp-info-grid').innerHTML =
-    '<div class="rp-info-card"><div class="rp-info-label">📍 Location</div><div class="rp-info-val">'+d.location+'</div></div>' +
-    '<div class="rp-info-card"><div class="rp-info-label">🕐 Hours</div><div class="rp-info-val">'+d.hours+'</div></div>' +
-    '<div class="rp-info-card"><div class="rp-info-label">💰 Price Range</div><div class="rp-info-val">'+d.price+'</div></div>' +
-    '<div class="rp-info-card"><div class="rp-info-label">📞 Phone</div><div class="rp-info-val">'+d.phone+'</div></div>' +
-    '<div class="rp-info-card"><div class="rp-info-label">🚇 MRT</div><div class="rp-info-val">'+d.mrt+'</div></div>' +
+    '<div class="rp-info-card"><div class="rp-info-label">📍 Location</div><div class="rp-info-val">'+escHtml(d.address)+'</div></div>' +
+    '<div class="rp-info-card"><div class="rp-info-label">🕐 Hours</div><div class="rp-info-val">'+escHtml(d.hours)+'</div></div>' +
+    '<div class="rp-info-card"><div class="rp-info-label">💰 Price Range</div><div class="rp-info-val">'+escHtml(d.price_range)+'</div></div>' +
+    '<div class="rp-info-card"><div class="rp-info-label">📞 Phone</div><div class="rp-info-val">'+escHtml(d.phone)+'</div></div>' +
+    '<div class="rp-info-card"><div class="rp-info-label">🚇 MRT</div><div class="rp-info-val">'+escHtml(d.mrt)+'</div></div>' +
     '<div class="rp-info-card"><div class="rp-info-label">🌐 Languages</div><div class="rp-info-val">中文 · English · Français<br>日本語 · Español</div></div>';
 
   var menuItems = d.menu || [];
   document.getElementById('rp-menu-items').innerHTML = menuItems.map(function(m){
-    return '<div class="menu-item"><div class="menu-item-emoji">'+m.e+'</div><div class="menu-item-info"><div class="menu-item-name">'+m.n+'</div><div class="menu-item-desc">'+m.d+'</div></div><div class="menu-item-price">'+m.p+'</div><button class="menu-item-add" onclick="showToast(\'Added to cart 🛒\')">+</button></div>';
+    return '<div class="menu-item"><div class="menu-item-emoji">'+escHtml(m.emoji)+'</div><div class="menu-item-info"><div class="menu-item-name">'+escHtml(m.name)+'</div><div class="menu-item-desc">'+escHtml(m.desc)+'</div></div><div class="menu-item-price">'+escHtml(m.price)+'</div><button class="menu-item-add" onclick="showToast(\'Added to cart 🛒\')">+</button></div>';
   }).join('');
 
-  var revList = d.revs || [];
+  var revList = d.reviews || [];
   document.getElementById('rp-reviews').innerHTML = revList.map(function(r){
-    return '<div class="review-card"><div class="review-top"><div class="review-avatar">'+r.i+'</div><div><div class="review-name">'+r.n+'</div><div class="review-date">'+r.d+'</div></div><div class="review-stars">'+r.r+'</div></div><div class="review-text">'+r.t+'</div></div>';
+    return '<div class="review-card"><div class="review-top"><div class="review-avatar">'+escHtml(r.initial)+'</div><div><div class="review-name">'+escHtml(r.name)+'</div><div class="review-date">'+escHtml(r.date)+'</div></div><div class="review-stars">'+escHtml(r.stars)+'</div></div><div class="review-text">'+escHtml(r.text)+'</div></div>';
   }).join('');
 
   document.getElementById('home-page').style.display = 'none';
@@ -1147,48 +1080,60 @@ function showToast(msg) {
   setTimeout(function(){ t.classList.remove('show'); }, 2600);
 }
 var activeFilters = {};
+function renderRestaurantGrid(restaurants) {
+  var grid = document.getElementById('restaurants-grid');
+  if (!grid) return;
+  var lang = currentLang || 'en';
+  if (!restaurants || restaurants.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);font-size:15px;font-weight:500;">No restaurants match your search. Try different keywords or filters.</div>';
+    return;
+  }
+  var tagHtmlMap = {dine:'<span class="tag tag-dine">🪑 Dine-in</span>',pickup:'<span class="tag tag-pickup">📦 Pickup</span>',delivery:'<span class="tag tag-delivery">🛵 Delivery</span>'};
+  var html = '';
+  restaurants.forEach(function(r) {
+    var name = (lang === 'zh' && r.name_zh) ? r.name_zh : r.name;
+    var cuisine = (lang === 'zh' && r.cuisine_zh) ? r.cuisine_zh : r.cuisine;
+    var tagHtml = r.tags.map(function(t){ return tagHtmlMap[t]||''; }).join('');
+    var badgeHtml = r.badge ? '<div class="r-card-badge"><span class="tag tag-popular">'+escHtml(r.badge)+'</span></div>' : '';
+    html += '<a class="r-card" onclick="showRestaurant(\''+r.id+'\')">' +
+      '<div class="r-card-img"><img src="'+r.image_url+'" alt="'+escHtml(name)+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'"/>'+badgeHtml+'</div>' +
+      '<div class="r-card-body"><div class="r-card-top"><div><div class="r-card-name">'+escHtml(name)+'</div><div class="r-cuisine">'+escHtml(cuisine)+'</div></div><div class="r-rating">⭐ '+r.rating+'</div></div>' +
+      '<div class="r-tags">'+tagHtml+'</div>' +
+      '<div class="r-meta"><span>📍 '+escHtml(r.district)+'</span><span>💰 '+escHtml(r.price_range)+'</span></div></div></a>';
+  });
+  grid.innerHTML = html;
+}
 function applyFilters() {
+  if (!window.allRestaurants) return;
   var query = (document.getElementById('searchInput').value || '').trim().toLowerCase();
-  var cards = document.querySelectorAll('#restaurants-grid .r-card');
-  var visible = 0;
-  cards.forEach(function(card) {
-    var name = (card.querySelector('.r-card-name') || {textContent:''}).textContent.toLowerCase();
-    var cuisine = (card.querySelector('.r-cuisine') || {textContent:''}).textContent.toLowerCase();
-    var cats = (card.getAttribute('data-cats') || '').toLowerCase();
-    var meta = (card.querySelector('.r-meta') || {textContent:''}).textContent.toLowerCase();
-    var matchesQuery = !query || (name + ' ' + cuisine + ' ' + cats + ' ' + meta).indexOf(query) !== -1;
+  var lang = currentLang || 'en';
+  var filtered = window.allRestaurants.filter(function(r) {
+    var name = ((lang === 'zh' && r.name_zh) ? r.name_zh : r.name).toLowerCase();
+    var cuisine = ((lang === 'zh' && r.cuisine_zh) ? r.cuisine_zh : r.cuisine).toLowerCase();
+    var cats = r.categories.join(' ').toLowerCase();
+    var searchText = name + ' ' + cuisine + ' ' + cats + ' ' + r.district.toLowerCase() + ' ' + r.price_range.toLowerCase();
+    var matchesQuery = !query || searchText.indexOf(query) !== -1;
     var matchesPrice = true;
     if (activeFilters.price) {
-      var pm = meta.match(/nt\$(\d+)/); var minP = pm ? parseInt(pm[1]) : 0;
-      if (activeFilters.price === 'Under NT$150') matchesPrice = minP < 150;
-      else if (activeFilters.price === 'NT$150–300') matchesPrice = minP >= 150 && minP < 300;
-      else if (activeFilters.price === 'NT$300–600') matchesPrice = minP >= 300 && minP < 600;
-      else if (activeFilters.price === 'NT$600+') matchesPrice = minP >= 600;
+      var pm = r.price_min;
+      if (activeFilters.price === 'Under NT$150') matchesPrice = pm < 150;
+      else if (activeFilters.price === 'NT$150–300') matchesPrice = pm >= 150 && pm < 300;
+      else if (activeFilters.price === 'NT$300–600') matchesPrice = pm >= 300 && pm < 600;
+      else if (activeFilters.price === 'NT$600+') matchesPrice = pm >= 600;
     }
     var matchesRating = true;
     if (activeFilters.rating && activeFilters.rating !== 'Any') {
-      var rEl = card.querySelector('.r-rating'); var rText = rEl ? rEl.textContent : '';
-      var rNum = rText.match(/[\d.]+/); matchesRating = rNum ? parseFloat(rNum[0]) >= parseFloat(activeFilters.rating) : false;
+      matchesRating = r.rating >= parseFloat(activeFilters.rating);
     }
-    var matchesDine = !activeFilters.dine || card.querySelector('.tag-dine') !== null;
-    var matchesPickup = !activeFilters.pickup || card.querySelector('.tag-pickup') !== null;
-    var matchesDelivery = !activeFilters.delivery || card.querySelector('.tag-delivery') !== null;
+    var matchesDine = !activeFilters.dine || r.tags.indexOf('dine') !== -1;
+    var matchesPickup = !activeFilters.pickup || r.tags.indexOf('pickup') !== -1;
+    var matchesDelivery = !activeFilters.delivery || r.tags.indexOf('delivery') !== -1;
     var matchesCuisine = !activeFilters.cuisine || cats.indexOf(activeFilters.cuisine.toLowerCase()) !== -1;
     var matchesCat = !activeFilters.category || cats.indexOf(activeFilters.category.toLowerCase()) !== -1;
-    var show = matchesQuery && matchesPrice && matchesRating && matchesDine && matchesPickup && matchesDelivery && matchesCuisine && matchesCat;
-    card.style.display = show ? '' : 'none';
-    if (show) visible++;
+    var matchesDistrict = !activeFilters.district || r.district.toLowerCase() === activeFilters.district.toLowerCase();
+    return matchesQuery && matchesPrice && matchesRating && matchesDine && matchesPickup && matchesDelivery && matchesCuisine && matchesCat && matchesDistrict;
   });
-  var grid = document.getElementById('restaurants-grid');
-  var noMsg = document.getElementById('no-results-msg');
-  if (!noMsg && grid) {
-    noMsg = document.createElement('div');
-    noMsg.id = 'no-results-msg';
-    noMsg.style.cssText = 'grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);font-size:15px;font-weight:500;';
-    noMsg.textContent = 'No restaurants match your search. Try different keywords or filters.';
-    grid.appendChild(noMsg);
-  }
-  if (noMsg) noMsg.style.display = visible === 0 ? '' : 'none';
+  renderRestaurantGrid(filtered);
 }
 function scrollToGrid() {
   var grid = document.getElementById('restaurants-grid');
@@ -1204,19 +1149,41 @@ function activateCat(el) {
   document.querySelectorAll('.menu-cat').forEach(function(c){ c.classList.remove('active'); });
   el.classList.add('active');
 }
-function filterByCategory(cat) {
+function filterByCategory(cat, label) {
   activeFilters.category = cat;
+  delete activeFilters.district;
   document.querySelectorAll('.cat-card').forEach(function(c) {
     var m = (c.getAttribute('onclick') || '').match(/filterByCategory\('([^']+)'/);
     c.classList.toggle('active', !!(m && m[1] === cat));
   });
+  document.querySelectorAll('.district-card').forEach(function(c){ c.classList.remove('active'); });
+  var title = document.getElementById('toppicks-title');
+  if (title && label) title.textContent = label;
   document.getElementById('clear-filters').style.display = 'inline-flex';
   applyFilters();
   scrollToGrid();
 }
-function clearCategoryFilter() {
+function filterByDistrict(district) {
+  activeFilters.district = district;
   delete activeFilters.category;
   document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('active'); });
+  document.querySelectorAll('.district-card').forEach(function(c){
+    c.classList.toggle('active', c.getAttribute('data-district') === district);
+  });
+  var title = document.getElementById('toppicks-title');
+  if (title) title.textContent = district + ' Restaurants';
+  document.getElementById('clear-filters').style.display = 'inline-flex';
+  applyFilters();
+  var sec = document.getElementById('top-picks-section');
+  if (sec) sec.scrollIntoView({behavior:'smooth'});
+}
+function clearCategoryFilter() {
+  delete activeFilters.category;
+  delete activeFilters.district;
+  document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('active'); });
+  document.querySelectorAll('.district-card').forEach(function(c){ c.classList.remove('active'); });
+  var title = document.getElementById('toppicks-title');
+  if (title && i18n[currentLang]) title.textContent = i18n[currentLang].sec_toppicks || 'Top Picks Near You';
   applyFilters();
 }
 function toggleFilter(ddId, btn) {
@@ -1258,6 +1225,9 @@ function clearFilters() {
   document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); b.style.background=''; b.style.color=''; b.style.borderColor=''; });
   document.querySelectorAll('.filter-option').forEach(function(o){ o.classList.remove('selected'); });
   document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('active'); });
+  document.querySelectorAll('.district-card').forEach(function(c){ c.classList.remove('active'); });
+  var title = document.getElementById('toppicks-title');
+  if (title && i18n[currentLang]) title.textContent = i18n[currentLang].sec_toppicks || 'Top Picks Near You';
   document.getElementById('clear-filters').style.display = 'none';
   applyFilters();
 }
@@ -1460,6 +1430,32 @@ function aiSend(){
   }, 900);
 }
 function aiSendPrompt(q){ document.getElementById('ai-input').value=q; aiSend(); }
+function updateDistrictCounts(restaurants) {
+  var counts = {};
+  restaurants.forEach(function(r){ counts[r.district] = (counts[r.district]||0)+1; });
+  var ids = {
+    "Da'an":'dc-count-daan','Xinyi':'dc-count-xinyi','Shilin':'dc-count-shilin',
+    'Zhongshan':'dc-count-zhongshan','Zhongzheng':'dc-count-zhongzheng',
+    'Wanhua':'dc-count-wanhua','Songshan':'dc-count-songshan','Datong':'dc-count-datong'
+  };
+  Object.keys(ids).forEach(function(d){
+    var el = document.getElementById(ids[d]);
+    if (el) el.textContent = (counts[d]||0)+' restaurants';
+  });
+}
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('/restaurants.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      window.allRestaurants = data;
+      renderRestaurantGrid(data);
+      updateDistrictCounts(data);
+    })
+    .catch(function(){
+      var g = document.getElementById('restaurants-grid');
+      if (g) g.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);">Could not load restaurants. Please refresh the page.</div>';
+    });
+});
 var i18n = {
   en:{nav_discover:'Discover',nav_nearme:'Near Me',nav_categories:'Categories',nav_forrestaurants:'For Restaurants',nav_listbtn:'List Your Restaurant →',nav_listbtn_mobile:'List Restaurant',hero_eyebrow:"Taipei's Food Discovery Platform",hero_title:'Find your next<br/><em>favourite meal</em><br/>in Taipei',hero_sub:'The restaurants Taipei residents actually eat at. Discover them before everyone else does.',search_btn:'Search',search_placeholder:'Search restaurants, dishes, cuisines…',hfc_live:'Live now',hfc_trending:'🔥 Trending',stat_restaurants:'Food Capital',stat_districts:'Districts Covered',stat_rating:'+ 3 languages',stat_languages:'Free to try',hint_ramen:'🍜 Ramen',hint_bubbletea:'🧋 Bubble Tea',hint_hotpot:'🍲 Hot Pot',hint_nightmarket:'🌙 Night Market',hint_vegetarian:'🥗 Vegetarian',sec_categories:'Browse by Category',sec_toppicks:'Top Picks Near You',sec_districts:'Explore by District',see_all:'See all →',view_all:'View all →',fb_label:'✦ Featured this week',fb_title:"The Taipei food guide restaurants don't want you to know about",fb_desc:"The places locals eat when they don't want to queue with tourists. Real spots. Real food.",fb_btn:'Read it now →',f_price_btn:'💰 Price',f_dist_btn:'📍 Distance',f_rating_btn:'⭐ Rating',f_cuisine_btn:'🍽 Cuisine',f_sort_btn:'↕ Sort',f_p1:'Under NT$150',f_p2:'NT$150–300',f_p3:'NT$300–600',f_p4:'NT$600+',f_d1:'Under 5 min',f_d2:'Under 10 min',f_d3:'Under 20 min',f_d4:'Any distance',f_r4:'Any rating',f_s1:'🪑 Dine-in',f_s2:'📦 Pickup',f_s3:'🛵 Delivery',f_sort1:'Top Rated',f_sort2:'Nearest',f_sort3:'Price: Low to High',f_sort4:'Price: High to Low',f_sort5:'Most Popular',nearme_label:'Location Features',nearme_btn:'📍 Find Food Near Me',nearme_desc:'Share your location and instantly see the best-rated restaurants within walking distance.',nearme_c1:'Open now',nearme_c2:'Under 5 min walk',nearme_c3:'Top rated',nearme_c4:'Under NT$200',ai_title:'AI Food Assistant',ai_sub:'Ask anything about Taipei food — in English, 中文, Français, 日本語, or Español.',ai_placeholder:'e.g. Best bubble tea in Zhongshan…',ai_sendbtn:'Ask AI →',ai_chip1:'🍜 Best ramen under NT$200',ai_chip2:'🕯 Romantic dinner spot',ai_chip3:'🌱 Vegetarian friendly',ai_chip4:'🍲 Hot pot deals',ai_chip5:'💎 Hidden gems',foot_about:'About',foot_blog:'Instagram',foot_line:'LINE Us',foot_contact:'Contact',foot_copy:'© 2026 Tasty Taipei — Built with ♥ in Taiwan',rp_back:'← Back to results',rp_reviewcount:'284 reviews',rp_reviews_title:'Reviews',rp_menu:'Menu',rp_reserve:'Reserve a Table',rp_pickup:'Order Pickup',rp_delivery:'Order Delivery',rp_updatemenu:'Update Menu',cat_breakfast:'Breakfast',cat_brunch:'Brunch',cat_lunch:'Lunch',cat_dinner:'Dinner',cat_nightmarket:'Night Market',cat_latenight:'Late Night',cat_cafes:'Cafés',cat_bubbletea:'Bubble Tea',cat_desserts:'Desserts',cat_icecream:'Ice Cream',cat_bakery:'Bakery',cat_noodles:'Noodles',cat_dumplings:'Dumplings',cat_hotpot:'Hot Pot',cat_bbq:'BBQ',cat_seafood:'Seafood',cat_taiwanese:'Taiwanese',cat_japanese:'Japanese',cat_korean:'Korean',cat_chinese:'Chinese',cat_thai:'Thai',cat_vietnamese:'Vietnamese',cat_indian:'Indian',cat_mexican:'Mexican',cat_american:'American',cat_italian:'Italian',cat_french:'French',cat_mediterranean:'Mediterranean',cat_middleeastern:'Middle Eastern',cat_spanish:'Spanish',cat_western:'Western',cat_streetfood:'Street Food',cat_vegetarian:'Vegetarian',cat_vegan:'Vegan',cat_halal:'Halal',cat_healthy:'Healthy',rc_ahzhong:'Taiwanese · Noodles · Beef',rc_dintaifung:'Taiwanese · Dim Sum · Soup Dumplings',rc_mala:'Sichuan · Spicy · Bento',rc_fujin:'Café · Brunch · Sandwiches',rc_sakura:'Japanese · Sushi · Omakase',rc_shilin:'Street Food · Taiwanese · Snacks'},
   zh:{nav_discover:'探索',nav_nearme:'附近美食',nav_categories:'分類',nav_forrestaurants:'餐廳合作',nav_listbtn:'刊登你的餐廳 →',nav_listbtn_mobile:'刊登餐廳',hero_eyebrow:'台北美食探索平台',hero_title:'在台北找到你的<br/><em>下一頓美食</em>',hero_sub:'台北人真正在吃的地方。在所有人發現之前，先找到它們。',search_btn:'搜尋',search_placeholder:'搜尋餐廳、料理、美食類型…',hfc_live:'現正開放',hfc_trending:'🔥 熱門',stat_restaurants:'美食之都',stat_districts:'個行政區',stat_rating:'多種語言',stat_languages:'免費試用',hint_ramen:'🍜 拉麵',hint_bubbletea:'🧋 珍奶',hint_hotpot:'🍲 火鍋',hint_nightmarket:'🌙 夜市',hint_vegetarian:'🥗 素食',sec_categories:'依分類瀏覽',sec_toppicks:'附近精選',sec_districts:'依區域探索',see_all:'查看全部 →',view_all:'查看全部 →',fb_label:'✦ 本週精選',fb_title:'餐廳老闆不想讓你知道的台北美食指南',fb_desc:'在地人不想跟觀光客一起排隊的地方。真實好店，真實美食。',fb_btn:'立即閱讀 →',f_price_btn:'💰 價格',f_dist_btn:'📍 距離',f_rating_btn:'⭐ 評分',f_cuisine_btn:'🍽 料理類型',f_sort_btn:'↕ 排序',f_p1:'NT$150 以下',f_p2:'NT$150–300',f_p3:'NT$300–600',f_p4:'NT$600 以上',f_d1:'5 分鐘以內',f_d2:'10 分鐘以內',f_d3:'20 分鐘以內',f_d4:'不限距離',f_r4:'不限評分',f_s1:'🪑 內用',f_s2:'📦 自取',f_s3:'🛵 外送',f_sort1:'評分最高',f_sort2:'距離最近',f_sort3:'價格：低到高',f_sort4:'價格：高到低',f_sort5:'最受歡迎',nearme_label:'位置功能',nearme_btn:'📍 尋找附近美食',nearme_desc:'分享你的位置，立即查看步行距離內評分最高的餐廳。',nearme_c1:'現正營業',nearme_c2:'5 分鐘步行內',nearme_c3:'評分最高',nearme_c4:'NT$200 以下',ai_title:'AI 美食助理',ai_sub:'用中文、英文、法文、日文或西班牙文詢問任何台北美食問題。',ai_placeholder:'例如：中山區最好喝的珍奶…',ai_sendbtn:'詢問 AI →',ai_chip1:'🍜 NT$200以下拉麵推薦',ai_chip2:'🕯 約會餐廳推薦',ai_chip3:'🌱 素食友好餐廳',ai_chip4:'🍲 超值火鍋',ai_chip5:'💎 隱藏版美食',foot_about:'關於我們',foot_blog:'Instagram',foot_line:'LINE',foot_contact:'聯絡我們',foot_copy:'© 2026 Tasty Taipei — 用 ♥ 在台灣建立',rp_back:'← 返回結果',rp_reviewcount:'284 則評論',rp_reviews_title:'評論',rp_menu:'菜單',rp_reserve:'訂位',rp_pickup:'自取訂單',rp_delivery:'外送訂單',rp_updatemenu:'更新菜單',cat_breakfast:'早餐',cat_brunch:'早午餐',cat_lunch:'午餐',cat_dinner:'晚餐',cat_nightmarket:'夜市',cat_latenight:'深夜美食',cat_cafes:'咖啡廳',cat_bubbletea:'珍奶',cat_desserts:'甜點',cat_icecream:'冰淇淋',cat_bakery:'麵包坊',cat_noodles:'麵食',cat_dumplings:'包子小吃',cat_hotpot:'火鍋',cat_bbq:'燒烤',cat_seafood:'海鮮',cat_taiwanese:'台灣料理',cat_japanese:'日本料理',cat_korean:'韓式料理',cat_chinese:'中式料理',cat_thai:'泰式料理',cat_vietnamese:'越式料理',cat_indian:'印度料理',cat_mexican:'墨西哥料理',cat_american:'美式料理',cat_italian:'義大利料理',cat_french:'法式料理',cat_mediterranean:'地中海料理',cat_middleeastern:'中東料理',cat_spanish:'西班牙料理',cat_western:'西餐',cat_streetfood:'街頭小吃',cat_vegetarian:'素食',cat_vegan:'純素食',cat_halal:'清真食品',cat_healthy:'健康食尚',rc_ahzhong:'台灣料理 · 麵食 · 牛肉',rc_dintaifung:'台灣料理 · 點心 · 小籠包',rc_mala:'四川料理 · 麻辣 · 便當',rc_fujin:'咖啡廳 · 早午餐 · 三明治',rc_sakura:'日本料理 · 壽司 · 無菜單',rc_shilin:'街頭小吃 · 台灣料理 · 零食'},
@@ -1490,6 +1486,7 @@ function setLang(lang) {
   var asb = document.getElementById('ai-send-btn');
   if (asb && !asb.disabled) asb.textContent = t.ai_sendbtn || 'Ask AI →';
   document.body.style.fontFamily = (lang==='zh'||lang==='ja') ? "'Noto Sans TC','DM Sans',sans-serif" : "'DM Sans',sans-serif";
+  if (window.allRestaurants) applyFilters();
 }
 </script>
 </body>
