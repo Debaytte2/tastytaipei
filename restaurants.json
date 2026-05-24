@@ -15,19 +15,67 @@
     "hours": "Mon–Fri 11:00–21:00 · Sat–Sun 10:00–21:00",
     "phone": "+886 2 2321 8928",
     "mrt": "Dongmen Station · Exit 5 · 5 min walk",
-    "tags": ["dine", "delivery"],
-    "categories": ["taiwanese", "dumplings", "dimsum", "lunch", "dinner", "chinese"],
+    "tags": [
+      "dine",
+      "delivery"
+    ],
+    "categories": [
+      "taiwanese",
+      "dumplings",
+      "dimsum",
+      "lunch",
+      "dinner",
+      "chinese"
+    ],
     "badge": "🔥 Iconic",
     "menu": [
-      {"emoji": "🥟", "name": "Xiao Long Bao (10 pcs)", "desc": "Steamed pork soup dumplings, the original", "price": "NT$230"},
-      {"emoji": "🍚", "name": "Steamed Shrimp & Pork Fried Rice", "desc": "Wok-tossed with egg and scallion", "price": "NT$280"},
-      {"emoji": "🥬", "name": "Sautéed Spinach with Garlic", "desc": "Fresh spinach, garlic oil, house seasoning", "price": "NT$160"},
-      {"emoji": "🍜", "name": "Spicy Dumpling in Chili Sauce (6 pcs)", "desc": "Silky dumpling skin, numbing chili sauce", "price": "NT$190"}
+      {
+        "emoji": "🥟",
+        "name": "Xiao Long Bao (10 pcs)",
+        "desc": "Steamed pork soup dumplings, the original",
+        "price": "NT$230"
+      },
+      {
+        "emoji": "🍚",
+        "name": "Steamed Shrimp & Pork Fried Rice",
+        "desc": "Wok-tossed with egg and scallion",
+        "price": "NT$280"
+      },
+      {
+        "emoji": "🥬",
+        "name": "Sautéed Spinach with Garlic",
+        "desc": "Fresh spinach, garlic oil, house seasoning",
+        "price": "NT$160"
+      },
+      {
+        "emoji": "🍜",
+        "name": "Spicy Dumpling in Chili Sauce (6 pcs)",
+        "desc": "Silky dumpling skin, numbing chili sauce",
+        "price": "NT$190"
+      }
     ],
     "reviews": [
-      {"initial": "S", "name": "Sarah M.", "date": "April 2026 · 🇬🇧 UK", "stars": "★★★★★", "text": "Worth every minute of the queue. The soup dumplings are perfect — thin skin, rich broth, the real deal."},
-      {"initial": "H", "name": "Hiroshi K.", "date": "March 2026 · 🇯🇵 Japan", "stars": "★★★★★", "text": "Classic for a reason. The fried rice is underrated. Came twice in three days."},
-      {"initial": "L", "name": "Léa B.", "date": "February 2026 · 🇫🇷 France", "stars": "★★★★☆", "text": "Exceptional food. Touristy but deserves the reputation. Go early to avoid the wait."}
+      {
+        "initial": "S",
+        "name": "Sarah M.",
+        "date": "April 2026 · 🇬🇧 UK",
+        "stars": "★★★★★",
+        "text": "Worth every minute of the queue. The soup dumplings are perfect — thin skin, rich broth, the real deal."
+      },
+      {
+        "initial": "H",
+        "name": "Hiroshi K.",
+        "date": "March 2026 · 🇯🇵 Japan",
+        "stars": "★★★★★",
+        "text": "Classic for a reason. The fried rice is underrated. Came twice in three days."
+      },
+      {
+        "initial": "L",
+        "name": "Léa B.",
+        "date": "February 2026 · 🇫🇷 France",
+        "stars": "★★★★☆",
+        "text": "Exceptional food. Touristy but deserves the reputation. Go early to avoid the wait."
+      }
     ]
   },
   {
@@ -41,23 +89,62 @@
     "price_min": 400,
     "rating": 4.7,
     "review_count": "634 reviews",
-    "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1559339804-10d5326f0c06?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "23 Songren Rd, Xinyi, Taipei",
     "hours": "Daily 11:30–14:30 · 17:30–22:00",
     "phone": "+886 2 2729 1234",
     "mrt": "Taipei City Hall · Exit 3 · 5 min walk",
-    "tags": ["dine"],
-    "categories": ["taiwanese", "dinner", "lunch", "chinese"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "taiwanese",
+      "dinner",
+      "lunch",
+      "chinese"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍗", "name": "Three-Cup Chicken", "desc": "Sesame oil, soy, rice wine — a Taiwanese classic", "price": "NT$320"},
-      {"emoji": "🐟", "name": "Steamed Sea Bass", "desc": "Whole fish, ginger, scallion, soy drizzle", "price": "NT$480"},
-      {"emoji": "🥬", "name": "Stir-Fried Water Spinach", "desc": "Garlic, fermented tofu, high heat", "price": "NT$180"},
-      {"emoji": "🍚", "name": "Braised Pork Rice", "desc": "Slow-cooked pork belly, pickled radish, soft egg", "price": "NT$120"}
+      {
+        "emoji": "🍗",
+        "name": "Three-Cup Chicken",
+        "desc": "Sesame oil, soy, rice wine — a Taiwanese classic",
+        "price": "NT$320"
+      },
+      {
+        "emoji": "🐟",
+        "name": "Steamed Sea Bass",
+        "desc": "Whole fish, ginger, scallion, soy drizzle",
+        "price": "NT$480"
+      },
+      {
+        "emoji": "🥬",
+        "name": "Stir-Fried Water Spinach",
+        "desc": "Garlic, fermented tofu, high heat",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🍚",
+        "name": "Braised Pork Rice",
+        "desc": "Slow-cooked pork belly, pickled radish, soft egg",
+        "price": "NT$120"
+      }
     ],
     "reviews": [
-      {"initial": "W", "name": "Wei C.", "date": "April 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "The best traditional Taiwanese cooking in Xinyi. Three-cup chicken is superb. Great for family dinners."},
-      {"initial": "A", "name": "Alice R.", "date": "March 2026 · 🇺🇸 USA", "stars": "★★★★☆", "text": "Excellent introduction to classic Taiwanese cuisine. Staff are helpful with the menu. Everything was delicious."}
+      {
+        "initial": "W",
+        "name": "Wei C.",
+        "date": "April 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "The best traditional Taiwanese cooking in Xinyi. Three-cup chicken is superb. Great for family dinners."
+      },
+      {
+        "initial": "A",
+        "name": "Alice R.",
+        "date": "March 2026 · 🇺🇸 USA",
+        "stars": "★★★★☆",
+        "text": "Excellent introduction to classic Taiwanese cuisine. Staff are helpful with the menu. Everything was delicious."
+      }
     ]
   },
   {
@@ -76,18 +163,57 @@
     "hours": "Daily 11:30–22:00",
     "phone": "+886 2 2723 5678",
     "mrt": "Taipei City Hall · Exit 4 · 3 min walk",
-    "tags": ["dine"],
-    "categories": ["western", "steak", "dinner", "lunch"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "western",
+      "steak",
+      "dinner",
+      "lunch"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🥩", "name": "Prime Rib Eye (280g)", "desc": "USDA prime, grilled to order, house herb butter", "price": "NT$1,280"},
-      {"emoji": "🥗", "name": "Caesar Salad", "desc": "Romaine, house dressing, parmesan, croutons", "price": "NT$220"},
-      {"emoji": "🍞", "name": "Garlic Baguette", "desc": "Toasted, parsley butter, served warm", "price": "NT$120"},
-      {"emoji": "🍮", "name": "Crème Brûlée", "desc": "Classic French dessert, torched tableside", "price": "NT$180"}
+      {
+        "emoji": "🥩",
+        "name": "Prime Rib Eye (280g)",
+        "desc": "USDA prime, grilled to order, house herb butter",
+        "price": "NT$1,280"
+      },
+      {
+        "emoji": "🥗",
+        "name": "Caesar Salad",
+        "desc": "Romaine, house dressing, parmesan, croutons",
+        "price": "NT$220"
+      },
+      {
+        "emoji": "🍞",
+        "name": "Garlic Baguette",
+        "desc": "Toasted, parsley butter, served warm",
+        "price": "NT$120"
+      },
+      {
+        "emoji": "🍮",
+        "name": "Crème Brûlée",
+        "desc": "Classic French dessert, torched tableside",
+        "price": "NT$180"
+      }
     ],
     "reviews": [
-      {"initial": "T", "name": "Thomas L.", "date": "April 2026 · 🇺🇸 USA", "stars": "★★★★☆", "text": "Reliable quality and great value for a steak dinner in Taipei. The rib eye is consistently good."},
-      {"initial": "M", "name": "Mei L.", "date": "February 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "My go-to for business dinners. Attentive service, great ambience, and the steaks are always perfect."}
+      {
+        "initial": "T",
+        "name": "Thomas L.",
+        "date": "April 2026 · 🇺🇸 USA",
+        "stars": "★★★★☆",
+        "text": "Reliable quality and great value for a steak dinner in Taipei. The rib eye is consistently good."
+      },
+      {
+        "initial": "M",
+        "name": "Mei L.",
+        "date": "February 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "My go-to for business dinners. Attentive service, great ambience, and the steaks are always perfect."
+      }
     ]
   },
   {
@@ -106,18 +232,59 @@
     "hours": "Daily 11:00–22:00",
     "phone": "+886 2 2758 9900",
     "mrt": "Taipei City Hall · Exit 2 · 8 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["japanese", "sushi", "seafood", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "japanese",
+      "sushi",
+      "seafood",
+      "lunch",
+      "dinner"
+    ],
     "badge": "🔥 Popular",
     "menu": [
-      {"emoji": "🍣", "name": "Salmon Nigiri (2 pcs)", "desc": "Fresh Atlantic salmon, seasoned rice", "price": "NT$60"},
-      {"emoji": "🦐", "name": "Prawn Tempura Roll", "desc": "Crispy tempura, cucumber, avocado", "price": "NT$80"},
-      {"emoji": "🐟", "name": "Tuna Sashimi (3 pcs)", "desc": "Lean tuna, wasabi, pickled ginger", "price": "NT$90"},
-      {"emoji": "🥚", "name": "Tamago Nigiri", "desc": "Sweet rolled egg, seasoned sushi rice", "price": "NT$40"}
+      {
+        "emoji": "🍣",
+        "name": "Salmon Nigiri (2 pcs)",
+        "desc": "Fresh Atlantic salmon, seasoned rice",
+        "price": "NT$60"
+      },
+      {
+        "emoji": "🦐",
+        "name": "Prawn Tempura Roll",
+        "desc": "Crispy tempura, cucumber, avocado",
+        "price": "NT$80"
+      },
+      {
+        "emoji": "🐟",
+        "name": "Tuna Sashimi (3 pcs)",
+        "desc": "Lean tuna, wasabi, pickled ginger",
+        "price": "NT$90"
+      },
+      {
+        "emoji": "🥚",
+        "name": "Tamago Nigiri",
+        "desc": "Sweet rolled egg, seasoned sushi rice",
+        "price": "NT$40"
+      }
     ],
     "reviews": [
-      {"initial": "K", "name": "Kenji T.", "date": "May 2026 · 🇯🇵 Japan", "stars": "★★★★☆", "text": "Great quality for a conveyor belt chain. Always fresh and affordable. Kids love it."},
-      {"initial": "R", "name": "Rachel H.", "date": "March 2026 · 🇬🇧 UK", "stars": "★★★★★", "text": "Best value sushi in Taipei. Queue can be long on weekends but moves fast. Worth every NT dollar."}
+      {
+        "initial": "K",
+        "name": "Kenji T.",
+        "date": "May 2026 · 🇯🇵 Japan",
+        "stars": "★★★★☆",
+        "text": "Great quality for a conveyor belt chain. Always fresh and affordable. Kids love it."
+      },
+      {
+        "initial": "R",
+        "name": "Rachel H.",
+        "date": "March 2026 · 🇬🇧 UK",
+        "stars": "★★★★★",
+        "text": "Best value sushi in Taipei. Queue can be long on weekends but moves fast. Worth every NT dollar."
+      }
     ]
   },
   {
@@ -136,18 +303,57 @@
     "hours": "Tue–Sun 12:00–14:30 · 18:00–21:30",
     "phone": "+886 2 2701 8877",
     "mrt": "Xinyi Anhe · Exit 1 · 4 min walk",
-    "tags": ["dine"],
-    "categories": ["french", "western", "dinner", "lunch"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "french",
+      "western",
+      "dinner",
+      "lunch"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🥩", "name": "Duck Confit", "desc": "Slow-cooked duck leg, lentils, red wine jus", "price": "NT$680"},
-      {"emoji": "🐟", "name": "Pan-Seared Sea Bass", "desc": "Crispy skin, beurre blanc, seasonal veg", "price": "NT$720"},
-      {"emoji": "🥗", "name": "Niçoise Salad", "desc": "Tuna, green beans, olives, soft-boiled egg", "price": "NT$320"},
-      {"emoji": "🍮", "name": "Chocolate Fondant", "desc": "Warm dark chocolate, vanilla bean ice cream", "price": "NT$240"}
+      {
+        "emoji": "🥩",
+        "name": "Duck Confit",
+        "desc": "Slow-cooked duck leg, lentils, red wine jus",
+        "price": "NT$680"
+      },
+      {
+        "emoji": "🐟",
+        "name": "Pan-Seared Sea Bass",
+        "desc": "Crispy skin, beurre blanc, seasonal veg",
+        "price": "NT$720"
+      },
+      {
+        "emoji": "🥗",
+        "name": "Niçoise Salad",
+        "desc": "Tuna, green beans, olives, soft-boiled egg",
+        "price": "NT$320"
+      },
+      {
+        "emoji": "🍮",
+        "name": "Chocolate Fondant",
+        "desc": "Warm dark chocolate, vanilla bean ice cream",
+        "price": "NT$240"
+      }
     ],
     "reviews": [
-      {"initial": "C", "name": "Claire D.", "date": "April 2026 · 🇫🇷 France", "stars": "★★★★★", "text": "Wonderful French cooking in Taipei. The duck confit is authentic. Surprised me completely."},
-      {"initial": "J", "name": "James W.", "date": "March 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "One of the best dinners I had in Taipei. Quiet atmosphere, attentive service, excellent wine list."}
+      {
+        "initial": "C",
+        "name": "Claire D.",
+        "date": "April 2026 · 🇫🇷 France",
+        "stars": "★★★★★",
+        "text": "Wonderful French cooking in Taipei. The duck confit is authentic. Surprised me completely."
+      },
+      {
+        "initial": "J",
+        "name": "James W.",
+        "date": "March 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "One of the best dinners I had in Taipei. Quiet atmosphere, attentive service, excellent wine list."
+      }
     ]
   },
   {
@@ -166,19 +372,66 @@
     "hours": "Daily 11:00–21:00 · Closed Tuesdays",
     "phone": "+886 2 2351 1051",
     "mrt": "Dongmen Station · Exit 5 · 8 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "noodles", "beef", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "noodles",
+      "beef",
+      "lunch",
+      "dinner"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍜", "name": "Braised Beef Noodle Soup", "desc": "Slow-cooked brisket, hand-cut noodles, rich spiced broth", "price": "NT$200"},
-      {"emoji": "🌶️", "name": "Spicy Beef Tendon Noodles", "desc": "Mala-spiced tendon, chewy noodles, chili oil", "price": "NT$220"},
-      {"emoji": "🥟", "name": "Steamed Pork Dumplings (6 pcs)", "desc": "Thin skin, juicy filling", "price": "NT$110"},
-      {"emoji": "🥬", "name": "Pickled Mustard Greens", "desc": "House-fermented, tangy side", "price": "NT$40"}
+      {
+        "emoji": "🍜",
+        "name": "Braised Beef Noodle Soup",
+        "desc": "Slow-cooked brisket, hand-cut noodles, rich spiced broth",
+        "price": "NT$200"
+      },
+      {
+        "emoji": "🌶️",
+        "name": "Spicy Beef Tendon Noodles",
+        "desc": "Mala-spiced tendon, chewy noodles, chili oil",
+        "price": "NT$220"
+      },
+      {
+        "emoji": "🥟",
+        "name": "Steamed Pork Dumplings (6 pcs)",
+        "desc": "Thin skin, juicy filling",
+        "price": "NT$110"
+      },
+      {
+        "emoji": "🥬",
+        "name": "Pickled Mustard Greens",
+        "desc": "House-fermented, tangy side",
+        "price": "NT$40"
+      }
     ],
     "reviews": [
-      {"initial": "T", "name": "Thomas W.", "date": "April 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "Best beef noodles I've had in Taiwan. The broth is deep and complex. No frills, just exceptional food."},
-      {"initial": "C", "name": "Chen Li.", "date": "March 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "My family has been coming here for 20 years. Still the best."},
-      {"initial": "R", "name": "Rina M.", "date": "February 2026 · 🇰🇷 Korea", "stars": "★★★★☆", "text": "Very popular at lunch, queue outside. The spicy tendon noodles are incredible."}
+      {
+        "initial": "T",
+        "name": "Thomas W.",
+        "date": "April 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "Best beef noodles I've had in Taiwan. The broth is deep and complex. No frills, just exceptional food."
+      },
+      {
+        "initial": "C",
+        "name": "Chen Li.",
+        "date": "March 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "My family has been coming here for 20 years. Still the best."
+      },
+      {
+        "initial": "R",
+        "name": "Rina M.",
+        "date": "February 2026 · 🇰🇷 Korea",
+        "stars": "★★★★☆",
+        "text": "Very popular at lunch, queue outside. The spicy tendon noodles are incredible."
+      }
     ]
   },
   {
@@ -192,24 +445,71 @@
     "price_min": 1800,
     "rating": 4.9,
     "review_count": "418 reviews",
-    "image_url": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1540189549105-a618f5d4d23e?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "28 Siwei Rd, Da'an, Taipei",
     "hours": "Tue–Sun 12:00–14:00 · 18:00–22:00 · Closed Mondays",
     "phone": "+886 2 2700 0901",
     "mrt": "Xinyi Anhe Station · Exit 2 · 6 min walk",
-    "tags": ["dine"],
-    "categories": ["western", "fine dining", "brunch", "seasonal", "dinner", "french"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "western",
+      "fine dining",
+      "brunch",
+      "seasonal",
+      "dinner",
+      "french"
+    ],
     "badge": "⭐ Award-winning",
     "menu": [
-      {"emoji": "🍽️", "name": "Seasonal Tasting Menu (6 courses)", "desc": "Chef's market-driven selection, changes weekly", "price": "NT$2,800"},
-      {"emoji": "🥗", "name": "Burrata with Fermented Tomato", "desc": "House burrata, fermented cherry tomato, olive oil", "price": "NT$480"},
-      {"emoji": "🐟", "name": "Grilled Local Fish", "desc": "Whole fish, seasonal herbs, citrus butter", "price": "NT$680"},
-      {"emoji": "🍮", "name": "Miso Caramel Dessert", "desc": "Miso ice cream, caramel, sesame tuile", "price": "NT$320"}
+      {
+        "emoji": "🍽️",
+        "name": "Seasonal Tasting Menu (6 courses)",
+        "desc": "Chef's market-driven selection, changes weekly",
+        "price": "NT$2,800"
+      },
+      {
+        "emoji": "🥗",
+        "name": "Burrata with Fermented Tomato",
+        "desc": "House burrata, fermented cherry tomato, olive oil",
+        "price": "NT$480"
+      },
+      {
+        "emoji": "🐟",
+        "name": "Grilled Local Fish",
+        "desc": "Whole fish, seasonal herbs, citrus butter",
+        "price": "NT$680"
+      },
+      {
+        "emoji": "🍮",
+        "name": "Miso Caramel Dessert",
+        "desc": "Miso ice cream, caramel, sesame tuile",
+        "price": "NT$320"
+      }
     ],
     "reviews": [
-      {"initial": "O", "name": "Olivia S.", "date": "April 2026 · 🇬🇧 UK", "stars": "★★★★★", "text": "One of the best meals of my life. The tasting menu is creative, elegant, and genuinely delicious. Book weeks ahead."},
-      {"initial": "K", "name": "Kai W.", "date": "March 2026 · 🇩🇪 Germany", "stars": "★★★★★", "text": "Top-tier cooking in a beautiful setting. They take local ingredients seriously. Outstanding wine list too."},
-      {"initial": "I", "name": "Isabella M.", "date": "January 2026 · 🇮🇹 Italy", "stars": "★★★★★", "text": "Exceptional. The fermented tomato dish alone is worth the visit. Taipei's best fine dining."}
+      {
+        "initial": "O",
+        "name": "Olivia S.",
+        "date": "April 2026 · 🇬🇧 UK",
+        "stars": "★★★★★",
+        "text": "One of the best meals of my life. The tasting menu is creative, elegant, and genuinely delicious. Book weeks ahead."
+      },
+      {
+        "initial": "K",
+        "name": "Kai W.",
+        "date": "March 2026 · 🇩🇪 Germany",
+        "stars": "★★★★★",
+        "text": "Top-tier cooking in a beautiful setting. They take local ingredients seriously. Outstanding wine list too."
+      },
+      {
+        "initial": "I",
+        "name": "Isabella M.",
+        "date": "January 2026 · 🇮🇹 Italy",
+        "stars": "★★★★★",
+        "text": "Exceptional. The fermented tomato dish alone is worth the visit. Taipei's best fine dining."
+      }
     ]
   },
   {
@@ -228,18 +528,60 @@
     "hours": "Daily 12:00–22:00",
     "phone": "+886 2 2351 6268",
     "mrt": "Dongmen Station · Exit 5 · 2 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["desserts", "fruit", "taiwanese", "healthy", "lunch", "ice cream"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "desserts",
+      "fruit",
+      "taiwanese",
+      "healthy",
+      "lunch",
+      "ice cream"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍧", "name": "Mango Shaved Ice", "desc": "Fresh Irwin mango, shaved milk ice, mango sorbet", "price": "NT$180"},
-      {"emoji": "🍓", "name": "Strawberry Fruit Plate", "desc": "Fresh strawberries, condensed milk, seasonal fruits", "price": "NT$160"},
-      {"emoji": "🫐", "name": "Mixed Berry Smoothie", "desc": "Blended fresh berries, yogurt, honey", "price": "NT$140"},
-      {"emoji": "🥭", "name": "Mango Smoothie", "desc": "100% fresh Taiwanese mango, no sugar added", "price": "NT$150"}
+      {
+        "emoji": "🍧",
+        "name": "Mango Shaved Ice",
+        "desc": "Fresh Irwin mango, shaved milk ice, mango sorbet",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🍓",
+        "name": "Strawberry Fruit Plate",
+        "desc": "Fresh strawberries, condensed milk, seasonal fruits",
+        "price": "NT$160"
+      },
+      {
+        "emoji": "🫐",
+        "name": "Mixed Berry Smoothie",
+        "desc": "Blended fresh berries, yogurt, honey",
+        "price": "NT$140"
+      },
+      {
+        "emoji": "🥭",
+        "name": "Mango Smoothie",
+        "desc": "100% fresh Taiwanese mango, no sugar added",
+        "price": "NT$150"
+      }
     ],
     "reviews": [
-      {"initial": "Z", "name": "Zoe C.", "date": "May 2026 · 🇦🇺 Australia", "stars": "★★★★★", "text": "The mango shaved ice is extraordinary. Only possible in Taiwan with these mangoes. Go in summer."},
-      {"initial": "W", "name": "Wei L.", "date": "April 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "Yongkang Street institution. The fruit quality is always perfect. Best dessert stop after Din Tai Fung nearby."}
+      {
+        "initial": "Z",
+        "name": "Zoe C.",
+        "date": "May 2026 · 🇦🇺 Australia",
+        "stars": "★★★★★",
+        "text": "The mango shaved ice is extraordinary. Only possible in Taiwan with these mangoes. Go in summer."
+      },
+      {
+        "initial": "W",
+        "name": "Wei L.",
+        "date": "April 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "Yongkang Street institution. The fruit quality is always perfect. Best dessert stop after Din Tai Fung nearby."
+      }
     ]
   },
   {
@@ -258,20 +600,71 @@
     "hours": "Daily 11:30–01:00",
     "phone": "+886 2 2700 7676",
     "mrt": "Da'an Station · Exit 5 · 5 min walk",
-    "tags": ["dine"],
-    "categories": ["chinese", "hot pot", "sichuan", "spicy", "dinner"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "chinese",
+      "hot pot",
+      "sichuan",
+      "spicy",
+      "dinner"
+    ],
     "badge": "🔥 Trending",
     "menu": [
-      {"emoji": "🍲", "name": "Mala Spicy Broth (per person)", "desc": "Sichuan peppercorn, dried chili, numbing heat", "price": "NT$180"},
-      {"emoji": "🥩", "name": "Premium Wagyu Beef Slices", "desc": "Thinly sliced, cooks in seconds, melt-in-mouth", "price": "NT$380"},
-      {"emoji": "🦐", "name": "Fresh Prawn Platter", "desc": "Head-on tiger prawns, served raw for the pot", "price": "NT$280"},
-      {"emoji": "🥬", "name": "Vegetable & Tofu Set", "desc": "Napa cabbage, silken tofu, enoki, lotus root", "price": "NT$120"},
-      {"emoji": "🍜", "name": "Hand-Made Noodles", "desc": "Thick wheat noodles to finish your broth", "price": "NT$60"}
+      {
+        "emoji": "🍲",
+        "name": "Mala Spicy Broth (per person)",
+        "desc": "Sichuan peppercorn, dried chili, numbing heat",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🥩",
+        "name": "Premium Wagyu Beef Slices",
+        "desc": "Thinly sliced, cooks in seconds, melt-in-mouth",
+        "price": "NT$380"
+      },
+      {
+        "emoji": "🦐",
+        "name": "Fresh Prawn Platter",
+        "desc": "Head-on tiger prawns, served raw for the pot",
+        "price": "NT$280"
+      },
+      {
+        "emoji": "🥬",
+        "name": "Vegetable & Tofu Set",
+        "desc": "Napa cabbage, silken tofu, enoki, lotus root",
+        "price": "NT$120"
+      },
+      {
+        "emoji": "🍜",
+        "name": "Hand-Made Noodles",
+        "desc": "Thick wheat noodles to finish your broth",
+        "price": "NT$60"
+      }
     ],
     "reviews": [
-      {"initial": "J", "name": "Jake R.", "date": "May 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "The mala broth is perfectly numbing — not just hot, actually complex. Great quality meat. A perfect group dinner."},
-      {"initial": "W", "name": "Wei C.", "date": "April 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "One of the best hot pot chains in Taipei. Ingredients are always fresh. The sauce bar is incredible."},
-      {"initial": "S", "name": "Sofia M.", "date": "February 2026 · 🇪🇸 Spain", "stars": "★★★★☆", "text": "Never had hot pot before — now obsessed. Staff were helpful explaining what to order."}
+      {
+        "initial": "J",
+        "name": "Jake R.",
+        "date": "May 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "The mala broth is perfectly numbing — not just hot, actually complex. Great quality meat. A perfect group dinner."
+      },
+      {
+        "initial": "W",
+        "name": "Wei C.",
+        "date": "April 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "One of the best hot pot chains in Taipei. Ingredients are always fresh. The sauce bar is incredible."
+      },
+      {
+        "initial": "S",
+        "name": "Sofia M.",
+        "date": "February 2026 · 🇪🇸 Spain",
+        "stars": "★★★★☆",
+        "text": "Never had hot pot before — now obsessed. Staff were helpful explaining what to order."
+      }
     ]
   },
   {
@@ -290,18 +683,60 @@
     "hours": "Daily 10:30–22:00",
     "phone": "+886 2 2709 1629",
     "mrt": "Da'an Station · Exit 5 · 4 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["bubble tea", "taiwanese", "cafe", "desserts", "lunch", "brunch"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "bubble tea",
+      "taiwanese",
+      "cafe",
+      "desserts",
+      "lunch",
+      "brunch"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🧋", "name": "Original Pearl Milk Tea", "desc": "The recipe that started it all — black tea, milk, tapioca", "price": "NT$90"},
-      {"emoji": "🍵", "name": "Taro Ball Grass Jelly", "desc": "Purple taro balls, grass jelly, brown sugar syrup", "price": "NT$120"},
-      {"emoji": "🥘", "name": "Shrimp Wonton Soup", "desc": "House-made wontons, clear pork broth, scallion", "price": "NT$180"},
-      {"emoji": "🍱", "name": "Taiwanese Bento Set", "desc": "Rice, braised pork, pickled veg, soft egg", "price": "NT$220"}
+      {
+        "emoji": "🧋",
+        "name": "Original Pearl Milk Tea",
+        "desc": "The recipe that started it all — black tea, milk, tapioca",
+        "price": "NT$90"
+      },
+      {
+        "emoji": "🍵",
+        "name": "Taro Ball Grass Jelly",
+        "desc": "Purple taro balls, grass jelly, brown sugar syrup",
+        "price": "NT$120"
+      },
+      {
+        "emoji": "🥘",
+        "name": "Shrimp Wonton Soup",
+        "desc": "House-made wontons, clear pork broth, scallion",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🍱",
+        "name": "Taiwanese Bento Set",
+        "desc": "Rice, braised pork, pickled veg, soft egg",
+        "price": "NT$220"
+      }
     ],
     "reviews": [
-      {"initial": "C", "name": "Clara B.", "date": "May 2026 · 🇧🇷 Brazil", "stars": "★★★★★", "text": "The birthplace of bubble tea! You have to come here. The original pearl milk tea is perfectly balanced."},
-      {"initial": "A", "name": "Alex T.", "date": "March 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "Historical and delicious. The food menu is underrated — the wonton soup is excellent."}
+      {
+        "initial": "C",
+        "name": "Clara B.",
+        "date": "May 2026 · 🇧🇷 Brazil",
+        "stars": "★★★★★",
+        "text": "The birthplace of bubble tea! You have to come here. The original pearl milk tea is perfectly balanced."
+      },
+      {
+        "initial": "A",
+        "name": "Alex T.",
+        "date": "March 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "Historical and delicious. The food menu is underrated — the wonton soup is excellent."
+      }
     ]
   },
   {
@@ -320,18 +755,59 @@
     "hours": "Mon–Fri 08:00–18:00 · Sat–Sun 09:00–18:00",
     "phone": "+886 2 2363 4455",
     "mrt": "Taipower Building · Exit 2 · 6 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["cafe", "brunch", "breakfast", "healthy", "vegetarian"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "cafe",
+      "brunch",
+      "breakfast",
+      "healthy",
+      "vegetarian"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "☕", "name": "Single Origin Pour Over", "desc": "Ethiopian or Colombian, seasonal rotation", "price": "NT$180"},
-      {"emoji": "🥑", "name": "Avocado Toast", "desc": "Sourdough, smashed avocado, poached egg, chili flakes", "price": "NT$220"},
-      {"emoji": "🥐", "name": "Butter Croissant", "desc": "Freshly baked, laminated pastry, house jam", "price": "NT$90"},
-      {"emoji": "🧇", "name": "Banana Walnut Waffle", "desc": "Belgian waffle, fresh banana, walnut, maple syrup", "price": "NT$260"}
+      {
+        "emoji": "☕",
+        "name": "Single Origin Pour Over",
+        "desc": "Ethiopian or Colombian, seasonal rotation",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🥑",
+        "name": "Avocado Toast",
+        "desc": "Sourdough, smashed avocado, poached egg, chili flakes",
+        "price": "NT$220"
+      },
+      {
+        "emoji": "🥐",
+        "name": "Butter Croissant",
+        "desc": "Freshly baked, laminated pastry, house jam",
+        "price": "NT$90"
+      },
+      {
+        "emoji": "🧇",
+        "name": "Banana Walnut Waffle",
+        "desc": "Belgian waffle, fresh banana, walnut, maple syrup",
+        "price": "NT$260"
+      }
     ],
     "reviews": [
-      {"initial": "E", "name": "Emma T.", "date": "May 2026 · 🇦🇺 Australia", "stars": "★★★★★", "text": "Hidden gem on a quiet street in Da'an. The best pour-over in the neighbourhood. Avocado toast is perfect."},
-      {"initial": "Y", "name": "Yuki H.", "date": "April 2026 · 🇯🇵 Japan", "stars": "★★★★☆", "text": "Lovely little café, good coffee, great atmosphere. Gets busy on weekend mornings."}
+      {
+        "initial": "E",
+        "name": "Emma T.",
+        "date": "May 2026 · 🇦🇺 Australia",
+        "stars": "★★★★★",
+        "text": "Hidden gem on a quiet street in Da'an. The best pour-over in the neighbourhood. Avocado toast is perfect."
+      },
+      {
+        "initial": "Y",
+        "name": "Yuki H.",
+        "date": "April 2026 · 🇯🇵 Japan",
+        "stars": "★★★★☆",
+        "text": "Lovely little café, good coffee, great atmosphere. Gets busy on weekend mornings."
+      }
     ]
   },
   {
@@ -350,19 +826,65 @@
     "hours": "Daily 11:00–22:00",
     "phone": "+886 2 2563 0099",
     "mrt": "Zhongshan Station · Exit 2 · 3 min walk",
-    "tags": ["pickup", "delivery"],
-    "categories": ["bubble tea", "drinks", "taiwanese", "desserts"],
+    "tags": [
+      "pickup",
+      "delivery"
+    ],
+    "categories": [
+      "bubble tea",
+      "drinks",
+      "taiwanese",
+      "desserts"
+    ],
     "badge": "🔥 Popular",
     "menu": [
-      {"emoji": "🧋", "name": "Brown Sugar Boba Milk (Tiger Series)", "desc": "Signature tiger-stripe cup, fresh milk, chewy tapioca", "price": "NT$80"},
-      {"emoji": "🍵", "name": "Brown Sugar Matcha Latte", "desc": "Ceremonial grade matcha, tiger caramel, boba", "price": "NT$90"},
-      {"emoji": "🧋", "name": "Taro Milk Tea with Boba", "desc": "Creamy taro, house milk tea, large tapioca", "price": "NT$75"},
-      {"emoji": "🥛", "name": "Fresh Milk with Pudding", "desc": "House-set egg pudding, fresh Taiwanese milk", "price": "NT$85"}
+      {
+        "emoji": "🧋",
+        "name": "Brown Sugar Boba Milk (Tiger Series)",
+        "desc": "Signature tiger-stripe cup, fresh milk, chewy tapioca",
+        "price": "NT$80"
+      },
+      {
+        "emoji": "🍵",
+        "name": "Brown Sugar Matcha Latte",
+        "desc": "Ceremonial grade matcha, tiger caramel, boba",
+        "price": "NT$90"
+      },
+      {
+        "emoji": "🧋",
+        "name": "Taro Milk Tea with Boba",
+        "desc": "Creamy taro, house milk tea, large tapioca",
+        "price": "NT$75"
+      },
+      {
+        "emoji": "🥛",
+        "name": "Fresh Milk with Pudding",
+        "desc": "House-set egg pudding, fresh Taiwanese milk",
+        "price": "NT$85"
+      }
     ],
     "reviews": [
-      {"initial": "E", "name": "Emma P.", "date": "May 2026 · 🇬🇧 UK", "stars": "★★★★★", "text": "The brown sugar boba is genuinely different from everywhere else. Richer, more caramel-forward. Worth the hype."},
-      {"initial": "D", "name": "David C.", "date": "April 2026 · 🇨🇦 Canada", "stars": "★★★★★", "text": "Queued for 15 mins and zero regrets. Best boba I've had in Asia."},
-      {"initial": "N", "name": "Nadia F.", "date": "February 2026 · 🇫🇷 France", "stars": "★★★★☆", "text": "Very sweet but very good. The tiger stripes are beautiful. Great for Instagram too!"}
+      {
+        "initial": "E",
+        "name": "Emma P.",
+        "date": "May 2026 · 🇬🇧 UK",
+        "stars": "★★★★★",
+        "text": "The brown sugar boba is genuinely different from everywhere else. Richer, more caramel-forward. Worth the hype."
+      },
+      {
+        "initial": "D",
+        "name": "David C.",
+        "date": "April 2026 · 🇨🇦 Canada",
+        "stars": "★★★★★",
+        "text": "Queued for 15 mins and zero regrets. Best boba I've had in Asia."
+      },
+      {
+        "initial": "N",
+        "name": "Nadia F.",
+        "date": "February 2026 · 🇫🇷 France",
+        "stars": "★★★★☆",
+        "text": "Very sweet but very good. The tiger stripes are beautiful. Great for Instagram too!"
+      }
     ]
   },
   {
@@ -376,23 +898,65 @@
     "price_min": 300,
     "rating": 4.8,
     "review_count": "762 reviews",
-    "image_url": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1574484284002-91d2d073ef74?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "18 Zhongshan N Rd, Sec 6, Zhongshan, Taipei",
     "hours": "Daily 06:00–22:00",
     "phone": "+886 2 2508 1268",
     "mrt": "Jiantan Station · Exit 1 · 10 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["japanese", "seafood", "sushi", "sashimi", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "japanese",
+      "seafood",
+      "sushi",
+      "sashimi",
+      "lunch",
+      "dinner"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🐟", "name": "Daily Sashimi Set", "desc": "Chef's selection of seasonal fresh fish, wasabi, soy", "price": "NT$380"},
-      {"emoji": "🦞", "name": "Grilled Lobster", "desc": "Half lobster, garlic butter, charcoal grilled", "price": "NT$680"},
-      {"emoji": "🍣", "name": "Premium Salmon Sashimi (8 pcs)", "desc": "Atlantic salmon, just cut, served on ice", "price": "NT$320"},
-      {"emoji": "🦐", "name": "Boiled Tiger Prawns", "desc": "Fresh, sweet, served with ponzu dipping sauce", "price": "NT$280"}
+      {
+        "emoji": "🐟",
+        "name": "Daily Sashimi Set",
+        "desc": "Chef's selection of seasonal fresh fish, wasabi, soy",
+        "price": "NT$380"
+      },
+      {
+        "emoji": "🦞",
+        "name": "Grilled Lobster",
+        "desc": "Half lobster, garlic butter, charcoal grilled",
+        "price": "NT$680"
+      },
+      {
+        "emoji": "🍣",
+        "name": "Premium Salmon Sashimi (8 pcs)",
+        "desc": "Atlantic salmon, just cut, served on ice",
+        "price": "NT$320"
+      },
+      {
+        "emoji": "🦐",
+        "name": "Boiled Tiger Prawns",
+        "desc": "Fresh, sweet, served with ponzu dipping sauce",
+        "price": "NT$280"
+      }
     ],
     "reviews": [
-      {"initial": "G", "name": "Grace H.", "date": "May 2026 · 🇸🇬 Singapore", "stars": "★★★★★", "text": "The freshest seafood in Taipei. It's a market and a restaurant — you pick what you want and they prepare it."},
-      {"initial": "F", "name": "François D.", "date": "March 2026 · 🇫🇷 France", "stars": "★★★★★", "text": "As good as any Tokyo fish market. The sashimi is outstanding. Worth the trip."}
+      {
+        "initial": "G",
+        "name": "Grace H.",
+        "date": "May 2026 · 🇸🇬 Singapore",
+        "stars": "★★★★★",
+        "text": "The freshest seafood in Taipei. It's a market and a restaurant — you pick what you want and they prepare it."
+      },
+      {
+        "initial": "F",
+        "name": "François D.",
+        "date": "March 2026 · 🇫🇷 France",
+        "stars": "★★★★★",
+        "text": "As good as any Tokyo fish market. The sashimi is outstanding. Worth the trip."
+      }
     ]
   },
   {
@@ -406,23 +970,64 @@
     "price_min": 2800,
     "rating": 4.9,
     "review_count": "523 reviews",
-    "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "301 Lequn 3rd Rd, Zhongshan, Taipei",
     "hours": "Wed–Sun 12:00–14:00 · 18:30–21:30 · Closed Mon–Tue",
     "phone": "+886 2 8501 5800",
     "mrt": "Jiannan Rd Station · Exit 2 · 8 min walk",
-    "tags": ["dine"],
-    "categories": ["fine dining", "taiwanese", "fusion", "dinner", "seasonal"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "fine dining",
+      "taiwanese",
+      "fusion",
+      "dinner",
+      "seasonal"
+    ],
     "badge": "⭐ Michelin",
     "menu": [
-      {"emoji": "🍽️", "name": "Seasonal Tasting Menu (8 courses)", "desc": "André Chiang's vision of modern Taiwanese cuisine", "price": "NT$3,800"},
-      {"emoji": "🥂", "name": "Wine Pairing (per person)", "desc": "Sommelier-selected wines to match each course", "price": "NT$2,200"},
-      {"emoji": "🍵", "name": "Tea Pairing", "desc": "Curated Taiwanese high mountain teas", "price": "NT$800"}
+      {
+        "emoji": "🍽️",
+        "name": "Seasonal Tasting Menu (8 courses)",
+        "desc": "André Chiang's vision of modern Taiwanese cuisine",
+        "price": "NT$3,800"
+      },
+      {
+        "emoji": "🥂",
+        "name": "Wine Pairing (per person)",
+        "desc": "Sommelier-selected wines to match each course",
+        "price": "NT$2,200"
+      },
+      {
+        "emoji": "🍵",
+        "name": "Tea Pairing",
+        "desc": "Curated Taiwanese high mountain teas",
+        "price": "NT$800"
+      }
     ],
     "reviews": [
-      {"initial": "M", "name": "Maxime L.", "date": "April 2026 · 🇫🇷 France", "stars": "★★★★★", "text": "One of the top ten meals of my life. RAW redefines what Taiwanese cuisine can be. Book 4–6 weeks ahead."},
-      {"initial": "J", "name": "Julia W.", "date": "March 2026 · 🇨🇭 Switzerland", "stars": "★★★★★", "text": "Michelin quality through and through. Each course is a work of art. The tea pairing is extraordinary."},
-      {"initial": "R", "name": "Ren Y.", "date": "January 2026 · 🇸🇬 Singapore", "stars": "★★★★★", "text": "The best restaurant in Taipei, full stop. Impeccable service, creative food, beautiful space."}
+      {
+        "initial": "M",
+        "name": "Maxime L.",
+        "date": "April 2026 · 🇫🇷 France",
+        "stars": "★★★★★",
+        "text": "One of the top ten meals of my life. RAW redefines what Taiwanese cuisine can be. Book 4–6 weeks ahead."
+      },
+      {
+        "initial": "J",
+        "name": "Julia W.",
+        "date": "March 2026 · 🇨🇭 Switzerland",
+        "stars": "★★★★★",
+        "text": "Michelin quality through and through. Each course is a work of art. The tea pairing is extraordinary."
+      },
+      {
+        "initial": "R",
+        "name": "Ren Y.",
+        "date": "January 2026 · 🇸🇬 Singapore",
+        "stars": "★★★★★",
+        "text": "The best restaurant in Taipei, full stop. Impeccable service, creative food, beautiful space."
+      }
     ]
   },
   {
@@ -436,23 +1041,64 @@
     "price_min": 180,
     "rating": 4.7,
     "review_count": "445 reviews",
-    "image_url": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1582878052814-cd0f3d4e1e1d?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "22 Shuangcheng St, Zhongshan, Taipei",
     "hours": "Daily 11:30–22:00",
     "phone": "+886 2 2595 6677",
     "mrt": "Xingtian Temple · Exit 4 · 5 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["japanese", "noodles", "ramen", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "japanese",
+      "noodles",
+      "ramen",
+      "lunch",
+      "dinner"
+    ],
     "badge": "🔥 Popular",
     "menu": [
-      {"emoji": "🍜", "name": "Tonkotsu Ramen", "desc": "12-hour pork bone broth, thin noodles, chashu, soft egg", "price": "NT$220"},
-      {"emoji": "🌶️", "name": "Spicy Miso Ramen", "desc": "Miso-infused broth, ground pork, bamboo shoots", "price": "NT$240"},
-      {"emoji": "🥟", "name": "Gyoza (6 pcs)", "desc": "Pan-fried pork and cabbage dumplings", "price": "NT$100"},
-      {"emoji": "🍚", "name": "Chashu Pork Rice", "desc": "Slow-braised pork, seasoned rice, pickled ginger", "price": "NT$120"}
+      {
+        "emoji": "🍜",
+        "name": "Tonkotsu Ramen",
+        "desc": "12-hour pork bone broth, thin noodles, chashu, soft egg",
+        "price": "NT$220"
+      },
+      {
+        "emoji": "🌶️",
+        "name": "Spicy Miso Ramen",
+        "desc": "Miso-infused broth, ground pork, bamboo shoots",
+        "price": "NT$240"
+      },
+      {
+        "emoji": "🥟",
+        "name": "Gyoza (6 pcs)",
+        "desc": "Pan-fried pork and cabbage dumplings",
+        "price": "NT$100"
+      },
+      {
+        "emoji": "🍚",
+        "name": "Chashu Pork Rice",
+        "desc": "Slow-braised pork, seasoned rice, pickled ginger",
+        "price": "NT$120"
+      }
     ],
     "reviews": [
-      {"initial": "Y", "name": "Yoshi M.", "date": "May 2026 · 🇯🇵 Japan", "stars": "★★★★★", "text": "Rivals the best ramen shops in Tokyo. The tonkotsu broth is rich and not too heavy. Always packed at lunch."},
-      {"initial": "B", "name": "Ben K.", "date": "March 2026 · 🇦🇺 Australia", "stars": "★★★★★", "text": "Best ramen I've had in Taipei. The soft egg is perfectly runny. I came back three times in a week."}
+      {
+        "initial": "Y",
+        "name": "Yoshi M.",
+        "date": "May 2026 · 🇯🇵 Japan",
+        "stars": "★★★★★",
+        "text": "Rivals the best ramen shops in Tokyo. The tonkotsu broth is rich and not too heavy. Always packed at lunch."
+      },
+      {
+        "initial": "B",
+        "name": "Ben K.",
+        "date": "March 2026 · 🇦🇺 Australia",
+        "stars": "★★★★★",
+        "text": "Best ramen I've had in Taipei. The soft egg is perfectly runny. I came back three times in a week."
+      }
     ]
   },
   {
@@ -471,18 +1117,56 @@
     "hours": "Mon–Sat 18:00–01:00 · Closed Sundays",
     "phone": "+886 2 2581 4422",
     "mrt": "Zhongshan Station · Exit 6 · 7 min walk",
-    "tags": ["dine"],
-    "categories": ["japanese", "dinner", "latenight"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "japanese",
+      "dinner",
+      "latenight"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍢", "name": "Chicken Yakitori Skewers (4 pcs)", "desc": "Grilled thigh, tare glaze, scallion", "price": "NT$180"},
-      {"emoji": "🍺", "name": "Draft Sapporo Beer", "desc": "Cold pour, served in frosted glass", "price": "NT$150"},
-      {"emoji": "🐙", "name": "Takoyaki (6 pcs)", "desc": "Octopus balls, bonito flakes, mayo, okonomiyaki sauce", "price": "NT$160"},
-      {"emoji": "🍣", "name": "Mixed Sashimi Plate", "desc": "Chef's daily selection, served with shiso leaf", "price": "NT$380"}
+      {
+        "emoji": "🍢",
+        "name": "Chicken Yakitori Skewers (4 pcs)",
+        "desc": "Grilled thigh, tare glaze, scallion",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🍺",
+        "name": "Draft Sapporo Beer",
+        "desc": "Cold pour, served in frosted glass",
+        "price": "NT$150"
+      },
+      {
+        "emoji": "🐙",
+        "name": "Takoyaki (6 pcs)",
+        "desc": "Octopus balls, bonito flakes, mayo, okonomiyaki sauce",
+        "price": "NT$160"
+      },
+      {
+        "emoji": "🍣",
+        "name": "Mixed Sashimi Plate",
+        "desc": "Chef's daily selection, served with shiso leaf",
+        "price": "NT$380"
+      }
     ],
     "reviews": [
-      {"initial": "S", "name": "Sho T.", "date": "April 2026 · 🇯🇵 Japan", "stars": "★★★★★", "text": "Feels like an actual Tokyo izakaya. Great spot for after-work drinks and food. The yakitori is excellent."},
-      {"initial": "M", "name": "Mike L.", "date": "March 2026 · 🇬🇧 UK", "stars": "★★★★☆", "text": "Lively atmosphere, good beer, tasty small plates. Perfect for a group dinner that goes late."}
+      {
+        "initial": "S",
+        "name": "Sho T.",
+        "date": "April 2026 · 🇯🇵 Japan",
+        "stars": "★★★★★",
+        "text": "Feels like an actual Tokyo izakaya. Great spot for after-work drinks and food. The yakitori is excellent."
+      },
+      {
+        "initial": "M",
+        "name": "Mike L.",
+        "date": "March 2026 · 🇬🇧 UK",
+        "stars": "★★★★☆",
+        "text": "Lively atmosphere, good beer, tasty small plates. Perfect for a group dinner that goes late."
+      }
     ]
   },
   {
@@ -501,19 +1185,67 @@
     "hours": "Daily 18:00–01:00",
     "phone": "Walk-in only",
     "mrt": "Zhongshan Station · Exit 6 · 10 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["street food", "taiwanese", "snacks", "night market", "latenight", "oyster"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "street food",
+      "taiwanese",
+      "snacks",
+      "night market",
+      "latenight",
+      "oyster"
+    ],
     "badge": "🔥 Trending",
     "menu": [
-      {"emoji": "🦪", "name": "Oyster Vermicelli (蚵仔麵線)", "desc": "Thick vermicelli, oysters, sweet potato starch broth", "price": "NT$50"},
-      {"emoji": "🧆", "name": "Deep-Fried Taro Ball", "desc": "Crispy outside, soft taro inside", "price": "NT$45"},
-      {"emoji": "🥜", "name": "Peanut Ice Cream Roll", "desc": "Shaved ice, peanut brittle, coriander, ice cream", "price": "NT$60"},
-      {"emoji": "🍢", "name": "Grilled Corn on the Cob", "desc": "Charcoal grilled, soy glaze", "price": "NT$40"}
+      {
+        "emoji": "🦪",
+        "name": "Oyster Vermicelli (蚵仔麵線)",
+        "desc": "Thick vermicelli, oysters, sweet potato starch broth",
+        "price": "NT$50"
+      },
+      {
+        "emoji": "🧆",
+        "name": "Deep-Fried Taro Ball",
+        "desc": "Crispy outside, soft taro inside",
+        "price": "NT$45"
+      },
+      {
+        "emoji": "🥜",
+        "name": "Peanut Ice Cream Roll",
+        "desc": "Shaved ice, peanut brittle, coriander, ice cream",
+        "price": "NT$60"
+      },
+      {
+        "emoji": "🍢",
+        "name": "Grilled Corn on the Cob",
+        "desc": "Charcoal grilled, soy glaze",
+        "price": "NT$40"
+      }
     ],
     "reviews": [
-      {"initial": "A", "name": "Anna T.", "date": "May 2026 · 🇩🇪 Germany", "stars": "★★★★★", "text": "The most authentic night market in Taipei — locals, not tourists. Oyster vermicelli is a must."},
-      {"initial": "J", "name": "James L.", "date": "March 2026 · 🇦🇺 Australia", "stars": "★★★★★", "text": "Go hungry. Everything is cheap and delicious. The peanut ice cream roll is life-changing."},
-      {"initial": "Y", "name": "Yuki S.", "date": "January 2026 · 🇯🇵 Japan", "stars": "★★★★☆", "text": "Very lively, very local. Busy on weekends but worth it. Exactly what street food should be."}
+      {
+        "initial": "A",
+        "name": "Anna T.",
+        "date": "May 2026 · 🇩🇪 Germany",
+        "stars": "★★★★★",
+        "text": "The most authentic night market in Taipei — locals, not tourists. Oyster vermicelli is a must."
+      },
+      {
+        "initial": "J",
+        "name": "James L.",
+        "date": "March 2026 · 🇦🇺 Australia",
+        "stars": "★★★★★",
+        "text": "Go hungry. Everything is cheap and delicious. The peanut ice cream roll is life-changing."
+      },
+      {
+        "initial": "Y",
+        "name": "Yuki S.",
+        "date": "January 2026 · 🇯🇵 Japan",
+        "stars": "★★★★☆",
+        "text": "Very lively, very local. Busy on weekends but worth it. Exactly what street food should be."
+      }
     ]
   },
   {
@@ -527,23 +1259,64 @@
     "price_min": 150,
     "rating": 4.5,
     "review_count": "421 reviews",
-    "image_url": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "12 Yanping N Rd, Sec 2, Datong, Taipei",
     "hours": "Daily 10:30–21:00",
     "phone": "+886 2 2553 8822",
     "mrt": "Zhongshan Station · Exit 5 · 12 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "noodles", "beef", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "noodles",
+      "beef",
+      "lunch",
+      "dinner"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍜", "name": "Red-Braised Beef Noodle", "desc": "Traditional spiced broth, tender brisket, thick noodles", "price": "NT$180"},
-      {"emoji": "🥩", "name": "Beef Tendon Noodle", "desc": "Slow-cooked tendon, gelatinous and rich", "price": "NT$200"},
-      {"emoji": "🥬", "name": "Pickled Cabbage Side", "desc": "House fermented, crunchy, refreshing", "price": "NT$40"},
-      {"emoji": "🍚", "name": "Braised Pork Rice", "desc": "Classic minced pork, soy-glazed, over steamed rice", "price": "NT$80"}
+      {
+        "emoji": "🍜",
+        "name": "Red-Braised Beef Noodle",
+        "desc": "Traditional spiced broth, tender brisket, thick noodles",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🥩",
+        "name": "Beef Tendon Noodle",
+        "desc": "Slow-cooked tendon, gelatinous and rich",
+        "price": "NT$200"
+      },
+      {
+        "emoji": "🥬",
+        "name": "Pickled Cabbage Side",
+        "desc": "House fermented, crunchy, refreshing",
+        "price": "NT$40"
+      },
+      {
+        "emoji": "🍚",
+        "name": "Braised Pork Rice",
+        "desc": "Classic minced pork, soy-glazed, over steamed rice",
+        "price": "NT$80"
+      }
     ],
     "reviews": [
-      {"initial": "L", "name": "Lin H.", "date": "April 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "This place has been here since I was a kid. Same recipe, same quality. The real Taipei beef noodle."},
-      {"initial": "P", "name": "Peter S.", "date": "March 2026 · 🇩🇪 Germany", "stars": "★★★★☆", "text": "Found this by walking around Datong. Rich, hearty soup. Great value and absolutely no tourists."}
+      {
+        "initial": "L",
+        "name": "Lin H.",
+        "date": "April 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "This place has been here since I was a kid. Same recipe, same quality. The real Taipei beef noodle."
+      },
+      {
+        "initial": "P",
+        "name": "Peter S.",
+        "date": "March 2026 · 🇩🇪 Germany",
+        "stars": "★★★★☆",
+        "text": "Found this by walking around Datong. Rich, hearty soup. Great value and absolutely no tourists."
+      }
     ]
   },
   {
@@ -562,18 +1335,57 @@
     "hours": "Daily 05:30–12:30",
     "phone": "+886 2 2556 1234",
     "mrt": "Daqiaotou Station · Exit 1 · 5 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "breakfast", "healthy"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "breakfast",
+      "healthy"
+    ],
     "badge": "🔥 Popular",
     "menu": [
-      {"emoji": "🥛", "name": "Warm Soy Milk", "desc": "Stone-ground fresh soybeans, slightly sweet", "price": "NT$30"},
-      {"emoji": "🍞", "name": "You Tiao (Fried Dough Stick)", "desc": "Light, airy, crispy — perfect for dipping", "price": "NT$25"},
-      {"emoji": "🥚", "name": "Scallion Egg Pancake (蛋餅)", "desc": "Thin crepe, egg, scallion, soy dipping sauce", "price": "NT$45"},
-      {"emoji": "🧆", "name": "Shaobing (Sesame Flatbread)", "desc": "Flaky layered bread, sesame topping, warm from oven", "price": "NT$35"}
+      {
+        "emoji": "🥛",
+        "name": "Warm Soy Milk",
+        "desc": "Stone-ground fresh soybeans, slightly sweet",
+        "price": "NT$30"
+      },
+      {
+        "emoji": "🍞",
+        "name": "You Tiao (Fried Dough Stick)",
+        "desc": "Light, airy, crispy — perfect for dipping",
+        "price": "NT$25"
+      },
+      {
+        "emoji": "🥚",
+        "name": "Scallion Egg Pancake (蛋餅)",
+        "desc": "Thin crepe, egg, scallion, soy dipping sauce",
+        "price": "NT$45"
+      },
+      {
+        "emoji": "🧆",
+        "name": "Shaobing (Sesame Flatbread)",
+        "desc": "Flaky layered bread, sesame topping, warm from oven",
+        "price": "NT$35"
+      }
     ],
     "reviews": [
-      {"initial": "W", "name": "Wang F.", "date": "May 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "Breakfast here every Sunday. The soy milk is perfectly sweet and warm. Queue is part of the ritual."},
-      {"initial": "N", "name": "Nadine R.", "date": "February 2026 · 🇫🇷 France", "stars": "★★★★★", "text": "A true Taipei morning experience. The you tiao dipped in warm soy milk — nothing else like it."}
+      {
+        "initial": "W",
+        "name": "Wang F.",
+        "date": "May 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "Breakfast here every Sunday. The soy milk is perfectly sweet and warm. Queue is part of the ritual."
+      },
+      {
+        "initial": "N",
+        "name": "Nadine R.",
+        "date": "February 2026 · 🇫🇷 France",
+        "stars": "★★★★★",
+        "text": "A true Taipei morning experience. The you tiao dipped in warm soy milk — nothing else like it."
+      }
     ]
   },
   {
@@ -587,23 +1399,62 @@
     "price_min": 120,
     "rating": 4.4,
     "review_count": "198 reviews",
-    "image_url": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1466637574293-4bbd9087c952?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "218 Dihua St, Sec 1, Datong, Taipei",
     "hours": "Daily 10:00–20:00",
     "phone": "+886 2 2555 9988",
     "mrt": "Daqiaotou Station · Exit 1 · 8 min walk",
-    "tags": ["dine"],
-    "categories": ["taiwanese", "cafe", "desserts", "healthy"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "taiwanese",
+      "cafe",
+      "desserts",
+      "healthy"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍵", "name": "Alishan High Mountain Oolong", "desc": "Cold-brewed overnight, floral, smooth, 100% Taiwanese leaf", "price": "NT$180"},
-      {"emoji": "🍡", "name": "Red Bean Tang Yuan", "desc": "Glutinous rice balls, sweet red bean filling, warm broth", "price": "NT$120"},
-      {"emoji": "🥮", "name": "Pineapple Cake (2 pcs)", "desc": "Traditional Taiwanese pastry, house pineapple jam", "price": "NT$90"},
-      {"emoji": "🧋", "name": "Taro Ball Dessert Bowl", "desc": "Purple taro, grass jelly, red bean, crushed ice", "price": "NT$150"}
+      {
+        "emoji": "🍵",
+        "name": "Alishan High Mountain Oolong",
+        "desc": "Cold-brewed overnight, floral, smooth, 100% Taiwanese leaf",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🍡",
+        "name": "Red Bean Tang Yuan",
+        "desc": "Glutinous rice balls, sweet red bean filling, warm broth",
+        "price": "NT$120"
+      },
+      {
+        "emoji": "🥮",
+        "name": "Pineapple Cake (2 pcs)",
+        "desc": "Traditional Taiwanese pastry, house pineapple jam",
+        "price": "NT$90"
+      },
+      {
+        "emoji": "🧋",
+        "name": "Taro Ball Dessert Bowl",
+        "desc": "Purple taro, grass jelly, red bean, crushed ice",
+        "price": "NT$150"
+      }
     ],
     "reviews": [
-      {"initial": "S", "name": "Sophie L.", "date": "April 2026 · 🇧🇪 Belgium", "stars": "★★★★☆", "text": "A peaceful stop on a busy Dihua St walk. The oolong tea is exceptional. Loved the traditional atmosphere."},
-      {"initial": "C", "name": "Chen W.", "date": "February 2026 · 🇹🇼 Taiwan", "stars": "★★★★☆", "text": "Great place to rest and try traditional snacks. The pineapple cakes are the real thing, not the tourist version."}
+      {
+        "initial": "S",
+        "name": "Sophie L.",
+        "date": "April 2026 · 🇧🇪 Belgium",
+        "stars": "★★★★☆",
+        "text": "A peaceful stop on a busy Dihua St walk. The oolong tea is exceptional. Loved the traditional atmosphere."
+      },
+      {
+        "initial": "C",
+        "name": "Chen W.",
+        "date": "February 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★☆",
+        "text": "Great place to rest and try traditional snacks. The pineapple cakes are the real thing, not the tourist version."
+      }
     ]
   },
   {
@@ -622,18 +1473,59 @@
     "hours": "Daily 08:00–20:00",
     "phone": "Walk-in",
     "mrt": "Beimen Station · Exit 3 · 5 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["street food", "taiwanese", "snacks", "breakfast", "lunch"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "street food",
+      "taiwanese",
+      "snacks",
+      "breakfast",
+      "lunch"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🌯", "name": "Taiwanese Rice Roll (飯糰)", "desc": "Glutinous rice, you tiao, pickled mustard, floss", "price": "NT$55"},
-      {"emoji": "🥜", "name": "Peanut Mochi", "desc": "Soft rice cake, crushed peanut sugar, fresh made", "price": "NT$40"},
-      {"emoji": "🧇", "name": "Scallion Pancake", "desc": "Crispy layers, fresh scallion, sesame", "price": "NT$45"},
-      {"emoji": "🫙", "name": "Grass Jelly Drink", "desc": "Cold black herbal jelly, brown sugar, ice", "price": "NT$50"}
+      {
+        "emoji": "🌯",
+        "name": "Taiwanese Rice Roll (飯糰)",
+        "desc": "Glutinous rice, you tiao, pickled mustard, floss",
+        "price": "NT$55"
+      },
+      {
+        "emoji": "🥜",
+        "name": "Peanut Mochi",
+        "desc": "Soft rice cake, crushed peanut sugar, fresh made",
+        "price": "NT$40"
+      },
+      {
+        "emoji": "🧇",
+        "name": "Scallion Pancake",
+        "desc": "Crispy layers, fresh scallion, sesame",
+        "price": "NT$45"
+      },
+      {
+        "emoji": "🫙",
+        "name": "Grass Jelly Drink",
+        "desc": "Cold black herbal jelly, brown sugar, ice",
+        "price": "NT$50"
+      }
     ],
     "reviews": [
-      {"initial": "T", "name": "Tanya V.", "date": "March 2026 · 🇷🇺 Russia", "stars": "★★★★★", "text": "Wandered into this area by accident and found the best snacks in Taipei. The rice rolls are incredible."},
-      {"initial": "J", "name": "Jun L.", "date": "February 2026 · 🇨🇳 China", "stars": "★★★★☆", "text": "Authentic old Taipei street food. The scallion pancakes are crispy and fresh, just like grandma used to make."}
+      {
+        "initial": "T",
+        "name": "Tanya V.",
+        "date": "March 2026 · 🇷🇺 Russia",
+        "stars": "★★★★★",
+        "text": "Wandered into this area by accident and found the best snacks in Taipei. The rice rolls are incredible."
+      },
+      {
+        "initial": "J",
+        "name": "Jun L.",
+        "date": "February 2026 · 🇨🇳 China",
+        "stars": "★★★★☆",
+        "text": "Authentic old Taipei street food. The scallion pancakes are crispy and fresh, just like grandma used to make."
+      }
     ]
   },
   {
@@ -647,23 +1539,65 @@
     "price_min": 55,
     "rating": 4.7,
     "review_count": "1,543 reviews",
-    "image_url": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "8-1 Xining S Rd, Wanhua (Ximending), Taipei",
     "hours": "Daily 11:00–22:30",
     "phone": "+886 2 2388 8808",
     "mrt": "Ximen Station · Exit 6 · 2 min walk",
-    "tags": ["pickup"],
-    "categories": ["taiwanese", "street food", "noodles", "lunch", "dinner", "snacks"],
+    "tags": [
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "street food",
+      "noodles",
+      "lunch",
+      "dinner",
+      "snacks"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍲", "name": "Oyster Vermicelli (蚵仔麵線)", "desc": "Oysters, intestine, thick noodles in starch broth", "price": "NT$60"},
-      {"emoji": "🦪", "name": "Oyster Only Vermicelli", "desc": "Extra oysters, no intestine, classic broth", "price": "NT$65"},
-      {"emoji": "🍲", "name": "Large Bowl", "desc": "Double portion, same great recipe", "price": "NT$75"}
+      {
+        "emoji": "🍲",
+        "name": "Oyster Vermicelli (蚵仔麵線)",
+        "desc": "Oysters, intestine, thick noodles in starch broth",
+        "price": "NT$60"
+      },
+      {
+        "emoji": "🦪",
+        "name": "Oyster Only Vermicelli",
+        "desc": "Extra oysters, no intestine, classic broth",
+        "price": "NT$65"
+      },
+      {
+        "emoji": "🍲",
+        "name": "Large Bowl",
+        "desc": "Double portion, same great recipe",
+        "price": "NT$75"
+      }
     ],
     "reviews": [
-      {"initial": "B", "name": "Ben K.", "date": "April 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "An institution. Been serving the same recipe for decades. Eat standing up on the street like everyone else."},
-      {"initial": "M", "name": "Mei L.", "date": "March 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "The queue moves fast. Best oyster noodles in the city. NT$60 for something this good is unreal."},
-      {"initial": "P", "name": "Pablo G.", "date": "January 2026 · 🇪🇸 Spain", "stars": "★★★★☆", "text": "Strange concept for a European but absolutely delicious. The broth is thick and savoury. Loved it."}
+      {
+        "initial": "B",
+        "name": "Ben K.",
+        "date": "April 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "An institution. Been serving the same recipe for decades. Eat standing up on the street like everyone else."
+      },
+      {
+        "initial": "M",
+        "name": "Mei L.",
+        "date": "March 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "The queue moves fast. Best oyster noodles in the city. NT$60 for something this good is unreal."
+      },
+      {
+        "initial": "P",
+        "name": "Pablo G.",
+        "date": "January 2026 · 🇪🇸 Spain",
+        "stars": "★★★★☆",
+        "text": "Strange concept for a European but absolutely delicious. The broth is thick and savoury. Loved it."
+      }
     ]
   },
   {
@@ -677,23 +1611,62 @@
     "price_min": 40,
     "rating": 4.4,
     "review_count": "312 reviews",
-    "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1547592180-85f173990554?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "3 Guangzhou St, Wanhua, Taipei",
     "hours": "Daily 06:00–13:00",
     "phone": "+886 2 2302 5678",
     "mrt": "Longshan Temple · Exit 1 · 2 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "breakfast", "healthy"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "breakfast",
+      "healthy"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍚", "name": "White Congee Set", "desc": "Smooth rice porridge, 8 side dishes to share", "price": "NT$70"},
-      {"emoji": "🥚", "name": "Preserved Egg & Pork Congee", "desc": "Century egg, minced pork, ginger, scallion", "price": "NT$65"},
-      {"emoji": "🐟", "name": "Salted Fish Congee", "desc": "Dried salted fish, fresh ginger, white pepper", "price": "NT$60"},
-      {"emoji": "🥬", "name": "Pickled Vegetable Side Dish", "desc": "Assorted fermented vegetables, clean and tangy", "price": "NT$40"}
+      {
+        "emoji": "🍚",
+        "name": "White Congee Set",
+        "desc": "Smooth rice porridge, 8 side dishes to share",
+        "price": "NT$70"
+      },
+      {
+        "emoji": "🥚",
+        "name": "Preserved Egg & Pork Congee",
+        "desc": "Century egg, minced pork, ginger, scallion",
+        "price": "NT$65"
+      },
+      {
+        "emoji": "🐟",
+        "name": "Salted Fish Congee",
+        "desc": "Dried salted fish, fresh ginger, white pepper",
+        "price": "NT$60"
+      },
+      {
+        "emoji": "🥬",
+        "name": "Pickled Vegetable Side Dish",
+        "desc": "Assorted fermented vegetables, clean and tangy",
+        "price": "NT$40"
+      }
     ],
     "reviews": [
-      {"initial": "H", "name": "Helen C.", "date": "April 2026 · 🇹🇼 Taiwan", "stars": "★★★★☆", "text": "A proper old Taipei breakfast experience. The congee is silky and comforting. Go early, it gets crowded."},
-      {"initial": "M", "name": "Marco B.", "date": "February 2026 · 🇮🇹 Italy", "stars": "★★★★☆", "text": "Not what I expected but I loved it. The side dishes are fascinating — all pickled or braised. Very unique."}
+      {
+        "initial": "H",
+        "name": "Helen C.",
+        "date": "April 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★☆",
+        "text": "A proper old Taipei breakfast experience. The congee is silky and comforting. Go early, it gets crowded."
+      },
+      {
+        "initial": "M",
+        "name": "Marco B.",
+        "date": "February 2026 · 🇮🇹 Italy",
+        "stars": "★★★★☆",
+        "text": "Not what I expected but I loved it. The side dishes are fascinating — all pickled or braised. Very unique."
+      }
     ]
   },
   {
@@ -707,23 +1680,63 @@
     "price_min": 60,
     "rating": 4.5,
     "review_count": "289 reviews",
-    "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1617196034183-421b4918ac92?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "Near Bopiliao Historic Block, Wanhua, Taipei",
     "hours": "Tue–Sun 11:00–21:00 · Closed Mondays",
     "phone": "+886 2 2336 7788",
     "mrt": "Longshan Temple · Exit 3 · 5 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "dumplings", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "dumplings",
+      "lunch",
+      "dinner"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🥟", "name": "Pork & Cabbage Dumplings (10 pcs)", "desc": "Hand-wrapped, boiled, thin skin, juicy filling", "price": "NT$80"},
-      {"emoji": "🌿", "name": "Chive & Egg Dumplings (10 pcs)", "desc": "Fragrant chive, scrambled egg, vegetarian", "price": "NT$75"},
-      {"emoji": "🍜", "name": "Dumpling Soup", "desc": "Wontons in light pork broth, scallion, sesame oil", "price": "NT$90"},
-      {"emoji": "🫙", "name": "House Chili Oil", "desc": "Homemade, Sichuan peppercorn, garlic — dipping sauce", "price": "NT$0"}
+      {
+        "emoji": "🥟",
+        "name": "Pork & Cabbage Dumplings (10 pcs)",
+        "desc": "Hand-wrapped, boiled, thin skin, juicy filling",
+        "price": "NT$80"
+      },
+      {
+        "emoji": "🌿",
+        "name": "Chive & Egg Dumplings (10 pcs)",
+        "desc": "Fragrant chive, scrambled egg, vegetarian",
+        "price": "NT$75"
+      },
+      {
+        "emoji": "🍜",
+        "name": "Dumpling Soup",
+        "desc": "Wontons in light pork broth, scallion, sesame oil",
+        "price": "NT$90"
+      },
+      {
+        "emoji": "🫙",
+        "name": "House Chili Oil",
+        "desc": "Homemade, Sichuan peppercorn, garlic — dipping sauce",
+        "price": "NT$0"
+      }
     ],
     "reviews": [
-      {"initial": "C", "name": "Cheng W.", "date": "May 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "The skins are made fresh every morning. You can taste the difference. Best dumplings near Wanhua."},
-      {"initial": "L", "name": "Lena R.", "date": "March 2026 · 🇩🇪 Germany", "stars": "★★★★★", "text": "Stumbled upon this while exploring Bopiliao and it was a revelation. Simple, honest, delicious dumplings."}
+      {
+        "initial": "C",
+        "name": "Cheng W.",
+        "date": "May 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "The skins are made fresh every morning. You can taste the difference. Best dumplings near Wanhua."
+      },
+      {
+        "initial": "L",
+        "name": "Lena R.",
+        "date": "March 2026 · 🇩🇪 Germany",
+        "stars": "★★★★★",
+        "text": "Stumbled upon this while exploring Bopiliao and it was a revelation. Simple, honest, delicious dumplings."
+      }
     ]
   },
   {
@@ -737,23 +1750,63 @@
     "price_min": 80,
     "rating": 4.6,
     "review_count": "731 reviews",
-    "image_url": "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "15 Ximending Pedestrian Zone, Wanhua, Taipei",
     "hours": "Daily 11:00–22:00",
     "phone": "+886 2 2381 5566",
     "mrt": "Ximen Station · Exit 6 · 3 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "street food", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "street food",
+      "lunch",
+      "dinner"
+    ],
     "badge": "🔥 Popular",
     "menu": [
-      {"emoji": "🍖", "name": "Classic Crispy Pork Chop", "desc": "Marinated pork, crispy batter, served with rice and egg", "price": "NT$120"},
-      {"emoji": "🌶️", "name": "Spicy Chicken Cutlet", "desc": "Boneless chicken thigh, basil, crispy skin, chili salt", "price": "NT$100"},
-      {"emoji": "🍚", "name": "Pork Chop Rice Set", "desc": "Chop + steamed rice + pickled veg + soup", "price": "NT$140"},
-      {"emoji": "🧃", "name": "Sugarcane Juice", "desc": "Fresh pressed, cold, no added sugar", "price": "NT$50"}
+      {
+        "emoji": "🍖",
+        "name": "Classic Crispy Pork Chop",
+        "desc": "Marinated pork, crispy batter, served with rice and egg",
+        "price": "NT$120"
+      },
+      {
+        "emoji": "🌶️",
+        "name": "Spicy Chicken Cutlet",
+        "desc": "Boneless chicken thigh, basil, crispy skin, chili salt",
+        "price": "NT$100"
+      },
+      {
+        "emoji": "🍚",
+        "name": "Pork Chop Rice Set",
+        "desc": "Chop + steamed rice + pickled veg + soup",
+        "price": "NT$140"
+      },
+      {
+        "emoji": "🧃",
+        "name": "Sugarcane Juice",
+        "desc": "Fresh pressed, cold, no added sugar",
+        "price": "NT$50"
+      }
     ],
     "reviews": [
-      {"initial": "Z", "name": "Zach H.", "date": "April 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "The crispy pork chop here is unreal. Juicy inside, shatteringly crispy outside. Best street food in Ximending."},
-      {"initial": "A", "name": "Amy C.", "date": "March 2026 · 🇭🇰 HK", "stars": "★★★★★", "text": "The spicy chicken is addictive. Huge portions for the price. Always a queue but moves quickly."}
+      {
+        "initial": "Z",
+        "name": "Zach H.",
+        "date": "April 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "The crispy pork chop here is unreal. Juicy inside, shatteringly crispy outside. Best street food in Ximending."
+      },
+      {
+        "initial": "A",
+        "name": "Amy C.",
+        "date": "March 2026 · 🇭🇰 HK",
+        "stars": "★★★★★",
+        "text": "The spicy chicken is addictive. Huge portions for the price. Always a queue but moves quickly."
+      }
     ]
   },
   {
@@ -767,23 +1820,62 @@
     "price_min": 200,
     "rating": 4.5,
     "review_count": "445 reviews",
-    "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "26 Hanzhong St, Wanhua, Taipei",
     "hours": "Daily 11:30–22:30",
     "phone": "+886 2 2375 8899",
     "mrt": "Ximen Station · Exit 5 · 5 min walk",
-    "tags": ["dine"],
-    "categories": ["japanese", "western", "dinner", "lunch"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "japanese",
+      "western",
+      "dinner",
+      "lunch"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🥩", "name": "Beef Fillet Teppanyaki Set", "desc": "200g fillet, garlic butter, seasonal veg, rice or bread", "price": "NT$380"},
-      {"emoji": "🦐", "name": "Prawn Teppanyaki Set", "desc": "Tiger prawns, lemon butter, garlic chips, salad", "price": "NT$320"},
-      {"emoji": "🍄", "name": "Mushroom & Tofu Vegetarian Set", "desc": "Mixed mushrooms, firm tofu, teriyaki glaze", "price": "NT$220"},
-      {"emoji": "🍮", "name": "Grilled Banana with Ice Cream", "desc": "Caramelised banana, vanilla ice cream, honey drizzle", "price": "NT$120"}
+      {
+        "emoji": "🥩",
+        "name": "Beef Fillet Teppanyaki Set",
+        "desc": "200g fillet, garlic butter, seasonal veg, rice or bread",
+        "price": "NT$380"
+      },
+      {
+        "emoji": "🦐",
+        "name": "Prawn Teppanyaki Set",
+        "desc": "Tiger prawns, lemon butter, garlic chips, salad",
+        "price": "NT$320"
+      },
+      {
+        "emoji": "🍄",
+        "name": "Mushroom & Tofu Vegetarian Set",
+        "desc": "Mixed mushrooms, firm tofu, teriyaki glaze",
+        "price": "NT$220"
+      },
+      {
+        "emoji": "🍮",
+        "name": "Grilled Banana with Ice Cream",
+        "desc": "Caramelised banana, vanilla ice cream, honey drizzle",
+        "price": "NT$120"
+      }
     ],
     "reviews": [
-      {"initial": "L", "name": "Laura G.", "date": "April 2026 · 🇬🇧 UK", "stars": "★★★★☆", "text": "Great fun watching the chef cook in front of you. The beef fillet is tender and the garlic butter is incredible."},
-      {"initial": "K", "name": "Kevin L.", "date": "February 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "Perfect date night spot. The show cooking is entertaining and the food is genuinely good. Good value."}
+      {
+        "initial": "L",
+        "name": "Laura G.",
+        "date": "April 2026 · 🇬🇧 UK",
+        "stars": "★★★★☆",
+        "text": "Great fun watching the chef cook in front of you. The beef fillet is tender and the garlic butter is incredible."
+      },
+      {
+        "initial": "K",
+        "name": "Kevin L.",
+        "date": "February 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "Perfect date night spot. The show cooking is entertaining and the food is genuinely good. Good value."
+      }
     ]
   },
   {
@@ -797,24 +1889,73 @@
     "price_min": 40,
     "rating": 4.8,
     "review_count": "2,876 reviews",
-    "image_url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1604502504366-b2f64eafecb4?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "Raohe St, Songshan, Taipei",
     "hours": "Daily 17:00–00:00",
     "phone": "Walk-in only",
     "mrt": "Songshan Station · Exit 5 · 3 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["street food", "taiwanese", "night market", "latenight", "snacks", "bbq", "pepper bun"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "street food",
+      "taiwanese",
+      "night market",
+      "latenight",
+      "snacks",
+      "bbq",
+      "pepper bun"
+    ],
     "badge": "🔥 Must-try",
     "menu": [
-      {"emoji": "🥟", "name": "Fuzhou Pepper Bun (胡椒餅)", "desc": "Baked dough, pork & scallion filling, black pepper", "price": "NT$55"},
-      {"emoji": "🌽", "name": "Grilled Corn", "desc": "Charcoal grilled, soy butter glaze", "price": "NT$50"},
-      {"emoji": "🍢", "name": "Grilled Squid", "desc": "Whole squid, sweet soy marinade, chili", "price": "NT$120"},
-      {"emoji": "🧃", "name": "Fresh Sugar Cane Juice", "desc": "Cold-pressed fresh cane, no added sugar", "price": "NT$40"}
+      {
+        "emoji": "🥟",
+        "name": "Fuzhou Pepper Bun (胡椒餅)",
+        "desc": "Baked dough, pork & scallion filling, black pepper",
+        "price": "NT$55"
+      },
+      {
+        "emoji": "🌽",
+        "name": "Grilled Corn",
+        "desc": "Charcoal grilled, soy butter glaze",
+        "price": "NT$50"
+      },
+      {
+        "emoji": "🍢",
+        "name": "Grilled Squid",
+        "desc": "Whole squid, sweet soy marinade, chili",
+        "price": "NT$120"
+      },
+      {
+        "emoji": "🧃",
+        "name": "Fresh Sugar Cane Juice",
+        "desc": "Cold-pressed fresh cane, no added sugar",
+        "price": "NT$40"
+      }
     ],
     "reviews": [
-      {"initial": "L", "name": "Liam O.", "date": "May 2026 · 🇮🇪 Ireland", "stars": "★★★★★", "text": "The pepper buns from the temple entrance stall are incredible. Queue is long but moves fast. Go at dusk."},
-      {"initial": "Y", "name": "Yoshi N.", "date": "April 2026 · 🇯🇵 Japan", "stars": "★★★★★", "text": "More local than Shilin. Better food, friendlier atmosphere. The squid is superb."},
-      {"initial": "C", "name": "Carmen V.", "date": "February 2026 · 🇲🇽 Mexico", "stars": "★★★★☆", "text": "Night markets are a highlight of Taipei. Raohe has the best pepper buns anywhere. Come hungry."}
+      {
+        "initial": "L",
+        "name": "Liam O.",
+        "date": "May 2026 · 🇮🇪 Ireland",
+        "stars": "★★★★★",
+        "text": "The pepper buns from the temple entrance stall are incredible. Queue is long but moves fast. Go at dusk."
+      },
+      {
+        "initial": "Y",
+        "name": "Yoshi N.",
+        "date": "April 2026 · 🇯🇵 Japan",
+        "stars": "★★★★★",
+        "text": "More local than Shilin. Better food, friendlier atmosphere. The squid is superb."
+      },
+      {
+        "initial": "C",
+        "name": "Carmen V.",
+        "date": "February 2026 · 🇲🇽 Mexico",
+        "stars": "★★★★☆",
+        "text": "Night markets are a highlight of Taipei. Raohe has the best pepper buns anywhere. Come hungry."
+      }
     ]
   },
   {
@@ -828,23 +1969,62 @@
     "price_min": 280,
     "rating": 4.7,
     "review_count": "521 reviews",
-    "image_url": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1453614512568-b57b785585be?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "353 Fujin St, Songshan, Taipei",
     "hours": "Tue–Sun 11:00–21:00 · Closed Mondays",
     "phone": "+886 2 2765 1088",
     "mrt": "Songshan Airport · Exit 4 · 10 min walk",
-    "tags": ["dine"],
-    "categories": ["cafe", "brunch", "lunch", "vegetarian"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "cafe",
+      "brunch",
+      "lunch",
+      "vegetarian"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍳", "name": "Eggs Benedict", "desc": "Sourdough, poached eggs, hollandaise, smoked salmon", "price": "NT$320"},
-      {"emoji": "🥗", "name": "Seasonal Salad Bowl", "desc": "Market veg, house dressing, nuts, soft-boiled egg", "price": "NT$280"},
-      {"emoji": "☕", "name": "Cold Brew Coffee", "desc": "18-hour cold brew, single origin, served over ice", "price": "NT$180"},
-      {"emoji": "🥐", "name": "Croissant & Jam", "desc": "Flaky butter croissant, house seasonal jam", "price": "NT$120"}
+      {
+        "emoji": "🍳",
+        "name": "Eggs Benedict",
+        "desc": "Sourdough, poached eggs, hollandaise, smoked salmon",
+        "price": "NT$320"
+      },
+      {
+        "emoji": "🥗",
+        "name": "Seasonal Salad Bowl",
+        "desc": "Market veg, house dressing, nuts, soft-boiled egg",
+        "price": "NT$280"
+      },
+      {
+        "emoji": "☕",
+        "name": "Cold Brew Coffee",
+        "desc": "18-hour cold brew, single origin, served over ice",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🥐",
+        "name": "Croissant & Jam",
+        "desc": "Flaky butter croissant, house seasonal jam",
+        "price": "NT$120"
+      }
     ],
     "reviews": [
-      {"initial": "M", "name": "Maya T.", "date": "May 2026 · 🇬🇧 UK", "stars": "★★★★★", "text": "The most beautiful café street in Taipei. Great food, great coffee. Go on a weekday morning if you can."},
-      {"initial": "J", "name": "Julia K.", "date": "March 2026 · 🇩🇪 Germany", "stars": "★★★★★", "text": "Lovely neighbourhood café vibe. The eggs benedict are perfect and the coffee is exceptional."}
+      {
+        "initial": "M",
+        "name": "Maya T.",
+        "date": "May 2026 · 🇬🇧 UK",
+        "stars": "★★★★★",
+        "text": "The most beautiful café street in Taipei. Great food, great coffee. Go on a weekday morning if you can."
+      },
+      {
+        "initial": "J",
+        "name": "Julia K.",
+        "date": "March 2026 · 🇩🇪 Germany",
+        "stars": "★★★★★",
+        "text": "Lovely neighbourhood café vibe. The eggs benedict are perfect and the coffee is exceptional."
+      }
     ]
   },
   {
@@ -858,23 +2038,64 @@
     "price_min": 280,
     "rating": 4.6,
     "review_count": "378 reviews",
-    "image_url": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1571407260985-6d6d4578a5a9?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "18 Songshan Rd, Songshan, Taipei",
     "hours": "Daily 11:30–22:00",
     "phone": "+886 2 2748 5566",
     "mrt": "Songshan Station · Exit 3 · 6 min walk",
-    "tags": ["dine", "delivery"],
-    "categories": ["italian", "pizza", "western", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "delivery"
+    ],
+    "categories": [
+      "italian",
+      "pizza",
+      "western",
+      "lunch",
+      "dinner"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍕", "name": "Margherita (12 inch)", "desc": "San Marzano tomato, buffalo mozzarella, fresh basil", "price": "NT$320"},
-      {"emoji": "🍕", "name": "Truffle Mushroom (12 inch)", "desc": "White truffle oil, mixed mushrooms, fontina, arugula", "price": "NT$420"},
-      {"emoji": "🥗", "name": "Burrata & Tomato", "desc": "Fresh burrata, heirloom tomato, olive oil, sea salt", "price": "NT$280"},
-      {"emoji": "🍺", "name": "Craft Beer", "desc": "Rotating local and imported craft beers on tap", "price": "NT$180"}
+      {
+        "emoji": "🍕",
+        "name": "Margherita (12 inch)",
+        "desc": "San Marzano tomato, buffalo mozzarella, fresh basil",
+        "price": "NT$320"
+      },
+      {
+        "emoji": "🍕",
+        "name": "Truffle Mushroom (12 inch)",
+        "desc": "White truffle oil, mixed mushrooms, fontina, arugula",
+        "price": "NT$420"
+      },
+      {
+        "emoji": "🥗",
+        "name": "Burrata & Tomato",
+        "desc": "Fresh burrata, heirloom tomato, olive oil, sea salt",
+        "price": "NT$280"
+      },
+      {
+        "emoji": "🍺",
+        "name": "Craft Beer",
+        "desc": "Rotating local and imported craft beers on tap",
+        "price": "NT$180"
+      }
     ],
     "reviews": [
-      {"initial": "R", "name": "Roberto M.", "date": "April 2026 · 🇮🇹 Italy", "stars": "★★★★★", "text": "I'm Italian and I'm saying this is genuinely good pizza. The dough has the right chew. Impressed."},
-      {"initial": "S", "name": "Sam J.", "date": "February 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "Best pizza in Taipei, full stop. The truffle mushroom is outstanding. Great spot for groups."}
+      {
+        "initial": "R",
+        "name": "Roberto M.",
+        "date": "April 2026 · 🇮🇹 Italy",
+        "stars": "★★★★★",
+        "text": "I'm Italian and I'm saying this is genuinely good pizza. The dough has the right chew. Impressed."
+      },
+      {
+        "initial": "S",
+        "name": "Sam J.",
+        "date": "February 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "Best pizza in Taipei, full stop. The truffle mushroom is outstanding. Great spot for groups."
+      }
     ]
   },
   {
@@ -888,23 +2109,64 @@
     "price_min": 60,
     "rating": 4.5,
     "review_count": "1,123 reviews",
-    "image_url": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1611143669-aa259f8d9e09?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "32 Bade Rd, Sec 4, Songshan, Taipei",
     "hours": "Daily 11:00–22:00",
     "phone": "+886 2 2768 9900",
     "mrt": "Nanjing Sanmin · Exit 2 · 5 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["japanese", "sushi", "seafood", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "japanese",
+      "sushi",
+      "seafood",
+      "lunch",
+      "dinner"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍣", "name": "Salmon Aburi Nigiri (2 pcs)", "desc": "Torched salmon, ponzu, mayo", "price": "NT$80"},
-      {"emoji": "🦐", "name": "Ebi Tempura Roll", "desc": "Crispy prawn, cucumber, spicy mayo", "price": "NT$90"},
-      {"emoji": "🍜", "name": "Miso Ramen", "desc": "Rich miso broth, chashu, corn, soft egg", "price": "NT$180"},
-      {"emoji": "🍡", "name": "Matcha Panna Cotta", "desc": "Uji matcha, smooth set cream, red bean", "price": "NT$80"}
+      {
+        "emoji": "🍣",
+        "name": "Salmon Aburi Nigiri (2 pcs)",
+        "desc": "Torched salmon, ponzu, mayo",
+        "price": "NT$80"
+      },
+      {
+        "emoji": "🦐",
+        "name": "Ebi Tempura Roll",
+        "desc": "Crispy prawn, cucumber, spicy mayo",
+        "price": "NT$90"
+      },
+      {
+        "emoji": "🍜",
+        "name": "Miso Ramen",
+        "desc": "Rich miso broth, chashu, corn, soft egg",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🍡",
+        "name": "Matcha Panna Cotta",
+        "desc": "Uji matcha, smooth set cream, red bean",
+        "price": "NT$80"
+      }
     ],
     "reviews": [
-      {"initial": "F", "name": "Fiona L.", "date": "May 2026 · 🇸🇬 Singapore", "stars": "★★★★☆", "text": "Great fun for kids and adults. The gamified plate collection is addictive. Very fresh fish."},
-      {"initial": "T", "name": "Taro S.", "date": "March 2026 · 🇯🇵 Japan", "stars": "★★★★☆", "text": "Solid quality for the price. The aburi salmon is the highlight. Good weekend option with the family."}
+      {
+        "initial": "F",
+        "name": "Fiona L.",
+        "date": "May 2026 · 🇸🇬 Singapore",
+        "stars": "★★★★☆",
+        "text": "Great fun for kids and adults. The gamified plate collection is addictive. Very fresh fish."
+      },
+      {
+        "initial": "T",
+        "name": "Taro S.",
+        "date": "March 2026 · 🇯🇵 Japan",
+        "stars": "★★★★☆",
+        "text": "Solid quality for the price. The aburi salmon is the highlight. Good weekend option with the family."
+      }
     ]
   },
   {
@@ -918,23 +2180,63 @@
     "price_min": 70,
     "rating": 4.6,
     "review_count": "634 reviews",
-    "image_url": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1604329116934-1b8a7e7ec8cc?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "55 Nanjing E Rd, Sec 5, Songshan, Taipei",
     "hours": "Mon–Sat 10:00–20:30 · Closed Sundays",
     "phone": "+886 2 2756 3344",
     "mrt": "Nanjing Sanmin · Exit 4 · 4 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "lunch", "dinner", "street food"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "lunch",
+      "dinner",
+      "street food"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍚", "name": "Braised Pork Rice (魯肉飯)", "desc": "Minced pork belly, sweet soy glaze, steamed rice, pickled veg", "price": "NT$70"},
-      {"emoji": "🥚", "name": "Braised Pork Rice + Soft Egg", "desc": "Same bowl with a perfectly braised egg", "price": "NT$90"},
-      {"emoji": "🥣", "name": "Pork Offal Soup", "desc": "Intestine, liver, ginger, sesame oil broth", "price": "NT$80"},
-      {"emoji": "🥬", "name": "Stir-Fried Seasonal Greens", "desc": "Garlic, oyster sauce, high-heat wok", "price": "NT$60"}
+      {
+        "emoji": "🍚",
+        "name": "Braised Pork Rice (魯肉飯)",
+        "desc": "Minced pork belly, sweet soy glaze, steamed rice, pickled veg",
+        "price": "NT$70"
+      },
+      {
+        "emoji": "🥚",
+        "name": "Braised Pork Rice + Soft Egg",
+        "desc": "Same bowl with a perfectly braised egg",
+        "price": "NT$90"
+      },
+      {
+        "emoji": "🥣",
+        "name": "Pork Offal Soup",
+        "desc": "Intestine, liver, ginger, sesame oil broth",
+        "price": "NT$80"
+      },
+      {
+        "emoji": "🥬",
+        "name": "Stir-Fried Seasonal Greens",
+        "desc": "Garlic, oyster sauce, high-heat wok",
+        "price": "NT$60"
+      }
     ],
     "reviews": [
-      {"initial": "C", "name": "Chen M.", "date": "April 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "The best lu rou fan in Songshan. The ratio of fat to lean is perfect. The egg is always exactly right."},
-      {"initial": "H", "name": "Hannah W.", "date": "February 2026 · 🇬🇧 UK", "stars": "★★★★★", "text": "This is what comfort food looks like in Taiwan. NT$70 for one of the most satisfying bowls of food I've ever had."}
+      {
+        "initial": "C",
+        "name": "Chen M.",
+        "date": "April 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "The best lu rou fan in Songshan. The ratio of fat to lean is perfect. The egg is always exactly right."
+      },
+      {
+        "initial": "H",
+        "name": "Hannah W.",
+        "date": "February 2026 · 🇬🇧 UK",
+        "stars": "★★★★★",
+        "text": "This is what comfort food looks like in Taiwan. NT$70 for one of the most satisfying bowls of food I've ever had."
+      }
     ]
   },
   {
@@ -948,24 +2250,71 @@
     "price_min": 40,
     "rating": 4.7,
     "review_count": "8,421 reviews",
-    "image_url": "https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1593642634367-d91a135587b5?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "101 Jihe Rd, Shilin, Taipei",
     "hours": "Daily 16:00–01:00",
     "phone": "Walk-in only",
     "mrt": "Jiantan Station · Exit 1 · 1 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["street food", "taiwanese", "night market", "latenight", "snacks"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "street food",
+      "taiwanese",
+      "night market",
+      "latenight",
+      "snacks"
+    ],
     "badge": "🔥 Iconic",
     "menu": [
-      {"emoji": "🦑", "name": "XXL Crispy Chicken Cutlet", "desc": "Huge boneless chicken, basil, chili powder, fried crispy", "price": "NT$100"},
-      {"emoji": "🦪", "name": "Oyster Omelette (蚵仔煎)", "desc": "Pan-fried oysters, egg, sweet potato starch, spicy sauce", "price": "NT$80"},
-      {"emoji": "🧆", "name": "Stinky Tofu (臭豆腐)", "desc": "Fermented tofu, fried crispy, pickled cabbage", "price": "NT$60"},
-      {"emoji": "🍢", "name": "Grilled Sausage Wrapped in Sticky Rice", "desc": "Pork sausage in glutinous rice casing, garlic, basil", "price": "NT$70"}
+      {
+        "emoji": "🦑",
+        "name": "XXL Crispy Chicken Cutlet",
+        "desc": "Huge boneless chicken, basil, chili powder, fried crispy",
+        "price": "NT$100"
+      },
+      {
+        "emoji": "🦪",
+        "name": "Oyster Omelette (蚵仔煎)",
+        "desc": "Pan-fried oysters, egg, sweet potato starch, spicy sauce",
+        "price": "NT$80"
+      },
+      {
+        "emoji": "🧆",
+        "name": "Stinky Tofu (臭豆腐)",
+        "desc": "Fermented tofu, fried crispy, pickled cabbage",
+        "price": "NT$60"
+      },
+      {
+        "emoji": "🍢",
+        "name": "Grilled Sausage Wrapped in Sticky Rice",
+        "desc": "Pork sausage in glutinous rice casing, garlic, basil",
+        "price": "NT$70"
+      }
     ],
     "reviews": [
-      {"initial": "J", "name": "Jake M.", "date": "May 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "The quintessential Taipei night market experience. Go at 8pm when it's in full swing. Overwhelming in the best way."},
-      {"initial": "M", "name": "Marie C.", "date": "March 2026 · 🇫🇷 France", "stars": "★★★★☆", "text": "Very touristy but still great fun. The oyster omelette stall near the entrance is exceptional."},
-      {"initial": "K", "name": "Kim S.", "date": "January 2026 · 🇰🇷 Korea", "stars": "★★★★★", "text": "Bigger and more varied than any night market in Seoul. The XXL chicken is legendary. Go hungry."}
+      {
+        "initial": "J",
+        "name": "Jake M.",
+        "date": "May 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "The quintessential Taipei night market experience. Go at 8pm when it's in full swing. Overwhelming in the best way."
+      },
+      {
+        "initial": "M",
+        "name": "Marie C.",
+        "date": "March 2026 · 🇫🇷 France",
+        "stars": "★★★★☆",
+        "text": "Very touristy but still great fun. The oyster omelette stall near the entrance is exceptional."
+      },
+      {
+        "initial": "K",
+        "name": "Kim S.",
+        "date": "January 2026 · 🇰🇷 Korea",
+        "stars": "★★★★★",
+        "text": "Bigger and more varied than any night market in Seoul. The XXL chicken is legendary. Go hungry."
+      }
     ]
   },
   {
@@ -979,23 +2328,64 @@
     "price_min": 50,
     "rating": 4.6,
     "review_count": "445 reviews",
-    "image_url": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1540914124-7f5197c40e35?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "5 Danan Rd, Shilin, Taipei",
     "hours": "Daily 10:00–21:30",
     "phone": "+886 2 2882 6677",
     "mrt": "Shilin Station · Exit 2 · 6 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "noodles", "street food", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "noodles",
+      "street food",
+      "lunch",
+      "dinner"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🦪", "name": "Oyster Vermicelli (Regular)", "desc": "Oysters, sweet starch broth, house chili sauce", "price": "NT$55"},
-      {"emoji": "🦪", "name": "Oyster Vermicelli (Large)", "desc": "Extra oysters, bigger bowl", "price": "NT$70"},
-      {"emoji": "🍤", "name": "Fried Shrimp Rolls", "desc": "Shrimp paste, crispy wrappers, tangy dipping sauce", "price": "NT$80"},
-      {"emoji": "🧋", "name": "Winter Melon Tea", "desc": "Cold brewed winter melon, lightly sweet", "price": "NT$40"}
+      {
+        "emoji": "🦪",
+        "name": "Oyster Vermicelli (Regular)",
+        "desc": "Oysters, sweet starch broth, house chili sauce",
+        "price": "NT$55"
+      },
+      {
+        "emoji": "🦪",
+        "name": "Oyster Vermicelli (Large)",
+        "desc": "Extra oysters, bigger bowl",
+        "price": "NT$70"
+      },
+      {
+        "emoji": "🍤",
+        "name": "Fried Shrimp Rolls",
+        "desc": "Shrimp paste, crispy wrappers, tangy dipping sauce",
+        "price": "NT$80"
+      },
+      {
+        "emoji": "🧋",
+        "name": "Winter Melon Tea",
+        "desc": "Cold brewed winter melon, lightly sweet",
+        "price": "NT$40"
+      }
     ],
     "reviews": [
-      {"initial": "Y", "name": "Yen C.", "date": "April 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "The locals' choice away from the tourist stalls. The broth is thicker and richer here than at Shilin Market."},
-      {"initial": "G", "name": "George T.", "date": "March 2026 · 🇬🇧 UK", "stars": "★★★★☆", "text": "Recommended by our Airbnb host. Glad we found it. Much better than the night market versions."}
+      {
+        "initial": "Y",
+        "name": "Yen C.",
+        "date": "April 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "The locals' choice away from the tourist stalls. The broth is thicker and richer here than at Shilin Market."
+      },
+      {
+        "initial": "G",
+        "name": "George T.",
+        "date": "March 2026 · 🇬🇧 UK",
+        "stars": "★★★★☆",
+        "text": "Recommended by our Airbnb host. Glad we found it. Much better than the night market versions."
+      }
     ]
   },
   {
@@ -1009,23 +2399,63 @@
     "price_min": 55,
     "rating": 4.5,
     "review_count": "731 reviews",
-    "image_url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1471253387903-96cd4fa34485?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "Near Shilin Night Market, Shilin, Taipei",
     "hours": "Daily 16:30–00:00",
     "phone": "+886 2 2880 3344",
     "mrt": "Jiantan Station · Exit 1 · 3 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "street food", "night market", "latenight"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "street food",
+      "night market",
+      "latenight"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🧆", "name": "Fried Stinky Tofu (4 pcs)", "desc": "Deep fried, crispy outside, silky inside, pickled cabbage", "price": "NT$70"},
-      {"emoji": "🫕", "name": "Spicy Mala Stinky Tofu Hot Pot", "desc": "Boiled version in spicy broth, mushrooms, tofu", "price": "NT$90"},
-      {"emoji": "🦪", "name": "Oyster Omelette", "desc": "Pan-fried oysters, egg, starch base, sweet chili sauce", "price": "NT$80"},
-      {"emoji": "🥤", "name": "Plum Juice", "desc": "Cold brewed sour plum, cooling, traditional", "price": "NT$40"}
+      {
+        "emoji": "🧆",
+        "name": "Fried Stinky Tofu (4 pcs)",
+        "desc": "Deep fried, crispy outside, silky inside, pickled cabbage",
+        "price": "NT$70"
+      },
+      {
+        "emoji": "🫕",
+        "name": "Spicy Mala Stinky Tofu Hot Pot",
+        "desc": "Boiled version in spicy broth, mushrooms, tofu",
+        "price": "NT$90"
+      },
+      {
+        "emoji": "🦪",
+        "name": "Oyster Omelette",
+        "desc": "Pan-fried oysters, egg, starch base, sweet chili sauce",
+        "price": "NT$80"
+      },
+      {
+        "emoji": "🥤",
+        "name": "Plum Juice",
+        "desc": "Cold brewed sour plum, cooling, traditional",
+        "price": "NT$40"
+      }
     ],
     "reviews": [
-      {"initial": "D", "name": "Dan T.", "date": "May 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "I was terrified and then completely converted. The smell is part of the experience. Incredibly good."},
-      {"initial": "L", "name": "Linh N.", "date": "March 2026 · 🇻🇳 Vietnam", "stars": "★★★★★", "text": "Better than the version back home. The fried one is phenomenal with the pickled cabbage. Life-changing."}
+      {
+        "initial": "D",
+        "name": "Dan T.",
+        "date": "May 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "I was terrified and then completely converted. The smell is part of the experience. Incredibly good."
+      },
+      {
+        "initial": "L",
+        "name": "Linh N.",
+        "date": "March 2026 · 🇻🇳 Vietnam",
+        "stars": "★★★★★",
+        "text": "Better than the version back home. The fried one is phenomenal with the pickled cabbage. Life-changing."
+      }
     ]
   },
   {
@@ -1039,23 +2469,63 @@
     "price_min": 150,
     "rating": 4.5,
     "review_count": "234 reviews",
-    "image_url": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "88 Zhongzheng Rd, Shilin, Taipei",
     "hours": "Daily 08:00–20:00",
     "phone": "+886 2 2836 5544",
     "mrt": "Shilin Station · Exit 1 · 4 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["cafe", "brunch", "breakfast", "vegetarian"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "cafe",
+      "brunch",
+      "breakfast",
+      "vegetarian"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "☕", "name": "Latte Art", "desc": "Double espresso, steamed oat milk, seasonal latte art", "price": "NT$160"},
-      {"emoji": "🥪", "name": "Club Sandwich", "desc": "Toasted white, chicken, bacon, egg, tomato, lettuce, mayo", "price": "NT$220"},
-      {"emoji": "🍰", "name": "Yuzu Cheesecake Slice", "desc": "Japanese yuzu, light cream cheese, biscuit base", "price": "NT$160"},
-      {"emoji": "🥣", "name": "Açaí Bowl", "desc": "Blended açaí, granola, banana, honey, fresh fruit", "price": "NT$220"}
+      {
+        "emoji": "☕",
+        "name": "Latte Art",
+        "desc": "Double espresso, steamed oat milk, seasonal latte art",
+        "price": "NT$160"
+      },
+      {
+        "emoji": "🥪",
+        "name": "Club Sandwich",
+        "desc": "Toasted white, chicken, bacon, egg, tomato, lettuce, mayo",
+        "price": "NT$220"
+      },
+      {
+        "emoji": "🍰",
+        "name": "Yuzu Cheesecake Slice",
+        "desc": "Japanese yuzu, light cream cheese, biscuit base",
+        "price": "NT$160"
+      },
+      {
+        "emoji": "🥣",
+        "name": "Açaí Bowl",
+        "desc": "Blended açaí, granola, banana, honey, fresh fruit",
+        "price": "NT$220"
+      }
     ],
     "reviews": [
-      {"initial": "S", "name": "Sarah H.", "date": "April 2026 · 🇨🇦 Canada", "stars": "★★★★☆", "text": "A comfortable café in an unexpected part of Shilin. Great for working or resting after the night market."},
-      {"initial": "W", "name": "Wendy L.", "date": "February 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "My neighbourhood café. The yuzu cheesecake is the best I've had in Taipei. Staff are always friendly."}
+      {
+        "initial": "S",
+        "name": "Sarah H.",
+        "date": "April 2026 · 🇨🇦 Canada",
+        "stars": "★★★★☆",
+        "text": "A comfortable café in an unexpected part of Shilin. Great for working or resting after the night market."
+      },
+      {
+        "initial": "W",
+        "name": "Wendy L.",
+        "date": "February 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "My neighbourhood café. The yuzu cheesecake is the best I've had in Taipei. Staff are always friendly."
+      }
     ]
   },
   {
@@ -1069,23 +2539,62 @@
     "price_min": 80,
     "rating": 4.6,
     "review_count": "891 reviews",
-    "image_url": "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1513556736-ab1b53941b52?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "44 Wenlin Rd, Shilin, Taipei",
     "hours": "Daily 10:30–22:00",
     "phone": "+886 2 2883 1122",
     "mrt": "Jiantan Station · Exit 2 · 5 min walk",
-    "tags": ["pickup"],
-    "categories": ["taiwanese", "street food", "lunch", "dinner"],
+    "tags": [
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "street food",
+      "lunch",
+      "dinner"
+    ],
     "badge": "🔥 Popular",
     "menu": [
-      {"emoji": "🍗", "name": "Original Crispy Chicken Cutlet", "desc": "Whole boneless thigh, fried to order, chili or original", "price": "NT$95"},
-      {"emoji": "🌿", "name": "Basil Chicken Cutlet", "desc": "Same cutlet with crispy basil leaves, aromatic and crunchy", "price": "NT$100"},
-      {"emoji": "🍗", "name": "Combo: Chicken + Drink", "desc": "Cutlet with your choice of house drink", "price": "NT$130"},
-      {"emoji": "🍟", "name": "Crispy Fries", "desc": "Seasoned with sea salt and pepper, served hot", "price": "NT$60"}
+      {
+        "emoji": "🍗",
+        "name": "Original Crispy Chicken Cutlet",
+        "desc": "Whole boneless thigh, fried to order, chili or original",
+        "price": "NT$95"
+      },
+      {
+        "emoji": "🌿",
+        "name": "Basil Chicken Cutlet",
+        "desc": "Same cutlet with crispy basil leaves, aromatic and crunchy",
+        "price": "NT$100"
+      },
+      {
+        "emoji": "🍗",
+        "name": "Combo: Chicken + Drink",
+        "desc": "Cutlet with your choice of house drink",
+        "price": "NT$130"
+      },
+      {
+        "emoji": "🍟",
+        "name": "Crispy Fries",
+        "desc": "Seasoned with sea salt and pepper, served hot",
+        "price": "NT$60"
+      }
     ],
     "reviews": [
-      {"initial": "P", "name": "Paul L.", "date": "May 2026 · 🇫🇷 France", "stars": "★★★★★", "text": "The basil chicken cutlet converted me. I thought it would be oily but the frying is perfect — light, crispy, juicy."},
-      {"initial": "A", "name": "Amy T.", "date": "April 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "The best chicken cutlet near Shilin. Bigger than the night market version and better quality. Always fresh."}
+      {
+        "initial": "P",
+        "name": "Paul L.",
+        "date": "May 2026 · 🇫🇷 France",
+        "stars": "★★★★★",
+        "text": "The basil chicken cutlet converted me. I thought it would be oily but the frying is perfect — light, crispy, juicy."
+      },
+      {
+        "initial": "A",
+        "name": "Amy T.",
+        "date": "April 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "The best chicken cutlet near Shilin. Bigger than the night market version and better quality. Always fresh."
+      }
     ]
   },
   {
@@ -1099,24 +2608,70 @@
     "price_min": 30,
     "rating": 4.6,
     "review_count": "2,134 reviews",
-    "image_url": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "102 Roosevelt Rd, Sec 2, Zhongzheng, Taipei",
     "hours": "Daily 24 hours",
     "phone": "+886 2 2363 2388",
     "mrt": "Guting Station · Exit 1 · 5 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "breakfast", "healthy", "latenight"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "breakfast",
+      "healthy",
+      "latenight"
+    ],
     "badge": "🔥 Open 24h",
     "menu": [
-      {"emoji": "🥛", "name": "Warm Fresh Soy Milk", "desc": "Classic unsweetened or lightly sweet", "price": "NT$30"},
-      {"emoji": "🍞", "name": "Shaobing You Tiao", "desc": "Sesame flatbread with crispy fried dough inside", "price": "NT$50"},
-      {"emoji": "🥚", "name": "Dan Bing (Egg & Scallion Crepe)", "desc": "Soft egg crepe, scallion, soy drizzle", "price": "NT$50"},
-      {"emoji": "🫔", "name": "Fan Tuan (Rice Roll)", "desc": "Glutinous rice, you tiao, pork floss, pickled mustard", "price": "NT$60"}
+      {
+        "emoji": "🥛",
+        "name": "Warm Fresh Soy Milk",
+        "desc": "Classic unsweetened or lightly sweet",
+        "price": "NT$30"
+      },
+      {
+        "emoji": "🍞",
+        "name": "Shaobing You Tiao",
+        "desc": "Sesame flatbread with crispy fried dough inside",
+        "price": "NT$50"
+      },
+      {
+        "emoji": "🥚",
+        "name": "Dan Bing (Egg & Scallion Crepe)",
+        "desc": "Soft egg crepe, scallion, soy drizzle",
+        "price": "NT$50"
+      },
+      {
+        "emoji": "🫔",
+        "name": "Fan Tuan (Rice Roll)",
+        "desc": "Glutinous rice, you tiao, pork floss, pickled mustard",
+        "price": "NT$60"
+      }
     ],
     "reviews": [
-      {"initial": "R", "name": "Ryan C.", "date": "May 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "I had breakfast here at 6am every single day. The best way to start a morning in Taipei. Everything is perfect."},
-      {"initial": "S", "name": "Sora T.", "date": "March 2026 · 🇯🇵 Japan", "stars": "★★★★★", "text": "Open 24 hours means perfect 3am snacks after the bars. The soy milk is warm and comforting. Iconic Taipei."},
-      {"initial": "H", "name": "Hana L.", "date": "January 2026 · 🇰🇷 Korea", "stars": "★★★★☆", "text": "Very authentic Taiwanese breakfast. The rice roll is my favourite — filling, savoury and good value."}
+      {
+        "initial": "R",
+        "name": "Ryan C.",
+        "date": "May 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "I had breakfast here at 6am every single day. The best way to start a morning in Taipei. Everything is perfect."
+      },
+      {
+        "initial": "S",
+        "name": "Sora T.",
+        "date": "March 2026 · 🇯🇵 Japan",
+        "stars": "★★★★★",
+        "text": "Open 24 hours means perfect 3am snacks after the bars. The soy milk is warm and comforting. Iconic Taipei."
+      },
+      {
+        "initial": "H",
+        "name": "Hana L.",
+        "date": "January 2026 · 🇰🇷 Korea",
+        "stars": "★★★★☆",
+        "text": "Very authentic Taiwanese breakfast. The rice roll is my favourite — filling, savoury and good value."
+      }
     ]
   },
   {
@@ -1130,23 +2685,64 @@
     "price_min": 40,
     "rating": 4.5,
     "review_count": "1,341 reviews",
-    "image_url": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1567620905731-2d1b6b08d4ea?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "Gongguan Rd, Zhongzheng, Taipei",
     "hours": "Daily 16:00–01:00",
     "phone": "Walk-in only",
     "mrt": "Gongguan Station · Exit 3 · 2 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["street food", "taiwanese", "night market", "latenight", "snacks"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "street food",
+      "taiwanese",
+      "night market",
+      "latenight",
+      "snacks"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍢", "name": "Salt & Pepper Mushrooms", "desc": "King oyster mushrooms, basil, chili, crispy fried", "price": "NT$60"},
-      {"emoji": "🐟", "name": "Grilled Squid on Stick", "desc": "Whole squid, charcoal grilled, soy glaze", "price": "NT$100"},
-      {"emoji": "🧆", "name": "Deep-Fried Taro Balls", "desc": "Crispy shell, soft taro inside, pair of two", "price": "NT$50"},
-      {"emoji": "🥤", "name": "Passion Fruit Juice", "desc": "Fresh passion fruit, cold pressed, sweetened", "price": "NT$60"}
+      {
+        "emoji": "🍢",
+        "name": "Salt & Pepper Mushrooms",
+        "desc": "King oyster mushrooms, basil, chili, crispy fried",
+        "price": "NT$60"
+      },
+      {
+        "emoji": "🐟",
+        "name": "Grilled Squid on Stick",
+        "desc": "Whole squid, charcoal grilled, soy glaze",
+        "price": "NT$100"
+      },
+      {
+        "emoji": "🧆",
+        "name": "Deep-Fried Taro Balls",
+        "desc": "Crispy shell, soft taro inside, pair of two",
+        "price": "NT$50"
+      },
+      {
+        "emoji": "🥤",
+        "name": "Passion Fruit Juice",
+        "desc": "Fresh passion fruit, cold pressed, sweetened",
+        "price": "NT$60"
+      }
     ],
     "reviews": [
-      {"initial": "L", "name": "Laura T.", "date": "April 2026 · 🇬🇧 UK", "stars": "★★★★★", "text": "Much more authentic than Shilin. Students eating alongside tourists makes it feel real. Great food, great energy."},
-      {"initial": "V", "name": "Victor C.", "date": "February 2026 · 🇫🇷 France", "stars": "★★★★☆", "text": "Located near NTU so the atmosphere is young and lively. The mushrooms and squid are unmissable."}
+      {
+        "initial": "L",
+        "name": "Laura T.",
+        "date": "April 2026 · 🇬🇧 UK",
+        "stars": "★★★★★",
+        "text": "Much more authentic than Shilin. Students eating alongside tourists makes it feel real. Great food, great energy."
+      },
+      {
+        "initial": "V",
+        "name": "Victor C.",
+        "date": "February 2026 · 🇫🇷 France",
+        "stars": "★★★★☆",
+        "text": "Located near NTU so the atmosphere is young and lively. The mushrooms and squid are unmissable."
+      }
     ]
   },
   {
@@ -1160,24 +2756,69 @@
     "price_min": 25,
     "rating": 4.8,
     "review_count": "3,678 reviews",
-    "image_url": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1576671088-90cc3ec4d0a0?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "108 Zhongxiao E Rd, Sec 1, 2F, Zhongzheng, Taipei",
     "hours": "Tue–Sun 05:30–12:30 · Closed Mondays",
     "phone": "+886 2 2392 2175",
     "mrt": "Shan Hua Rd Station · Exit 3 · 2 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "breakfast", "healthy"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "breakfast",
+      "healthy"
+    ],
     "badge": "🔥 Legendary",
     "menu": [
-      {"emoji": "🥐", "name": "Thick Shaobing (Sesame Flatbread)", "desc": "Flaky, layered, sesame-topped, baked fresh every 20 min", "price": "NT$30"},
-      {"emoji": "🥚", "name": "Shaobing with Egg & Ham", "desc": "Flatbread stuffed with scrambled egg and ham", "price": "NT$55"},
-      {"emoji": "🥛", "name": "Soy Milk (Warm)", "desc": "Pure, fresh ground, cooked in house, slightly nutty", "price": "NT$30"},
-      {"emoji": "🍞", "name": "You Tiao (Double-fried)", "desc": "Exceptionally airy and crispy dough stick", "price": "NT$25"}
+      {
+        "emoji": "🥐",
+        "name": "Thick Shaobing (Sesame Flatbread)",
+        "desc": "Flaky, layered, sesame-topped, baked fresh every 20 min",
+        "price": "NT$30"
+      },
+      {
+        "emoji": "🥚",
+        "name": "Shaobing with Egg & Ham",
+        "desc": "Flatbread stuffed with scrambled egg and ham",
+        "price": "NT$55"
+      },
+      {
+        "emoji": "🥛",
+        "name": "Soy Milk (Warm)",
+        "desc": "Pure, fresh ground, cooked in house, slightly nutty",
+        "price": "NT$30"
+      },
+      {
+        "emoji": "🍞",
+        "name": "You Tiao (Double-fried)",
+        "desc": "Exceptionally airy and crispy dough stick",
+        "price": "NT$25"
+      }
     ],
     "reviews": [
-      {"initial": "T", "name": "Tina W.", "date": "April 2026 · 🇺🇸 USA", "stars": "★★★★★", "text": "I queued 35 minutes and I'd do it again. The shaobing is the best I've ever tasted — layers of crispy perfection."},
-      {"initial": "H", "name": "Hiro K.", "date": "March 2026 · 🇯🇵 Japan", "stars": "★★★★★", "text": "Worth every second of the queue. The soy milk is silky and the flatbreads are extraordinary. Pure Taipei."},
-      {"initial": "A", "name": "Anne G.", "date": "February 2026 · 🇫🇷 France", "stars": "★★★★★", "text": "The line at 6am is a sight to behold. But what comes out of that kitchen is worth it completely."}
+      {
+        "initial": "T",
+        "name": "Tina W.",
+        "date": "April 2026 · 🇺🇸 USA",
+        "stars": "★★★★★",
+        "text": "I queued 35 minutes and I'd do it again. The shaobing is the best I've ever tasted — layers of crispy perfection."
+      },
+      {
+        "initial": "H",
+        "name": "Hiro K.",
+        "date": "March 2026 · 🇯🇵 Japan",
+        "stars": "★★★★★",
+        "text": "Worth every second of the queue. The soy milk is silky and the flatbreads are extraordinary. Pure Taipei."
+      },
+      {
+        "initial": "A",
+        "name": "Anne G.",
+        "date": "February 2026 · 🇫🇷 France",
+        "stars": "★★★★★",
+        "text": "The line at 6am is a sight to behold. But what comes out of that kitchen is worth it completely."
+      }
     ]
   },
   {
@@ -1191,23 +2832,64 @@
     "price_min": 130,
     "rating": 4.5,
     "review_count": "312 reviews",
-    "image_url": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1496116218422-ab9f1eef28fa?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "45 Jinshan S Rd, Sec 1, Zhongzheng, Taipei",
     "hours": "Tue–Sun 11:00–21:30 · Closed Mondays",
     "phone": "+886 2 2392 7788",
     "mrt": "Chiang Kai-shek Memorial · Exit 4 · 8 min walk",
-    "tags": ["dine", "pickup"],
-    "categories": ["taiwanese", "noodles", "beef", "lunch", "dinner"],
+    "tags": [
+      "dine",
+      "pickup"
+    ],
+    "categories": [
+      "taiwanese",
+      "noodles",
+      "beef",
+      "lunch",
+      "dinner"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "🍜", "name": "Braised Beef Noodle", "desc": "Deep red broth, brisket and tendon, hand-pulled noodles", "price": "NT$160"},
-      {"emoji": "🌶️", "name": "Spicy Beef Noodle", "desc": "Same broth with added chili paste and garlic oil", "price": "NT$170"},
-      {"emoji": "🥟", "name": "Scallion Pancake", "desc": "Pan-fried, sesame, crispy layers", "price": "NT$50"},
-      {"emoji": "🥬", "name": "Bamboo Shoot Salad", "desc": "Cold, sesame dressing, refreshing side", "price": "NT$50"}
+      {
+        "emoji": "🍜",
+        "name": "Braised Beef Noodle",
+        "desc": "Deep red broth, brisket and tendon, hand-pulled noodles",
+        "price": "NT$160"
+      },
+      {
+        "emoji": "🌶️",
+        "name": "Spicy Beef Noodle",
+        "desc": "Same broth with added chili paste and garlic oil",
+        "price": "NT$170"
+      },
+      {
+        "emoji": "🥟",
+        "name": "Scallion Pancake",
+        "desc": "Pan-fried, sesame, crispy layers",
+        "price": "NT$50"
+      },
+      {
+        "emoji": "🥬",
+        "name": "Bamboo Shoot Salad",
+        "desc": "Cold, sesame dressing, refreshing side",
+        "price": "NT$50"
+      }
     ],
     "reviews": [
-      {"initial": "C", "name": "Chou F.", "date": "May 2026 · 🇹🇼 Taiwan", "stars": "★★★★★", "text": "My local beef noodle place for 10 years. Consistent, delicious, no gimmicks. The braised tendon is phenomenal."},
-      {"initial": "I", "name": "Ian D.", "date": "March 2026 · 🇦🇺 Australia", "stars": "★★★★☆", "text": "A local favourite away from the tourist trail. The broth is deep and warming. Perfect rainy day lunch."}
+      {
+        "initial": "C",
+        "name": "Chou F.",
+        "date": "May 2026 · 🇹🇼 Taiwan",
+        "stars": "★★★★★",
+        "text": "My local beef noodle place for 10 years. Consistent, delicious, no gimmicks. The braised tendon is phenomenal."
+      },
+      {
+        "initial": "I",
+        "name": "Ian D.",
+        "date": "March 2026 · 🇦🇺 Australia",
+        "stars": "★★★★☆",
+        "text": "A local favourite away from the tourist trail. The broth is deep and warming. Perfect rainy day lunch."
+      }
     ]
   },
   {
@@ -1221,23 +2903,62 @@
     "price_min": 150,
     "rating": 4.4,
     "review_count": "189 reviews",
-    "image_url": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop&q=80&fm=jpg",
+    "image_url": "https://images.unsplash.com/photo-1445116572616-b5e2fd85e59d?w=600&h=400&fit=crop&q=80&fm=jpg",
     "address": "21 Zhongshan S Rd, Zhongzheng, Taipei",
     "hours": "Daily 09:00–19:00",
     "phone": "+886 2 2357 4455",
     "mrt": "Chiang Kai-shek Memorial · Exit 2 · 3 min walk",
-    "tags": ["dine"],
-    "categories": ["cafe", "brunch", "vegetarian", "healthy"],
+    "tags": [
+      "dine"
+    ],
+    "categories": [
+      "cafe",
+      "brunch",
+      "vegetarian",
+      "healthy"
+    ],
     "badge": null,
     "menu": [
-      {"emoji": "☕", "name": "Taiwanese Single Origin Coffee", "desc": "Alishan grown beans, pour over, light roast", "price": "NT$180"},
-      {"emoji": "🥗", "name": "Garden Salad Set", "desc": "Local vegetables, yuzu dressing, sourdough bread", "price": "NT$220"},
-      {"emoji": "🧇", "name": "Pineapple Cake Waffle", "desc": "Crispy waffle, pineapple jam, fresh cream", "price": "NT$180"},
-      {"emoji": "🍵", "name": "Oolong Milk Tea", "desc": "High mountain oolong, warm oat milk, no sugar", "price": "NT$160"}
+      {
+        "emoji": "☕",
+        "name": "Taiwanese Single Origin Coffee",
+        "desc": "Alishan grown beans, pour over, light roast",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🥗",
+        "name": "Garden Salad Set",
+        "desc": "Local vegetables, yuzu dressing, sourdough bread",
+        "price": "NT$220"
+      },
+      {
+        "emoji": "🧇",
+        "name": "Pineapple Cake Waffle",
+        "desc": "Crispy waffle, pineapple jam, fresh cream",
+        "price": "NT$180"
+      },
+      {
+        "emoji": "🍵",
+        "name": "Oolong Milk Tea",
+        "desc": "High mountain oolong, warm oat milk, no sugar",
+        "price": "NT$160"
+      }
     ],
     "reviews": [
-      {"initial": "P", "name": "Patricia H.", "date": "April 2026 · 🇺🇸 USA", "stars": "★★★★☆", "text": "Perfect place to rest after visiting the CKS Memorial. The coffee is excellent and the garden view is beautiful."},
-      {"initial": "T", "name": "Thomas M.", "date": "March 2026 · 🇩🇪 Germany", "stars": "★★★★☆", "text": "Peaceful café in a historic area. The pineapple waffle is a clever tribute to the region's famous pastry."}
+      {
+        "initial": "P",
+        "name": "Patricia H.",
+        "date": "April 2026 · 🇺🇸 USA",
+        "stars": "★★★★☆",
+        "text": "Perfect place to rest after visiting the CKS Memorial. The coffee is excellent and the garden view is beautiful."
+      },
+      {
+        "initial": "T",
+        "name": "Thomas M.",
+        "date": "March 2026 · 🇩🇪 Germany",
+        "stars": "★★★★☆",
+        "text": "Peaceful café in a historic area. The pineapple waffle is a clever tribute to the region's famous pastry."
+      }
     ]
   }
 ]
