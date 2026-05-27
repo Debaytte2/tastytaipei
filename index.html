@@ -516,6 +516,10 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <div class="district-card" data-district="Wanhua" onclick="filterByDistrict('Wanhua')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Wanhua</div><div class="district-count" id="dc-count-wanhua"></div><div class="district-vibe">Authentic · Old Taipei</div></div></div>
       <div class="district-card" data-district="Songshan" onclick="filterByDistrict('Songshan')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Songshan</div><div class="district-count" id="dc-count-songshan"></div><div class="district-vibe">Creative · Brunch</div></div></div>
       <div class="district-card" data-district="Datong" onclick="filterByDistrict('Datong')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Datong</div><div class="district-count" id="dc-count-datong"></div><div class="district-vibe">Night Market · Heritage</div></div></div>
+      <div class="district-card" data-district="Beitou" onclick="filterByDistrict('Beitou')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Beitou</div><div class="district-count" id="dc-count-beitou"></div><div class="district-vibe">Hot Springs · Ramen</div></div></div>
+      <div class="district-card" data-district="Neihu" onclick="filterByDistrict('Neihu')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Neihu</div><div class="district-count" id="dc-count-neihu"></div><div class="district-vibe">Tech · Brunch</div></div></div>
+      <div class="district-card" data-district="Nangang" onclick="filterByDistrict('Nangang')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Nangang</div><div class="district-count" id="dc-count-nangang"></div><div class="district-vibe">Business · French</div></div></div>
+      <div class="district-card" data-district="Wenshan" onclick="filterByDistrict('Wenshan')"><div class="district-card-bg" style="background-image:url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&h=450&fit=crop&q=80&fm=jpg');"></div><div class="district-card-overlay"></div><div class="district-card-content"><div class="district-name">Wenshan</div><div class="district-count" id="dc-count-wenshan"></div><div class="district-vibe">Mountains · Tea</div></div></div>
     </div>
   </div>
 
@@ -1403,7 +1407,8 @@ function updateDistrictCounts(restaurants) {
   var ids = {
     "Da'an":'dc-count-daan','Xinyi':'dc-count-xinyi','Shilin':'dc-count-shilin',
     'Zhongshan':'dc-count-zhongshan','Zhongzheng':'dc-count-zhongzheng',
-    'Wanhua':'dc-count-wanhua','Songshan':'dc-count-songshan','Datong':'dc-count-datong'
+    'Wanhua':'dc-count-wanhua','Songshan':'dc-count-songshan','Datong':'dc-count-datong',
+    'Beitou':'dc-count-beitou','Neihu':'dc-count-neihu','Nangang':'dc-count-nangang','Wenshan':'dc-count-wenshan'
   };
   Object.keys(ids).forEach(function(d){
     var el = document.getElementById(ids[d]);
