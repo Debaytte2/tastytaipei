@@ -279,6 +279,56 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 .delay-1{animation-delay:.1s;opacity:0;}.delay-2{animation-delay:.2s;opacity:0;}.delay-3{animation-delay:.3s;opacity:0;}.delay-4{animation-delay:.45s;opacity:0;}
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--cream);padding:12px 24px;border-radius:12px;font-size:13px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:9999;transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;}
 .toast.show{transform:translateX(-50%) translateY(0);}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.cart-nav-btn{position:relative;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:8px 12px;font-size:18px;cursor:pointer;display:flex;align-items:center;transition:border-color .2s,background .2s;line-height:1;}
+.cart-nav-btn:hover{border-color:var(--orange);background:var(--warm);}
+.cart-badge{position:absolute;top:-7px;right:-7px;background:var(--orange);color:#fff;font-size:10px;font-weight:800;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;padding:0 4px;border:2px solid var(--cream);}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;background:var(--cream);z-index:1003;transform:translateX(100%);transition:transform .35s cubic-bezier(.32,0,.67,0);display:flex;flex-direction:column;box-shadow:-8px 0 48px rgba(26,18,7,.18);}
+.cart-drawer.open{transform:translateX(0);}
+.cart-header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px 16px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.cart-title{font-family:'Fraunces',serif;font-size:20px;font-weight:800;letter-spacing:-.02em;}
+.cart-close-btn{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);padding:5px 9px;border-radius:8px;transition:background .2s;line-height:1;}
+.cart-close-btn:hover{background:var(--warm);}
+.cart-items-list{flex:1;overflow-y:auto;padding:4px 0;}
+.cart-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 24px;text-align:center;color:var(--muted);font-size:15px;font-weight:500;}
+.cart-item{display:flex;align-items:center;gap:12px;padding:14px 24px;border-bottom:1px solid var(--border);}
+.cart-item:last-child{border-bottom:none;}
+.cart-item-emoji{font-size:26px;width:46px;height:46px;background:var(--warm);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cart-item-info{flex:1;min-width:0;}
+.cart-item-name{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cart-item-sub{font-size:11px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cart-item-price{font-family:'Fraunces',serif;font-size:14px;font-weight:800;color:var(--orange);margin-top:3px;}
+.cart-item-controls{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.cart-qty-btn{width:28px;height:28px;border-radius:7px;background:var(--warm);border:1.5px solid var(--border);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;font-family:'DM Sans',sans-serif;line-height:1;}
+.cart-qty-btn:hover{background:var(--border);}
+.cart-qty-num{font-size:14px;font-weight:700;min-width:18px;text-align:center;}
+.cart-footer{flex-shrink:0;padding:16px 24px;border-top:1px solid var(--border);background:#fff;}
+.cart-total-row{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:600;margin-bottom:12px;}
+.cart-total-row .cart-total-val{font-family:'Fraunces',serif;font-size:22px;font-weight:800;color:var(--orange);}
+.cart-checkout-btn{width:100%;background:var(--orange);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;}
+.cart-checkout-btn:hover{background:#c9400e;}
+.cart-checkout-btn:disabled{background:var(--muted);cursor:not-allowed;}
+.cart-back-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:none;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;padding:14px 24px 0;font-family:'DM Sans',sans-serif;transition:color .2s;}
+.cart-back-btn:hover{color:var(--ink);}
+.pickup-form-header{text-align:center;padding:12px 24px 16px;}
+.pickup-form-title{font-family:'Fraunces',serif;font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;}
+.pickup-form-sub{font-size:13px;color:var(--muted);}
+.pickup-form-scrollable{flex:1;overflow-y:auto;padding:0 24px 8px;}
+.pickup-field{margin-bottom:16px;}
+.pickup-label{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.pickup-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--ink);outline:none;background:#fff;transition:border-color .2s;-webkit-appearance:none;}
+.pickup-input:focus{border-color:var(--orange);}
+.pickup-summary{background:var(--warm);border-radius:12px;padding:14px;margin-bottom:4px;}
+.pickup-summary-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:10px;}
+.pickup-summary-item{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:500;margin-bottom:5px;gap:8px;}
+.pickup-summary-item span:first-child{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.pickup-summary-total{display:flex;justify-content:space-between;font-size:14px;font-weight:700;padding-top:10px;border-top:1px solid var(--border);margin-top:6px;}
+.pickup-form-foot{flex-shrink:0;padding:12px 24px 20px;border-top:1px solid var(--border);background:#fff;}
+.pickup-confirm{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px;text-align:center;flex:1;}
+.pickup-confirm-title{font-family:'Fraunces',serif;font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;}
+.pickup-confirm-sub{font-size:14px;color:var(--muted);line-height:1.6;max-width:280px;margin-bottom:24px;}
+.pickup-confirm .cart-checkout-btn{max-width:260px;}
+@media(max-width:768px){.cart-drawer{width:100vw;}.cart-item{padding:12px 20px;}.cart-header{padding:16px 20px 14px;}.cart-footer{padding:14px 20px;}.pickup-form-scrollable{padding:0 20px 8px;}.pickup-form-foot{padding:12px 20px 24px;}.pickup-form-header{padding:10px 20px 14px;}}
 </style>
 <script>
 (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vzvl62tnrr");
@@ -303,7 +353,12 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
     </div>
     <button class="nav-cta" data-i18n="nav_listbtn" onclick="openModal()">List Your Restaurant →</button>
   </div>
-  <button class="nav-cta-mobile" data-i18n="nav_listbtn_mobile" onclick="openModal()">List Restaurant</button>
+  <div class="nav-right">
+    <button class="cart-nav-btn" id="nav-cart-btn" onclick="openCart()" aria-label="Cart">
+      🛒<span id="cart-badge" class="cart-badge" style="display:none;">0</span>
+    </button>
+    <button class="nav-cta-mobile" data-i18n="nav_listbtn_mobile" onclick="openModal()">List Restaurant</button>
+  </div>
 </nav>
 
 <div class="filter-bar" id="filter-bar">
@@ -551,6 +606,51 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 </div>
 
 <div class="toast" id="toast"></div>
+
+<div id="cart-overlay" onclick="closeCart()" style="display:none;position:fixed;inset:0;z-index:1002;background:rgba(26,18,7,.5);backdrop-filter:blur(4px);"></div>
+<div id="cart-drawer" class="cart-drawer">
+  <div class="cart-header">
+    <div class="cart-title">🛒 Your Cart</div>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div id="cart-items-view" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
+    <div id="cart-items" class="cart-items-list">
+      <div class="cart-empty"><div style="font-size:48px;margin-bottom:12px;">🛒</div><div style="font-weight:600;">Your cart is empty</div><div style="font-size:13px;color:var(--muted);margin-top:4px;">Open a restaurant and tap + to add items</div></div>
+    </div>
+    <div id="cart-footer" class="cart-footer" style="display:none;">
+      <div class="cart-total-row"><span>Subtotal</span><span class="cart-total-val" id="cart-subtotal">NT$0</span></div>
+      <button class="cart-checkout-btn" onclick="showPickupForm()">Order for Pickup →</button>
+    </div>
+  </div>
+  <div id="pickup-form-view" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+    <button class="cart-back-btn" onclick="hidePickupForm()">← Back to cart</button>
+    <div class="pickup-form-header">
+      <div style="font-size:28px;margin-bottom:6px;">📦</div>
+      <div class="pickup-form-title">Order for Pickup</div>
+      <div class="pickup-form-sub">Fill in your details and we'll have it ready.</div>
+    </div>
+    <div class="pickup-form-scrollable">
+      <div class="pickup-field"><label class="pickup-label">Your Name</label><input id="pickup-name" type="text" placeholder="e.g. Chen Wei" class="pickup-input" autocomplete="name"/></div>
+      <div class="pickup-field"><label class="pickup-label">Phone Number</label><input id="pickup-phone" type="tel" placeholder="+886 912 345 678" class="pickup-input" autocomplete="tel"/></div>
+      <div class="pickup-field"><label class="pickup-label">Pickup Time</label><input id="pickup-time" type="text" placeholder="e.g. 12:30 PM today" class="pickup-input"/></div>
+      <div class="pickup-summary">
+        <div class="pickup-summary-title">Order Summary</div>
+        <div id="pickup-summary-items"></div>
+        <div class="pickup-summary-total"><span>Total</span><span id="pickup-summary-total">NT$0</span></div>
+      </div>
+    </div>
+    <div class="pickup-form-foot">
+      <button id="submit-pickup-btn" class="cart-checkout-btn" onclick="submitPickupOrder()">Place Pickup Order 📦</button>
+    </div>
+  </div>
+  <div id="pickup-confirm-view" style="display:none;flex-direction:column;flex:1;" class="pickup-confirm">
+    <div style="font-size:56px;margin-bottom:16px;">✅</div>
+    <div class="pickup-confirm-title">Order Confirmed!</div>
+    <div class="pickup-confirm-sub">We've received your pickup order and will have it ready at your requested time.</div>
+    <button class="cart-checkout-btn" onclick="resetCartDrawer()">Back to Menu</button>
+  </div>
+</div>
+
 <div id="modal-overlay" onclick="closeModal()" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(26,18,7,.6);backdrop-filter:blur(6px);"></div>
 <div id="modal" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:1001;background:var(--cream);border-radius:24px 24px 0 0;max-height:90vh;overflow-y:auto;transform:translateY(100%);transition:transform .4s cubic-bezier(.32,0,.67,0);">
   <div style="display:flex;justify-content:center;padding:14px 0 0;"><div style="width:40px;height:4px;border-radius:2px;background:var(--border);"></div></div>
@@ -707,6 +807,8 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 <script>
 var currentRestaurantId = null;
 var homeScrollY = 0;
+var _menuItemCache = {};
+var cart = [];
 var _restaurantData_REMOVED = {
   dintaifung: {
     name: 'Din Tai Fung',
@@ -996,8 +1098,12 @@ function showRestaurant(id) {
     '<div class="rp-info-card"><div class="rp-info-label">🌐 Languages</div><div class="rp-info-val">中文 · English · Français<br>日本語 · Español</div></div>';
 
   var menuItems = d.menu || [];
-  document.getElementById('rp-menu-items').innerHTML = menuItems.map(function(m){
-    return '<div class="menu-item"><div class="menu-item-emoji">'+escHtml(m.emoji)+'</div><div class="menu-item-info"><div class="menu-item-name">'+escHtml(m.name)+'</div><div class="menu-item-desc">'+escHtml(m.desc)+'</div></div><div class="menu-item-price">'+escHtml(m.price)+'</div><button class="menu-item-add" onclick="showToast(\'Added to cart 🛒\')">+</button></div>';
+  _menuItemCache = {};
+  menuItems.forEach(function(m, i) {
+    _menuItemCache['mi_'+i] = {restaurantId: d.id, restaurantName: d.name, name: m.name, price: m.price, emoji: m.emoji || '🍽️'};
+  });
+  document.getElementById('rp-menu-items').innerHTML = menuItems.map(function(m, i){
+    return '<div class="menu-item"><div class="menu-item-emoji">'+escHtml(m.emoji)+'</div><div class="menu-item-info"><div class="menu-item-name">'+escHtml(m.name)+'</div><div class="menu-item-desc">'+escHtml(m.desc)+'</div></div><div class="menu-item-price">'+escHtml(m.price)+'</div><button class="menu-item-add" data-mikey="mi_'+i+'" onclick="addToCartFromKey(this)">+</button></div>';
   }).join('');
 
   var revList = d.reviews || [];
@@ -1321,7 +1427,148 @@ function updateDistrictCounts(restaurants) {
     if (el) el.textContent = (counts[d]||0)+' restaurants';
   });
 }
+function addToCartFromKey(btn) {
+  var key = btn.getAttribute('data-mikey');
+  var item = _menuItemCache[key];
+  if (!item) return;
+  addToCart(item.restaurantId, item.restaurantName, item.name, item.price, item.emoji);
+}
+function addToCart(restaurantId, restaurantName, itemName, itemPrice, itemEmoji) {
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i].restaurantId === restaurantId && cart[i].name === itemName) {
+      cart[i].qty += 1;
+      saveCart(); updateCartUI();
+      showToast((itemEmoji || '') + ' ' + itemName + ' ×' + cart[i].qty + ' 🛒');
+      return;
+    }
+  }
+  var priceMatch = (itemPrice || '').match(/\d+/);
+  var priceNum = priceMatch ? parseInt(priceMatch[0]) : 0;
+  cart.push({restaurantId:restaurantId,restaurantName:restaurantName,name:itemName,price:itemPrice,priceNum:priceNum,emoji:itemEmoji||'🍽️',qty:1});
+  saveCart(); updateCartUI();
+  showToast((itemEmoji || '') + ' Added to cart 🛒');
+}
+function saveCart() { localStorage.setItem('tt_cart', JSON.stringify(cart)); }
+function getCartTotal() { return cart.reduce(function(s,item){return s+item.qty*item.priceNum;},0); }
+function updateCartUI() {
+  var total = cart.reduce(function(s,item){return s+item.qty;},0);
+  var badge = document.getElementById('cart-badge');
+  if (badge) { badge.textContent = total; badge.style.display = total > 0 ? 'flex' : 'none'; }
+}
+function updateCartQty(idx, delta) {
+  if (!cart[idx]) return;
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  saveCart(); updateCartUI(); renderCartItems();
+}
+function renderCartItems() {
+  var el = document.getElementById('cart-items');
+  var footer = document.getElementById('cart-footer');
+  if (!el) return;
+  if (cart.length === 0) {
+    el.innerHTML = '<div class="cart-empty"><div style="font-size:48px;margin-bottom:12px;">🛒</div><div style="font-weight:600;">Your cart is empty</div><div style="font-size:13px;color:var(--muted);margin-top:4px;">Open a restaurant and tap + to add items</div></div>';
+    if (footer) footer.style.display = 'none';
+    return;
+  }
+  if (footer) footer.style.display = 'block';
+  var html = '';
+  cart.forEach(function(item, idx) {
+    html += '<div class="cart-item">' +
+      '<div class="cart-item-emoji">'+escHtml(item.emoji)+'</div>' +
+      '<div class="cart-item-info">' +
+        '<div class="cart-item-name">'+escHtml(item.name)+'</div>' +
+        '<div class="cart-item-sub">'+escHtml(item.restaurantName)+'</div>' +
+        '<div class="cart-item-price">'+escHtml(item.price)+'</div>' +
+      '</div>' +
+      '<div class="cart-item-controls">' +
+        '<button class="cart-qty-btn" onclick="updateCartQty('+idx+',-1)">−</button>' +
+        '<span class="cart-qty-num">'+item.qty+'</span>' +
+        '<button class="cart-qty-btn" onclick="updateCartQty('+idx+',1)">+</button>' +
+      '</div>' +
+    '</div>';
+  });
+  el.innerHTML = html;
+  var sub = document.getElementById('cart-subtotal');
+  if (sub) sub.textContent = 'NT$' + getCartTotal();
+}
+function openCart() {
+  renderCartItems();
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+function showPickupForm() {
+  var summaryEl = document.getElementById('pickup-summary-items');
+  if (summaryEl) {
+    summaryEl.innerHTML = cart.map(function(item) {
+      return '<div class="pickup-summary-item"><span>'+escHtml(item.qty+'× '+item.name)+'</span><span style="flex-shrink:0;font-weight:600;">'+escHtml(item.price)+'</span></div>';
+    }).join('');
+  }
+  var totEl = document.getElementById('pickup-summary-total');
+  if (totEl) totEl.textContent = 'NT$' + getCartTotal();
+  document.getElementById('cart-items-view').style.display = 'none';
+  var pv = document.getElementById('pickup-form-view');
+  pv.style.display = 'flex';
+}
+function hidePickupForm() {
+  document.getElementById('pickup-form-view').style.display = 'none';
+  document.getElementById('cart-items-view').style.display = 'flex';
+}
+function submitPickupOrder() {
+  var name = document.getElementById('pickup-name').value.trim();
+  var phone = document.getElementById('pickup-phone').value.trim();
+  var time = document.getElementById('pickup-time').value.trim();
+  if (!name || !phone || !time) { showToast('Please fill in all fields ⚠️'); return; }
+  var restaurantName = cart.length > 0 ? cart[0].restaurantName : 'Unknown';
+  var itemsText = cart.map(function(item){ return item.qty+'× '+item.name+' ('+item.price+')'; }).join('\n');
+  var btn = document.getElementById('submit-pickup-btn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
+  fetch('https://formspree.io/f/mdapwalg', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      _subject: 'Pickup Order — ' + restaurantName,
+      customer_name: name,
+      phone: phone,
+      pickup_time: time,
+      restaurant: restaurantName,
+      items: itemsText,
+      total: 'NT$' + getCartTotal(),
+      order_date: new Date().toLocaleString('en-GB', {timeZone: 'Asia/Taipei'})
+    })
+  })
+  .then(function(res) {
+    if (!res.ok) throw new Error('fail');
+    document.getElementById('pickup-form-view').style.display = 'none';
+    document.getElementById('pickup-confirm-view').style.display = 'flex';
+    cart = []; saveCart(); updateCartUI();
+  })
+  .catch(function() {
+    if (btn) { btn.disabled = false; btn.textContent = 'Place Pickup Order 📦'; }
+    showToast('Could not submit order — please try again ⚠️');
+  });
+}
+function resetCartDrawer() {
+  closeCart();
+  setTimeout(function() {
+    document.getElementById('pickup-form-view').style.display = 'none';
+    document.getElementById('pickup-confirm-view').style.display = 'none';
+    document.getElementById('cart-items-view').style.display = 'flex';
+    document.getElementById('pickup-name').value = '';
+    document.getElementById('pickup-phone').value = '';
+    document.getElementById('pickup-time').value = '';
+    var btn = document.getElementById('submit-pickup-btn');
+    if (btn) { btn.disabled = false; btn.textContent = 'Place Pickup Order 📦'; }
+  }, 400);
+}
 document.addEventListener('DOMContentLoaded', function() {
+  cart = JSON.parse(localStorage.getItem('tt_cart') || '[]');
+  updateCartUI();
   fetch('/restaurants.json')
     .then(function(r){ return r.json(); })
     .then(function(data){
