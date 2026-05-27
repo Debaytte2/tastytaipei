@@ -64,7 +64,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(253,248,240,.92);backdrop-
 .nav-lang-switcher .lang-btn{padding:4px 10px;border-radius:20px;border:none;font-size:11px;font-weight:700;cursor:pointer;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .18s;white-space:nowrap;}
 .nav-lang-switcher .lang-btn.active{background:var(--ink);color:var(--cream);box-shadow:0 2px 6px rgba(26,18,7,.18);}
 .nav-lang-switcher .lang-btn:hover:not(.active){color:var(--ink);background:rgba(255,255,255,.9);}
-@media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}.nav-cta-mobile{display:flex;align-items:center;}}
+@media(max-width:768px){nav{padding:0 16px;}.nav-links{display:none;}.nav-right .cart-nav-btn{display:none;}.nav-cta-mobile{display:flex;align-items:center;}}
 .filter-bar{background:#fff;border-bottom:1px solid var(--border);padding:8px 20px;display:flex;gap:6px;overflow-x:auto;align-items:center;scrollbar-width:none;position:sticky;top:64px;z-index:50;-webkit-overflow-scrolling:touch;}
 .filter-bar::-webkit-scrollbar{display:none;}
 .filter-btn{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;white-space:nowrap;transition:all .2s;font-family:'DM Sans',sans-serif;flex-shrink:0;}
@@ -77,7 +77,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(253,248,240,.92);backdrop-
 .filter-option.selected{background:var(--warm);font-weight:700;}
 .filter-option.selected::after{content:'✓';color:var(--green);font-weight:800;}
 .filter-wrap{position:relative;}
-@media(max-width:768px){.filter-bar{padding:6px 12px;top:64px;gap:5px;}}
+@media(max-width:768px){.filter-bar{padding:6px 12px;top:64px;gap:5px;flex-wrap:nowrap;}}
 #home{position:relative;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 60% at 20% 30%,rgba(232,82,26,.08) 0%,transparent 70%),radial-gradient(ellipse 50% 50% at 80% 70%,rgba(201,150,58,.07) 0%,transparent 60%);}
 .hero-eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;z-index:1;display:flex;align-items:center;gap:8px;}
@@ -110,7 +110,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(253,248,240,.92);backdrop-
 .section-title{font-family:'Fraunces',serif;font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1;}
 .see-all{font-size:13px;font-weight:600;color:var(--orange);text-decoration:none;cursor:pointer;display:flex;align-items:center;gap:4px;}
 .see-all:hover{text-decoration:underline;}
-@media(max-width:768px){.section{padding:48px 20px;}}
+@media(max-width:768px){.section{padding:40px 20px;}}
 .cats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
 @media(max-width:768px){.cats-grid{grid-template-columns:repeat(4,1fr);gap:8px;}}
 @media(max-width:480px){.cats-grid{grid-template-columns:repeat(3,1fr);gap:8px;}}
@@ -121,6 +121,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(253,248,240,.92);backdrop-
 .cat-card:hover .cat-emoji{transform:scale(1.12);}
 .cat-name{font-size:11.5px;font-weight:600;text-align:center;}
 .restaurants-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+@media(max-width:768px){.restaurants-grid{grid-template-columns:1fr;gap:16px;}}
 .r-card{background:var(--card-bg);border-radius:16px;overflow:hidden;border:1.5px solid var(--border);transition:all .25s;cursor:pointer;text-decoration:none;color:inherit;display:block;}
 .r-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,18,7,.12);border-color:rgba(232,82,26,.3);}
 .r-card-img{width:100%;height:200px;position:relative;overflow:hidden;background:linear-gradient(135deg,#f5dfc0,#e8c89a);}
@@ -160,7 +161,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(253,248,240,.92);backdrop-
 .districts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;}
 @media(max-width:900px){.districts-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:500px){.districts-grid{grid-template-columns:repeat(2,1fr);gap:10px;}}
-@media(max-width:768px){.districts-section{padding:48px 20px;}}
+@media(max-width:768px){.districts-section{padding:40px 20px;}}
 .district-card{position:relative;border-radius:18px;overflow:hidden;cursor:pointer;aspect-ratio:4/3;transition:transform .25s,box-shadow .25s;border:1.5px solid var(--border);}
 .district-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(26,18,7,.18);}
 .district-card.active{box-shadow:0 0 0 3px var(--orange),0 20px 48px rgba(232,82,26,.25);}
@@ -191,33 +192,20 @@ nav{position:sticky;top:0;z-index:100;background:rgba(253,248,240,.92);backdrop-
 .near-me-chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:5px 14px;font-size:12px;color:rgba(255,255,255,.7);cursor:pointer;transition:all .2s;}
 .near-me-chip:hover{background:rgba(255,255,255,.15);color:#fff;}
 @media(max-width:768px){.near-me-section{margin:0 20px 48px;padding:32px 28px;flex-direction:column;gap:32px;}}
-.hero-split{min-height:82vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-split{min-height:70vh;display:block;position:relative;overflow:hidden;}
 .hero-panel{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:80px 60px;position:relative;overflow:hidden;}
 .hero-panel-left{background:var(--cream);}
 .hero-panel-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 20% 40%,rgba(232,82,26,.09) 0%,transparent 70%);}
-.hero-panel-right{background:var(--ink);}
-.hero-panel-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(232,82,26,.18) 0%,transparent 70%);}
-.hero-panel-divider{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border);z-index:2;}
 .hero-panel-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;position:relative;z-index:1;}
 .hero-panel-left .hero-panel-eyebrow{color:var(--orange);}
-.hero-panel-right .hero-panel-eyebrow{color:rgba(232,82,26,.8);}
 .hero-panel-title{font-family:'Fraunces',serif;font-size:clamp(34px,4vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:16px;position:relative;z-index:1;}
 .hero-panel-left .hero-panel-title{color:var(--ink);}
-.hero-panel-right .hero-panel-title{color:var(--cream);}
 .hero-panel-sub{font-size:16px;line-height:1.6;margin-bottom:32px;max-width:340px;position:relative;z-index:1;}
 .hero-panel-left .hero-panel-sub{color:var(--muted);}
-.hero-panel-right .hero-panel-sub{color:rgba(253,248,240,.6);}
 .hero-cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .2s;text-decoration:none;position:relative;z-index:1;}
 .hero-cta-btn-visitor{background:var(--orange);color:#fff;}
 .hero-cta-btn-visitor:hover{background:#c9400e;transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,82,26,.3);}
-.hero-cta-btn-owner{background:var(--cream);color:var(--ink);}
-.hero-cta-btn-owner:hover{background:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25);}
-@media(max-width:768px){
-  .hero-split{grid-template-columns:1fr;min-height:auto;}
-  .hero-panel{padding:56px 28px;}
-  .hero-panel-divider{display:none;}
-  .hero-panel-right{border-top:1px solid rgba(255,255,255,.1);}
-}
+@media(max-width:768px){.hero-panel{padding:48px 20px;}}
 footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
 .footer-logo{font-family:'Fraunces',serif;font-size:20px;font-weight:800;color:var(--cream);}
 .footer-logo span{color:var(--orange);}
@@ -347,13 +335,6 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
     <button class="nav-cta" data-i18n="nav_listbtn" onclick="openModal()">List Your Restaurant →</button>
   </div>
   <div class="nav-right">
-    <div class="nav-lang-switcher">
-      <button class="lang-btn active" id="lang-en" onclick="setLang('en')">🇬🇧 EN</button>
-      <button class="lang-btn" id="lang-zh" onclick="setLang('zh')">🇹🇼 中</button>
-      <button class="lang-btn" id="lang-fr" onclick="setLang('fr')">🇫🇷 FR</button>
-      <button class="lang-btn" id="lang-ja" onclick="setLang('ja')">🇯🇵 JP</button>
-      <button class="lang-btn" id="lang-es" onclick="setLang('es')">🇪🇸 ES</button>
-    </div>
     <button class="cart-nav-btn" id="nav-cart-btn" onclick="openCart()" aria-label="Cart">
       🛒<span id="cart-badge" class="cart-badge" style="display:none;">0</span>
     </button>
@@ -438,8 +419,6 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 
 <div id="home-page">
   <section id="home" class="hero-split">
-    <div class="hero-panel-divider"></div>
-    <!-- LEFT: Tourists & Visitors -->
     <div class="hero-panel hero-panel-left">
       <div class="lang-switcher animate" style="margin-bottom:24px;">
         <button class="lang-btn active" id="hero-lang-en" onclick="setLang('en')">🇬🇧 EN</button>
@@ -456,13 +435,6 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <h1 class="hero-panel-title animate delay-1" data-i18n="hero_left_title">Discover Taipei's Best Food</h1>
       <p class="hero-panel-sub animate delay-2" data-i18n="hero_left_sub">Real restaurants. Real reviews. Every neighbourhood.</p>
       <a class="hero-cta-btn hero-cta-btn-visitor animate delay-3" href="#top-picks-section" data-i18n="hero_left_cta">Explore Restaurants →</a>
-    </div>
-    <!-- RIGHT: Restaurant Owners -->
-    <div class="hero-panel hero-panel-right">
-      <p class="hero-panel-eyebrow animate" data-i18n="hero_right_eyebrow">For Restaurant Owners</p>
-      <h1 class="hero-panel-title animate delay-1" data-i18n="hero_right_title">Grow Your Restaurant</h1>
-      <p class="hero-panel-sub animate delay-2" data-i18n="hero_right_sub">Reach tourists, expats and locals searching for their next meal.</p>
-      <button class="hero-cta-btn hero-cta-btn-owner animate delay-3" onclick="openModal()" data-i18n="hero_right_cta">List Your Restaurant →</button>
     </div>
   </section>
 
@@ -579,8 +551,8 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <a href="/about.html" data-i18n="foot_about">About</a>
       <a onclick="openModal()">For Restaurants</a>
       <a href="https://www.instagram.com/tastytaipei_com" target="_blank" data-i18n="foot_blog">Instagram</a>
-      <a href="https://line.me/ti/p/chrixx7" target="_blank" data-i18n="foot_line">LINE Us</a>
-      <a href="https://line.me/ti/p/chrixx7" target="_blank" data-i18n="foot_contact">Contact</a>
+      <a href="https://line.me/ti/p/@chrixx7" target="_blank" data-i18n="foot_line">LINE Us</a>
+      <a href="https://line.me/ti/p/@chrixx7" target="_blank" data-i18n="foot_contact">Contact</a>
     </div>
     <div class="footer-copy" data-i18n="foot_copy">© 2026 Tasty Taipei — Built with ♥ in Taiwan</div>
   </footer>
@@ -1098,7 +1070,7 @@ function showRestaurant(id) {
     '<button class="rp-action-btn btn-reserve" onclick="showToast(\'🗓 Reservation request sent!\')">🗓 Reserve a Table</button>' +
     '<button class="rp-action-btn btn-pickup" onclick="showToast(\'📦 Pickup order started!\')">📦 Order Pickup</button>' +
     '<button class="rp-action-btn btn-delivery" onclick="showToast(\'🛵 Redirecting to delivery...\')">🛵 Delivery</button>' +
-    '<button class="rp-action-btn" onclick="window.open(\'https://line.me/ti/p/chrixx7\')" style="background:#25d366;color:#fff;">✏️ Update Menu</button>';
+    '<button class="rp-action-btn" onclick="window.open(\'https://line.me/ti/p/@chrixx7\')" style="background:#25d366;color:#fff;">✏️ Update Menu</button>';
 
   document.getElementById('rp-info-grid').innerHTML =
     '<div class="rp-info-card"><div class="rp-info-label">📍 Location</div><div class="rp-info-val">'+escHtml(d.address)+'</div></div>' +
@@ -1408,7 +1380,7 @@ function submitSignup() {
   if (!rest||!name||!phone){showToast('Please fill in all fields ⚠️');return;}
   fetch('https://formspree.io/f/mdapwalg',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({restaurant:rest,name:name,contact:phone,_subject:'New Trial Signup — '+rest})}).catch(function(){});
   var msg=encodeURIComponent('🍽️ NEW TRIAL SIGNUP\n🏮 Restaurant: '+rest+'\n👤 Name: '+name+'\n📞 LINE/Phone: '+phone+'\n📅 '+new Date().toLocaleString('en-GB',{timeZone:'Asia/Taipei'}));
-  window.open('https://line.me/ti/p/chrixx7?message='+msg,'_blank');
+  window.open('https://line.me/ti/p/@chrixx7?message='+msg,'_blank');
   document.getElementById('signup-success-en').style.display='block';
   document.getElementById('sf-restaurant').value='';document.getElementById('sf-name').value='';document.getElementById('sf-phone').value='';
 }
@@ -1419,7 +1391,7 @@ function submitSignupZh() {
   if (!rest||!name||!phone){showToast('請填寫所有必填欄位 ⚠️');return;}
   fetch('https://formspree.io/f/mdapwalg',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({restaurant:rest,name:name,contact:phone,_subject:'新試用申請 — '+rest})}).catch(function(){});
   var msg=encodeURIComponent('🍽️ 新試用申請\n🏮 餐廳：'+rest+'\n👤 姓名：'+name+'\n📞 LINE/電話：'+phone+'\n📅 '+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}));
-  window.open('https://line.me/ti/p/chrixx7?message='+msg,'_blank');
+  window.open('https://line.me/ti/p/@chrixx7?message='+msg,'_blank');
   document.getElementById('signup-success-zh').style.display='block';
   document.getElementById('sf-restaurant-zh').value='';document.getElementById('sf-name-zh').value='';document.getElementById('sf-phone-zh').value='';
 }
@@ -1604,7 +1576,7 @@ function setLang(lang) {
   currentLang = lang;
   var t = i18n[lang];
   ['en','zh','fr','ja','es'].forEach(function(l){
-    document.querySelectorAll('#lang-' + l + ', #hero-lang-' + l).forEach(function(btn){ btn.classList.toggle('active', l === lang); });
+    document.querySelectorAll('#hero-lang-' + l).forEach(function(btn){ btn.classList.toggle('active', l === lang); });
   });
   document.querySelectorAll('[data-i18n]').forEach(function(el){
     var key = el.getAttribute('data-i18n');
