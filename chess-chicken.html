@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>騎士碁 Chess Chicken — Tasty Taipei</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8392B;
+    --red-light: #E8503F;
+    --gold: #D4A84B;
+    --cream: #FBF8F3;
+    --dark: #1A1208;
+    --mid: #5C4A32;
+    --light: #EDE8DF;
+    --border: rgba(92,74,50,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(251,248,243,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--red);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+  .nav-logo span { color: var(--dark); }
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--mid);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .nav-back:hover { color: var(--red); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 460px;
+    overflow: hidden;
+    background: var(--dark);
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.72;
+    transform: scale(1.04);
+    transition: transform 8s ease;
+  }
+  .hero:hover img { transform: scale(1); }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 20%,
+      rgba(26,18,8,0.55) 65%,
+      rgba(26,18,8,0.9) 100%
+    );
+  }
+  .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 32px 32px 36px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--red);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+  }
+  .hero-badge::before {
+    content: '★';
+    font-size: 10px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    color: white;
+    line-height: 1.1;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .hero-subtitle {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 18px;
+    letter-spacing: 0.04em;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+  .hero-tag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: rgba(255,255,255,0.85);
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .hero-tag svg { opacity: 0.7; flex-shrink: 0; }
+  .hero-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 10px;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .stars { color: var(--gold); font-size: 12px; letter-spacing: 1px; }
+
+  /* ── LAYOUT ── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* ── QUICK INFO STRIP ── */
+  .info-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 28px 0;
+  }
+  .info-cell {
+    background: white;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .info-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    opacity: 0.7;
+  }
+  .info-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark);
+    line-height: 1.3;
+  }
+  .info-value.open { color: #2D7D4A; font-weight: 600; }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 18px;
+    background: var(--red);
+    border-radius: 2px;
+  }
+
+  /* ── DESCRIPTION ── */
+  .description-block { margin-bottom: 32px; }
+  .description-block p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #4A3B28;
+    margin-bottom: 10px;
+  }
+  .highlight-pill {
+    display: inline-block;
+    background: #FFF3E0;
+    color: var(--red);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin: 2px 3px;
+    border: 1px solid rgba(200,57,43,0.15);
+  }
+
+  /* ── MENU HIGHLIGHTS ── */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .menu-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .menu-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(26,18,8,0.1);
+  }
+  .menu-card-img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+    background: var(--light);
+  }
+  .menu-card-body { padding: 12px 14px; }
+  .menu-card-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 2px;
+  }
+  .menu-card-name-zh {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 12px;
+    color: var(--mid);
+    margin-bottom: 6px;
+  }
+  .menu-card-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--red);
+  }
+  .menu-card-note {
+    font-size: 11px;
+    color: var(--mid);
+    margin-top: 3px;
+  }
+
+  /* ── VISIT INFO ── */
+  .visit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 500px) { .visit-grid { grid-template-columns: 1fr; } }
+  .visit-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 18px 20px;
+  }
+  .visit-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+  .visit-card-val {
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.6;
+  }
+  .visit-card-val a {
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .visit-card-val a:hover { text-decoration: underline; }
+
+  /* ── NOTE BOX ── */
+  .note-box {
+    background: #FFF8EE;
+    border: 1px solid rgba(212,168,75,0.35);
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 32px;
+    font-size: 13.5px;
+    color: #5C4420;
+    line-height: 1.6;
+  }
+  .note-box strong { color: var(--dark); }
+
+  /* ── MAP PLACEHOLDER ── */
+  .map-box {
+    background: var(--light);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .map-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%235C4A32' fill-opacity='0.05'%3E%3Ccircle cx='20' cy='20' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .map-icon { font-size: 28px; }
+  .map-text { font-size: 13px; color: var(--mid); font-weight: 500; }
+  .map-address {
+    font-size: 12px;
+    color: var(--mid);
+    opacity: 0.7;
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--dark);
+    border-radius: 14px;
+    padding: 32px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '♟';
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 100px;
+    opacity: 0.05;
+    color: white;
+    pointer-events: none;
+  }
+  .cta-left h3 {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .cta-left p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+    max-width: 320px;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .cta-btn:hover { background: var(--red-light); }
+
+  /* ── FOOTER LOGO ── */
+  .footer-logo {
+    text-align: center;
+    padding-top: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: var(--mid);
+    opacity: 0.5;
+    letter-spacing: 0.02em;
+  }
+  .footer-logo span { color: var(--red); opacity: 1; }
+
+  /* ── FEATURED RIBBON ── */
+  .featured-ribbon {
+    background: linear-gradient(90deg, var(--gold) 0%, #E8C86A 100%);
+    color: var(--dark);
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content { animation: fadeUp 0.7s ease both; }
+  .info-strip { animation: fadeUp 0.7s 0.1s ease both; }
+  .description-block { animation: fadeUp 0.7s 0.2s ease both; }
+</style>
+</head>
+<body>
+
+<!-- Featured Ribbon -->
+<div class="featured-ribbon">⭐ Featured Partner — Tasty Taipei</div>
+
+<!-- Nav -->
+<nav>
+  <a href="index.html" class="nav-logo">Tasty<span>Taipei</span></a>
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to listings
+  </a>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <img
+    src="/images/chess-chicken/hero.jpg"
+    alt="Chess Chicken — 騎士碁 storefront at night"
+  />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Shida Night Market</div>
+    <div class="hero-title">Chess Chicken</div>
+    <div class="hero-subtitle">騎士碁 雞排專賣店</div>
+    <div class="hero-meta">
+      <div class="hero-rating">
+        <span class="stars">★★★★½</span>
+        <span>4.5</span>
+      </div>
+      <div class="hero-tag">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 1C4.015 1 2 3.015 2 5.5c0 3.5 4.5 6.5 4.5 6.5S11 9 11 5.5C11 3.015 8.985 1 6.5 1z" stroke="currentColor" stroke-width="1.4"/></svg>
+        台北市大安區師大路49巷10號
+      </div>
+      <div class="hero-tag">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 4v2.5l1.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        14:00 – 23:00
+      </div>
+      <div class="hero-tag">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 10l2.5-7 2 4 2-3 2.5 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        NT$60 avg
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page Body -->
+<div class="page">
+
+  <!-- Quick Info Strip -->
+  <div class="info-strip">
+    <div class="info-cell">
+      <div class="info-label">Status</div>
+      <div class="info-value open">● Open Now</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Closed</div>
+      <div class="info-value">Wednesdays</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">MRT</div>
+      <div class="info-value">台電大樓站 · 10 min walk</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Phone</div>
+      <div class="info-value">(02) 2369-7885</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Seating</div>
+      <div class="info-value">~10 seats · takeaway</div>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="description-block">
+    <div class="section-title">About</div>
+    <p>
+      Tucked into a laneway at the heart of Shida Night Market, <strong>Chess Chicken</strong> has earned a devoted following for one reason: the <em>cheese pull</em>. Their signature fried chicken is sliced open, packed with a generous load of molten mozzarella, then fried to golden perfection — a cross-section moment that's equal parts chaotic and beautiful.
+    </p>
+    <p>
+      The menu is tight and intentional — fried chicken in several cuts, taro balls, sweet potato puffs, and herb-dusted fries — letting the kitchen focus on doing a few things exceptionally well. Expect crispy skin, juicy meat, and cheese that stretches further than you'd believe.
+    </p>
+    <div style="margin-top: 12px;">
+      <span class="highlight-pill">Cheese Pull</span>
+      <span class="highlight-pill">Night Market</span>
+      <span class="highlight-pill">Fried Chicken</span>
+      <span class="highlight-pill">Shida 師大</span>
+      <span class="highlight-pill">Takeaway Friendly</span>
+    </div>
+  </div>
+
+  <!-- Photo Gallery -->
+  <div class="section-title">Gallery</div>
+  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;margin-bottom:32px;border-radius:10px;overflow:hidden;height:220px;">
+    <img
+      src="/images/chess-chicken/food-3.jpg"
+      alt="Chess Chicken — dining at the counter at night"
+      style="width:100%;height:100%;object-fit:cover;display:block;"
+    />
+    <div style="display:grid;grid-template-rows:1fr 1fr;gap:8px;overflow:hidden;">
+      <img
+        src="/images/chess-chicken/food-4.jpg"
+        alt="Chess Chicken branded street sign"
+        style="width:100%;height:100%;object-fit:cover;display:block;"
+      />
+      <img
+        src="/images/chess-chicken/interior.jpg"
+        alt="Chess Chicken interior — yellow walls and menu"
+        style="width:100%;height:100%;object-fit:cover;display:block;"
+      />
+    </div>
+    <div style="display:grid;grid-template-rows:1fr 1fr;gap:8px;overflow:hidden;">
+      <img
+        src="/images/chess-chicken/food-1.jpg"
+        alt="Cheese pull from the signature chicken cutlet"
+        style="width:100%;height:100%;object-fit:cover;display:block;"
+      />
+      <img
+        src="/images/chess-chicken/food-2.jpg"
+        alt="Pulling open the Chess Chicken cutlet"
+        style="width:100%;height:100%;object-fit:cover;display:block;"
+      />
+    </div>
+  </div>
+
+  <!-- Menu Highlights -->
+  <div class="section-title">Menu Highlights</div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <img class="menu-card-img"
+        src="/images/chess-chicken/food-1.jpg"
+        alt="Knight cheese chicken cutlet"
+      />
+      <div class="menu-card-body">
+        <div class="menu-card-name">Knight Chicken Cutlet</div>
+        <div class="menu-card-name-zh">騎士雞排 — 招牌</div>
+        <div class="menu-card-price">NT$80</div>
+        <div class="menu-card-note">Mozzarella stuffed · signature item</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img class="menu-card-img"
+        src="/images/chess-chicken/food-2.jpg"
+        alt="Classic crispy fried chicken cutlet"
+      />
+      <div class="menu-card-body">
+        <div class="menu-card-name">Classic Cutlet</div>
+        <div class="menu-card-name-zh">原味雞排</div>
+        <div class="menu-card-price">NT$65</div>
+        <div class="menu-card-note">Bone-in · herb seasoning option</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img class="menu-card-img"
+        src="/images/chess-chicken/interior.jpg"
+        alt="Fried taro and sweet potato balls"
+      />
+      <div class="menu-card-body">
+        <div class="menu-card-name">Taro & Sweet Potato Balls</div>
+        <div class="menu-card-name-zh">地瓜球 / 芋頭球</div>
+        <div class="menu-card-price">NT$35</div>
+        <div class="menu-card-note">Filled · plum powder on request</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img class="menu-card-img"
+        src="/images/chess-chicken/food-4.jpg"
+        alt="Chess Chicken cheese fries"
+      />
+      <div class="menu-card-body">
+        <div class="menu-card-name">Cheese Fries</div>
+        <div class="menu-card-name-zh">起司薯條</div>
+        <div class="menu-card-price">NT$45</div>
+        <div class="menu-card-note">Thin-cut · light cream cheese dust</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Good to Know -->
+  <div class="note-box">
+    <strong>🗒 Good to Know</strong><br>
+    Delivery orders require at least <strong>one day's advance notice</strong>. Walk-in and takeaway are available during regular hours. The shop is closed every Wednesday.
+  </div>
+
+  <!-- Visit Info -->
+  <div class="section-title">Getting There</div>
+  <div class="visit-grid">
+    <div class="visit-card">
+      <div class="visit-card-label">Address</div>
+      <div class="visit-card-val">
+        台北市大安區師大路49巷10號<br>
+        <span style="font-size:12px;color:var(--mid);opacity:0.7">Da'an District, Taipei · Shida Night Market</span>
+      </div>
+    </div>
+    <div class="visit-card">
+      <div class="visit-card-label">Getting There</div>
+      <div class="visit-card-val">
+        MRT 台電大樓站 (Exit 3)<br>
+        10 min walk · Bus: 師大綜合大樓
+      </div>
+    </div>
+    <div class="visit-card">
+      <div class="visit-card-label">Hours</div>
+      <div class="visit-card-val">
+        Mon–Tue, Thu–Sun: 14:00–23:00<br>
+        Closed Wednesday
+      </div>
+    </div>
+    <div class="visit-card">
+      <div class="visit-card-label">Contact & Social</div>
+      <div class="visit-card-val">
+        <a href="tel:0223697885">(02) 2369-7885</a><br>
+        <a href="https://www.facebook.com/chesschicken666" target="_blank" rel="noopener">facebook.com/chesschicken666</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <a class="map-box" href="https://www.google.com/maps/search/Chess+Chicken+騎士碁+師大夜市+台北" target="_blank" rel="noopener">
+    <div class="map-icon">📍</div>
+    <div class="map-text">師大路49巷10號 · Da'an District</div>
+    <div class="map-address">台北市大安區 · Near 台電大樓 MRT</div>
+  </a>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-left">
+      <h3>Seen something you love?</h3>
+      <p>Follow <strong style="color:white">@tastytaipei_com</strong> on Instagram for weekly picks, hidden gems, and food content from restaurants just like this one.</p>
+    </div>
+    <a href="https://instagram.com/tastytaipei_com" class="cta-btn" target="_blank" rel="noopener">
+      Follow on Instagram →
+    </a>
+  </div>
+
+  <div class="footer-logo">
+    Powered by <span>TastyTaipei</span>.com &nbsp;·&nbsp; Taipei's food discovery platform
+  </div>
+
+</div>
+</body>
+</html>

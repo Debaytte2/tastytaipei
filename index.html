@@ -1058,6 +1058,7 @@ function showRestaurant(id) {
     }
   }
   if (!d) { showToast('Tap "Get Directions" on the card to find this restaurant'); return; }
+  if (d.profile_url) { window.location.href = d.profile_url; return; }
   currentRestaurantId = id;
   homeScrollY = window.scrollY;
 
