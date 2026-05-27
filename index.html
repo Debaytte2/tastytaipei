@@ -344,6 +344,9 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
     <a data-i18n="nav_categories" onclick="showHome();setTimeout(function(){document.querySelector('.cats-grid').scrollIntoView({behavior:'smooth'})},100);return false;">Categories</a>
     <a data-i18n="nav_forrestaurants" onclick="openModal();return false;">For Restaurants</a>
     <a href="/about.html" style="color:var(--muted);font-size:14px;font-weight:500;">About</a>
+    <button class="nav-cta" data-i18n="nav_listbtn" onclick="openModal()">List Your Restaurant →</button>
+  </div>
+  <div class="nav-right">
     <div class="nav-lang-switcher">
       <button class="lang-btn active" id="lang-en" onclick="setLang('en')">🇬🇧 EN</button>
       <button class="lang-btn" id="lang-zh" onclick="setLang('zh')">🇹🇼 中</button>
@@ -351,9 +354,6 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <button class="lang-btn" id="lang-ja" onclick="setLang('ja')">🇯🇵 JP</button>
       <button class="lang-btn" id="lang-es" onclick="setLang('es')">🇪🇸 ES</button>
     </div>
-    <button class="nav-cta" data-i18n="nav_listbtn" onclick="openModal()">List Your Restaurant →</button>
-  </div>
-  <div class="nav-right">
     <button class="cart-nav-btn" id="nav-cart-btn" onclick="openCart()" aria-label="Cart">
       🛒<span id="cart-badge" class="cart-badge" style="display:none;">0</span>
     </button>
@@ -441,6 +441,17 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
     <div class="hero-panel-divider"></div>
     <!-- LEFT: Tourists & Visitors -->
     <div class="hero-panel hero-panel-left">
+      <div class="lang-switcher animate" style="margin-bottom:24px;">
+        <button class="lang-btn active" id="hero-lang-en" onclick="setLang('en')">🇬🇧 EN</button>
+        <span class="lang-dot"></span>
+        <button class="lang-btn" id="hero-lang-zh" onclick="setLang('zh')">🇹🇼 中</button>
+        <span class="lang-dot"></span>
+        <button class="lang-btn" id="hero-lang-fr" onclick="setLang('fr')">🇫🇷 FR</button>
+        <span class="lang-dot"></span>
+        <button class="lang-btn" id="hero-lang-ja" onclick="setLang('ja')">🇯🇵 JP</button>
+        <span class="lang-dot"></span>
+        <button class="lang-btn" id="hero-lang-es" onclick="setLang('es')">🇪🇸 ES</button>
+      </div>
       <p class="hero-panel-eyebrow animate" data-i18n="hero_left_eyebrow">For Visitors &amp; Expats</p>
       <h1 class="hero-panel-title animate delay-1" data-i18n="hero_left_title">Discover Taipei's Best Food</h1>
       <p class="hero-panel-sub animate delay-2" data-i18n="hero_left_sub">Real restaurants. Real reviews. Every neighbourhood.</p>
@@ -1593,7 +1604,7 @@ function setLang(lang) {
   currentLang = lang;
   var t = i18n[lang];
   ['en','zh','fr','ja','es'].forEach(function(l){
-    document.querySelectorAll('#lang-' + l).forEach(function(btn){ btn.classList.toggle('active', l === lang); });
+    document.querySelectorAll('#lang-' + l + ', #hero-lang-' + l).forEach(function(btn){ btn.classList.toggle('active', l === lang); });
   });
   document.querySelectorAll('[data-i18n]').forEach(function(el){
     var key = el.getAttribute('data-i18n');
