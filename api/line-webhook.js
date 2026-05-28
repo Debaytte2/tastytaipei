@@ -1,3 +1,5 @@
+// Webhook URL: https://tastytaipei-kb8h.vercel.app/api/line-webhook
+// Set this in LINE Developers console → Messaging API channel → Webhook settings
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
   const events = req.body?.events || [];

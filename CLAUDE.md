@@ -24,7 +24,9 @@ The entire site is a **single `index.html` file** — HTML, CSS, and JavaScript 
 ## Repository & Deployment
 
 - **GitHub:** github.com/Debaytte2/tastytaipei
-- **Hosting:** GitHub Pages (switched from Vercel — same auto-deploy behavior on commit)
+- **Hosting:** Vercel (auto-deploys from GitHub main branch)
+- **Vercel URL:** https://tastytaipei-kb8h.vercel.app
+- **LINE webhook URL:** https://tastytaipei-kb8h.vercel.app/api/line-webhook
 - **Domain:** tastytaipei.com registered on Namecheap
 - **Deploy time:** ~30 seconds after commit
 - **Verify after deploy:** hard refresh with Cmd+Shift+R in Safari
