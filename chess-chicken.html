@@ -1179,7 +1179,7 @@ body {
       <span class="modal-total-amount" id="modalTotal"></span>
     </div>
     <div class="modal-actions">
-      <a class="modal-btn modal-btn-line" id="lineOrderBtn" href="#" target="_blank" rel="noopener">
+      <a class="modal-btn modal-btn-line" id="lineOrderBtn" href="#" target="_blank" rel="noopener" onclick="handleLineOrder(event)">
         <svg width="22" height="22" viewBox="0 0 40 40" fill="none" style="flex-shrink:0"><rect width="40" height="40" rx="10" fill="white" fill-opacity="0.2"/><path d="M20 7C12.82 7 7 11.925 7 18.02c0 5.44 4.824 9.998 11.34 10.87.441.095 1.042.292 1.194.67.136.343.089.88.044 1.226l-.193 1.16c-.059.343-.272 1.34 1.173.73 1.445-.61 7.796-4.592 10.638-7.866C32.925 22.71 33 20.419 33 18.02 33 11.925 27.18 7 20 7z" fill="white"/><path d="M17.13 15.5h-.88a.244.244 0 0 0-.244.244v5.468c0 .135.11.244.244.244h.88a.244.244 0 0 0 .244-.244v-5.468a.244.244 0 0 0-.244-.244zM23.354 15.5h-.88a.244.244 0 0 0-.244.244v3.249l-2.506-3.384a.27.27 0 0 0-.02-.025l-.001-.002-.015-.015-.004-.004-.014-.011-.005-.004-.014-.009-.006-.003-.015-.008-.006-.002-.015-.006-.007-.002-.015-.004-.008-.001-.014-.003h-.007l-.014-.001h-.893a.244.244 0 0 0-.244.244v5.468c0 .135.11.244.244.244h.88a.244.244 0 0 0 .244-.244v-3.247l2.509 3.389a.244.244 0 0 0 .063.06l.002.001.015.009.007.003.012.006.01.004.01.003.012.003h.003a.244.244 0 0 0 .063.008h.878a.244.244 0 0 0 .244-.244v-5.468a.244.244 0 0 0-.244-.244zM15.368 20.088H13.13v-4.344a.244.244 0 0 0-.244-.244h-.88a.244.244 0 0 0-.244.244v5.468l.001.009v.007a.243.243 0 0 0 .068.162l.007.007.007.006a.243.243 0 0 0 .161.068h3.362a.244.244 0 0 0 .244-.244v-.88a.244.244 0 0 0-.244-.244zM28.238 16.868a.244.244 0 0 0 .244-.244v-.88a.244.244 0 0 0-.244-.244h-3.362a.243.243 0 0 0-.162.068l-.006.006-.007.008a.243.243 0 0 0-.067.161v.007l-.001.009v5.453c0 .135.11.244.244.244h3.362a.244.244 0 0 0 .244-.244v-.88a.244.244 0 0 0-.244-.244h-2.238v-.92h2.238a.244.244 0 0 0 .244-.244v-.88a.244.244 0 0 0-.244-.244h-2.238v-.92h2.238z" fill="#06C755"/></svg>
         Place Your Order Now
       </a>
@@ -1189,7 +1189,7 @@ body {
         <a class="modal-btn modal-btn-outline" href="https://www.ubereats.com/tw-en/store/%E9%A8%8E%E5%A3%AB%E7%A2%81%E9%9B%9E%E6%8E%92%E5%B0%88%E8%B3%A3%E5%BA%97chess-chicken/_-HZbNXiQey5sUiOv8hgnQ" target="_blank" rel="noopener" style="flex:1;font-size:12px;padding:10px 12px;">🛵 Uber Eats</a>
       </div>
     </div>
-    <div class="modal-hint">LINE opens with your order ready — just hit send.</div>
+    <div class="modal-hint" id="modalHint">LINE opens with your order ready — just hit send.</div>
   </div>
 </div>
 <div class="copy-toast" id="copyToast">Order copied!</div>
@@ -1343,6 +1343,41 @@ function closeOrderModal() {
 
 function handleOverlayClick(e) {
   if (e.target === document.getElementById('orderModal')) closeOrderModal();
+}
+
+async function handleLineOrder(e) {
+  e.preventDefault();
+  const btn = document.getElementById('lineOrderBtn');
+  const hint = document.getElementById('modalHint');
+  const orderText = buildOrderText(cart);
+  const encoded = encodeURIComponent(orderText);
+  const lineUrl = CHESS_CHICKEN_LINE_ID
+    ? `https://line.me/R/oaMessage/${CHESS_CHICKEN_LINE_ID}/?text=${encoded}`
+    : `https://line.me/R/msg/text/?${encoded}`;
+
+  // Try the API endpoint first (works on Vercel)
+  try {
+    const r = await fetch('/api/send-line', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lineMsg: orderText })
+    });
+    if (r.ok) {
+      const data = await r.json();
+      if (data.ok !== false) {
+        btn.textContent = '✅ Order Sent!';
+        btn.style.opacity = '0.75';
+        btn.style.pointerEvents = 'none';
+        hint.textContent = "Order received! We'll have it ready for pick-up.";
+        return;
+      }
+    }
+  } catch (_) {
+    // Endpoint not available (GitHub Pages) — fall through
+  }
+
+  // Fallback: open LINE with pre-filled message
+  window.open(lineUrl, '_blank', 'noopener');
 }
 
 function copyOrder() {
