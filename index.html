@@ -317,6 +317,25 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 .pickup-confirm-sub{font-size:14px;color:var(--muted);line-height:1.6;max-width:280px;margin-bottom:24px;}
 .pickup-confirm .cart-checkout-btn{max-width:260px;}
 @media(max-width:768px){.cart-drawer{width:100vw;}.cart-item{padding:12px 20px;}.cart-header{padding:16px 20px 14px;}.cart-footer{padding:14px 20px;}.pickup-form-scrollable{padding:0 20px 8px;}.pickup-form-foot{padding:12px 20px 24px;}.pickup-form-header{padding:10px 20px 14px;}}
+/* ── MOBILE NAV HAMBURGER ── */
+.nav-hamburger{display:none;background:none;border:1.5px solid var(--border);border-radius:8px;padding:6px 10px;font-size:20px;cursor:pointer;line-height:1;min-width:44px;min-height:44px;align-items:center;justify-content:center;}
+@media(max-width:768px){.nav-hamburger{display:flex;}.nav-cta-mobile{display:none!important;}}
+#mobile-nav-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:99;background:rgba(253,248,240,.97);backdrop-filter:blur(12px);border-bottom:2px solid var(--border);flex-direction:column;padding:8px 0;}
+#mobile-nav-panel.open{display:flex;}
+.mnp-link{display:block;width:100%;text-align:left;padding:12px 20px;font-size:15px;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;min-height:44px;text-decoration:none;transition:color .15s;}
+.mnp-link.mnp-cta{color:#fff;background:var(--orange);border-radius:8px;margin:8px 16px;padding:12px 16px;text-align:center;font-weight:700;}
+/* ── FILTER BAR MOBILE COLLAPSE ── */
+.filter-toggle-btn{display:none;background:var(--ink);color:var(--cream);border:none;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;min-height:36px;flex-shrink:0;}
+@media(max-width:768px){.filter-toggle-btn{display:flex;}.filter-bar .filter-wrap,.filter-bar .filter-divider{display:none;}.filter-bar.filters-open .filter-wrap,.filter-bar.filters-open .filter-divider{display:flex;}}
+/* ── RESTAURANT CARD IMAGE ── */
+.r-card-img{aspect-ratio:4/3;height:auto!important;}
+/* ── TOUCH TARGETS ── */
+@media(max-width:768px){.nav-cta-mobile,.near-me-btn,.fb-btn,.hero-cta-btn{min-height:44px;}.search-box{max-width:100%;}}
+@media(max-width:640px){.lang-btn{padding:4px 8px;font-size:11px;}}
+/* ── MODAL PLANS REORDER ON MOBILE ── */
+@media(max-width:640px){#modal-plan-featured{order:-1;}#modal-plan-basic{order:0;}}
+/* ── FR SOLUTION SEPARATOR ── */
+.fr-solution-head{border-top:1.5px solid var(--border);margin-top:20px;padding-top:20px;}
 </style>
 <script>
 (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vzvl62tnrr");
@@ -339,14 +358,25 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       🛒<span id="cart-badge" class="cart-badge" style="display:none;">0</span>
     </button>
     <button class="nav-cta-mobile" data-i18n="nav_listbtn_mobile" onclick="openModal()">List Restaurant</button>
+    <button class="nav-hamburger" id="nav-hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">☰</button>
   </div>
 </nav>
+
+<div id="mobile-nav-panel">
+  <a class="mnp-link" onclick="showHome();document.getElementById('home').scrollIntoView({behavior:'smooth'});closeNavPanel();return false;">Discover</a>
+  <a class="mnp-link" onclick="requestNearMe();closeNavPanel();return false;">Near Me</a>
+  <a class="mnp-link" onclick="showHome();setTimeout(function(){document.querySelector('.cats-grid').scrollIntoView({behavior:'smooth'})},100);closeNavPanel();return false;">Categories</a>
+  <a class="mnp-link" onclick="openModal();closeNavPanel();return false;">For Restaurants</a>
+  <a class="mnp-link" href="/about.html">About</a>
+  <a class="mnp-link mnp-cta" onclick="openModal();closeNavPanel();return false;">List Your Restaurant →</a>
+</div>
 
 <div class="filter-bar" id="filter-bar">
   <div style="display:flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;flex-shrink:0;min-width:160px;max-width:220px;">
     <span style="color:var(--muted);font-size:13px;">🔍</span>
     <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="Search…" oninput="applyFilters()" onkeydown="if(event.key==='Enter')applyFilters()" style="border:none;outline:none;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--ink);background:transparent;width:100%;"/>
   </div>
+  <button class="filter-toggle-btn" id="filter-toggle-btn" onclick="toggleMobileFilters()">Filters ▾</button>
   <div class="filter-wrap">
     <button class="filter-btn" onclick="toggleFilter('price-dd',this)"><span data-i18n="f_price_btn">💰 Price</span> <span class="arrow">▾</span></button>
     <div class="filter-dropdown" id="price-dd">
@@ -675,7 +705,7 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
           <div style="background:#fff8f6;border:1.5px solid #fde2d4;border-radius:12px;padding:12px;display:flex;gap:10px;"><span style="font-size:18px;flex-shrink:0;">❌</span><div><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#c0392b;">International visitors can't find you</div><div style="font-size:12px;color:var(--muted);">Most discovery platforms are Chinese-only. Tourists skip your restaurant because they can't read the menu.</div></div></div>
           <div style="background:#fff8f6;border:1.5px solid #fde2d4;border-radius:12px;padding:12px;display:flex;gap:10px;"><span style="font-size:18px;flex-shrink:0;">❌</span><div><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#c0392b;">No-shows kill your revenue</div><div style="font-size:12px;color:var(--muted);">No reminder system means tables sit empty. You lose money with no warning.</div></div></div>
         </div>
-        <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:900;margin-bottom:10px;">How Tasty Taipei fixes this</div>
+        <div class="fr-solution-head" style="font-family:'Fraunces',serif;font-size:17px;font-weight:900;margin-bottom:10px;">How Tasty Taipei fixes this</div>
         <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
           <div style="background:#f0faf4;border:1.5px solid #b2dfdb;border-radius:12px;padding:12px;display:flex;gap:10px;"><span style="font-size:18px;flex-shrink:0;">✅</span><div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:2px;">Your own beautiful restaurant page</div><div style="font-size:12px;color:#4a7c62;">Real photos, live menu in 5 languages, reserve/order buttons. We build it for you.</div></div></div>
           <div style="background:#f0faf4;border:1.5px solid #b2dfdb;border-radius:12px;padding:12px;display:flex;gap:10px;"><span style="font-size:18px;flex-shrink:0;">✅</span><div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:2px;">Reach international &amp; local customers</div><div style="font-size:12px;color:#4a7c62;">Tourists from France, Japan, the US — they search on Tasty Taipei and find you first, in their language.</div></div></div>
@@ -722,8 +752,8 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
       <div class="ml-en">
         <div style="background:var(--green);border-radius:14px;padding:16px;margin-bottom:14px;display:flex;gap:12px;align-items:flex-start;"><span style="font-size:26px;flex-shrink:0;">🎁</span><div><div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:3px;">Start with a free 2-week trial</div><div style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.6;">No card. No contract. See results first, then decide.</div></div></div>
         <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
-          <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px;"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Basic</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Restaurant page on Tasty Taipei</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Full menu in 5 languages</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Contact, hours &amp; location</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Reserve, pickup &amp; delivery buttons</div></div></div>
-          <div style="background:#fff7f3;border:2px solid var(--orange);border-radius:16px;padding:20px;position:relative;"><div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;white-space:nowrap;">Most Popular</div><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Featured</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Everything in Basic</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Homepage placement</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>"Top Pick" badge on your card</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Priority in search results</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Monthly performance report</div></div></div>
+          <div id="modal-plan-basic" style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px;"><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Basic</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Restaurant page on Tasty Taipei</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Full menu in 5 languages</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Contact, hours &amp; location</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Reserve, pickup &amp; delivery buttons</div></div></div>
+          <div id="modal-plan-featured" style="background:#fff7f3;border:2px solid var(--orange);border-radius:16px;padding:20px;position:relative;"><div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;white-space:nowrap;">Most Popular</div><div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Featured</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Everything in Basic</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Homepage placement</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>"Top Pick" badge on your card</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Priority in search results</div><div style="font-size:13px;display:flex;gap:8px;"><span style="color:var(--green);font-weight:800;">✓</span>Monthly performance report</div></div></div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
           <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">🎁</div><div style="font-size:12px;font-weight:700;margin-bottom:2px;">Free to start</div><div style="font-size:11px;color:var(--muted);">No card needed</div></div>
@@ -1595,6 +1625,26 @@ function setLang(lang) {
   if (si) si.placeholder = t.search_placeholder || 'Search…';
   document.body.style.fontFamily = (lang==='zh'||lang==='ja') ? "'Noto Sans TC','DM Sans',sans-serif" : "'DM Sans',sans-serif";
   if (window.allRestaurants) applyFilters();
+}
+function toggleMobileNav(){
+  var panel=document.getElementById('mobile-nav-panel');
+  var btn=document.getElementById('nav-hamburger-btn');
+  var open=panel.classList.toggle('open');
+  btn.textContent=open?'✕':'☰';
+  btn.setAttribute('aria-expanded',open?'true':'false');
+}
+function closeNavPanel(){
+  var panel=document.getElementById('mobile-nav-panel');
+  var btn=document.getElementById('nav-hamburger-btn');
+  panel.classList.remove('open');
+  btn.textContent='☰';
+  btn.setAttribute('aria-expanded','false');
+}
+function toggleMobileFilters(){
+  var bar=document.getElementById('filter-bar');
+  var btn=document.getElementById('filter-toggle-btn');
+  var open=bar.classList.toggle('filters-open');
+  btn.textContent=open?'Filters ▲':'Filters ▾';
 }
 </script>
 </body>

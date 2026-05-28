@@ -25,7 +25,7 @@
     .lang-toggle button.active{background:var(--ink);color:var(--cream);}
     .nav-cta{background:var(--ink);color:var(--cream);border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:background .2s;white-space:nowrap;}
     .nav-cta:hover{background:var(--orange);}
-    @media(max-width:768px){nav{padding:0 16px;}.nav-links{display:none;}.nav-right{gap:8px;}.lang-toggle button{padding:5px 10px;font-size:11px;}.nav-cta{padding:8px 14px;font-size:12px;}}
+    @media(max-width:768px){nav{padding:0 16px;}.nav-links{display:none;}.nav-cta{display:none;}.nav-right{gap:8px;}.lang-toggle button{padding:5px 10px;font-size:11px;}}
 
     /* HERO */
     .hero{background:var(--ink);padding:88px 40px 80px;text-align:center;position:relative;overflow:hidden;}
@@ -136,6 +136,15 @@
     body.lang-zh span.en{display:none;}
     span.zh{display:none;}
     body.lang-zh{font-family:'Noto Sans TC','DM Sans',sans-serif;}
+    /* ── MOBILE NAV HAMBURGER ── */
+    .nav-hamburger{display:none;background:none;border:1.5px solid var(--border);border-radius:8px;padding:6px 10px;font-size:20px;cursor:pointer;line-height:1;min-width:44px;min-height:44px;align-items:center;justify-content:center;}
+    @media(max-width:768px){.nav-hamburger{display:flex;}}
+    #mobile-nav-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:99;background:rgba(253,248,240,.97);backdrop-filter:blur(12px);border-bottom:2px solid var(--border);flex-direction:column;padding:8px 0;}
+    #mobile-nav-panel.open{display:flex;}
+    .mnp-link{display:block;width:100%;text-align:left;padding:12px 20px;font-size:15px;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;min-height:44px;text-decoration:none;transition:color .15s;}
+    .mnp-link.mnp-cta{color:#fff;background:var(--orange);border-radius:8px;margin:8px 16px;padding:12px 16px;text-align:center;font-weight:700;}
+    /* ── HERO STATS 2×2 GRID ON MOBILE ── */
+    @media(max-width:640px){.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;}.hero-stat{border-right:none;padding:0;}}
   </style>
 </head>
 <body>
@@ -153,8 +162,16 @@
       <button id="btn-zh" onclick="setLang('zh')">中文</button>
     </div>
     <a class="nav-cta" href="/">List Your Restaurant →</a>
+    <button class="nav-hamburger" id="nav-hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">☰</button>
   </div>
 </nav>
+
+<div id="mobile-nav-panel">
+  <a class="mnp-link" href="/">Discover</a>
+  <a class="mnp-link" href="/about.html">About</a>
+  <a class="mnp-link" href="/" onclick="closeNavPanel()">For Restaurants</a>
+  <a class="mnp-link mnp-cta" href="/">List Your Restaurant →</a>
+</div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
@@ -480,6 +497,20 @@ function setLang(lang) {
     if (saved === 'zh') setLang('zh');
   } catch(e){}
 })();
+function toggleMobileNav(){
+  var panel=document.getElementById('mobile-nav-panel');
+  var btn=document.getElementById('nav-hamburger-btn');
+  var open=panel.classList.toggle('open');
+  btn.textContent=open?'✕':'☰';
+  btn.setAttribute('aria-expanded',open?'true':'false');
+}
+function closeNavPanel(){
+  var panel=document.getElementById('mobile-nav-panel');
+  var btn=document.getElementById('nav-hamburger-btn');
+  panel.classList.remove('open');
+  btn.textContent='☰';
+  btn.setAttribute('aria-expanded','false');
+}
 </script>
 </body>
 </html>
