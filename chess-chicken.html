@@ -602,19 +602,20 @@ body {
 
 .place-order-btn {
   display: none;
-  background: var(--red);
+  background: #06C755;
   border: none;
   border-radius: 8px;
   color: #fff;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 10px 18px;
   cursor: pointer;
   font-family: 'DM Sans', sans-serif;
   transition: background 0.15s;
   white-space: nowrap;
+  letter-spacing: 0.01em;
 }
-.place-order-btn:hover { background: var(--red-dark); }
+.place-order-btn:hover { background: #05b34a; }
 
 /* ── ORDER MODAL ── */
 .modal-overlay {
@@ -718,6 +719,8 @@ body {
   transition: all 0.15s;
   border: none;
 }
+.modal-btn-line { background: #06C755; color: #fff; font-size: 15px; padding: 15px 18px; }
+.modal-btn-line:hover { background: #05b34a; }
 .modal-btn-primary { background: var(--red); color: #fff; }
 .modal-btn-primary:hover { background: var(--red-dark); }
 .modal-btn-secondary { background: var(--ink); color: var(--chess-yellow); }
@@ -928,7 +931,7 @@ body {
       </div>
       <div class="order-right">
         <div class="order-total" id="orderTotal" style="display:none;"></div>
-        <button class="place-order-btn" id="placeOrderBtn" onclick="openOrderModal()">Place Order →</button>
+        <button class="place-order-btn" id="placeOrderBtn" onclick="openOrderModal()">Place Your Order Now →</button>
         <button class="clear-btn" onclick="clearAll()">Clear all</button>
       </div>
     </div>
@@ -1177,11 +1180,17 @@ body {
       <span class="modal-total-amount" id="modalTotal"></span>
     </div>
     <div class="modal-actions">
-      <button class="modal-btn modal-btn-primary" onclick="copyOrder()">📋 Copy Order to Clipboard</button>
-      <a class="modal-btn modal-btn-secondary" href="tel:+886223697885">📞 Call to Order — (02) 2369-7885</a>
-      <a class="modal-btn modal-btn-outline" href="https://www.ubereats.com/tw-en/store/%E9%A8%8E%E5%A3%AB%E7%A2%81%E9%9B%9E%E6%8E%92%E5%B0%88%E8%B3%A3%E5%BA%97chess-chicken/_-HZbNXiQey5sUiOv8hgnQ" target="_blank" rel="noopener">🛵 Order on Uber Eats</a>
+      <a class="modal-btn modal-btn-line" id="lineOrderBtn" href="#" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 40 40" fill="none" style="flex-shrink:0"><rect width="40" height="40" rx="10" fill="white" fill-opacity="0.2"/><path d="M20 7C12.82 7 7 11.925 7 18.02c0 5.44 4.824 9.998 11.34 10.87.441.095 1.042.292 1.194.67.136.343.089.88.044 1.226l-.193 1.16c-.059.343-.272 1.34 1.173.73 1.445-.61 7.796-4.592 10.638-7.866C32.925 22.71 33 20.419 33 18.02 33 11.925 27.18 7 20 7z" fill="white"/><path d="M17.13 15.5h-.88a.244.244 0 0 0-.244.244v5.468c0 .135.11.244.244.244h.88a.244.244 0 0 0 .244-.244v-5.468a.244.244 0 0 0-.244-.244zM23.354 15.5h-.88a.244.244 0 0 0-.244.244v3.249l-2.506-3.384a.27.27 0 0 0-.02-.025l-.001-.002-.015-.015-.004-.004-.014-.011-.005-.004-.014-.009-.006-.003-.015-.008-.006-.002-.015-.006-.007-.002-.015-.004-.008-.001-.014-.003h-.007l-.014-.001h-.893a.244.244 0 0 0-.244.244v5.468c0 .135.11.244.244.244h.88a.244.244 0 0 0 .244-.244v-3.247l2.509 3.389a.244.244 0 0 0 .063.06l.002.001.015.009.007.003.012.006.01.004.01.003.012.003h.003a.244.244 0 0 0 .063.008h.878a.244.244 0 0 0 .244-.244v-5.468a.244.244 0 0 0-.244-.244zM15.368 20.088H13.13v-4.344a.244.244 0 0 0-.244-.244h-.88a.244.244 0 0 0-.244.244v5.468l.001.009v.007a.243.243 0 0 0 .068.162l.007.007.007.006a.243.243 0 0 0 .161.068h3.362a.244.244 0 0 0 .244-.244v-.88a.244.244 0 0 0-.244-.244zM28.238 16.868a.244.244 0 0 0 .244-.244v-.88a.244.244 0 0 0-.244-.244h-3.362a.243.243 0 0 0-.162.068l-.006.006-.007.008a.243.243 0 0 0-.067.161v.007l-.001.009v5.453c0 .135.11.244.244.244h3.362a.244.244 0 0 0 .244-.244v-.88a.244.244 0 0 0-.244-.244h-2.238v-.92h2.238a.244.244 0 0 0 .244-.244v-.88a.244.244 0 0 0-.244-.244h-2.238v-.92h2.238z" fill="#06C755"/></svg>
+        Place Your Order Now
+      </a>
+      <div style="display:flex;gap:8px;">
+        <button class="modal-btn modal-btn-primary" onclick="copyOrder()" style="flex:1;font-size:12px;padding:10px 12px;">📋 Copy Order</button>
+        <a class="modal-btn modal-btn-secondary" href="tel:+886223697885" style="flex:1;font-size:12px;padding:10px 12px;">📞 Call</a>
+        <a class="modal-btn modal-btn-outline" href="https://www.ubereats.com/tw-en/store/%E9%A8%8E%E5%A3%AB%E7%A2%81%E9%9B%9E%E6%8E%92%E5%B0%88%E8%B3%A3%E5%BA%97chess-chicken/_-HZbNXiQey5sUiOv8hgnQ" target="_blank" rel="noopener" style="flex:1;font-size:12px;padding:10px 12px;">🛵 Uber Eats</a>
+      </div>
     </div>
-    <div class="modal-hint">Copy your order and paste it into LINE or any messaging app,<br>or walk in and show this screen to the staff.</div>
+    <div class="modal-hint">LINE opens with your order ready — just hit send.</div>
   </div>
 </div>
 <div class="copy-toast" id="copyToast">Order copied!</div>
@@ -1281,6 +1290,27 @@ function clearAll() {
 }
 
 /* ── Order modal ── */
+
+// TODO: Replace with Chess Chicken's LINE ID once confirmed
+// For a LINE Official Account use:  https://line.me/R/oaMessage/@LINEID/?text=...
+// For a personal LINE ID use:        https://line.me/ti/p/LINEID (no pre-fill)
+// Current fallback opens LINE share sheet with order pre-filled.
+const CHESS_CHICKEN_LINE_ID = null; // e.g. '@chesschicken' or 'chesschicken666'
+
+function buildOrderText(cart) {
+  const keys = Object.keys(cart);
+  let total = 0;
+  const lines = keys.map(k => { total += cart[k]; return `• ${k}  NT$${cart[k]}`; });
+  return [
+    '【騎士碁 Chess Chicken — Pick-up Order】',
+    ...lines,
+    '────────────',
+    `Total: NT$${total}`,
+    '',
+    'Requested pick-up from: 師大路49巷10號'
+  ].join('\n');
+}
+
 function openOrderModal() {
   const keys = Object.keys(cart);
   let total = 0;
@@ -1294,6 +1324,15 @@ function openOrderModal() {
   }).join('');
 
   document.getElementById('modalTotal').textContent = 'NT$' + total;
+
+  // Build LINE URL
+  const orderText = buildOrderText(cart);
+  const encoded = encodeURIComponent(orderText);
+  const lineUrl = CHESS_CHICKEN_LINE_ID
+    ? `https://line.me/R/oaMessage/${CHESS_CHICKEN_LINE_ID}/?text=${encoded}`
+    : `https://line.me/R/msg/text/?${encoded}`;
+  document.getElementById('lineOrderBtn').href = lineUrl;
+
   document.getElementById('orderModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -1308,21 +1347,7 @@ function handleOverlayClick(e) {
 }
 
 function copyOrder() {
-  const keys = Object.keys(cart);
-  let total = 0;
-  const lines = keys.map(k => { total += cart[k]; return `• ${k}  NT$${cart[k]}`; });
-  const text = [
-    'Chess Chicken 騎士碁 — Order',
-    '─────────────────────',
-    ...lines,
-    '─────────────────────',
-    `Total: NT$${total}`,
-    '',
-    'Tel: (02) 2369-7885',
-    '師大路49巷10號'
-  ].join('\n');
-
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(buildOrderText(cart)).then(() => {
     const toast = document.getElementById('copyToast');
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2200);
