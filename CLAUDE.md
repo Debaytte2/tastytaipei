@@ -41,9 +41,11 @@ Additional files in the repo:
 
 ## Tech Stack (Current)
 
-- Pure HTML/CSS/JS, single file
+- Pure HTML/CSS/JS, single file (plus per-restaurant profile pages)
 - **Analytics:** Microsoft Clarity (tracking ID: `vzvl62tnrr`)
-- **Forms:** Formspree (endpoint: `https://formspree.io/f/mdapwalg`) — integrated into `submitSignup()` and `submitSignupZh()`, POSTs before opening LINE, try/catch so LINE opens even if Formspree fails
+- **Forms:** Formspree
+  - Lead capture: `https://formspree.io/f/mdapwalg` — `submitSignup()` / `submitSignupZh()`, POSTs before opening LINE
+  - Order forms: per-restaurant endpoint stored as `orderFormUrl` in `restaurants.json` — `submitOrderForm()` in each restaurant profile page
 - **AI Food Assistant:** Claude Haiku API with multilingual fallbacks
 - **Images:** Unsplash (served with `referrerpolicy="no-referrer"` and `&fm=jpg` to prevent hotlink blocking)
 - **Payments:** Stripe (primary), ECPay/NewebPay (fallback for owners without cards)
@@ -87,9 +89,9 @@ Full page is translated in: English, Traditional Chinese, French, Japanese, Span
 
 ## Restaurant Data (Current State)
 
-Six placeholder restaurants — **none are real paying clients yet**. The first real restaurant is about to be onboarded (owner agreed to free trial in person).
+**Chess Chicken** is the first real onboarded restaurant with a full profile page (`chess-chicken.html`). All others are placeholders.
 
-Placeholder restaurants currently in the site:
+Placeholder restaurants in `restaurants.json` (no real profile pages):
 1. Din Tai Fung 鼎泰豐
 2. Ay-Chung Flour-Rice Noodle 阿宗麵線
 3. Smoothie House 思慕昔
@@ -98,6 +100,9 @@ Placeholder restaurants currently in the site:
 6. Yongkang Beef Noodle 永康牛肉麵
 
 These need to be replaced with real restaurant partners as they onboard.
+
+### `restaurants.json` schema notes
+- `orderFormUrl` — Formspree endpoint for the restaurant's order form. If absent or empty, the "Order Online" button is hidden on the profile page. Chess Chicken currently has a placeholder value (`ORDER_FORM_REPLACE`) — swap it for a real Formspree form ID once created.
 
 ---
 
@@ -179,8 +184,11 @@ These are non-negotiable:
 | File | Purpose |
 |------|---------|
 | `index.html` | Main site — everything |
+| `chess-chicken.html` | Chess Chicken profile page (first real restaurant) |
 | `about.html` | About page |
 | `tools.html` | QR code generator, stamp card, reservation manager |
+| `restaurants.json` | Restaurant data — source of truth for profile pages |
+| `images/taipei-hero.jpg` | Hero background image (Taipei 101 night skyline) |
 | `sitemap.xml` | SEO sitemap |
 | `robots.txt` | Crawler rules |
 
@@ -202,10 +210,11 @@ Priority order:
 1. Fix search — this is broken and was called out by the first potential client in person
 2. Decide on architecture direction (Next.js vs static JSON vs surgical fix)
 3. Replace placeholder restaurant data with real restaurant as it onboards
-4. Make category filters actually work (not just toast notifications)
-5. Migrate to LINE Official Account when restaurant count warrants it
-6. Per-restaurant analytics as a value-add feature
-7. Real backend (Supabase) as restaurant count grows
+4. **Set up Chess Chicken's Formspree order form** — create the form at formspree.io, replace `ORDER_FORM_REPLACE` in `restaurants.json` with the real form ID
+5. Make category filters actually work (not just toast notifications)
+6. Migrate to LINE Official Account when restaurant count warrants it
+7. Per-restaurant analytics as a value-add feature
+8. Real backend (Supabase) as restaurant count grows
 
 ---
 
