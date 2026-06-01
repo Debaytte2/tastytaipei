@@ -734,6 +734,16 @@ body {
   margin-top: 10px;
   line-height: 1.6;
 }
+.of-field { margin-bottom: 16px; }
+.of-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px; }
+.of-optional { font-size: 11px; color: var(--ink-muted); font-weight: 400; text-transform: none; letter-spacing: 0; margin-left: 4px; }
+.of-input { width: 100%; border: 1.5px solid var(--border); border-radius: 10px; padding: 11px 14px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--ink); outline: none; background: #fff; transition: border-color .2s; -webkit-appearance: none; box-sizing: border-box; }
+.of-input:focus { border-color: var(--red); }
+.of-textarea { resize: vertical; min-height: 80px; }
+.of-radio-group { display: flex; gap: 20px; }
+.of-radio-label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; color: var(--ink); }
+.of-radio-label input[type=radio] { accent-color: var(--red); width: 16px; height: 16px; cursor: pointer; }
+.of-status { font-size: 13px; text-align: center; margin-top: 10px; min-height: 18px; line-height: 1.5; }
 .copy-toast {
   position: fixed;
   bottom: 80px;
@@ -1152,6 +1162,9 @@ body {
   <section>
     <div class="sec-head">Order & Follow</div>
     <div class="link-row">
+      <button class="lbtn" id="orderFormBtn" onclick="openOrderFormModal()" style="display:none;border:none;cursor:pointer;">
+        <span class="lbtn-icon">📋</span> Order Online
+      </button>
       <a class="lbtn" href="https://www.ubereats.com/tw-en/store/%E9%A8%8E%E5%A3%AB%E7%A2%81%E9%9B%9E%E6%8E%92%E5%B0%88%E8%B3%A3%E5%BA%97chess-chicken/_-HZbNXiQey5sUiOv8hgnQ" target="_blank" rel="noopener">
         <span class="lbtn-icon">🛵</span> Uber Eats
       </a>
@@ -1193,6 +1206,43 @@ body {
   </div>
 </div>
 <div class="copy-toast" id="copyToast">Order copied!</div>
+
+<!-- ORDER FORM MODAL -->
+<div class="modal-overlay" id="orderFormModal" onclick="handleOrderFormOverlayClick(event)">
+  <div class="modal" style="max-height:85vh;overflow-y:auto;">
+    <div class="modal-header">
+      <div class="modal-title">Order Online</div>
+      <button class="modal-close" onclick="closeOrderFormModal()">✕</button>
+    </div>
+    <form id="orderFormEl" onsubmit="submitOrderForm(event)" novalidate>
+      <div class="of-field">
+        <label class="of-label" for="of-name">Your Name</label>
+        <input type="text" class="of-input" id="of-name" placeholder="e.g. Chen Wei" required autocomplete="name">
+      </div>
+      <div class="of-field">
+        <label class="of-label" for="of-phone">Phone Number</label>
+        <input type="tel" class="of-input" id="of-phone" placeholder="e.g. 0912 345 678" required autocomplete="tel">
+      </div>
+      <div class="of-field">
+        <label class="of-label" for="of-items">Order Items</label>
+        <textarea class="of-input of-textarea" id="of-items" placeholder="e.g. 1× Cheese Chicken Cutlet, 2× Crispy Wings…" required></textarea>
+      </div>
+      <div class="of-field">
+        <label class="of-label">Pickup or Delivery</label>
+        <div class="of-radio-group">
+          <label class="of-radio-label"><input type="radio" name="of-type" value="Pickup" checked> Pickup</label>
+          <label class="of-radio-label"><input type="radio" name="of-type" value="Delivery"> Delivery</label>
+        </div>
+      </div>
+      <div class="of-field">
+        <label class="of-label" for="of-special">Special Requests <span class="of-optional">optional</span></label>
+        <textarea class="of-input of-textarea" id="of-special" placeholder="Allergies, spice level, timing…"></textarea>
+      </div>
+      <button type="submit" class="modal-btn modal-btn-primary" id="of-submit-btn" style="margin-top:4px;">Send Order →</button>
+      <div class="of-status" id="of-status"></div>
+    </form>
+  </div>
+</div>
 
 <!-- PAGE FOOTER -->
 <footer>
@@ -1385,6 +1435,91 @@ function copyOrder() {
     const toast = document.getElementById('copyToast');
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2200);
+  });
+}
+
+/* ── Order form modal ── */
+let _orderFormUrl = null;
+
+fetch('/restaurants.json')
+  .then(r => r.json())
+  .then(function(restaurants) {
+    const r = restaurants.find(function(r) { return r.id === 'chesschicken'; });
+    if (r && r.orderFormUrl) {
+      _orderFormUrl = r.orderFormUrl;
+      document.getElementById('orderFormBtn').style.display = '';
+    }
+  })
+  .catch(function() {});
+
+function openOrderFormModal() {
+  document.getElementById('orderFormModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOrderFormModal() {
+  document.getElementById('orderFormModal').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('of-status').textContent = '';
+  document.getElementById('of-status').style.color = '';
+}
+
+function handleOrderFormOverlayClick(e) {
+  if (e.target === document.getElementById('orderFormModal')) closeOrderFormModal();
+}
+
+function submitOrderForm(e) {
+  e.preventDefault();
+  if (!_orderFormUrl) return;
+
+  const name = document.getElementById('of-name').value.trim();
+  const phone = document.getElementById('of-phone').value.trim();
+  const items = document.getElementById('of-items').value.trim();
+  const type = document.querySelector('input[name="of-type"]:checked').value;
+  const special = document.getElementById('of-special').value.trim();
+
+  if (!name || !phone || !items) {
+    const status = document.getElementById('of-status');
+    status.style.color = 'var(--red)';
+    status.textContent = 'Please fill in your name, phone, and order items.';
+    return;
+  }
+
+  const btn = document.getElementById('of-submit-btn');
+  const status = document.getElementById('of-status');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  status.textContent = '';
+
+  fetch(_orderFormUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      phone: phone,
+      order_items: items,
+      order_type: type,
+      special_requests: special || 'None',
+      _subject: 'New Order — Chess Chicken'
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.ok) {
+      status.style.color = '#2d7a2d';
+      status.textContent = '✓ Order sent! We\'ll confirm via phone.';
+      document.getElementById('orderFormEl').reset();
+    } else {
+      throw new Error();
+    }
+  })
+  .catch(function() {
+    status.style.color = 'var(--red)';
+    status.textContent = 'Something went wrong — please call us to order.';
+  })
+  .finally(function() {
+    btn.disabled = false;
+    btn.textContent = 'Send Order →';
   });
 }
 </script>
