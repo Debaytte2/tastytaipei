@@ -204,6 +204,13 @@ These are non-negotiable:
 
 ---
 
+## Known TODOs (deferred, not forgotten)
+
+- **Cart drawer i18n** — strings in `cart.js` (`renderCartItems`, `showPickupForm`, `submitPickupOrder`, `resetCartDrawer`) and matching HTML in `index.html` (cart header, pickup form labels, confirmation view) are hardcoded English. Needs ~15 new i18n keys added to `i18n.js` and both files updated. Mechanism is proven — this is purely additive work.
+- **Distance filter is non-functional** — `selectFilter('cuisine','Distance',...)` sets `activeFilters.dist` but `applyFilters()` in `restaurants.js` has no distance logic. Can't be implemented without per-restaurant lat/lng coordinates. Either add coordinates to `restaurants.json` and implement haversine filtering, or remove the Distance dropdown from the filter bar until then.
+
+---
+
 ## What to Work On Next
 
 Priority order:

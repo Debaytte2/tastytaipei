@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Restaurant Owners — Tasty Taipei</title>
+  <meta name="description" content="List your restaurant on Tasty Taipei and get discovered by tourists, expats, and locals searching for their next meal — in 5 languages, with a free 2-week trial.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.tastytaipei.com/for-restaurants.html">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--orange:#e8521a;--orange-light:#f97316;--ink:#1a1207;--cream:#fdf8f0;--warm:#f5ede0;--green:#2d6a4f;--green-light:#52b788;--gold:#c9963a;--muted:#8a7560;--border:#e2d9cc;--red:#c0392b;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+
+    nav{position:sticky;top:0;z-index:100;background:rgba(253,248,240,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .nav-logo{font-family:'Fraunces',serif;font-size:22px;font-weight:800;color:var(--orange);letter-spacing:-.03em;text-decoration:none;}
+    .nav-logo span{color:var(--ink);}
+    .nav-links{display:flex;gap:24px;align-items:center;}
+    .nav-links a{text-decoration:none;font-size:14px;font-weight:500;color:var(--muted);transition:color .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--ink);}
+    .nav-right{display:flex;align-items:center;gap:12px;}
+    .lang-toggle{display:flex;align-items:center;gap:3px;background:#f0ebe3;border-radius:8px;padding:3px;}
+    .lang-toggle button{padding:6px 14px;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .18s;min-height:32px;}
+    .lang-toggle button.active{background:var(--ink);color:var(--cream);}
+    .nav-cta{background:var(--orange);color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:background .2s;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;}
+    .nav-cta:hover{background:#c9400e;}
+    @media(max-width:768px){nav{padding:0 16px;}.nav-links{display:none;}.nav-cta{display:none;}.nav-right{gap:8px;}.lang-toggle button{padding:5px 10px;font-size:11px;}}
+    .nav-hamburger{display:none;background:none;border:1.5px solid var(--border);border-radius:8px;padding:6px 10px;font-size:20px;cursor:pointer;line-height:1;min-width:44px;min-height:44px;align-items:center;justify-content:center;}
+    @media(max-width:768px){.nav-hamburger{display:flex;}}
+    #mobile-nav-panel{display:none;position:fixed;top:64px;left:0;right:0;z-index:99;background:rgba(253,248,240,.97);backdrop-filter:blur(12px);border-bottom:2px solid var(--border);flex-direction:column;padding:8px 0;}
+    #mobile-nav-panel.open{display:flex;}
+    .mnp-link{display:block;width:100%;text-align:left;padding:12px 20px;font-size:15px;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;min-height:44px;text-decoration:none;transition:color .15s;}
+    .mnp-link.mnp-cta{color:#fff;background:var(--orange);border-radius:8px;margin:8px 16px;padding:12px 16px;text-align:center;font-weight:700;}
+
+    .hero{background:var(--ink);padding:72px 40px 56px;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;left:-120px;top:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,82,26,.2) 0%,transparent 70%);}
+    .hero-inner{max-width:720px;margin:0 auto;position:relative;z-index:1;text-align:center;}
+    .hero-badge{display:inline-block;background:var(--orange);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:18px;}
+    .hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:800;color:var(--cream);line-height:1.08;letter-spacing:-.03em;margin-bottom:16px;}
+    .hero h1 em{font-style:italic;color:var(--orange);font-weight:300;}
+    .hero-sub{font-size:15.5px;color:rgba(253,248,240,.65);line-height:1.7;margin-bottom:28px;max-width:540px;margin-left:auto;margin-right:auto;}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:420px;margin:0 auto;}
+    .hero-stat{background:rgba(255,255,255,.07);border-radius:12px;padding:14px 8px;text-align:center;}
+    .hero-stat-num{font-family:'Fraunces',serif;font-size:19px;font-weight:800;color:var(--cream);line-height:1;}
+    .hero-stat-label{font-size:10.5px;color:rgba(253,248,240,.5);margin-top:4px;}
+    @media(max-width:640px){.hero{padding:48px 20px 40px;}}
+
+    .section{max-width:760px;margin:0 auto;padding:64px 40px;}
+    @media(max-width:768px){.section{padding:44px 20px;}}
+    .section h2{font-family:'Fraunces',serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:6px;}
+    .section-sub{font-size:13.5px;color:var(--muted);margin-bottom:24px;}
+    .warm-bg{background:var(--warm);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+
+    .gap-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+    .gap-card{border-radius:12px;padding:12px;display:flex;gap:10px;}
+    .gap-bad{background:#fff8f6;border:1.5px solid #fde2d4;}
+    .gap-good{background:#f0faf4;border:1.5px solid #b2dfdb;}
+    .gap-card-title{font-size:13px;font-weight:700;margin-bottom:2px;}
+    .gap-card-desc{font-size:12px;color:var(--muted);}
+    .why-stats-box{background:linear-gradient(135deg,#fff7f3,#fff);border:2px solid var(--orange);border-radius:16px;padding:18px;margin-bottom:16px;}
+    .why-stats-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+    .why-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    .why-stat{text-align:center;padding:10px;background:#fff;border-radius:10px;border:1px solid var(--border);}
+    .why-stat-num{font-family:'Fraunces',serif;font-size:20px;font-weight:900;color:var(--orange);}
+    .why-stat-label{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;}
+    .trial-box{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #bbf7d0;border-radius:14px;padding:20px;text-align:center;}
+    .trial-box-title{font-size:14px;font-weight:700;color:var(--green);margin-bottom:5px;}
+    .trial-box-desc{font-size:12.5px;color:var(--muted);margin-bottom:14px;}
+    .btn-trial{display:inline-flex;align-items:center;justify-content:center;background:var(--orange);color:#fff;border:none;border-radius:10px;padding:13px 28px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;width:100%;min-height:44px;transition:background .2s;}
+    .btn-trial:hover{background:#c9400e;}
+
+    .feature-cards{display:flex;flex-direction:column;gap:12px;}
+    .feature-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:18px;display:flex;gap:14px;}
+    .feature-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+    .feature-title{font-size:15px;font-weight:700;margin-bottom:4px;}
+    .feature-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:8px;}
+    .feature-tag{display:inline-block;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;}
+
+    .plan-trial-banner{background:var(--green);border-radius:14px;padding:16px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start;}
+    .plan-trial-banner .icon{font-size:26px;flex-shrink:0;}
+    .plan-trial-banner-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px;}
+    .plan-trial-banner-desc{font-size:12px;color:rgba(255,255,255,.75);line-height:1.6;}
+    .plan-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:18px;}
+    .plan-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:22px;}
+    .plan-card.featured{background:#fff7f3;border:2px solid var(--orange);position:relative;}
+    .plan-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 12px;border-radius:20px;white-space:nowrap;}
+    .plan-name{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+    .plan-feature{font-size:13px;display:flex;gap:8px;margin-bottom:5px;}
+    .plan-feature .check{color:var(--green);font-weight:800;}
+    .plan-perks{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+    .plan-perk{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:12px;text-align:center;}
+    .plan-perk-icon{font-size:18px;margin-bottom:4px;}
+    .plan-perk-title{font-size:12px;font-weight:700;margin-bottom:2px;}
+    .plan-perk-sub{font-size:11px;color:var(--muted);}
+
+    .signup-card{background:#fff;border:1.5px solid var(--border);border-radius:20px;overflow:hidden;}
+    .signup-header{background:var(--orange);padding:28px 24px 22px;text-align:center;}
+    .signup-header-icon{font-size:30px;margin-bottom:8px;}
+    .signup-header-title{font-family:'Fraunces',serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:5px;}
+    .signup-header-sub{font-size:13px;color:rgba(255,255,255,.78);}
+    .signup-body{padding:24px;}
+    .signup-success{display:none;background:#d4edda;border:1.5px solid #b2dfdb;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:13px;font-weight:700;color:#155724;}
+    .signup-field{margin-bottom:14px;}
+    .signup-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+    .signup-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:13px 14px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--ink);outline:none;min-height:44px;}
+    .signup-input:focus{border-color:var(--orange);}
+    .signup-submit{width:100%;background:var(--orange);color:#fff;border:none;border-radius:12px;padding:16px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:10px;min-height:44px;transition:background .2s;}
+    .signup-submit:hover{background:#c9400e;}
+    .signup-footnote{font-size:12px;color:var(--muted);text-align:center;line-height:1.6;}
+
+    footer{background:var(--ink);color:rgba(253,248,240,.4);padding:40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+    .footer-logo{font-family:'Fraunces',serif;font-size:20px;font-weight:800;color:var(--cream);text-decoration:none;}
+    .footer-logo span{color:var(--orange);}
+    .footer-links{display:flex;gap:20px;font-size:13px;}
+    .footer-links a{color:rgba(253,248,240,.4);text-decoration:none;transition:color .2s;}
+    .footer-links a:hover{color:var(--cream);}
+    @media(max-width:600px){footer{padding:28px 20px;flex-direction:column;align-items:flex-start;}}
+
+    .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--cream);padding:12px 24px;border-radius:12px;font-size:13px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:9999;transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;}
+    .toast.show{transform:translateX(-50%) translateY(0);}
+
+    .zh{display:none;}
+    body.lang-zh .en{display:none;}
+    body.lang-zh .zh{display:block;}
+    body.lang-zh span.zh{display:inline;}
+    body.lang-zh span.en{display:none;}
+    span.zh{display:none;}
+    body.lang-zh{font-family:'Noto Sans TC','DM Sans',sans-serif;}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">Tasty<span> Taipei</span></a>
+  <div class="nav-links">
+    <a href="/">Discover</a>
+    <a href="/about.html">About</a>
+    <a href="/for-restaurants.html" class="active">For Restaurants</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-zh" onclick="setLang('zh')">中文</button>
+    </div>
+    <a class="nav-cta" href="#signup"><span class="en">Start Free Trial →</span><span class="zh">開始免費試用 →</span></a>
+    <button class="nav-hamburger" id="nav-hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</nav>
+
+<div id="mobile-nav-panel">
+  <a class="mnp-link" href="/">Discover</a>
+  <a class="mnp-link" href="/about.html">About</a>
+  <a class="mnp-link" href="/for-restaurants.html">For Restaurants</a>
+  <a class="mnp-link mnp-cta" href="#signup" onclick="closeNavPanel()">List Your Restaurant →</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="en">Restaurant Partner Invitation</span><span class="zh">餐廳合作夥伴邀請</span></div>
+    <h1>
+      <span class="en">Get discovered by <em>tourists, expats &amp; locals</em> who are actively searching for food</span>
+      <span class="zh">讓<em>觀光客、外籍人士與在地人</em>主動找到你</span>
+    </h1>
+    <p class="hero-sub">
+      <span class="en">Tasty Taipei is built for Taipei's food scene. We bring customers to your door — in 5 languages, with zero effort from you.</span>
+      <span class="zh">Tasty Taipei 專為台北美食場景打造。以 5 種語言，讓顧客直接找到你的餐廳。</span>
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num"><span class="en">Free</span><span class="zh">免費</span></div><div class="hero-stat-label"><span class="en">To start</span><span class="zh">立即開始</span></div></div>
+      <div class="hero-stat"><div class="hero-stat-num"><span class="en">2 Weeks</span><span class="zh">2 週</span></div><div class="hero-stat-label"><span class="en">Free trial</span><span class="zh">免費試用</span></div></div>
+      <div class="hero-stat"><div class="hero-stat-num">5 <span class="en">Langs</span><span class="zh">語言</span></div><div class="hero-stat-label">EN · 中 · FR · 日 · ES</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section">
+  <h2><span class="en">The problem with Google Maps</span><span class="zh">Google 地圖做不到的事</span></h2>
+  <p class="section-sub"><span class="en">These are the gaps your restaurant falls through every day on every other platform.</span><span class="zh">這些是你的餐廳在其他平台上每天都會遇到的問題。</span></p>
+
+  <div class="gap-cards">
+    <div class="gap-card gap-bad"><span style="font-size:18px;flex-shrink:0;">❌</span><div><div class="gap-card-title" style="color:var(--red);"><span class="en">Outdated info turns customers away</span><span class="zh">過時資訊讓顧客流失</span></div><div class="gap-card-desc"><span class="en">Wrong hours and bad photos on Google Maps — tourists give up before they arrive.</span><span class="zh">Google 地圖上錯誤的營業時間和不佳的照片，讓觀光客在抵達前就放棄了。</span></div></div></div>
+    <div class="gap-card gap-bad"><span style="font-size:18px;flex-shrink:0;">❌</span><div><div class="gap-card-title" style="color:var(--red);"><span class="en">International visitors can't find you</span><span class="zh">國際遊客找不到你</span></div><div class="gap-card-desc"><span class="en">Most discovery platforms are Chinese-only. Tourists skip your restaurant because they can't read the menu.</span><span class="zh">大多數平台只有中文。觀光客因為看不懂菜單而跳過你的餐廳。</span></div></div></div>
+    <div class="gap-card gap-bad"><span style="font-size:18px;flex-shrink:0;">❌</span><div><div class="gap-card-title" style="color:var(--red);"><span class="en">No-shows kill your revenue</span><span class="zh">顧客不出現會傷害你的營收</span></div><div class="gap-card-desc"><span class="en">No reminder system means tables sit empty. You lose money with no warning.</span><span class="zh">沒有提醒系統，桌位空著沒人坐，你在不知不覺中損失收入。</span></div></div></div>
+  </div>
+
+  <h2 style="font-size:1.3rem;margin-top:8px;"><span class="en">How Tasty Taipei fixes this</span><span class="zh">Tasty Taipei 如何解決這些問題</span></h2>
+  <div class="gap-cards" style="margin-top:16px;">
+    <div class="gap-card gap-good"><span style="font-size:18px;flex-shrink:0;">✅</span><div><div class="gap-card-title" style="color:var(--green);"><span class="en">Your own beautiful restaurant page</span><span class="zh">你專屬的精美餐廳頁面</span></div><div class="gap-card-desc"><span class="en">Real photos, live menu in 5 languages, reserve/order buttons. We build it for you.</span><span class="zh">真實照片、5 種語言的即時菜單、訂位／訂餐按鈕。我們為你建好一切。</span></div></div></div>
+    <div class="gap-card gap-good"><span style="font-size:18px;flex-shrink:0;">✅</span><div><div class="gap-card-title" style="color:var(--green);"><span class="en">Reach international &amp; local customers</span><span class="zh">同時觸及國際與本地顧客</span></div><div class="gap-card-desc"><span class="en">Tourists from France, Japan, the US — they search on Tasty Taipei and find you first, in their language.</span><span class="zh">來自法國、日本、美國的觀光客，用他們的語言在 Tasty Taipei 上第一個找到你。</span></div></div></div>
+    <div class="gap-card gap-good"><span style="font-size:18px;flex-shrink:0;">✅</span><div><div class="gap-card-title" style="color:var(--green);"><span class="en">LINE reminders + no-show protection</span><span class="zh">LINE 提醒＋防止顧客不出現</span></div><div class="gap-card-desc"><span class="en">Automatic LINE message 2hrs before every booking. If no confirmation, you know early and can rebook the table.</span><span class="zh">每次訂位前 2 小時自動發送 LINE 訊息。沒有確認的話，你可以提早知道並重新安排桌位。</span></div></div></div>
+    <div class="gap-card gap-good"><span style="font-size:18px;flex-shrink:0;">✅</span><div><div class="gap-card-title" style="color:var(--green);"><span class="en">Monthly report — know who found you</span><span class="zh">每月報告——了解誰找到了你</span></div><div class="gap-card-desc"><span class="en">Every month: page views, customer nationalities, most-viewed dishes. Data no other platform gives small restaurants.</span><span class="zh">每月提供：頁面瀏覽量、顧客國籍、最受關注的菜品。這是其他平台不會給小餐廳的數據。</span></div></div></div>
+  </div>
+
+  <div class="why-stats-box">
+    <div class="why-stats-label"><span class="en">Why restaurants join Tasty Taipei</span><span class="zh">餐廳加入 Tasty Taipei 的理由</span></div>
+    <div class="why-stats-grid">
+      <div class="why-stat"><div class="why-stat-num">5 <span class="en">langs</span><span class="zh">語言</span></div><div class="why-stat-label"><span class="en">EN · 中文 · FR · 日 · ES tourist-ready</span><span class="zh">EN · 中文 · FR · 日 · ES 觀光客友善</span></div></div>
+      <div class="why-stat"><div class="why-stat-num">LINE</div><div class="why-stat-label"><span class="en">automatic booking reminders built in</span><span class="zh">內建自動訂位提醒</span></div></div>
+      <div class="why-stat"><div class="why-stat-num"><span class="en">Setup</span><span class="zh">設定</span></div><div class="why-stat-label"><span class="en">we handle everything for you</span><span class="zh">我們為你處理一切</span></div></div>
+      <div class="why-stat"><div class="why-stat-num">0 <span class="en">hrs</span><span class="zh">小時</span></div><div class="why-stat-label"><span class="en">of work from you — we handle everything</span><span class="zh">不需要你花時間——我們全部處理</span></div></div>
+    </div>
+  </div>
+
+  <div class="trial-box">
+    <div class="trial-box-title">🎁 <span class="en">Free 2-week trial — no card, no contract</span><span class="zh">2 週免費試用——不需信用卡，不需簽約</span></div>
+    <div class="trial-box-desc"><span class="en">You keep running your restaurant. We handle photos, setup, translations — everything.</span><span class="zh">你繼續經營餐廳。我們負責拍照、設定、翻譯——全部搞定。</span></div>
+    <a class="btn-trial" href="#signup"><span class="en">Start Free Trial →</span><span class="zh">開始免費試用 →</span></a>
+  </div>
+</div>
+
+<div class="section warm-bg">
+  <h2><span class="en">What Google Maps can't do for you</span><span class="zh">Google 地圖無法為你做到的事</span></h2>
+  <p class="section-sub"><span class="en">These are the gaps your restaurant falls through every day on every other platform.</span><span class="zh">這些是你的餐廳在其他平台上每天都會遇到的問題。</span></p>
+  <div class="feature-cards">
+    <div class="feature-card"><div class="feature-icon" style="background:#fff7f3;">🌍</div><div><div class="feature-title"><span class="en">Your menu in 5 languages — instantly</span><span class="zh">你的菜單立即提供 5 種語言</span></div><div class="feature-desc"><span class="en">A French tourist walks in and can't read your menu. They leave. We fix that — your full menu in EN, 中文, FR, 日本語, and ES, always up to date.</span><span class="zh">一位法國觀光客走進來看不懂菜單，於是離開了。我們解決這個問題——完整菜單提供英文、中文、法文、日文、西班牙文，並隨時更新。</span></div><span class="feature-tag" style="background:#fff7f3;color:#e8521a;"><span class="en">Google Maps shows your name. We show your food.</span><span class="zh">Google 地圖只顯示你的名字，我們展示你的食物。</span></span></div></div>
+    <div class="feature-card"><div class="feature-icon" style="background:#f0faf4;">🇯🇵</div><div><div class="feature-title"><span class="en">Tourists find you before they land</span><span class="zh">觀光客在抵達前就找到你</span></div><div class="feature-desc"><span class="en">Visitors from Japan, France, and the US plan their Taipei food trips weeks in advance. They search in their own language. We make sure your restaurant shows up.</span><span class="zh">來自日本、法國、美國的遊客會提前數週規劃台北美食之旅。他們用自己的語言搜尋，我們確保你的餐廳會出現。</span></div><span class="feature-tag" style="background:#f0faf4;color:#2d6a4f;"><span class="en">TripAdvisor won't do this for a small restaurant</span><span class="zh">TripAdvisor 不會為小餐廳做到這點</span></span></div></div>
+    <div class="feature-card"><div class="feature-icon" style="background:#e8f5e9;">📍</div><div><div class="feature-title"><span class="en">You control your own page</span><span class="zh">你掌控自己的頁面</span></div><div class="feature-desc"><span class="en">On Google Maps, strangers write your description. On Tasty Taipei, you decide exactly what customers see — your story, your best dishes, your photos.</span><span class="zh">在 Google 地圖上，陌生人寫你的介紹。在 Tasty Taipei，你決定顧客看到的一切——你的故事、你的招牌菜、你的照片。</span></div><span class="feature-tag" style="background:#e8f5e9;color:#2d6a4f;"><span class="en">Your restaurant, told your way</span><span class="zh">用你自己的方式介紹你的餐廳</span></span></div></div>
+    <div class="feature-card"><div class="feature-icon" style="background:#fce4ec;">🔗</div><div><div class="feature-title"><span class="en">Reserve, pickup, and delivery — one page</span><span class="zh">訂位、自取、外送——一頁搞定</span></div><div class="feature-desc"><span class="en">Customers can reserve a table, order pickup, or get delivery all from your Tasty Taipei page. No more sending people to three different apps — one link does everything.</span><span class="zh">顧客可以在你的 Tasty Taipei 頁面上訂位、訂自取或外送。不再需要分別導向三個不同的 App——一個連結搞定一切。</span></div><span class="feature-tag" style="background:#fce4ec;color:#c0392b;"><span class="en">Less friction = more orders</span><span class="zh">減少阻力＝更多訂單</span></span></div></div>
+    <div class="feature-card"><div class="feature-icon" style="background:#e8f0fe;">✏️</div><div><div class="feature-title"><span class="en">Menu changes done in minutes, not weeks</span><span class="zh">菜單異動幾分鐘內完成，不需數週</span></div><div class="feature-desc"><span class="en">New seasonal dish? Price change? Just LINE us. We update your listing within the hour — in all 5 languages. On every other platform, your outdated menu stays up forever.</span><span class="zh">新的季節菜品？價格調整？只要 LINE 我們，我們會在一小時內更新你的頁面——所有 5 種語言。在其他平台上，過時的菜單可能永遠掛在那裡。</span></div><span class="feature-tag" style="background:#e8f0fe;color:#1e5fa8;"><span class="en">No login. No learning curve. Just LINE us.</span><span class="zh">不需登入，不需學習，直接 LINE 我們。</span></span></div></div>
+  </div>
+  <a class="btn-trial" href="#signup" style="margin-top:20px;background:var(--ink);">🎁 <span class="en">Start Free Trial →</span><span class="zh">開始免費試用 →</span></a>
+</div>
+
+<div class="section">
+  <h2><span class="en">Plans &amp; Pricing</span><span class="zh">方案與價格</span></h2>
+  <p class="section-sub"><span class="en">Start free. Upgrade when you see results.</span><span class="zh">免費開始，看到成效後再升級。</span></p>
+
+  <div class="plan-trial-banner">
+    <span class="icon">🎁</span>
+    <div><div class="plan-trial-banner-title"><span class="en">Start with a free 2-week trial</span><span class="zh">從 2 週免費試用開始</span></div><div class="plan-trial-banner-desc"><span class="en">No card. No contract. See results first, then decide.</span><span class="zh">不需信用卡。不需簽約。先看成果，再決定。</span></div></div>
+  </div>
+
+  <div class="plan-cards">
+    <div class="plan-card">
+      <div class="plan-name"><span class="en">Basic</span><span class="zh">基本方案</span></div>
+      <div class="plan-feature"><span class="check">✓</span><span class="en">Restaurant page on Tasty Taipei</span><span class="zh">Tasty Taipei 餐廳專頁</span></div>
+      <div class="plan-feature"><span class="check">✓</span><span class="en">Full menu in 5 languages</span><span class="zh">5 種語言完整菜單</span></div>
+      <div class="plan-feature"><span class="check">✓</span><span class="en">Contact, hours &amp; location</span><span class="zh">聯絡方式、營業時間與位置</span></div>
+      <div class="plan-feature"><span class="check">✓</span><span class="en">Reserve, pickup &amp; delivery buttons</span><span class="zh">訂位、自取與外送按鈕</span></div>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-badge"><span class="en">Most Popular</span><span class="zh">最受歡迎</span></div>
+      <div class="plan-name"><span class="en">Featured</span><span class="zh">精選方案</span></div>
+      <div class="plan-feature"><span class="check">✓</span><span class="en">Everything in Basic</span><span class="zh">包含基本方案所有功能</span></div>
+      <div class="plan-feature"><span class="check">✓</span><span class="en">Homepage placement</span><span class="zh">首頁精選位置</span></div>
+      <div class="plan-feature"><span class="check">✓</span><span class="en">"Top Pick" badge on your card</span><span class="zh">卡片上的「精選推薦」標章</span></div>
+      <div class="plan-feature"><span class="check">✓</span><span class="en">Priority in search results</span><span class="zh">搜尋結果優先排序</span></div>
+      <div class="plan-feature"><span class="check">✓</span><span class="en">Monthly performance report</span><span class="zh">每月成效報告</span></div>
+    </div>
+  </div>
+
+  <div class="plan-perks">
+    <div class="plan-perk"><div class="plan-perk-icon">🎁</div><div class="plan-perk-title"><span class="en">Free to start</span><span class="zh">免費開始</span></div><div class="plan-perk-sub"><span class="en">No card needed</span><span class="zh">不需信用卡</span></div></div>
+    <div class="plan-perk"><div class="plan-perk-icon">📊</div><div class="plan-perk-title"><span class="en">Full reports</span><span class="zh">完整報告</span></div><div class="plan-perk-sub"><span class="en">See who found you</span><span class="zh">了解誰找到了你</span></div></div>
+    <div class="plan-perk"><div class="plan-perk-icon">🤝</div><div class="plan-perk-title"><span class="en">No contracts</span><span class="zh">不需簽約</span></div><div class="plan-perk-sub"><span class="en">Cancel anytime</span><span class="zh">隨時可取消</span></div></div>
+  </div>
+</div>
+
+<div class="section" id="signup" style="max-width:520px;">
+  <div class="signup-card">
+    <div class="signup-header">
+      <div class="signup-header-icon">🎁</div>
+      <div class="signup-header-title"><span class="en">Start your free 2-week trial</span><span class="zh">開始你的 2 週免費試用</span></div>
+      <div class="signup-header-sub"><span class="en">No cost. No contract. We set everything up for you.</span><span class="zh">零費用。零合約。我們負責所有設定。</span></div>
+    </div>
+    <div class="signup-body">
+      <div id="signup-success-en" class="signup-success en">✅ Thank you! We'll be in touch on LINE within 24 hours.</div>
+      <div id="signup-success-zh" class="signup-success zh">✅ 謝謝你！我們會在 24 小時內透過 LINE 聯繫你。</div>
+
+      <div class="en">
+        <div class="signup-field"><div class="signup-label">Restaurant name</div><input id="sf-restaurant" type="text" placeholder="e.g. Ah-Zhong Noodle House" class="signup-input"/></div>
+        <div class="signup-field"><div class="signup-label">Your name</div><input id="sf-name" type="text" placeholder="Your name" class="signup-input"/></div>
+        <div class="signup-field"><div class="signup-label">LINE ID or phone number</div><input id="sf-phone" type="tel" placeholder="LINE ID or +886…" class="signup-input"/></div>
+        <button onclick="submitSignup()" class="signup-submit">Submit — start my free trial 🎉</button>
+        <div class="signup-footnote">No payment required. We'll contact you on LINE within 24 hours.</div>
+      </div>
+      <div class="zh" style="font-family:'Noto Sans TC',sans-serif;">
+        <div class="signup-field"><div class="signup-label">餐廳名稱</div><input id="sf-restaurant-zh" type="text" placeholder="例如：阿忠麵館" class="signup-input"/></div>
+        <div class="signup-field"><div class="signup-label">你的姓名</div><input id="sf-name-zh" type="text" placeholder="你的姓名" class="signup-input"/></div>
+        <div class="signup-field"><div class="signup-label">LINE ID 或電話號碼</div><input id="sf-phone-zh" type="tel" placeholder="LINE ID 或 +886…" class="signup-input"/></div>
+        <button onclick="submitSignupZh()" class="signup-submit">送出申請 — 開始免費試用 🎉</button>
+        <div class="signup-footnote">無需付費。我們會在 24 小時內透過 LINE 與你聯繫。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a class="footer-logo" href="/">Tasty<span> Taipei</span></a>
+  <div class="footer-links">
+    <a href="/">Discover</a>
+    <a href="/about.html">About</a>
+    <a href="https://www.instagram.com/tastytaipei_com" target="_blank">Instagram</a>
+    <a href="https://line.me/ti/p/chrixx7" target="_blank">LINE Us</a>
+  </div>
+  <div style="font-size:12px;">© 2026 Tasty Taipei — Built with ♥ in Taiwan</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function setLang(lang) {
+  var body = document.body;
+  if (lang === 'zh') {
+    body.classList.add('lang-zh');
+    document.getElementById('btn-en').classList.remove('active');
+    document.getElementById('btn-zh').classList.add('active');
+    document.documentElement.lang = 'zh';
+  } else {
+    body.classList.remove('lang-zh');
+    document.getElementById('btn-en').classList.add('active');
+    document.getElementById('btn-zh').classList.remove('active');
+    document.documentElement.lang = 'en';
+  }
+  try { localStorage.setItem('tt-partners-lang', lang); } catch(e){}
+}
+(function(){
+  try {
+    var saved = localStorage.getItem('tt-partners-lang');
+    if (saved === 'zh') setLang('zh');
+  } catch(e){}
+})();
+function toggleMobileNav(){
+  var panel=document.getElementById('mobile-nav-panel');
+  var btn=document.getElementById('nav-hamburger-btn');
+  var open=panel.classList.toggle('open');
+  btn.textContent=open?'✕':'☰';
+  btn.setAttribute('aria-expanded',open?'true':'false');
+}
+function closeNavPanel(){
+  var panel=document.getElementById('mobile-nav-panel');
+  var btn=document.getElementById('nav-hamburger-btn');
+  panel.classList.remove('open');
+  btn.textContent='☰';
+  btn.setAttribute('aria-expanded','false');
+}
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2600);
+}
+function submitSignup() {
+  var rest=document.getElementById('sf-restaurant').value.trim();
+  var name=document.getElementById('sf-name').value.trim();
+  var phone=document.getElementById('sf-phone').value.trim();
+  if (!rest||!name||!phone){showToast('Please fill in all fields ⚠️');return;}
+  fetch('https://formspree.io/f/mdapwalg',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({restaurant:rest,name:name,contact:phone,_subject:'New Trial Signup — '+rest})}).catch(function(){});
+  var msg=encodeURIComponent('🍽️ NEW TRIAL SIGNUP\n🏮 Restaurant: '+rest+'\n👤 Name: '+name+'\n📞 LINE/Phone: '+phone+'\n📅 '+new Date().toLocaleString('en-GB',{timeZone:'Asia/Taipei'}));
+  window.open('https://line.me/ti/p/@chrixx7?message='+msg,'_blank');
+  document.getElementById('signup-success-en').style.display='block';
+  document.getElementById('sf-restaurant').value='';document.getElementById('sf-name').value='';document.getElementById('sf-phone').value='';
+}
+function submitSignupZh() {
+  var rest=document.getElementById('sf-restaurant-zh').value.trim();
+  var name=document.getElementById('sf-name-zh').value.trim();
+  var phone=document.getElementById('sf-phone-zh').value.trim();
+  if (!rest||!name||!phone){showToast('請填寫所有必填欄位 ⚠️');return;}
+  fetch('https://formspree.io/f/mdapwalg',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({restaurant:rest,name:name,contact:phone,_subject:'新試用申請 — '+rest})}).catch(function(){});
+  var msg=encodeURIComponent('🍽️ 新試用申請\n🏮 餐廳：'+rest+'\n👤 姓名：'+name+'\n📞 LINE/電話：'+phone+'\n📅 '+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}));
+  window.open('https://line.me/ti/p/@chrixx7?message='+msg,'_blank');
+  document.getElementById('signup-success-zh').style.display='block';
+  document.getElementById('sf-restaurant-zh').value='';document.getElementById('sf-name-zh').value='';document.getElementById('sf-phone-zh').value='';
+}
+</script>
+</body>
+</html>
