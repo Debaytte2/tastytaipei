@@ -234,3 +234,10 @@ footer{background:var(--ink);color:rgba(253,248,240,.5);padding:48px 40px;displa
 /* ── TOUCH TARGETS ── */
 @media(max-width:768px){.nav-cta-mobile,.hero-cta-btn{min-height:44px;}}
 @media(max-width:640px){.lang-btn{padding:4px 8px;font-size:11px;}}
+/* ── FOOTER BROWSE INDEX ── */
+.footer-browse{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:32px;max-width:1200px;margin:0 auto;padding:40px 40px 0;border-top:1px solid var(--border);}
+.footer-browse-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;}
+.footer-browse-col{display:flex;flex-direction:column;gap:6px;}
+.footer-browse-col a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .15s;}
+.footer-browse-col a:hover{color:var(--orange);}
+@media(max-width:768px){.footer-browse{padding:32px 20px 0;gap:24px;}}
