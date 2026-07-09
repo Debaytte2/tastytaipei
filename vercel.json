@@ -1,11 +1,4 @@
 {
   "buildCommand": "python3 build.py",
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.tastytaipei.com" }],
-      "destination": "https://tastytaipei.com/:path*",
-      "permanent": true
-    }
-  ]
+  "outputDirectory": "."
 }

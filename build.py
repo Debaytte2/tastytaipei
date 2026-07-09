@@ -355,7 +355,8 @@ def build_sitemap(pages):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    with open(DATA_FILE := os.path.join(ROOT, "restaurants.json"), encoding="utf-8") as f:
+    DATA_FILE = os.path.join(ROOT, "restaurants.json")
+    with open(DATA_FILE, encoding="utf-8") as f:
         restaurants = json.load(f)
 
     sitemap_pages = [
