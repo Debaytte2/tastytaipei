@@ -150,16 +150,25 @@ function activateCat(el) {
   el.classList.add('active');
 }
 
+function updateToppicksTitle() {
+  var title = document.getElementById('toppicks-title');
+  if (!title) return;
+  var label = activeFilters.categoryLabel;
+  var district = activeFilters.district;
+  if (label && district) title.textContent = label + ' in ' + district;
+  else if (label) title.textContent = label;
+  else if (district) title.textContent = district + ' Restaurants';
+  else if (i18n[currentLang]) title.textContent = i18n[currentLang].sec_toppicks || 'Top Picks Near You';
+}
+
 function filterByCategory(cat, label) {
   activeFilters.category = cat;
-  delete activeFilters.district;
+  activeFilters.categoryLabel = label;
   document.querySelectorAll('.cat-item').forEach(function(c) {
     var m = (c.getAttribute('onclick') || '').match(/filterByCategory\('([^']+)'/);
     c.classList.toggle('active', !!(m && m[1] === cat));
   });
-  document.querySelectorAll('.district-card').forEach(function(c){ c.classList.remove('active'); });
-  var title = document.getElementById('toppicks-title');
-  if (title && label) title.textContent = label;
+  updateToppicksTitle();
   document.getElementById('clear-filters').style.display = 'inline-flex';
   applyFilters();
   scrollToGrid();
@@ -167,13 +176,10 @@ function filterByCategory(cat, label) {
 
 function filterByDistrict(district) {
   activeFilters.district = district;
-  delete activeFilters.category;
-  document.querySelectorAll('.cat-item').forEach(function(c){ c.classList.remove('active'); });
   document.querySelectorAll('.district-card').forEach(function(c){
     c.classList.toggle('active', c.getAttribute('data-district') === district);
   });
-  var title = document.getElementById('toppicks-title');
-  if (title) title.textContent = district + ' Restaurants';
+  updateToppicksTitle();
   document.getElementById('clear-filters').style.display = 'inline-flex';
   applyFilters();
   var sec = document.getElementById('top-picks-section');
@@ -182,11 +188,11 @@ function filterByDistrict(district) {
 
 function clearCategoryFilter() {
   delete activeFilters.category;
+  delete activeFilters.categoryLabel;
   delete activeFilters.district;
   document.querySelectorAll('.cat-item').forEach(function(c){ c.classList.remove('active'); });
   document.querySelectorAll('.district-card').forEach(function(c){ c.classList.remove('active'); });
-  var title = document.getElementById('toppicks-title');
-  if (title && i18n[currentLang]) title.textContent = i18n[currentLang].sec_toppicks || 'Top Picks Near You';
+  updateToppicksTitle();
   applyFilters();
 }
 
