@@ -1,6 +1,7 @@
 [
   {
     "id": "9birds",
+    "slug": "9-birds-bistro",
     "name": "9 Birds Bistro",
     "name_zh": "九鳥私館",
     "district": "Da'an",
@@ -33,6 +34,7 @@
   },
   {
     "id": "ankitchen",
+    "slug": "an-kitchen",
     "name": "AN Kitchen",
     "name_zh": "安廚",
     "district": "Da'an",
@@ -64,6 +66,7 @@
   },
   {
     "id": "yongkang-beef",
+    "slug": "yongkang-beef-noodle",
     "name": "Yongkang Beef Noodle",
     "name_zh": "永康牛肉麵",
     "district": "Da'an",
@@ -96,6 +99,7 @@
   },
   {
     "id": "leblanc",
+    "slug": "le-blanc",
     "name": "Le Blanc",
     "name_zh": "樂布朗",
     "district": "Da'an",
@@ -127,6 +131,7 @@
   },
   {
     "id": "fuhong",
+    "slug": "fuhong-beef-noodles",
     "name": "Fuhong Beef Noodles",
     "name_zh": "富宏牛肉麵",
     "district": "Wanhua",
@@ -162,6 +167,7 @@
   },
   {
     "id": "yuanfang",
+    "slug": "yuan-fang-gua-bao",
     "name": "Yuan Fang Gua Bao",
     "name_zh": "源芳刈包",
     "district": "Wanhua",
@@ -196,6 +202,7 @@
   },
   {
     "id": "redalley",
+    "slug": "red-alley",
     "name": "Red Alley",
     "name_zh": "紅巷小館",
     "district": "Wanhua",
@@ -227,6 +234,7 @@
   },
   {
     "id": "aychung",
+    "slug": "ay-chung-flour-rice-noodle",
     "name": "Ay-Chung Flour-Rice Noodle",
     "name_zh": "阿宗麵線",
     "district": "Wanhua",
@@ -260,6 +268,7 @@
   },
   {
     "id": "moderntoilet",
+    "slug": "modern-toilet-restaurant",
     "name": "Modern Toilet Restaurant",
     "name_zh": "便所主題餐廳",
     "district": "Wanhua",
@@ -292,6 +301,7 @@
   },
   {
     "id": "shinyeh",
+    "slug": "shin-yeh",
     "name": "Shin Yeh",
     "name_zh": "欣葉台菜",
     "district": "Zhongshan",
@@ -324,6 +334,7 @@
   },
   {
     "id": "wowbistro",
+    "slug": "wow-bistro",
     "name": "WOW Bistro",
     "name_zh": "哇比斯托",
     "district": "Zhongshan",
@@ -356,6 +367,7 @@
   },
   {
     "id": "raw",
+    "slug": "raw",
     "name": "RAW",
     "name_zh": "RAW",
     "district": "Zhongshan",
@@ -388,6 +400,7 @@
   },
   {
     "id": "addiction-aquatic",
+    "slug": "addiction-aquatic-development",
     "name": "Addiction Aquatic Development",
     "name_zh": "上引水產",
     "district": "Zhongshan",
@@ -421,6 +434,7 @@
   },
   {
     "id": "moonmoon-zhongzheng",
+    "slug": "moon-moon-rice-noodles",
     "name": "Moon Moon Rice Noodles",
     "name_zh": "月月米粉",
     "district": "Zhongzheng",
@@ -453,6 +467,7 @@
   },
   {
     "id": "dintaifung-zhongzheng",
+    "slug": "din-tai-fung-zhongzheng",
     "name": "Din Tai Fung (Zhongzheng)",
     "name_zh": "鼎泰豐（中正）",
     "district": "Zhongzheng",
@@ -486,6 +501,7 @@
   },
   {
     "id": "liushandong",
+    "slug": "liu-shan-dong-homemade-noodles",
     "name": "Liu Shan Dong Homemade Noodles",
     "name_zh": "劉山東牛肉麵",
     "district": "Zhongzheng",
@@ -519,6 +535,7 @@
   },
   {
     "id": "leihou",
+    "slug": "lei-hou-shandong-steamed-buns",
     "name": "Lei Hou Shandong Steamed Buns",
     "name_zh": "雷厚山東饅頭",
     "district": "Datong",
@@ -552,6 +569,7 @@
   },
   {
     "id": "dadaocheng-luroufen",
+    "slug": "dadaocheng-braised-pork-rice",
     "name": "Dadaocheng Braised Pork Rice",
     "name_zh": "大稻埕魯肉飯",
     "district": "Datong",
@@ -585,6 +603,7 @@
   },
   {
     "id": "mikkeller-taipei",
+    "slug": "mikkeller-taipei",
     "name": "Mikkeller Taipei",
     "name_zh": "米凱樂台北",
     "district": "Datong",
@@ -617,6 +636,7 @@
   },
   {
     "id": "urbanparadise",
+    "slug": "urban-paradise",
     "name": "URBAN PARADISE",
     "name_zh": "城市天堂",
     "district": "Xinyi",
@@ -650,6 +670,7 @@
   },
   {
     "id": "zhanan-xinyi",
+    "slug": "zha-nan-crispy-chicken",
     "name": "Zha Nan Crispy Chicken",
     "name_zh": "炸南排骨",
     "district": "Xinyi",
@@ -683,6 +704,7 @@
   },
   {
     "id": "dintaifung-101",
+    "slug": "din-tai-fung-taipei-101",
     "name": "Din Tai Fung (Taipei 101)",
     "name_zh": "鼎泰豐（台北101）",
     "district": "Xinyi",
@@ -716,6 +738,7 @@
   },
   {
     "id": "smith-wollensky",
+    "slug": "smith-wollensky-taipei",
     "name": "Smith & Wollensky Taipei",
     "name_zh": "史密斯沃倫斯基",
     "district": "Xinyi",
@@ -749,6 +772,7 @@
   },
   {
     "id": "dimsumkitchen",
+    "slug": "dimsum-kitchen",
     "name": "Dimsum Kitchen",
     "name_zh": "點心廚房",
     "district": "Shilin",
@@ -783,6 +807,7 @@
   },
   {
     "id": "shilin-night-market",
+    "slug": "shilin-night-market",
     "name": "Shilin Night Market",
     "name_zh": "士林夜市",
     "district": "Shilin",
@@ -815,6 +840,7 @@
   },
   {
     "id": "goodfriend-noodles",
+    "slug": "good-friend-noodle-house",
     "name": "Good Friend Noodle House",
     "name_zh": "好友麵館",
     "district": "Shilin",
@@ -847,6 +873,7 @@
   },
   {
     "id": "zhanan-songshan",
+    "slug": "zhang-nan-fried-chicken",
     "name": "Zhang Nan Fried Chicken",
     "name_zh": "樟南炸雞",
     "district": "Songshan",
@@ -880,6 +907,7 @@
   },
   {
     "id": "fujin-tree",
+    "slug": "fujin-tree-353",
     "name": "Fujin Tree 353",
     "name_zh": "富錦樹353",
     "district": "Songshan",
@@ -912,6 +940,7 @@
   },
   {
     "id": "texas-roadhouse-taipei",
+    "slug": "texas-roadhouse-taipei",
     "name": "Texas Roadhouse Taipei",
     "name_zh": "德州鄉村烤肉",
     "district": "Songshan",
@@ -945,6 +974,7 @@
   },
   {
     "id": "shuangyue",
+    "slug": "shuang-yue-japanese-ramen",
     "name": "Shuang Yue Japanese Ramen",
     "name_zh": "雙月拉麵",
     "district": "Beitou",
@@ -976,6 +1006,7 @@
   },
   {
     "id": "manlai-ramen",
+    "slug": "man-lai-ramen",
     "name": "Man Lai Ramen",
     "name_zh": "滿來拉麵",
     "district": "Beitou",
@@ -1009,6 +1040,7 @@
   },
   {
     "id": "kiki-beitou",
+    "slug": "kiki-restaurant-beitou",
     "name": "Kiki Restaurant (Beitou)",
     "name_zh": "Kiki餐廳（北投）",
     "district": "Beitou",
@@ -1041,6 +1073,7 @@
   },
   {
     "id": "mayur-indian",
+    "slug": "mayur-indian-kitchen",
     "name": "Mayur Indian Kitchen",
     "name_zh": "梅育印度廚房",
     "district": "Neihu",
@@ -1073,6 +1106,7 @@
   },
   {
     "id": "aquakiss",
+    "slug": "aqua-kiss",
     "name": "Aqua Kiss",
     "name_zh": "水吻",
     "district": "Neihu",
@@ -1105,6 +1139,7 @@
   },
   {
     "id": "nybagels",
+    "slug": "ny-bagels-cafe",
     "name": "NY Bagels Café",
     "name_zh": "紐約貝果咖啡",
     "district": "Neihu",
@@ -1139,6 +1174,7 @@
   },
   {
     "id": "larotisserie",
+    "slug": "la-rotisserie",
     "name": "La Rôtisserie",
     "name_zh": "烤雞法式餐廳",
     "district": "Nangang",
@@ -1171,6 +1207,7 @@
   },
   {
     "id": "secondfloor-cafe",
+    "slug": "second-floor-cafe",
     "name": "Second Floor Café",
     "name_zh": "二樓咖啡館",
     "district": "Nangang",
@@ -1203,6 +1240,7 @@
   },
   {
     "id": "moonmoon-nangang",
+    "slug": "moon-moon-taiwanese-set-meals",
     "name": "Moon Moon Taiwanese Set Meals",
     "name_zh": "月月台式定食",
     "district": "Nangang",
@@ -1235,6 +1273,7 @@
   },
   {
     "id": "maokong-teahouse",
+    "slug": "maokong-teahouse",
     "name": "Maokong Teahouse",
     "name_zh": "貓空茶館",
     "district": "Wenshan",
@@ -1267,6 +1306,7 @@
   },
   {
     "id": "fourways-pasta",
+    "slug": "four-ways-pasta",
     "name": "Four Ways Pasta",
     "name_zh": "四季義大利麵",
     "district": "Wenshan",
@@ -1299,6 +1339,7 @@
   },
   {
     "id": "zhinan-vegetarian",
+    "slug": "zhinan-vegetarian-kitchen",
     "name": "Zhinan Vegetarian Kitchen",
     "name_zh": "指南素食廚房",
     "district": "Wenshan",
@@ -1332,6 +1373,7 @@
   },
   {
     "id": "xingfutang",
+    "slug": "xing-fu-tang",
     "name": "Xing Fu Tang",
     "name_zh": "幸福堂",
     "district": "Wanhua",
@@ -1365,6 +1407,7 @@
   },
   {
     "id": "chunshuitang-xinyi",
+    "slug": "chun-shui-tang",
     "name": "Chun Shui Tang",
     "name_zh": "春水堂",
     "district": "Xinyi",
@@ -1399,6 +1442,7 @@
   },
   {
     "id": "baishui-douhua",
+    "slug": "bai-shui-douhua",
     "name": "Bai-Shui Douhua",
     "name_zh": "白水豆花",
     "district": "Da'an",
@@ -1432,6 +1476,7 @@
   },
   {
     "id": "taroking",
+    "slug": "taro-king",
     "name": "Taro King",
     "name_zh": "芋頭大王",
     "district": "Da'an",
@@ -1464,6 +1509,7 @@
   },
   {
     "id": "smoothiehouse",
+    "slug": "smoothie-house",
     "name": "Smoothie House",
     "name_zh": "思慕昔本館",
     "district": "Da'an",
@@ -1497,6 +1543,7 @@
   },
   {
     "id": "sunmerry-dongmen",
+    "slug": "sunmerry-dongmen",
     "name": "Sunmerry Dongmen",
     "name_zh": "聖瑪莉東門店",
     "district": "Da'an",

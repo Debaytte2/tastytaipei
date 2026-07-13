@@ -81,15 +81,15 @@ function renderRestaurantGrid(restaurants) {
     var hours = r.hours ? '<div style="font-size:11px;color:var(--muted);margin-top:6px;">🕐 '+escHtml(r.hours)+'</div>' : '';
     var mapsUrl = r.maps_url || ('https://www.google.com/maps/search/'+encodeURIComponent(r.name+' '+r.district+' Taipei'));
     var dirLabel = t.card_directions || '📍 Get Directions';
-    var directionsBtn = '<a href="'+mapsUrl+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:8px 16px;background:var(--ink);color:var(--cream);border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;transition:background .2s;" onmouseover="this.style.background=\'var(--orange)\'" onmouseout="this.style.background=\'var(--ink)\'">'+dirLabel+'</a>';
-    html += '<div class="r-card" onclick="showRestaurant(\''+r.id+'\')" style="cursor:pointer;">' +
+    var directionsBtn = '<span role="link" tabindex="0" data-maps-url="'+escHtml(mapsUrl)+'" onclick="handleDirectionsClick(event,this)" onkeydown="if(event.key===\'Enter\')handleDirectionsClick(event,this)" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:8px 16px;background:var(--ink);color:var(--cream);border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;transition:background .2s;cursor:pointer;" onmouseover="this.style.background=\'var(--orange)\'" onmouseout="this.style.background=\'var(--ink)\'">'+dirLabel+'</span>';
+    html += '<a class="r-card" href="/restaurant/'+r.slug+'/" onclick="return handleCardClick(event,\''+r.id+'\')" style="cursor:pointer;">' +
       '<div class="r-card-img"><img src="'+imgUrl+'" alt="'+escHtml(name)+'" loading="lazy" referrerpolicy="no-referrer" onload="this.classList.add(\'r-img-loaded\')" onerror="this.classList.add(\'r-img-loaded\')"/>'+badgeHtml+'</div>' +
       '<div class="r-card-body">' +
         '<div class="r-card-top"><div><div class="r-card-name">'+escHtml(name)+nameZh+'</div><div class="r-cuisine">'+escHtml(cuisine)+'</div></div><div class="r-rating">⭐ '+r.rating+' <span style="font-size:11px;color:var(--muted);font-weight:400;">('+escHtml(r.review_count)+')</span></div></div>' +
         '<div style="margin-top:8px;">'+districtBadge+'</div>' +
         desc + hours +
         directionsBtn +
-      '</div></div>';
+      '</div></a>';
   });
   grid.innerHTML = html;
 }

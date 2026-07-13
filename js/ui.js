@@ -1,8 +1,24 @@
 var currentRestaurantId = null;
 var homeScrollY = 0;
 var _menuItemCache = {};
+var _homeUrl = location.pathname + location.search + location.hash;
 
 function escHtml(str){ return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function handleCardClick(event, id) {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+    return true;
+  }
+  event.preventDefault();
+  showRestaurant(id);
+  return false;
+}
+
+function handleDirectionsClick(event, el) {
+  event.preventDefault();
+  event.stopPropagation();
+  window.open(el.getAttribute('data-maps-url'), '_blank', 'noopener');
+}
 
 function showRestaurant(id) {
   var d = null;
@@ -65,13 +81,24 @@ function showRestaurant(id) {
   document.getElementById('home-page').style.display = 'none';
   document.getElementById('restaurant-page').style.display = 'block';
   window.scrollTo({top:0,behavior:'smooth'});
+  if (d.slug) history.pushState(null, '', '/restaurant/'+d.slug+'/');
 }
 
 function showHome() {
   document.getElementById('restaurant-page').style.display = 'none';
   document.getElementById('home-page').style.display = 'block';
   window.scrollTo({top: homeScrollY, behavior: 'smooth'});
+  if (location.pathname.indexOf('/restaurant/') === 0) {
+    history.replaceState(null, '', _homeUrl);
+  }
 }
+
+window.addEventListener('popstate', function() {
+  var restaurantPage = document.getElementById('restaurant-page');
+  if (restaurantPage && restaurantPage.style.display !== 'none') {
+    showHome();
+  }
+});
 
 function showHiddenGems() { window.open('https://www.instagram.com/tastytaipei_com','_blank'); }
 
