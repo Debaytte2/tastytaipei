@@ -2,234 +2,282 @@
 
 ## What This Is
 
-**Tasty Taipei** (tastytaipei.com) is a B2B2C restaurant discovery and marketing platform targeting small restaurants in Taipei, Taiwan. It serves tourists, expats, and locals through multilingual restaurant discovery, while generating revenue through B2B restaurant subscriptions.
+**Tasty Taipei** (tastytaipei.com) is a multilingual restaurant discovery platform
+for tourists, expats, and locals in Taipei, operated under **Debayette
+Enterprises**. It's a B2B2C model: consumers discover restaurants, and restaurant
+owners get visibility plus a managed marketing service.
 
-The company entity is **Debayette Enterprises**. Always use team framing — never solo founder framing.
+**Vision:** Taipei is the proof-of-concept market. Long-term plan is multi-city
+expansion across tourist-dense Asian cities — build with portability in mind, but
+operational focus stays on Taipei until the model is proven.
 
----
-
-## Current Architecture (and Why It Needs to Change)
-
-The entire site is a **single `index.html` file** — HTML, CSS, and JavaScript all in one file. This was fine to launch fast but has real limits:
-
-- Search doesn't work (currently just shows toast notifications, doesn't filter restaurant cards)
-- All restaurant data is hardcoded as HTML — adding/editing restaurants is painful
-- No real backend, no database
-- Hard to maintain as the restaurant count grows
-
-**The goal of this Claude Code session is to move toward a proper architecture.** See the Architecture Decision section below.
+**Differentiators:** five-language support, editorial quality above Google Maps,
+verified restaurant data, and a managed marketing service for restaurant partners.
 
 ---
 
 ## Repository & Deployment
 
-- **GitHub:** github.com/Debaytte2/tastytaipei
-- **Hosting:** Vercel (auto-deploys from GitHub main branch)
-- **Vercel URL:** https://tastytaipei-kb8h.vercel.app
-- **LINE webhook URL:** https://tastytaipei-kb8h.vercel.app/api/line-webhook
-- **Domain:** tastytaipei.com registered on Namecheap
-- **Deploy time:** ~30 seconds after commit
-- **Verify after deploy:** hard refresh with Cmd+Shift+R in Safari
-
-Additional files in the repo:
-- `tools.html` — QR code generator, digital stamp card, reservation manager
-- `about.html` — About page
-- `sitemap.xml`, `robots.txt`
-- Google Search Console verification file
-
----
-
-## Tech Stack (Current)
-
-- Pure HTML/CSS/JS, single file (plus per-restaurant profile pages)
+- **GitHub:** github.com/Debaytte2/tastytaipei → auto-deploys to Vercel (~30 sec)
+- **Domain:** tastytaipei.com via Namecheap
 - **Analytics:** Microsoft Clarity (tracking ID: `vzvl62tnrr`)
-- **Forms:** Formspree
-  - Lead capture: `https://formspree.io/f/mdapwalg` — `submitSignup()` / `submitSignupZh()`, POSTs before opening LINE
-  - Order forms: per-restaurant endpoint stored as `orderFormUrl` in `restaurants.json` — `submitOrderForm()` in each restaurant profile page
-- **AI Food Assistant:** Claude Haiku API with multilingual fallbacks
-- **Images:** Unsplash (served with `referrerpolicy="no-referrer"` and `&fm=jpg` to prevent hotlink blocking)
-- **Payments:** Stripe (primary), ECPay/NewebPay (fallback for owners without cards)
-- **Communication:** LINE (ID: chrixx7 personal — to be migrated to LINE Official Account at ~5–10 restaurants)
+- **Instagram:** @tastytaipei_com
+- **LINE:** @chrixx7 (personal) is the active contact channel. A LINE Official
+  Account ("Tasty Taipei Orders", provider "TastyTaipei") was already created via
+  manager.line.biz with a Messaging API webhook — but that flow was deferred in
+  favor of the simpler Formspree `orderFormUrl` approach below. It exists but
+  isn't currently the active ordering mechanism.
+- **Formspree endpoint:** `https://formspree.io/f/mdapwalg`
+- **Verify after deploy:** hard refresh (Cmd+Shift+R)
+
+**Git note:** pushes from a Claude Code sandbox don't reliably reach GitHub.
+Reliable pattern: Claude prepares the fix, then the exact commands are run in a
+separate Terminal.app window using `git -C ~/Desktop/tastytaipei [command]`.
 
 ---
 
-## Architecture Decision
+## Current Architecture
 
-The site needs to move away from a single HTML file. Options in order of preference:
+Refactored from a monolithic `index.html` into a multi-file structure:
+`main.css`, `i18n.js`, `ui.js`, `restaurants.js`, `cart.js`, `app.js`.
 
-**Option A — Recommended: Next.js on Vercel**
-- Restaurant data in Supabase (free tier) — enables real search, filtering, easy CRUD
-- Real search via database queries
-- Still deploys to Vercel automatically from GitHub
-- This is the right long-term foundation
+**Deliberately removed features (don't rebuild without checking first):** an AI
+Food Assistant powered by the Claude Haiku API was built in April, then
+intentionally removed in a May redesign — it's not a gap, it was a decision.
 
-**Option B — Static but proper**
-- Restaurant data moves to JSON files
-- Search via JavaScript filtering of JSON (no backend needed)
-- Static site generator like Astro or 11ty
-- Still deploys anywhere easily
+**SEO infrastructure** was recently overhauled:
+- Static restaurant pages at `/restaurant/[slug]/`
+- Cuisine + district landing pages
+- `sitemap.xml` with 96 URLs, proper canonicals, hreflang tags
+- DNS corrected from GitHub Pages A records to the Vercel A record
+- Sitemap submitted to Google Search Console
 
-**Option C — Keep single file, fix surgically**
-- Least disruption, fastest fix for search
-- But keeps hitting architectural walls
+**Restaurant data:** two separate datasets currently exist —
+- **Live `restaurants.json`:** ~35 entries as of July 13. This is what's actually
+  on the site right now.
+- **200 restaurants across 19 cuisine categories** (a 20th, indigenous Taiwanese
+  cuisine, was planned but never built) exist as individual `.md` files from a
+  July 2 research batch. **These have almost certainly not been merged into
+  `restaurants.json` yet** — confirm the actual current count with Claude Code
+  before assuming either way.
 
-Ask the owner before making this call if it hasn't been decided yet.
+**Intentional cross-category duplicates in the `.md` set (not bugs — don't
+"fix" these):**
+- Old Sichuan appears in both Hot Pot and Sichuan
+- Master of Mushroom appears in both Hot Pot and Vegetarian
+- Din Tai Fung and Hang Zhou XLB appear in both Dim Sum and Shanghainese
 
----
-
-## Five-Language Translation System
-
-Full page is translated in: English, Traditional Chinese, French, Japanese, Spanish.
-- 122 tagged elements with `data-i18n` attributes
-- Language switcher in nav
-- `setLang(lang)` function handles all switching
-- Body font switches to `Noto Sans TC` for ZH/JA
-
----
-
-## Restaurant Data (Current State)
-
-**Chess Chicken** is the first real onboarded restaurant with a full profile page (`chess-chicken.html`). All others are placeholders.
-
-Placeholder restaurants in `restaurants.json` (no real profile pages):
-1. Din Tai Fung 鼎泰豐
-2. Ay-Chung Flour-Rice Noodle 阿宗麵線
-3. Smoothie House 思慕昔
-4. Chun Shui Tang 春水堂
-5. RAW
-6. Yongkang Beef Noodle 永康牛肉麵
-
-These need to be replaced with real restaurant partners as they onboard.
-
-### `restaurants.json` schema notes
-- `orderFormUrl` — Formspree endpoint for the restaurant's order form. If absent or empty, the "Order Online" button is hidden on the profile page. Chess Chicken currently has a placeholder value (`ORDER_FORM_REPLACE`) — swap it for a real Formspree form ID once created.
+**Data quality flags from the July 2 research session (still need action once
+merged):**
+- `noodle3.md` has an approximate address only
+- Some Shilin night market stall hours fluctuate seasonally
+- Most Hakka entries beyond the top 3 have district-level addresses, not street
+  numbers
+- `tang-dynasty-hotpot.md` (filed as "Master Shen") needs its Chinese name and
+  address field-verified
+- Two Dadaocheng braised pork rice entries may overlap and need consolidation —
+  **note:** the "no duplicates found" check elsewhere in this file was run
+  against the live 35-entry set, not the full 200-file batch, so this specific
+  flag is still open
 
 ---
 
-## Known Bugs to Fix
+## Language Support
 
-1. **Search is broken** — the search input doesn't filter restaurant cards. It either does nothing or shows a toast. This is the most urgent fix.
-2. **Category filters** — category cards may only be showing toasts rather than actually filtering results.
-3. **Near Me** — geolocation feature had Safari-specific issues (no `innerHTML` on cloned nodes, `enableHighAccuracy: false` required).
+Site is translated into: **English, Traditional Chinese, French, Japanese,
+Spanish** (5 languages) — confirmed consistently across every session that
+mentions it, no Korean anywhere. `i18n.js` holds the translation object.
+
+---
+
+## Known Bugs — Status
+
+These came directly from Terry's feedback (see Restaurant Partners below) and are
+the minimum bar before resuming any partner outreach.
+
+1. ✅ **Combined cuisine + district filtering** — fixed, verified, and pushed
+   (July 13 session). No longer an open bug.
+2. 🔴 **Photos: 32 restaurants are sharing stock/placeholder images**, 17 of them
+   flagged urgent. This isn't a code fix — it needs real photos sourced from the
+   restaurants or pulled from their Google Business listings. Still open.
+3. 🔴 **Hakka and Hot Pot categories don't exist in live data at all** — this is
+   the "incomplete data fields" issue. Blocked on verifying candidates from a CSV
+   of ~150 options. A July 2 research session already fully verified 10 Hakka +
+   10 hot pot candidates with real addresses — use those instead of
+   re-researching from scratch. Still open.
+4. ✅ **Braised pork rice duplicates** — checked, there weren't any. Nothing to fix.
+
+**Unconfirmed:** whether the `.md` → `restaurants.json` conversion happened as
+part of recent `build.py` work. Confirm with Claude Code directly before assuming
+either way (see Restaurant Data above — the live count as of July 13 suggests it
+hasn't).
+
+**Already fixed (July 13 session — historical reference, don't redo):**
+- `.cat-card` vs `.cat-item` class mismatch
+- Undefined `showAllCategories` function
+- `requestNearMe` geolocation TypeError
+- i18n keys `rp_reserve` and `rp_pickup` were defined but unused — now wired into
+  the correct components
+
+---
+
+## Restaurant Partners
+
+**Current status:** zero confirmed paying partners.
+
+**Terry (Chess Chicken)** never signed — the reason was time constraints on his
+end plus genuine product gaps, not product failure. His feedback identified four
+specific issues, which are the actual minimum bar any partner conversation needs
+to clear:
+1. Broken combined cuisine + district filtering (fixed July 13)
+2. Insufficient restaurant listings
+3. Incorrect or missing restaurant data
+4. Duplicate placeholder images
+
+Chess Chicken's dedicated page and `restaurants.json` entry have since been
+fully removed from the site (June 21). Resume outreach to Terry once the
+remaining open items — photos, Hakka/Hot Pot data, and general listing depth —
+are addressed.
 
 ---
 
 ## Business Model
 
-**Free trial → paid subscription conversion.**
+- **Free-trial / conversion model is being revised** — don't assume 2 weeks, the
+  old "Prove It First" framing, or the 3-month minimum commitment below still
+  apply. Check with Tux for the current approach before referencing trial terms
+  anywhere (site copy, partner scripts, contracts).
+- **Pricing — tier structure exists but names are unsettled.** Most detailed
+  numeric version (May 20): Basic / Featured / Featured+Social at founding rates
+  NT$2,500 / 4,500 / 5,500 per month, rising to NT$3,500 / 6,000 / 7,500 for
+  restaurants signing after the founding period. However, a later session
+  (June 24) shows tier *names* still undecided and a separate Basic/Growth/Premium
+  framing explored. **Confirm current pricing before quoting a restaurant** —
+  don't treat either version as final.
+- **Sales approach:** lead with the ROI story (tourist/expat spend differential vs.
+  Uber Eats commissions), not features or price. Use qualifying questions so owners
+  self-anchor on value before price is introduced.
+- **Honest stats only** — never use unverifiable claims (restaurant counts,
+  ratings). Owners will fact-check.
+- **Payments:** manual Fubon bank transfers currently. Local Taiwanese payment
+  gateways planned post-registration.
 
-Trial length: **2 weeks** (changed from 4 weeks — make sure this is consistent everywhere)
-
-### Pricing Tiers
-
-1. **Basic Listing** — visibility only, appears in search results, no priority placement
-2. **Featured Listing** — homepage placement, "Top Picks" section, priority in search results
-3. **Featured + Social Bundle** — everything in Featured, plus Instagram content posted to @tastytaipei_com. Priced just slightly above Featured-only to feel like an obvious upgrade.
-
-Social posting frequency is a paid add-on within the bundle tier (more posts per week = higher price).
-
-**Founding Partner Pricing:** Early restaurants lock in permanently lower rates. This creates real urgency without fabricating scarcity. Standard rates apply to all subsequent sign-ups.
-
-### Conversion Flow
-
-Week 2 results meeting → show dashboard with real numbers → "I'll send you a quick link" → Stripe payment link → they tap, enter card once → auto-charges monthly → automatic receipts → money never discussed again.
-
-One-page contract signed at conversion meeting.
-
----
-
-## Social Media
-
-All restaurant content lives on a **single @tastytaipei account** — NOT individual accounts per restaurant. This is intentional and operationally critical.
-
-- **Instagram:** @tastytaipei_com
-- **LINE:** @chrixx7 (personal, to be migrated to LINE Official Account)
+**Business registration milestone:** the **5th paying restaurant** is the hard
+trigger to register the business and book an accountant (會計師) appointment.
 
 ---
 
 ## Content & Copy Rules
 
-These are non-negotiable:
-
-- **No fake statistics** — restaurant owners will fact-check. No "200+ restaurants," no fabricated ratings.
-- **No "coming soon" language anywhere** — kills FOMO and signals newness.
-- **No specific numerical promises** — use confident broad language instead.
-- **Team framing** — say "we" and "our team," never "I" or "solo founder."
-- **LINE preferred over WhatsApp** for contact privacy.
-- **Honest, verifiable copy only.**
+- **Bilingual requirement:** all client-facing materials need English and
+  Traditional Chinese versions.
+- **AI-generated restaurant data risk:** Claude Haiku can produce plausible but
+  fictitious restaurant names and addresses. Always verify real establishments
+  independently before adding them to the database — especially relevant for the
+  upcoming dessert/bakery category, which has no real entries yet.
 
 ---
 
-## Signup Flow
+## Division of Labor
 
-1. User fills out signup form (name, restaurant, phone, email, district, language)
-2. `submitSignup()` / `submitSignupZh()` POSTs to Formspree (captures lead to email)
-3. Opens LINE with pre-filled message to chrixx7
-4. Try/catch ensures LINE opens even if Formspree fails
+- **Claude (claude.ai chat)** — strategy, copy, contracts, outreach scripts,
+  pricing, partner communications.
+- **Claude Code** — all codebase work: HTML, JSON, CSS, new pages, SEO.
 
----
-
-## Separation of Concerns
-
-**Client-facing materials** (what restaurant owners see):
-- Pitch cards, pricing pages, the website itself, profile mockups, trial results dashboard
-
-**Internal-only** (never show to restaurant owners):
-- Revenue projections, ownership strategy, sales playbook scripts, objection handling docs, internal pricing rationale
+### Claude Code session workflow
+- Use the Haiku model for lighter tasks to minimize credit usage.
+- Brainstorm in claude.ai chat first, then execute in Claude Code.
+- Give Claude Code single focused tasks, 2–3 batched per session, with the
+  `--dangerously-skip-permissions` flag. Large individual tasks get their own
+  session — this avoids context-window compaction loops.
 
 ---
 
-## Key Files
+## Established Patterns & Environment Notes
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Main site — everything |
-| `chess-chicken.html` | Chess Chicken profile page (first real restaurant) |
-| `about.html` | About page |
-| `tools.html` | QR code generator, stamp card, reservation manager |
-| `restaurants.json` | Restaurant data — source of truth for profile pages |
-| `images/taipei-hero.jpg` | Hero background image (Taipei 101 night skyline) |
-| `sitemap.xml` | SEO sitemap |
-| `robots.txt` | Crawler rules |
+- **Photo workflow:** drop files in a flat `images/restaurant-photos/` folder,
+  named lowercase-with-dashes matching the restaurant slug (e.g.
+  `yongkang-beef-noodle.webp`). Ask Claude Code to auto-match filenames to
+  `restaurants.json` entries rather than editing the JSON by hand.
+- **`/frontend-design` skill** requires explicit invocation each session — it
+  doesn't auto-trigger. Must be run *after* `cd`-ing into
+  `~/Desktop/tastytaipei`, or it treats the session as a greenfield build.
+- **Superpowers plugin was removed** (`/plugin remove superpowers`) — it was
+  intercepting prompts with unwanted planning/spec-writing behavior.
+- **GitHub PAT:** use Classic type with `repo` scope. Tokens have expired before
+  and needed regeneration — if pushes suddenly fail, check token expiry first.
+- **Vercel domain config:** `tastytaipei.com` (non-www) is the canonical serving
+  domain; `www.tastytaipei.com` 308-redirects to it. `tastytaipei.vercel.app`
+  also points directly at the non-www domain, not through www, to avoid a
+  redirect chain.
 
----
+## Content Gaps (not code bugs — copy/UX only)
 
-## Environment Notes
-
-- **Browser:** Safari (primary). Test on Safari first.
-- **GitHub editor:** CodeMirror 6 — browser automation cannot access the internal EditorView. For large file edits, write the file and download rather than trying to automate the editor.
-- **Python image generation:** Use Pillow. The `canvas` npm package fails in this environment.
-- **PDF generation:** ReportLab (Python).
-- **Word docs:** `docx` npm package.
-
----
-
-## Known TODOs (deferred, not forgotten)
-
-- **Cart drawer i18n** — strings in `cart.js` (`renderCartItems`, `showPickupForm`, `submitPickupOrder`, `resetCartDrawer`) and matching HTML in `index.html` (cart header, pickup form labels, confirmation view) are hardcoded English. Needs ~15 new i18n keys added to `i18n.js` and both files updated. Mechanism is proven — this is purely additive work.
-- **Distance filter is non-functional** — `selectFilter('cuisine','Distance',...)` sets `activeFilters.dist` but `applyFilters()` in `restaurants.js` has no distance logic. Can't be implemented without per-restaurant lat/lng coordinates. Either add coordinates to `restaurants.json` and implement haversine filtering, or remove the Distance dropdown from the filter bar until then.
+Flagged in a June 24 homepage review, not confirmed fixed:
+- Consumer hero section doesn't mention the 5-language differentiator and has no
+  social proof
+- B2B plan cards are missing pricing display
+- Redundant phrase in the B2B headline
+- "List Your Restaurant" nav CTA has low visibility
 
 ---
 
 ## What to Work On Next
 
 Priority order:
-1. Fix search — this is broken and was called out by the first potential client in person
-2. Decide on architecture direction (Next.js vs static JSON vs surgical fix)
-3. Replace placeholder restaurant data with real restaurant as it onboards
-4. **Set up Chess Chicken's Formspree order form** — create the form at formspree.io, replace `ORDER_FORM_REPLACE` in `restaurants.json` with the real form ID
-5. Make category filters actually work (not just toast notifications)
-6. Migrate to LINE Official Account when restaurant count warrants it
-7. Per-restaurant analytics as a value-add feature
-8. Real backend (Supabase) as restaurant count grows
+1. **Dessert/bakery category — fully scoped, zero decisions left, do this first.**
+   Paste into a fresh Claude Code session:
+   ```
+   Add these 6 real, verified establishments to restaurants.json, matching the
+   exact field structure of an existing entry:
+   1. Xing Fu Tang (幸福堂) — bubble tea, Ximending
+   2. Chun Shui Tang (春水堂) — bubble tea, Xinyi
+   3. Bai-Shui Douhua (白水豆花) — traditional douhua, Da'an/Yongkang St
+   4. Taro King (芋頭大王) — traditional Taiwanese dessert, Da'an/Yongkang St
+   5. Smoothie House (思慕昔本館) — mango shaved ice, Da'an/Yongkang St
+   6. Sunmerry Dongmen Shop (聖瑪莉東門店) — bakery, Da'an/Yongkang St
+
+   Do not invent additional entries or alter these names/locations — verify
+   hours/exact address against current sources before finalizing. Source
+   images following the WebP/sub-100KB/Unsplash-preferred approach used
+   elsewhere in the project.
+   ```
+2. Confirm with Claude Code whether the `.md` → `restaurants.json` conversion
+   already happened as part of recent `build.py` work
+3. Ship the 3 already-verified Hakka entries and spot-check the "Master Shen" hot
+   pot entry from the July 2 research batch, rather than re-verifying all 150 CSV
+   candidates from scratch
+4. Source real photos for the 17 urgent restaurants currently on stock images
+   (pull from Google Business listings where possible; bundle photo requests into
+   partner outreach messages rather than treating as a separate task)
+5. Resume outreach to Terry once photos/data gaps are addressed
+6. Decide whether to activate the existing LINE Official Account for ordering
+   once partner count hits 5–10 (it's already created, just unused — see
+   Repository & Deployment)
+7. Register the business + book an accountant once the 5th paying partner signs
+
+---
+
+## Tools & Resources
+
+- **Development:** Claude Code (`npm @anthropic-ai/claude-code`), VS Code, GitHub,
+  Vercel
+- **Analytics:** Microsoft Clarity
+- **Forms/notifications:** Formspree, LINE Messaging API
+- **SEO:** Google Search Console, structured data (JSON-LD)
+- **Image optimization:** squoosh.app (WebP compression, target sub-100KB per
+  image)
+- **Marketing skills installed in Claude:** ad-creative, copywriting, pricing,
+  product-marketing, seo-audit, social
 
 ---
 
 ## Contact & Accounts
 
-- LINE: chrixx7
-- Instagram: @tastytaipei_com
-- GitHub: Debaytte2
+- GitHub: Debaytte2/tastytaipei
 - Domain registrar: Namecheap
+- Instagram: @tastytaipei_com
+- LINE: @chrixx7 (personal, active channel); LINE Official Account "Tasty
+  Taipei Orders" exists but is unused
 - Formspree endpoint: https://formspree.io/f/mdapwalg
 - Clarity tracking ID: vzvl62tnrr
