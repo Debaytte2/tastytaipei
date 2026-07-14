@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="referrer" content="no-referrer"/>
+<title>Discover — Tasty Taipei</title>
+<meta name="description" content="Browse every restaurant on Tasty Taipei by cuisine, district, price and rating — verified and translated in five languages.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tastytaipei.com/discover.html"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,800;1,9..144,500;1,9..144,600&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/css/main.css"/>
+<script>
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","vzvl62tnrr");
+</script>
+</head>
+<body class="discover-page">
+
+<div class="utility">
+  <div class="lang-pills" id="lang-pills">
+    <div class="lang-pill" data-lang="en" onclick="setLang('en')">EN</div>
+    <div class="lang-pill" data-lang="zh" onclick="setLang('zh')">中文</div>
+    <div class="lang-pill" data-lang="fr" onclick="setLang('fr')">FR</div>
+    <div class="lang-pill" data-lang="ja" onclick="setLang('ja')">日本語</div>
+    <div class="lang-pill" data-lang="es" onclick="setLang('es')">ES</div>
+  </div>
+  <a class="social-links mono" href="https://www.instagram.com/tastytaipei_com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">@tastytaipei_com</a>
+</div>
+
+<nav>
+  <a class="logo" href="/" style="text-decoration:none;">tasty<span>taipei</span></a>
+  <ul class="nav-links">
+    <li><a href="/discover.html" class="on" data-i18n="nav_discover">Discover</a></li>
+    <li><a href="/discover.html" data-i18n="nav_cuisines">Cuisines</a></li>
+    <li><a href="/discover.html" data-i18n="nav_districts">Districts</a></li>
+    <li><a href="/for-restaurants.html" data-i18n="nav_forrestaurants">For Restaurants</a></li>
+    <li><a href="/about.html">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <a class="nav-cta" data-i18n="nav_listbtn" href="/for-restaurants.html">List Your Restaurant →</a>
+    <button class="nav-cta-mobile" data-i18n="nav_listbtn_mobile" onclick="location.href='/for-restaurants.html'">List Restaurant</button>
+    <button class="nav-hamburger" id="nav-hamburger-btn" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</nav>
+
+<div id="mobile-nav-panel">
+  <a class="mnp-link" href="/discover.html" data-i18n="nav_discover">Discover</a>
+  <a class="mnp-link" href="/for-restaurants.html" data-i18n="nav_forrestaurants">For Restaurants</a>
+  <a class="mnp-link" href="/about.html">About</a>
+  <div style="padding:10px 20px;">
+    <select class="lang-select" id="lang-select-mobile" onchange="setLang(this.value)" style="width:100%;" aria-label="Language">
+      <option value="en">EN — English</option>
+      <option value="zh">中文 — Traditional Chinese</option>
+      <option value="fr">FR — Français</option>
+      <option value="ja">日 — 日本語</option>
+      <option value="es">ES — Español</option>
+    </select>
+  </div>
+  <a class="mnp-link mnp-cta" href="/for-restaurants.html" data-i18n="nav_listbtn">List Your Restaurant →</a>
+</div>
+
+<div class="page-head">
+  <div class="breadcrumb"><a href="/" data-i18n="breadcrumb_home">Home</a> / <span data-i18n="nav_discover">Discover</span></div>
+  <h1 id="page-title" data-i18n="discover_all_title">All Restaurants</h1>
+  <p id="page-subtitle">…</p>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-surface">
+    <div class="filter-group">
+      <label data-i18n="filter_cuisine_label">Cuisine</label>
+      <select id="f-cuisine" aria-label="Cuisine"></select>
+    </div>
+    <div class="filter-group">
+      <label data-i18n="filter_district_label">District</label>
+      <select id="f-district" aria-label="District"></select>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-group">
+      <label data-i18n="filter_price_label">Price</label>
+      <select id="f-price" aria-label="Price">
+        <option value="" data-i18n="rating_any">Any</option>
+        <option value="Under NT$150" data-i18n="f_p1">Under NT$150</option>
+        <option value="NT$150–300" data-i18n="f_p2">NT$150–300</option>
+        <option value="NT$300–600" data-i18n="f_p3">NT$300–600</option>
+        <option value="NT$600+" data-i18n="f_p4">NT$600+</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label data-i18n="filter_rating_label">Rating</label>
+      <select id="f-rating" aria-label="Rating">
+        <option value="" data-i18n="rating_any">Any</option>
+        <option value="4.8">4.8+</option>
+        <option value="4.5">4.5+</option>
+        <option value="4.0">4.0+</option>
+      </select>
+    </div>
+    <button class="filter-apply" data-i18n="filter_apply" onclick="applyFilterBar()">Apply</button>
+    <button class="filter-clear" data-i18n="filter_clear" onclick="clearAllFilters()">Clear all</button>
+  </div>
+  <div class="active-filters" id="active-filters"></div>
+</div>
+
+<div class="results-wrap">
+  <aside class="sidebar" id="cuisines">
+    <h3 data-i18n="nav_cuisines">Cuisines</h3>
+    <div class="cat-rail" id="rail-cuisines"></div>
+    <h3 data-i18n="nav_districts">Districts</h3>
+    <div class="cat-rail" id="rail-districts"></div>
+  </aside>
+
+  <div>
+    <div class="results-count">
+      <p id="results-count-text">…</p>
+      <select id="sort-select" onchange="onSortChange()">
+        <option value="rating" data-i18n="f_sort1">Top Rated</option>
+        <option value="price-low" data-i18n="f_sort3">Price: Low to High</option>
+        <option value="price-high" data-i18n="f_sort4">Price: High to Low</option>
+        <option value="popular" data-i18n="f_sort5">Most Popular</option>
+      </select>
+    </div>
+
+    <div class="restaurants-grid" id="results-grid">
+      <div class="r-card-skeleton"><div class="skel-img"></div><div class="skel-body"><div class="skel-line w60"></div><div class="skel-line w40"></div><div class="skel-line w90"></div></div></div>
+      <div class="r-card-skeleton"><div class="skel-img"></div><div class="skel-body"><div class="skel-line w60"></div><div class="skel-line w40"></div><div class="skel-line w90"></div></div></div>
+      <div class="r-card-skeleton"><div class="skel-img"></div><div class="skel-body"><div class="skel-line w60"></div><div class="skel-line w40"></div><div class="skel-line w90"></div></div></div>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+  </div>
+</div>
+
+<footer class="footer-minimal">
+  <p data-i18n="foot_copy">© 2026 Tasty Taipei · Debayette Enterprises</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="/js/i18n.js"></script>
+<script src="/js/ui.js"></script>
+<script src="/js/discover.js"></script>
+</body>
+</html>

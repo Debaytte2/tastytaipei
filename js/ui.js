@@ -130,6 +130,8 @@ function requestNearMe() {
 function toggleMobileNav(){
   var panel=document.getElementById('mobile-nav-panel');
   var btn=document.getElementById('nav-hamburger-btn');
+  var nav=document.querySelector('nav');
+  if (nav) panel.style.top = nav.getBoundingClientRect().bottom + 'px';
   var open=panel.classList.toggle('open');
   btn.textContent=open?'✕':'☰';
   btn.setAttribute('aria-expanded',open?'true':'false');

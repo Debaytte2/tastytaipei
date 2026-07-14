@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tasty Taipei — Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213D;
+    --paper:#FBF3E3;
+    --lantern:#D6402E;
+    --amber:#F2A93B;
+    --jade:#2F8F7B;
+    --charcoal:#241D17;
+    --line: rgba(36,29,23,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:'Public Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.02em; }
+  .serif{ font-family:'Fraunces', serif; }
+
+  /* utility bar */
+  .utility{
+    background:var(--ink);
+    color:#F2E9D8;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:8px 32px;
+    font-size:12px;
+  }
+  .lang-pills{ display:flex; gap:6px; }
+  .lang-pill{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    border:1px solid rgba(242,233,216,0.35);
+    border-radius:20px;
+    padding:3px 10px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .lang-pill.active{ background:var(--amber); color:var(--ink); border-color:var(--amber); font-weight:600;}
+  .lang-pill:hover{ border-color:var(--amber); }
+  .social-links{ display:flex; gap:14px; opacity:0.85; }
+
+  /* nav */
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px;
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,243,227,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{ font-family:'Fraunces', serif; font-style:italic; font-weight:600; font-size:26px; color:var(--ink); }
+  .logo span{ color:var(--lantern); font-style:normal; }
+  .nav-links{ display:flex; gap:34px; list-style:none; }
+  .nav-links a{
+    text-decoration:none; color:var(--charcoal); font-size:14.5px; font-weight:500;
+    position:relative; padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:2px;
+    background:var(--lantern); transition:width .2s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    background:var(--lantern); color:#fff; border:none; padding:11px 22px;
+    border-radius:6px; font-weight:600; font-size:14px; cursor:pointer;
+    font-family:'Public Sans',sans-serif;
+  }
+
+  /* hero */
+  .hero{
+    display:grid; grid-template-columns:1.1fr 0.9fr; align-items:center;
+    padding:70px 32px 40px; gap:20px; max-width:1280px; margin:0 auto;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--jade);
+    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:18px; display:block;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif; font-weight:500; font-size:56px; line-height:1.05;
+    color:var(--ink); margin-bottom:20px;
+  }
+  .hero h1 em{ font-style:italic; color:var(--lantern); }
+  .hero p{ font-size:17px; line-height:1.6; color:#4a4038; max-width:440px; margin-bottom:32px;}
+
+  .search-bar{
+    display:flex; background:#fff; border:1px solid var(--line); border-radius:10px;
+    padding:6px; box-shadow:0 8px 24px rgba(20,33,61,0.08); max-width:480px;
+  }
+  .search-bar select, .search-bar input{
+    border:none; background:transparent; font-family:'Public Sans',sans-serif;
+    font-size:14px; padding:10px 12px; outline:none;
+  }
+  .search-bar select{ border-right:1px solid var(--line); color:var(--charcoal); }
+  .search-bar input{ flex:1; }
+  .search-bar button{
+    background:var(--ink); color:#fff; border:none; border-radius:7px;
+    padding:10px 18px; font-weight:600; cursor:pointer; font-size:14px;
+  }
+
+  /* lantern string */
+  .lanterns{ position:relative; height:420px; }
+  .lantern-line{
+    position:absolute; top:60px; left:0; right:0; height:1px;
+    background:repeating-linear-gradient(90deg, var(--charcoal) 0 6px, transparent 6px 12px);
+    opacity:0.35;
+  }
+  .lantern{
+    position:absolute; width:118px; height:118px; border-radius:50%;
+    overflow:hidden; border:5px solid var(--paper);
+    box-shadow:0 10px 26px rgba(20,33,61,0.22), 0 0 0 2px var(--line);
+    background-size:cover; background-position:center;
+  }
+  .lantern::before{
+    content:''; position:absolute; top:-8px; left:50%; width:2px; height:14px;
+    background:var(--charcoal); opacity:0.35;
+  }
+  .l1{ top:8px; left:8%; width:96px; height:96px; background-image:url('https://images.unsplash.com/photo-1541014741259-de529411b96a?w=300'); }
+  .l2{ top:26px; left:38%; background-image:url('https://images.unsplash.com/photo-1552611052-33e04de081de?w=300'); }
+  .l3{ top:4px; left:66%; width:104px; height:104px; background-image:url('https://images.unsplash.com/photo-1563245372-f21724e3856d?w=300'); }
+  .l4{ top:180px; left:20%; width:132px; height:132px; background-image:url('https://images.unsplash.com/photo-1583224964978-2257b960c3d3?w=300'); }
+  .l5{ top:210px; left:58%; background-image:url('https://images.unsplash.com/photo-1526318472351-c75fcf070305?w=300'); }
+  .badge-verified{
+    position:absolute; bottom:24px; left:24px; background:var(--jade); color:#fff;
+    font-family:'JetBrains Mono',monospace; font-size:11px; padding:6px 12px; border-radius:20px;
+    display:flex; align-items:center; gap:6px;
+  }
+
+  /* cuisine chips */
+  .chips-wrap{ padding:10px 32px 40px; max-width:1280px; margin:0 auto; }
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    flex:0 0 auto; background:#fff; border:1px solid var(--line); border-radius:24px;
+    padding:9px 18px; font-size:13.5px; font-weight:500; cursor:pointer; white-space:nowrap;
+  }
+  .chip.on{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  /* grid */
+  .section-head{
+    max-width:1280px; margin:0 auto; padding:20px 32px 0;
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .section-head h2{ font-family:'Fraunces',serif; font-size:30px; font-weight:500; color:var(--ink); }
+  .section-head a{ color:var(--lantern); font-weight:600; font-size:14px; text-decoration:none; }
+
+  .grid{
+    max-width:1280px; margin:0 auto; padding:26px 32px 60px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+  }
+  .card{
+    background:#fff; border-radius:14px; overflow:hidden; border:1px solid var(--line);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(20,33,61,0.12); }
+  .card-img{ height:150px; background-size:cover; background-position:center; position:relative; }
+  .card-tag{
+    position:absolute; top:10px; left:10px; background:rgba(20,33,61,0.85); color:#fff;
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:4px 9px; border-radius:14px;
+  }
+  .card-body{ padding:16px; }
+  .card-body h3{ font-family:'Fraunces',serif; font-weight:600; font-size:17px; margin-bottom:4px; }
+  .card-cn{ font-size:12.5px; color:#8a7d6f; margin-bottom:10px; }
+  .card-meta{ display:flex; justify-content:space-between; align-items:center; font-size:12.5px; }
+  .card-meta .langs{ font-family:'JetBrains Mono',monospace; color:var(--jade); }
+  .card-meta .price{ color:#8a7d6f; }
+
+  /* spotlight */
+  .spotlight{ background:var(--ink); padding:70px 32px; }
+  .spotlight-inner{
+    max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr;
+    gap:50px; align-items:center;
+  }
+  .spotlight-img{ height:360px; border-radius:16px; background-size:cover; background-position:center;
+    background-image:url('https://images.unsplash.com/photo-1552611052-33e04de081de?w=800'); }
+  .spotlight-text .eyebrow{ color:var(--amber); }
+  .spotlight-text h2{ font-family:'Fraunces',serif; font-size:38px; color:#fff; font-weight:500; line-height:1.15; margin-bottom:16px; }
+  .spotlight-text p{ color:#cfd4e0; line-height:1.7; margin-bottom:24px; max-width:440px; }
+  .spotlight-text a{
+    color:var(--paper); font-weight:600; font-size:14px; text-decoration:none;
+    border-bottom:2px solid var(--lantern); padding-bottom:3px;
+  }
+
+  footer{ background:var(--ink); border-top:1px solid rgba(255,255,255,0.08); padding:50px 32px 26px; }
+  .footer-grid{ max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:30px; }
+  .footer-grid h4{ color:#fff; font-size:13px; margin-bottom:14px; font-family:'JetBrains Mono',monospace; letter-spacing:0.05em; }
+  .footer-grid a{ display:block; color:#B9C0D1; text-decoration:none; font-size:13.5px; margin-bottom:9px; }
+  .footer-bottom{
+    max-width:1280px; margin:34px auto 0; padding-top:20px; border-top:1px solid rgba(255,255,255,0.08);
+    display:flex; justify-content:space-between; color:#8891a6; font-size:12.5px;
+  }
+
+  @media(max-width:900px){
+    .hero{ grid-template-columns:1fr; }
+    .grid{ grid-template-columns:repeat(2,1fr); }
+    .spotlight-inner{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+    .nav-links{ display:none; }
+  }
+
+  /* keyboard focus */
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible,
+  .chip:focus-visible, .lang-pill:focus-visible, .card:focus-visible {
+    outline: 2px solid var(--lantern);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .card:hover{ transform:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="utility">
+    <div class="lang-pills">
+      <div class="lang-pill active">EN</div>
+      <div class="lang-pill">中文</div>
+      <div class="lang-pill">FR</div>
+      <div class="lang-pill">日本語</div>
+      <div class="lang-pill">ES</div>
+    </div>
+    <div class="social-links mono">@tastytaipei_com</div>
+  </div>
+
+  <nav>
+    <div class="logo">tasty<span>taipei</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Discover</a></li>
+      <li><a href="#">Cuisines</a></li>
+      <li><a href="#">Districts</a></li>
+      <li><a href="#">For Restaurants</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <button class="nav-cta">List Your Restaurant</button>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow">● verified by locals, since 2026</span>
+      <h1>Taipei, <em>one dish</em><br>at a time.</h1>
+      <p>The city's restaurants, translated — five languages, real addresses, no guesswork. Built for the traveler who wants what locals actually eat.</p>
+      <div class="search-bar">
+        <select>
+          <option>All Cuisines</option>
+          <option>Braised Pork Rice</option>
+          <option>Hot Pot</option>
+          <option>Hakka</option>
+          <option>Night Market</option>
+        </select>
+        <select>
+          <option>All Districts</option>
+          <option>Ximending</option>
+          <option>Da'an</option>
+          <option>Songshan</option>
+          <option>Zhongshan</option>
+        </select>
+        <input type="text" placeholder="Search a dish or restaurant…">
+        <button>Find</button>
+      </div>
+    </div>
+    <div class="lanterns">
+      <div class="lantern-line"></div>
+      <div class="lantern l1"></div>
+      <div class="lantern l2"></div>
+      <div class="lantern l3"></div>
+      <div class="lantern l4"></div>
+      <div class="lantern l5"></div>
+      <div class="badge-verified">✓ 200 spots verified</div>
+    </div>
+  </section>
+
+  <div class="chips-wrap">
+    <div class="chips">
+      <div class="chip on">All</div>
+      <div class="chip">Braised Pork Rice</div>
+      <div class="chip">Hot Pot</div>
+      <div class="chip">Hakka</div>
+      <div class="chip">Beef Noodle</div>
+      <div class="chip">Night Market</div>
+      <div class="chip">Dim Sum</div>
+      <div class="chip">Vegetarian</div>
+      <div class="chip">Dessert</div>
+      <div class="chip">Seafood</div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <h2>Freshly verified</h2>
+    <a href="#">View all 200 →</a>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1583224964978-2257b960c3d3?w=400')">
+        <div class="card-tag">Braised Pork Rice</div>
+      </div>
+      <div class="card-body">
+        <h3>Jin Feng Braised Pork</h3>
+        <div class="card-cn">金峰滷肉飯 · Zhongzheng</div>
+        <div class="card-meta"><span class="langs">EN·中·日</span><span class="price">$ · $$</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1526318472351-c75fcf070305?w=400')">
+        <div class="card-tag">Hot Pot</div>
+      </div>
+      <div class="card-body">
+        <h3>Wu Lao Guo</h3>
+        <div class="card-cn">無老鍋 · Da'an</div>
+        <div class="card-meta"><span class="langs">EN·中·FR</span><span class="price">$$</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400')">
+        <div class="card-tag">Night Market</div>
+      </div>
+      <div class="card-body">
+        <h3>Raohe St. Pepper Buns</h3>
+        <div class="card-cn">饒河街胡椒餅 · Songshan</div>
+        <div class="card-meta"><span class="langs">EN·中·ES</span><span class="price">$</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1552611052-33e04de081de?w=400')">
+        <div class="card-tag">Hakka</div>
+      </div>
+      <div class="card-body">
+        <h3>Hakka Stir-Fry House</h3>
+        <div class="card-cn">客家小炒 · Zhongshan</div>
+        <div class="card-meta"><span class="langs">EN·中</span><span class="price">$$</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="spotlight">
+    <div class="spotlight-inner">
+      <div class="spotlight-img"></div>
+      <div class="spotlight-text">
+        <span class="eyebrow">this week's find</span>
+        <h2>A hot pot spot with zero English menu — and why that's the point.</h2>
+        <p>Tucked behind a Da'an alley, this family-run counter has no sign in English and no online presence. We went, translated the menu, and confirmed every address by hand.</p>
+        <a href="#">Read the full write-up →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff; margin-bottom:10px;">tasty<span>taipei</span></div>
+        <p style="color:#B9C0D1; font-size:13px; line-height:1.6; max-width:220px;">Taipei's restaurants, verified and translated for the way you actually eat.</p>
+      </div>
+      <div>
+        <h4>DISCOVER</h4>
+        <a href="#">By Cuisine</a>
+        <a href="#">By District</a>
+        <a href="#">Editor's Picks</a>
+      </div>
+      <div>
+        <h4>FOR RESTAURANTS</h4>
+        <a href="#">Get Listed</a>
+        <a href="#">Marketing Services</a>
+        <a href="#">Pricing</a>
+      </div>
+      <div>
+        <h4>COMPANY</h4>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tasty Taipei · Debayette Enterprises</span>
+      <span>Privacy · Terms</span>
+    </div>
+  </footer>
+
+</body>
+</html>

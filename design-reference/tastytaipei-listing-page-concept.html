@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tasty Taipei — Discover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213D;
+    --paper:#FBF3E3;
+    --lantern:#D6402E;
+    --amber:#F2A93B;
+    --jade:#2F8F7B;
+    --charcoal:#241D17;
+    --line: rgba(36,29,23,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:'Public Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.02em; }
+  .serif{ font-family:'Fraunces', serif; }
+
+  .utility{
+    background:var(--ink); color:#F2E9D8;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:8px 32px; font-size:12px;
+  }
+  .lang-pills{ display:flex; gap:6px; }
+  .lang-pill{
+    font-family:'JetBrains Mono', monospace; font-size:11px;
+    border:1px solid rgba(242,233,216,0.35); border-radius:20px;
+    padding:3px 10px; cursor:pointer;
+  }
+  .lang-pill.active{ background:var(--amber); color:var(--ink); border-color:var(--amber); font-weight:600;}
+  .social-links{ opacity:0.85; }
+
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px; position:sticky; top:0; z-index:50;
+    background:rgba(251,243,227,0.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{ font-family:'Fraunces', serif; font-style:italic; font-weight:600; font-size:26px; color:var(--ink); }
+  .logo span{ color:var(--lantern); font-style:normal; }
+  .nav-links{ display:flex; gap:34px; list-style:none; }
+  .nav-links a{ text-decoration:none; color:var(--charcoal); font-size:14.5px; font-weight:500; }
+  .nav-links a.on{ color:var(--lantern); }
+  .nav-cta{
+    background:var(--lantern); color:#fff; border:none; padding:11px 22px;
+    border-radius:6px; font-weight:600; font-size:14px; cursor:pointer; font-family:'Public Sans',sans-serif;
+  }
+
+  /* page head */
+  .page-head{ max-width:1280px; margin:0 auto; padding:36px 32px 0; }
+  .breadcrumb{ font-family:'JetBrains Mono',monospace; font-size:12px; color:#8a7d6f; margin-bottom:10px; }
+  .breadcrumb a{ color:#8a7d6f; text-decoration:none; }
+  .page-head h1{ font-family:'Fraunces',serif; font-weight:500; font-size:38px; color:var(--ink); margin-bottom:8px; }
+  .page-head p{ color:#4a4038; font-size:15px; }
+
+  /* filter bar — combined cuisine + district, single control surface */
+  .filter-bar{
+    max-width:1280px; margin:24px auto 0; padding:0 32px;
+  }
+  .filter-surface{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    box-shadow:0 8px 24px rgba(20,33,61,0.06);
+    padding:18px 20px; display:flex; flex-wrap:wrap; gap:14px; align-items:center;
+  }
+  .filter-group{ display:flex; flex-direction:column; gap:4px; }
+  .filter-group label{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#8a7d6f;
+    text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .filter-group select, .filter-group input{
+    border:1px solid var(--line); border-radius:8px; padding:9px 12px;
+    font-family:'Public Sans',sans-serif; font-size:14px; min-width:150px; background:#fff;
+  }
+  .filter-divider{ width:1px; height:34px; background:var(--line); align-self:flex-end; }
+  .filter-apply{
+    background:var(--ink); color:#fff; border:none; border-radius:8px;
+    padding:11px 22px; font-weight:600; font-size:14px; cursor:pointer; align-self:flex-end;
+  }
+  .filter-clear{
+    color:var(--lantern); font-size:13px; font-weight:600; background:none; border:none;
+    cursor:pointer; align-self:flex-end; padding-bottom:9px;
+  }
+  .active-filters{ display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+  .active-chip{
+    background:var(--paper); border:1px solid var(--line); border-radius:20px;
+    padding:6px 8px 6px 14px; font-size:12.5px; display:flex; align-items:center; gap:8px;
+  }
+  .active-chip button{ background:none; border:none; cursor:pointer; color:#8a7d6f; font-size:14px; line-height:1; }
+
+  /* results layout */
+  .results-wrap{
+    max-width:1280px; margin:0 auto; padding:30px 32px 70px;
+    display:grid; grid-template-columns:220px 1fr; gap:34px;
+  }
+
+  /* sidebar — vertical category rail */
+  .sidebar h3{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:#8a7d6f;
+    text-transform:uppercase; letter-spacing:0.05em; margin-bottom:14px;
+  }
+  .cat-rail{ display:flex; flex-direction:column; gap:2px; margin-bottom:30px; }
+  .cat-rail a{
+    text-decoration:none; color:var(--charcoal); font-size:14px; padding:9px 10px;
+    border-radius:8px; display:flex; justify-content:space-between;
+  }
+  .cat-rail a.on{ background:var(--ink); color:#fff; font-weight:600; }
+  .cat-rail a:hover:not(.on){ background:rgba(20,33,61,0.05); }
+  .cat-rail a span{ color:#8a7d6f; font-family:'JetBrains Mono',monospace; font-size:12px; }
+  .cat-rail a.on span{ color:rgba(255,255,255,0.6); }
+
+  .results-count{
+    display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;
+  }
+  .results-count p{ font-size:14px; color:#4a4038; }
+  .results-count select{
+    border:1px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px;
+    font-family:'Public Sans',sans-serif; background:#fff;
+  }
+
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .card{
+    background:#fff; border-radius:14px; overflow:hidden; border:1px solid var(--line);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(20,33,61,0.12); }
+  .card-img{ height:150px; background-size:cover; background-position:center; position:relative; }
+  .card-tag{
+    position:absolute; top:10px; left:10px; background:rgba(20,33,61,0.85); color:#fff;
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:4px 9px; border-radius:14px;
+  }
+  .card-verified{
+    position:absolute; top:10px; right:10px; background:var(--jade); color:#fff;
+    width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:12px;
+  }
+  .card-body{ padding:16px; }
+  .card-body h3{ font-family:'Fraunces',serif; font-weight:600; font-size:16.5px; margin-bottom:4px; }
+  .card-cn{ font-size:12.5px; color:#8a7d6f; margin-bottom:10px; }
+  .card-meta{ display:flex; justify-content:space-between; align-items:center; font-size:12.5px; }
+  .card-meta .langs{ font-family:'JetBrains Mono',monospace; color:var(--jade); }
+  .card-meta .price{ color:#8a7d6f; }
+
+  .pagination{
+    display:flex; justify-content:center; gap:8px; margin-top:40px;
+  }
+  .pagination button{
+    width:36px; height:36px; border-radius:8px; border:1px solid var(--line);
+    background:#fff; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:13px;
+  }
+  .pagination button.on{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  footer{ background:var(--ink); padding:36px 32px; text-align:center; }
+  footer p{ color:#8891a6; font-size:12.5px; }
+
+  @media(max-width:900px){
+    .results-wrap{ grid-template-columns:1fr; }
+    .grid{ grid-template-columns:repeat(2,1fr); }
+    .nav-links{ display:none; }
+    .filter-surface{ flex-direction:column; align-items:stretch; }
+    .filter-group select, .filter-group input{ min-width:0; width:100%; }
+    .filter-divider{ display:none; }
+    .filter-apply, .filter-clear{ align-self:stretch; text-align:center; }
+  }
+
+  /* keyboard focus */
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible,
+  .lang-pill:focus-visible, .cat-rail a:focus-visible, .card:focus-visible,
+  .pagination button:focus-visible {
+    outline: 2px solid var(--lantern);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .card:hover{ transform:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="utility">
+    <div class="lang-pills">
+      <div class="lang-pill active">EN</div>
+      <div class="lang-pill">中文</div>
+      <div class="lang-pill">FR</div>
+      <div class="lang-pill">日本語</div>
+      <div class="lang-pill">ES</div>
+    </div>
+    <div class="social-links mono">@tastytaipei_com</div>
+  </div>
+
+  <nav>
+    <div class="logo">tasty<span>taipei</span></div>
+    <ul class="nav-links">
+      <li><a href="#" class="on">Discover</a></li>
+      <li><a href="#">Cuisines</a></li>
+      <li><a href="#">Districts</a></li>
+      <li><a href="#">For Restaurants</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <button class="nav-cta">List Your Restaurant</button>
+  </nav>
+
+  <div class="page-head">
+    <div class="breadcrumb"><a href="#">Home</a> / Discover</div>
+    <h1>Braised Pork Rice in Zhongzheng</h1>
+    <p>14 verified spots · updated this month</p>
+  </div>
+
+  <div class="filter-bar">
+    <div class="filter-surface">
+      <div class="filter-group">
+        <label>Cuisine</label>
+        <select>
+          <option>Braised Pork Rice</option>
+          <option>Hot Pot</option>
+          <option>Hakka</option>
+          <option>Beef Noodle</option>
+          <option>Night Market</option>
+          <option>Dim Sum</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>District</label>
+        <select>
+          <option>Zhongzheng</option>
+          <option>Da'an</option>
+          <option>Songshan</option>
+          <option>Ximending</option>
+          <option>Zhongshan</option>
+        </select>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group">
+        <label>Price</label>
+        <select>
+          <option>Any</option>
+          <option>$</option>
+          <option>$$</option>
+          <option>$$$</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Language menu</label>
+        <select>
+          <option>Any</option>
+          <option>English</option>
+          <option>日本語</option>
+          <option>Français</option>
+          <option>Español</option>
+        </select>
+      </div>
+      <button class="filter-apply">Apply</button>
+      <button class="filter-clear">Clear all</button>
+    </div>
+    <div class="active-filters">
+      <div class="active-chip">Braised Pork Rice <button>×</button></div>
+      <div class="active-chip">Zhongzheng <button>×</button></div>
+    </div>
+  </div>
+
+  <div class="results-wrap">
+    <aside class="sidebar">
+      <h3>Cuisines</h3>
+      <div class="cat-rail">
+        <a href="#" class="on">Braised Pork Rice <span>14</span></a>
+        <a href="#">Hot Pot <span>22</span></a>
+        <a href="#">Hakka <span>9</span></a>
+        <a href="#">Beef Noodle <span>18</span></a>
+        <a href="#">Night Market <span>31</span></a>
+        <a href="#">Dim Sum <span>7</span></a>
+        <a href="#">Vegetarian <span>11</span></a>
+        <a href="#">Dessert <span>0</span></a>
+      </div>
+      <h3>Districts</h3>
+      <div class="cat-rail">
+        <a href="#" class="on">Zhongzheng <span>14</span></a>
+        <a href="#">Da'an <span>26</span></a>
+        <a href="#">Songshan <span>19</span></a>
+        <a href="#">Ximending <span>15</span></a>
+        <a href="#">Zhongshan <span>21</span></a>
+      </div>
+    </aside>
+
+    <div>
+      <div class="results-count">
+        <p>Showing 14 results</p>
+        <select>
+          <option>Sort: Most verified</option>
+          <option>Sort: Nearest</option>
+          <option>Sort: Price low–high</option>
+        </select>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1583224964978-2257b960c3d3?w=400')">
+            <div class="card-tag">Braised Pork Rice</div>
+            <div class="card-verified">✓</div>
+          </div>
+          <div class="card-body">
+            <h3>Jin Feng Braised Pork</h3>
+            <div class="card-cn">金峰滷肉飯 · Zhongzheng</div>
+            <div class="card-meta"><span class="langs">EN·中·日</span><span class="price">$</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1526318472351-c75fcf070305?w=400')">
+            <div class="card-tag">Braised Pork Rice</div>
+            <div class="card-verified">✓</div>
+          </div>
+          <div class="card-body">
+            <h3>Lao Zhang's Kitchen</h3>
+            <div class="card-cn">老張的廚房 · Zhongzheng</div>
+            <div class="card-meta"><span class="langs">EN·中</span><span class="price">$</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400')">
+            <div class="card-tag">Braised Pork Rice</div>
+            <div class="card-verified">✓</div>
+          </div>
+          <div class="card-body">
+            <h3>Yong Kang Rice Bowl</h3>
+            <div class="card-cn">永康滷肉飯 · Zhongzheng</div>
+            <div class="card-meta"><span class="langs">EN·中·FR</span><span class="price">$$</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1552611052-33e04de081de?w=400')">
+            <div class="card-tag">Braised Pork Rice</div>
+            <div class="card-verified">✓</div>
+          </div>
+          <div class="card-body">
+            <h3>Ah-Ming's Corner</h3>
+            <div class="card-cn">阿明滷肉飯 · Zhongzheng</div>
+            <div class="card-meta"><span class="langs">EN·中</span><span class="price">$</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1541014741259-de529411b96a?w=400')">
+            <div class="card-tag">Braised Pork Rice</div>
+            <div class="card-verified">✓</div>
+          </div>
+          <div class="card-body">
+            <h3>Peace Street Rice</h3>
+            <div class="card-cn">和平滷肉飯 · Zhongzheng</div>
+            <div class="card-meta"><span class="langs">EN·中·ES</span><span class="price">$</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1583224964978-2257b960c3d3?w=400')">
+            <div class="card-tag">Braised Pork Rice</div>
+            <div class="card-verified">✓</div>
+          </div>
+          <div class="card-body">
+            <h3>Nanmen Market Stall 12</h3>
+            <div class="card-cn">南門市場12號 · Zhongzheng</div>
+            <div class="card-meta"><span class="langs">EN·中</span><span class="price">$</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="on">1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>→</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Tasty Taipei · Debayette Enterprises</p>
+  </footer>
+
+</body>
+</html>

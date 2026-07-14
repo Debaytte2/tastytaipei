@@ -110,8 +110,8 @@ NAV = """\
 <nav>
   <a class="nav-logo" href="/">Tasty<span> Taipei</span></a>
   <div class="nav-links">
-    <a href="/">Discover</a>
-    <a href="/#cats-grid">Categories</a>
+    <a href="/discover.html">Discover</a>
+    <a href="/discover.html#cuisines">Categories</a>
     <a href="/for-restaurants.html">For Restaurants</a>
     <a href="/about.html">About</a>
   </div>
@@ -121,8 +121,8 @@ NAV = """\
   </div>
 </nav>
 <div id="mobile-nav-panel">
-  <a class="mnp-link" href="/">Discover</a>
-  <a class="mnp-link" href="/#cats-grid">Categories</a>
+  <a class="mnp-link" href="/discover.html">Discover</a>
+  <a class="mnp-link" href="/discover.html#cuisines">Categories</a>
   <a class="mnp-link" href="/for-restaurants.html">For Restaurants</a>
   <a class="mnp-link" href="/about.html">About</a>
   <a class="mnp-link mnp-cta" href="/for-restaurants.html">List Your Restaurant →</a>
@@ -256,7 +256,7 @@ def restaurant_page(r):
   {desc_block}
   <div class="sp-actions">
     <a class="sp-btn" href="{esc(maps_url)}" target="_blank" rel="noopener">📍 View on Google Maps</a>
-    <a class="sp-btn sp-btn-ghost" href="/">← Back to Discover</a>
+    <a class="sp-btn sp-btn-ghost" href="/discover.html">← Back to Discover</a>
   </div>
 </main>
 {FOOTER}
@@ -326,7 +326,7 @@ def cuisine_district_page(cuisine, district, restaurants):
   <p class="sp-cuisine">{n} restaurant{"s" if n > 1 else ""} in {esc(district)}</p>
   <div class="sp-r-grid">
 {cards}  </div>
-  <a class="sp-btn sp-btn-ghost" href="/">← Explore All Restaurants</a>
+  <a class="sp-btn sp-btn-ghost" href="/discover.html">← Explore All Restaurants</a>
 </main>
 {FOOTER}
 {SCRIPTS}
@@ -361,6 +361,7 @@ def main():
 
     sitemap_pages = [
         (f"{BASE}/", TODAY),
+        (f"{BASE}/discover.html", TODAY),
         (f"{BASE}/about.html", TODAY),
         (f"{BASE}/for-restaurants.html", TODAY),
     ]
