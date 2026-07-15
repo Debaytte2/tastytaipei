@@ -37,7 +37,7 @@ function catLabel(key) {
 }
 
 function hasRealPhoto(r) {
-  return !!(r.image_url && r.image_url.indexOf('restaurant-photos') !== -1);
+  return !!(r.image_url && (r.image_url.indexOf('restaurant-photos') !== -1 || r.image_url.indexOf('images.unsplash.com') !== -1));
 }
 
 function matchesCategory(r, key) {
