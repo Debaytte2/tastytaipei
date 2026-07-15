@@ -40,12 +40,18 @@ function updateVerifiedBadge(count) {
   el.innerHTML = '✓ ' + count + ' ' + (t.hero_badge_suffix || 'spots verified');
 }
 
+function getDescription(r, lang) {
+  var desc = r && r.description;
+  if (desc && typeof desc === 'object') return desc[lang] || desc.en || '';
+  return desc || ''; // legacy plain-string description
+}
+
 function renderSpotlight(restaurants) {
-  var withDesc = (restaurants || []).filter(function(r){ return r.description; });
+  var lang = currentLang || 'en';
+  var withDesc = (restaurants || []).filter(function(r){ return getDescription(r, lang); });
   if (!withDesc.length) return;
   withDesc.sort(function(a,b){ return b.rating - a.rating; });
   var r = withDesc[0];
-  var lang = currentLang || 'en';
   var t = (i18n && i18n[lang]) ? i18n[lang] : {};
   var name = (lang === 'zh' && r.name_zh) ? r.name_zh : r.name;
   var img = document.getElementById('spotlight-img');
@@ -55,8 +61,10 @@ function renderSpotlight(restaurants) {
   if (img) img.style.backgroundImage = "url('" + r.image_url + "')";
   if (titleEl) titleEl.textContent = name + ' — ' + r.cuisine + ', ' + r.district;
   if (descEl) {
-    var langNote = (lang !== 'en') ? ' <span style="font-size:11px;opacity:.6;font-style:italic;">[EN]</span>' : '';
-    descEl.innerHTML = escHtml(r.description) + langNote;
+    var desc = r.description;
+    var isFallback = lang !== 'en' && desc && typeof desc === 'object' && !desc[lang];
+    var langNote = isFallback ? ' <span style="font-size:11px;opacity:.6;font-style:italic;">[EN]</span>' : '';
+    descEl.innerHTML = escHtml(getDescription(r, lang)) + langNote;
   }
   if (linkEl) { linkEl.href = '/restaurant/' + r.slug + '/'; linkEl.textContent = t.spotlight_cta || "Read the full write-up →"; }
 }

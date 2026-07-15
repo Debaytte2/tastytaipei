@@ -6,9 +6,12 @@ Run locally:    python3 build.py
 Vercel runs it: automatically via buildCommand in vercel.json
 
 Generates:
-  /restaurant/[slug]/index.html      — one per restaurant
-  /[cuisine-slug]/[district-slug]/   — one per cuisine×district combo with ≥1 restaurant
-  sitemap.xml                        — all pages
+  /restaurant/[slug]/index.html          — one per restaurant, English (default)
+  /[lang]/restaurant/[slug]/index.html   — same, per language (zh/fr/ja/es),
+                                            using restaurants.json description[lang]
+                                            (falls back to description.en)
+  /[cuisine-slug]/[district-slug]/       — one per cuisine×district combo with ≥1 restaurant
+  sitemap.xml                            — all pages
 """
 
 import html as html_mod
@@ -24,8 +27,24 @@ BASE = "https://tastytaipei.com"
 TODAY = date.today().isoformat()
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
+LANGS = ["en", "zh", "fr", "ja", "es"]
+DEFAULT_LANG = "en"
+
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
+
+
+def get_description(r, lang):
+    """Resolve r['description'][lang], falling back to English, then ''."""
+    desc = r.get("description")
+    if isinstance(desc, dict):
+        return desc.get(lang) or desc.get(DEFAULT_LANG) or ""
+    # Legacy plain-string description, pre-migration.
+    return desc or ""
+
+
+def lang_prefix(lang):
+    return "" if lang == DEFAULT_LANG else f"/{lang}"
 
 def slugify(text):
     t = unicodedata.normalize("NFKD", str(text)).encode("ascii", "ignore").decode("ascii")
@@ -144,11 +163,15 @@ FOOTER = """\
 SCRIPTS = '<script src="/js/ui.js"></script>'
 
 
-def page_head(title, desc, canonical, og_img=""):
+def page_head(title, desc, canonical, og_img="", alternates=None):
     og_img_tag = (
         f'<meta property="og:image" content="{esc(og_img)}"/>\n'
         if og_img else ""
     )
+    alt_tags = ""
+    if alternates:
+        for hreflang, url in alternates:
+            alt_tags += f'<link rel="alternate" hreflang="{esc(hreflang)}" href="{esc(url)}"/>\n'
     return f"""\
 <head>
 <meta charset="UTF-8"/>
@@ -158,7 +181,7 @@ def page_head(title, desc, canonical, og_img=""):
 <meta name="description" content="{esc(desc)}"/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="{canonical}"/>
-{FAVICONS}
+{alt_tags}{FAVICONS}
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="{canonical}"/>
 <meta property="og:title" content="{esc(title)}"/>
@@ -175,13 +198,18 @@ def page_head(title, desc, canonical, og_img=""):
 TAG_LABELS = {"dine": "🪑 Dine-in", "pickup": "📦 Pickup", "delivery": "🛵 Delivery"}
 
 
-def restaurant_page(r):
+def restaurant_page(r, lang=DEFAULT_LANG):
     slug = slugify(r["name"])
-    canonical = f"{BASE}/restaurant/{slug}/"
+    canonical = f"{BASE}{lang_prefix(lang)}/restaurant/{slug}/"
+    alternates = [
+        ("x-default" if l == DEFAULT_LANG else l, f"{BASE}{lang_prefix(l)}/restaurant/{slug}/")
+        for l in LANGS
+    ]
 
     title = f"{r['name']} — {r['cuisine']} in {r['district']}, Taipei | Tasty Taipei"
+    raw_desc = get_description(r, lang)
     desc = (
-        r.get("description")
+        raw_desc
         or f"Discover {r['name']}, a {r['cuisine']} restaurant in {r['district']}, Taipei. Rated {r['rating']} with {r.get('review_count','many reviews')}."
     )
 
@@ -227,7 +255,7 @@ def restaurant_page(r):
     if r.get("phone"):        info_grid += info_card("📞 Phone", r["phone"])
     if r.get("mrt"):          info_grid += info_card("🚇 MRT", r["mrt"])
 
-    desc_block = f'<p class="sp-desc">{esc(r["description"])}</p>' if r.get("description") else ""
+    desc_block = f'<p class="sp-desc">{esc(raw_desc)}</p>' if raw_desc else ""
 
     img_tag = (
         f'<img class="sp-hero" src="{esc(img_url)}" alt="{esc(r["name"])}" referrerpolicy="no-referrer" loading="eager"/>'
@@ -240,8 +268,8 @@ def restaurant_page(r):
 
     page = f"""\
 <!DOCTYPE html>
-<html lang="en">
-{page_head(title, desc, canonical, img_url)}
+<html lang="{lang}">
+{page_head(title, desc, canonical, img_url, alternates)}
 {schema}
 <body>
 {NAV}
@@ -264,7 +292,8 @@ def restaurant_page(r):
 </body>
 </html>"""
 
-    out = os.path.join(ROOT, "restaurant", slug, "index.html")
+    out_dir = "restaurant" if lang == DEFAULT_LANG else os.path.join(lang, "restaurant")
+    out = os.path.join(ROOT, out_dir, slug, "index.html")
     write_file(out, page)
     return slug, canonical
 
@@ -371,12 +400,13 @@ def main():
     for r in restaurants:
         cd_map[(r["cuisine"], r["district"])].append(r)
 
-    # Restaurant pages
-    print(f"Generating {len(restaurants)} restaurant pages…")
+    # Restaurant pages — one per language
+    print(f"Generating {len(restaurants)} restaurant pages × {len(LANGS)} languages…")
     for r in restaurants:
-        slug, canonical = restaurant_page(r)
-        sitemap_pages.append((canonical, TODAY))
-        print(f"  /restaurant/{slug}/")
+        for lang in LANGS:
+            slug, canonical = restaurant_page(r, lang)
+            sitemap_pages.append((canonical, TODAY))
+            print(f"  {lang_prefix(lang)}/restaurant/{slug}/")
 
     # Cuisine × district pages
     print(f"\nGenerating {len(cd_map)} cuisine×district pages…")
@@ -389,7 +419,7 @@ def main():
     sitemap = build_sitemap(sitemap_pages)
     write_file(os.path.join(ROOT, "sitemap.xml"), sitemap)
     print(f"\nWrote sitemap.xml — {len(sitemap_pages)} URLs total")
-    print(f"Done. {len(restaurants)} restaurant pages + {len(cd_map)} cuisine×district pages.")
+    print(f"Done. {len(restaurants)} restaurant pages × {len(LANGS)} languages + {len(cd_map)} cuisine×district pages.")
 
 
 if __name__ == "__main__":

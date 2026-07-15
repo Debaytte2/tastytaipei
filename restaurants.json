@@ -27,7 +27,13 @@
       "chinese"
     ],
     "badge": "⭐ 4.9",
-    "description": "Intimate Hong Kong-style bistro with flame-torched char siu, creative cocktails and killer atmosphere. Hidden gem in Da'an.",
+    "description": {
+      "en": "Intimate Hong Kong-style bistro with flame-torched char siu, creative cocktails and killer atmosphere. Hidden gem in Da'an.",
+      "zh": "溫馨的港式小館,炭火現烤叉燒,創意調酒,氣氛絕佳。大安區的隱藏版美食寶地。",
+      "fr": "Bistrot hongkongais intimiste avec char siu grillé à la flamme, cocktails créatifs et ambiance électrique. Une pépite cachée à Da'an.",
+      "ja": "炭火で炙ったチャーシューとクリエイティブなカクテル、抜群の雰囲気が魅力の香港式小さなビストロ。大安区に隠れた名店。",
+      "es": "Íntimo bistró de estilo hongkonés con char siu flameado, cócteles creativos y un ambiente magnético. Una joya escondida en Da'an."
+    },
     "maps_url": "https://www.google.com/maps/search/9+Birds+Bistro+Taipei+Da'an",
     "menu": [],
     "reviews": []
@@ -59,7 +65,13 @@
       "modern"
     ],
     "badge": null,
-    "description": "Contemporary Taiwanese kitchen reinterpreting classic flavours with seasonal ingredients. Relaxed, neighbourhood atmosphere with a serious kitchen.",
+    "description": {
+      "en": "Contemporary Taiwanese kitchen reinterpreting classic flavours with seasonal ingredients. Relaxed, neighbourhood atmosphere with a serious kitchen.",
+      "zh": "現代台灣料理,以當季食材重新詮釋經典風味。輕鬆自在的街坊氛圍,廚藝卻毫不含糊。",
+      "fr": "Cuisine taïwanaise contemporaine qui réinvente les saveurs classiques avec des produits de saison. Ambiance de quartier détendue, cuisine sérieuse.",
+      "ja": "季節の食材でクラシックな味を再解釈する現代台湾料理。リラックスした街角の雰囲気ながら、本格的な厨房。",
+      "es": "Cocina taiwanesa contemporánea que reinterpreta sabores clásicos con ingredientes de temporada. Ambiente relajado de barrio con una cocina que se toma en serio su oficio."
+    },
     "maps_url": "https://www.google.com/maps/search/AN+Kitchen+Da'an+Taipei",
     "menu": [],
     "reviews": []
@@ -92,7 +104,13 @@
       "dinner"
     ],
     "badge": "🏆 Iconic",
-    "description": "The most famous beef noodle restaurant in Taipei. Rich braised broth, hand-cut noodles. Queues form every day — go early or expect to wait.",
+    "description": {
+      "en": "The most famous beef noodle restaurant in Taipei. Rich braised broth, hand-cut noodles. Queues form every day — go early or expect to wait.",
+      "zh": "台北最有名的牛肉麵店。濃郁滷製湯頭,手工刀切麵條。每天大排長龍——建議提早前往,否則就得耐心等候。",
+      "fr": "Le restaurant de nouilles au bœuf le plus célèbre de Taipei. Bouillon mijoté riche, nouilles coupées à la main. La file d'attente est quotidienne — venez tôt ou armez-vous de patience.",
+      "ja": "台北で最も有名な牛肉麺の店。濃厚な煮込みスープと手切り麺。毎日行列必至——早めに行くか、待つ覚悟で。",
+      "es": "El restaurante de fideos con ternera más famoso de Taipéi. Caldo estofado intenso, fideos cortados a mano. Las colas son diarias: llega temprano o prepárate para esperar."
+    },
     "maps_url": "https://www.google.com/maps/search/永康牛肉麵+Da'an+Taipei",
     "menu": [],
     "reviews": []
@@ -124,7 +142,13 @@
       "western"
     ],
     "badge": null,
-    "description": "Classic French bistro cooking in an intimate Da'an townhouse. Duck confit, onion soup, natural wines. A pocket of Paris in Taipei.",
+    "description": {
+      "en": "Classic French bistro cooking in an intimate Da'an townhouse. Duck confit, onion soup, natural wines. A pocket of Paris in Taipei.",
+      "zh": "經典法式小酒館料理,坐落於大安區靜謐的老宅。油封鴨、洋蔥湯、自然酒。台北巷弄裡的一方巴黎。",
+      "fr": "Cuisine bistrotière française classique dans une maison intimiste de Da'an. Confit de canard, soupe à l'oignon, vins nature. Un coin de Paris à Taipei.",
+      "ja": "大安区の落ち着いた邸宅で味わう、正統派フレンチビストロ料理。鴨のコンフィ、オニオンスープ、ナチュラルワイン。台北に息づくパリの一角。",
+      "es": "Cocina clásica de bistró francés en una acogedora casa de Da'an. Confit de pato, sopa de cebolla, vinos naturales. Un rincón de París en Taipéi."
+    },
     "maps_url": "https://www.google.com/maps/search/Le+Blanc+bistro+Da'an+Taipei",
     "menu": [],
     "reviews": []
@@ -160,7 +184,13 @@
       "breakfast"
     ],
     "badge": "🕐 24 Hours",
-    "description": "A Taipei institution open 24/7. Rich broth, tender beef, chewy noodles. Packed with locals — the ultimate sign of quality.",
+    "description": {
+      "en": "A Taipei institution open 24/7. Rich broth, tender beef, chewy noodles. Packed with locals — the ultimate sign of quality.",
+      "zh": "24小時營業的台北老字號。湯頭濃郁,牛肉軟嫩,麵條Q彈。在地人擠得水洩不通——最實在的品質保證。",
+      "fr": "Une institution de Taipei ouverte 24h/24. Bouillon riche, bœuf fondant, nouilles moelleuses. Toujours plein de locaux — le meilleur gage de qualité.",
+      "ja": "24時間営業の台北の老舗。濃厚なスープ、柔らかい牛肉、コシのある麺。地元客でいつも満席——それが何よりの品質保証。",
+      "es": "Una institución de Taipéi abierta las 24 horas. Caldo intenso, ternera tierna, fideos con textura firme. Siempre lleno de locales, la mejor señal de calidad."
+    },
     "maps_url": "https://www.google.com/maps/search/富宏牛肉麵+Wanhua+Taipei",
     "menu": [],
     "reviews": []
@@ -195,7 +225,13 @@
       "michelin"
     ],
     "badge": "🌟 Michelin",
-    "description": "Michelin-recognised pork bun shop in Wanhua. Fluffy steamed buns stuffed with melt-in-your-mouth braised pork. Simple, traditional, extraordinary.",
+    "description": {
+      "en": "Michelin-recognised pork bun shop in Wanhua. Fluffy steamed buns stuffed with melt-in-your-mouth braised pork. Simple, traditional, extraordinary.",
+      "zh": "萬華米其林推薦刈包店。鬆軟的蒸包夾入入口即化的滷肉。簡單、傳統、卻不平凡。",
+      "fr": "Maison de bao au porc reconnue par le Michelin, à Wanhua. Petits pains vapeur moelleux garnis de porc braisé fondant. Simple, traditionnel, extraordinaire.",
+      "ja": "萬華にあるミシュラン掲載の刈包(グアバオ)専門店。ふんわり蒸したパンに、とろけるような滷肉がたっぷり。シンプルで伝統的、それでいて非凡。",
+      "es": "Tienda de gua bao reconocida por la Guía Michelin en Wanhua. Panecillos al vapor esponjosos rellenos de cerdo estofado que se deshace en la boca. Sencillo, tradicional, extraordinario."
+    },
     "maps_url": "https://www.google.com/maps/search/源芳刈包+Wanhua+Taipei",
     "menu": [],
     "reviews": []
@@ -227,7 +263,13 @@
       "homestyle"
     ],
     "badge": null,
-    "description": "Unpretentious Wanhua home cooking. Stir-fried clams, braised pork rice, oyster omelette. Cheap, fast, and exactly right.",
+    "description": {
+      "en": "Unpretentious Wanhua home cooking. Stir-fried clams, braised pork rice, oyster omelette. Cheap, fast, and exactly right.",
+      "zh": "萬華樸實無華的家常菜。炒海瓜子、滷肉飯、蚵仔煎。便宜、快速,恰到好處。",
+      "fr": "Cuisine familiale sans chichi à Wanhua. Palourdes sautées, riz au porc braisé, omelette aux huîtres. Bon marché, rapide, et juste parfait.",
+      "ja": "萬華の気取らない家庭料理。あさりの炒め物、滷肉飯、牡蠣オムレツ。安くて早くて、ちょうどいい。",
+      "es": "Cocina casera sin pretensiones en Wanhua. Almejas salteadas, arroz con cerdo estofado, tortilla de ostras. Barato, rápido y exactamente como debe ser."
+    },
     "maps_url": "https://www.google.com/maps/search/Red+Alley+restaurant+Wanhua+Taipei",
     "menu": [],
     "reviews": []
@@ -261,7 +303,13 @@
       "dinner"
     ],
     "badge": "🍜 Ximen Icon",
-    "description": "The most famous bowl of misua in Taipei. Rich oyster and pork intestine broth, eaten standing up in Ximending. A rite of passage.",
+    "description": {
+      "en": "The most famous bowl of misua in Taipei. Rich oyster and pork intestine broth, eaten standing up in Ximending. A rite of passage.",
+      "zh": "台北最有名的一碗麵線。濃郁蚵仔與大腸湯頭,站著吃,就在西門町。台北旅人的必經儀式。",
+      "fr": "Le bol de misua le plus célèbre de Taipei. Bouillon riche aux huîtres et aux tripes de porc, dégusté debout à Ximending. Un rite de passage.",
+      "ja": "台北で最も有名な麺線(ミーソワ)。牡蠣と豚の腸が効いた濃厚スープを、西門町で立ち食い。訪れた者の通過儀礼。",
+      "es": "El tazón de misua más famoso de Taipéi. Caldo intenso de ostras e intestino de cerdo, que se come de pie en Ximending. Un rito de iniciación."
+    },
     "maps_url": "https://www.google.com/maps/search/阿宗麵線+Ximen+Taipei",
     "menu": [],
     "reviews": []
@@ -294,7 +342,13 @@
       "quirky"
     ],
     "badge": "🚽 One-of-a-Kind",
-    "description": "Eat curry from a miniature toilet. Drink from a urinal-shaped mug. Exactly as strange as it sounds — and completely worth it for the experience.",
+    "description": {
+      "en": "Eat curry from a miniature toilet. Drink from a urinal-shaped mug. Exactly as strange as it sounds — and completely worth it for the experience.",
+      "zh": "用迷你馬桶盛裝咖哩,用小便斗造型的杯子喝飲料。就跟聽起來一樣奇特——但體驗絕對值得。",
+      "fr": "Mangez du curry servi dans des toilettes miniatures. Buvez dans une tasse en forme d'urinoir. Aussi étrange que ça en a l'air — et l'expérience en vaut totalement la peine.",
+      "ja": "ミニチュアの便器に盛られたカレーを食べ、小便器の形をしたマグカップで飲み物を飲む。名前の通り奇妙な体験だが、それだけの価値は十分にある。",
+      "es": "Come curry servido en un inodoro en miniatura. Bebe de una taza con forma de urinario. Tan extraño como suena, y completamente vale la pena por la experiencia."
+    },
     "maps_url": "https://www.google.com/maps/search/Modern+Toilet+Restaurant+Ximen+Taipei",
     "menu": [],
     "reviews": []
@@ -327,7 +381,13 @@
       "chinese"
     ],
     "badge": "🏛 40+ Years",
-    "description": "Taipei's most iconic Taiwanese restaurant for over 40 years. Set menus, elegant service, and dishes like braised pork belly and crab roe glutinous rice.",
+    "description": {
+      "en": "Taipei's most iconic Taiwanese restaurant for over 40 years. Set menus, elegant service, and dishes like braised pork belly and crab roe glutinous rice.",
+      "zh": "台北最具代表性的台菜餐廳,超過40年歷史。套餐菜單、優雅服務,招牌菜如東坡肉與蟹黃糯米飯。",
+      "fr": "Le restaurant taïwanais le plus emblématique de Taipei depuis plus de 40 ans. Menus dégustation, service élégant, plats comme le porc braisé et le riz gluant aux œufs de crabe.",
+      "ja": "40年以上の歴史を誇る、台北を代表する台湾料理店。コース料理、上品なサービス、東坡肉や蟹黄もち米ご飯などの名物料理。",
+      "es": "El restaurante taiwanés más emblemático de Taipéi desde hace más de 40 años. Menús degustación, servicio elegante y platos como panceta de cerdo estofada y arroz glutinoso con hueva de cangrejo."
+    },
     "maps_url": "https://www.google.com/maps/search/欣葉台菜+Zhongshan+Taipei",
     "menu": [],
     "reviews": []
@@ -360,7 +420,13 @@
       "lunch"
     ],
     "badge": null,
-    "description": "Relaxed all-day brunch spot in the Minsheng neighbourhood. Avocado toast, eggs benedict, fresh-pressed juice and weekend cocktails.",
+    "description": {
+      "en": "Relaxed all-day brunch spot in the Minsheng neighbourhood. Avocado toast, eggs benedict, fresh-pressed juice and weekend cocktails.",
+      "zh": "民生社區輕鬆自在的全天候早午餐店。酪梨吐司、班尼迪克蛋、鮮榨果汁,還有週末限定調酒。",
+      "fr": "Adresse brunch décontractée toute la journée dans le quartier de Minsheng. Toast à l'avocat, œufs Bénédicte, jus pressés et cocktails le week-end.",
+      "ja": "民生地区にある、一日中楽しめるリラックスしたブランチスポット。アボカドトースト、エッグベネディクト、フレッシュジュース、週末限定カクテル。",
+      "es": "Local de brunch relajado disponible todo el día en el barrio de Minsheng. Tostadas de aguacate, huevos benedictinos, zumos recién exprimidos y cócteles de fin de semana."
+    },
     "maps_url": "https://www.google.com/maps/search/WOW+Bistro+Zhongshan+Taipei",
     "menu": [],
     "reviews": []
@@ -393,7 +459,13 @@
       "modern"
     ],
     "badge": "🌟 Michelin Star",
-    "description": "André Chiang's flagship Taipei restaurant. Seasonal tasting menus blending French technique with Taiwanese ingredients. One of Asia's best.",
+    "description": {
+      "en": "André Chiang's flagship Taipei restaurant. Seasonal tasting menus blending French technique with Taiwanese ingredients. One of Asia's best.",
+      "zh": "江振誠主廚在台北的旗艦餐廳。季節性套餐融合法式技法與台灣食材。亞洲最佳餐廳之一。",
+      "fr": "Le restaurant phare d'André Chiang à Taipei. Menus dégustation saisonniers alliant technique française et produits taïwanais. Parmi les meilleurs d'Asie.",
+      "ja": "シェフ江振誠(アンドレ・チャン)の台北旗艦店。フランス料理の技法と台湾食材を融合させた季節のテイスティングメニュー。アジア屈指の名店。",
+      "es": "El restaurante insignia de André Chiang en Taipéi. Menús degustación de temporada que combinan técnica francesa con ingredientes taiwaneses. Uno de los mejores de Asia."
+    },
     "maps_url": "https://www.google.com/maps/search/RAW+restaurant+Zhongshan+Taipei",
     "menu": [],
     "reviews": []
@@ -427,7 +499,13 @@
       "dinner"
     ],
     "badge": "🐟 Live Seafood",
-    "description": "Part fish market, part omakase bar, part sushi restaurant. Buy live seafood and have it prepared on the spot. A Taipei food lover's paradise.",
+    "description": {
+      "en": "Part fish market, part omakase bar, part sushi restaurant. Buy live seafood and have it prepared on the spot. A Taipei food lover's paradise.",
+      "zh": "一半是漁市場,一半是無菜單料理吧,一半是壽司店。買下活海鮮,現場現做。台北老饕的天堂。",
+      "fr": "Mi-marché aux poissons, mi-bar omakase, mi-restaurant de sushis. Achetez des fruits de mer vivants et faites-les préparer sur place. Un paradis pour les gourmets de Taipei.",
+      "ja": "魚市場であり、おまかせバーであり、寿司店でもある複合施設。活きた海鮮を購入し、その場で調理してもらえる。台北のグルメにとっての楽園。",
+      "es": "Un híbrido entre mercado de pescado, barra omakase y restaurante de sushi. Compra marisco vivo y pídelo preparado al momento. Un paraíso para los amantes de la buena mesa en Taipéi."
+    },
     "maps_url": "https://www.google.com/maps/search/上引水產+Zhongshan+Taipei",
     "menu": [],
     "reviews": []
@@ -460,7 +538,13 @@
       "lunch"
     ],
     "badge": null,
-    "description": "Old-school Taiwanese breakfast and rice noodle shop near Ximen. Thin vermicelli in savoury soup with oyster mushrooms and pork. Locals only.",
+    "description": {
+      "en": "Old-school Taiwanese breakfast and rice noodle shop near Ximen. Thin vermicelli in savoury soup with oyster mushrooms and pork. Locals only.",
+      "zh": "西門町附近的老派台式早餐與米粉店。細米粉搭配鹹香湯頭,佐以杏鮑菇與豬肉。在地人才知道的口袋名單。",
+      "fr": "Échoppe traditionnelle taïwanaise de petit-déjeuner et de vermicelles de riz, près de Ximen. Fins vermicelles dans un bouillon savoureux avec pleurotes et porc. Repaire de locaux.",
+      "ja": "西門近くにある昔ながらの台湾式朝食・米粉(ビーフン)の店。細い米粉を、しいたけと豚肉入りの旨味たっぷりスープで。地元客だけが知る名店。",
+      "es": "Puesto tradicional taiwanés de desayuno y fideos de arroz cerca de Ximen. Vermicelli fino en un caldo sabroso con setas ostra y cerdo. Solo para locales."
+    },
     "maps_url": "https://www.google.com/maps/search/Moon+Moon+Rice+Noodles+Zhongzheng+Taipei",
     "menu": [],
     "reviews": []
@@ -494,7 +578,13 @@
       "michelin"
     ],
     "badge": "🌟 Michelin",
-    "description": "The original Din Tai Fung flagship. Precisely 18-fold xiaolongbao, steamed just to order. The queue is worth every minute.",
+    "description": {
+      "en": "The original Din Tai Fung flagship. Precisely 18-fold xiaolongbao, steamed just to order. The queue is worth every minute.",
+      "zh": "鼎泰豐創始旗艦店。精準18摺小籠包,現點現蒸。排隊等候,分秒都值得。",
+      "fr": "Le restaurant phare original de Din Tai Fung. Xiaolongbao à 18 plis précis, cuits à la vapeur à la commande. Chaque minute d'attente en vaut la peine.",
+      "ja": "鼎泰豊(ディンタイフォン)の元祖旗艦店。正確に18ひだの小籠包を、注文が入ってから蒸し上げる。並んだ時間の一分一秒に価値がある。",
+      "es": "El restaurante insignia original de Din Tai Fung. Xiaolongbao con exactamente 18 pliegues, cocinados al vapor solo cuando se piden. La cola vale cada minuto de espera."
+    },
     "maps_url": "https://www.google.com/maps/search/Din+Tai+Fung+Zhongzheng+Taipei",
     "menu": [],
     "reviews": []
@@ -528,7 +618,13 @@
       "lunch"
     ],
     "badge": "🕖 Opens at 6am",
-    "description": "Legendary 6am noodle stall operating for decades in Zhongzheng. Hand-pulled noodles in a deep bone broth. The early bird breakfast classic.",
+    "description": {
+      "en": "Legendary 6am noodle stall operating for decades in Zhongzheng. Hand-pulled noodles in a deep bone broth. The early bird breakfast classic.",
+      "zh": "傳奇的清晨6點麵攤,在中正區經營數十年。手拉麵條配上濃郁大骨湯。早起的人才吃得到的經典早餐。",
+      "fr": "Stand de nouilles légendaire ouvert dès 6h du matin depuis des décennies à Zhongzheng. Nouilles tirées à la main dans un bouillon d'os profond. Le petit-déjeuner classique des lève-tôt.",
+      "ja": "中正区で数十年続く伝説の朝6時開店の麺屋台。手延べ麺と深みのある骨スープ。早起きした者だけが味わえる定番の朝食。",
+      "es": "Puesto de fideos legendario que abre a las 6 de la mañana desde hace décadas en Zhongzheng. Fideos estirados a mano en un caldo de hueso profundo. El clásico desayuno de madrugadores."
+    },
     "maps_url": "https://www.google.com/maps/search/劉山東牛肉麵+Zhongzheng+Taipei",
     "menu": [],
     "reviews": []
@@ -562,7 +658,13 @@
       "street food"
     ],
     "badge": null,
-    "description": "Handmade Shandong-style steamed buns and dumplings in Dihua Street's historic market lane. Open since the 1960s and still packed every morning.",
+    "description": {
+      "en": "Handmade Shandong-style steamed buns and dumplings in Dihua Street's historic market lane. Open since the 1960s and still packed every morning.",
+      "zh": "手工山東饅頭與水餃,位於迪化街歷史悠久的市集巷弄。自1960年代開業至今,每天早晨依舊人潮不斷。",
+      "fr": "Petits pains vapeur et raviolis faits main de style Shandong, dans la ruelle historique du marché de la rue Dihua. Ouvert depuis les années 1960, toujours bondé chaque matin.",
+      "ja": "迪化街の歴史ある市場の路地にある、手作りの山東風蒸しパンと餃子の店。1960年代から営業を続け、今も毎朝賑わう。",
+      "es": "Panecillos al vapor y dumplings hechos a mano al estilo de Shandong, en el histórico callejón del mercado de la calle Dihua. Abierto desde los años 60 y todavía lleno cada mañana."
+    },
     "maps_url": "https://www.google.com/maps/search/Lei+Hou+Shandong+Buns+Datong+Taipei",
     "menu": [],
     "reviews": []
@@ -596,7 +698,13 @@
       "lunch"
     ],
     "badge": "🍚 Bowl from NT$50",
-    "description": "Dadaocheng's most beloved braised pork rice. Fatty pork simmered overnight, ladled over steaming white rice. NT$50 and life is good.",
+    "description": {
+      "en": "Dadaocheng's most beloved braised pork rice. Fatty pork simmered overnight, ladled over steaming white rice. NT$50 and life is good.",
+      "zh": "大稻埕最受歡迎的滷肉飯。五花肉燉煮一整夜,淋在熱騰騰白飯上。50元台幣,人生就此美好。",
+      "fr": "Le riz au porc braisé le plus apprécié de Dadaocheng. Porc gras mijoté toute la nuit, versé sur du riz blanc fumant. 50 NT$, et la vie est belle.",
+      "ja": "大稲埕で最も愛される滷肉飯(ルーローハン)。一晩じっくり煮込んだ豚バラ肉を、湯気の立つ白ご飯にたっぷりかけて。50台湾ドルで幸せな気分に。",
+      "es": "El arroz con cerdo estofado más querido de Dadaocheng. Cerdo graso cocinado a fuego lento durante toda la noche, servido sobre arroz blanco humeante. 50 NT$ y la vida es buena."
+    },
     "maps_url": "https://www.google.com/maps/search/大稻埕魯肉飯+Datong+Taipei",
     "menu": [],
     "reviews": []
@@ -629,7 +737,13 @@
       "burgers"
     ],
     "badge": "🍺 20 Taps",
-    "description": "Copenhagen's cult craft beer bar in historic Dihua Street. 20+ rotating taps, smash burgers, natural wines. The best bar food in Old Town Taipei.",
+    "description": {
+      "en": "Copenhagen's cult craft beer bar in historic Dihua Street. 20+ rotating taps, smash burgers, natural wines. The best bar food in Old Town Taipei.",
+      "zh": "來自哥本哈根的話題精釀啤酒吧,坐落於歷史悠久的迪化街。20多款輪替生啤、smash漢堡、自然酒。台北老城區最好的酒吧美食。",
+      "fr": "Le bar à bière artisanale culte de Copenhague, dans la rue historique de Dihua. Plus de 20 pressions tournantes, smash burgers, vins nature. La meilleure cuisine de bar de la vieille ville de Taipei.",
+      "ja": "コペンハーゲン発、カルト的人気を誇るクラフトビールバーが歴史ある迪化街に。20種以上のローテーションタップ、スマッシュバーガー、ナチュラルワイン。台北旧市街で一番のバーフード。",
+      "es": "El mítico bar de cerveza artesanal de Copenhague, en la histórica calle Dihua. Más de 20 grifos rotativos, smash burgers, vinos naturales. La mejor comida de bar del casco antiguo de Taipéi."
+    },
     "maps_url": "https://www.google.com/maps/search/Mikkeller+Taipei+Datong",
     "menu": [],
     "reviews": []
@@ -663,7 +777,13 @@
       "western"
     ],
     "badge": "🔥 Book 1 Month Ahead",
-    "description": "Taipei's hottest buffet. Free-flow beer, fresh oysters and scallops, international and local dishes. Reserve a month ahead — it's that popular.",
+    "description": {
+      "en": "Taipei's hottest buffet. Free-flow beer, fresh oysters and scallops, international and local dishes. Reserve a month ahead — it's that popular.",
+      "zh": "台北最火紅的自助餐廳。無限暢飲啤酒、新鮮生蠔與干貝、中西式料理應有盡有。務必提前一個月訂位——就是這麼搶手。",
+      "fr": "Le buffet le plus prisé de Taipei. Bière à volonté, huîtres et pétoncles frais, plats internationaux et locaux. Réservez un mois à l'avance — c'est dire sa popularité.",
+      "ja": "台北で今最も人気のビュッフェ。ビール飲み放題、新鮮な牡蠣とホタテ、国際色豊かな料理からローカル料理まで。1ヶ月前の予約が必須なほどの人気ぶり。",
+      "es": "El bufé más popular de Taipéi. Cerveza libre, ostras y vieiras frescas, platos internacionales y locales. Hay que reservar con un mes de antelación, así de popular es."
+    },
     "maps_url": "https://www.google.com/maps/search/URBAN+PARADISE+buffet+Xinyi+Taipei",
     "menu": [],
     "reviews": []
@@ -697,7 +817,13 @@
       "street food"
     ],
     "badge": null,
-    "description": "Legendary popcorn chicken near Taipei 101. Crispy basil-fried chicken bites with a side of sweet potato fries. The smell draws queues at lunchtime.",
+    "description": {
+      "en": "Legendary popcorn chicken near Taipei 101. Crispy basil-fried chicken bites with a side of sweet potato fries. The smell draws queues at lunchtime.",
+      "zh": "台北101附近的傳奇鹹酥雞。酥脆九層塔炸雞塊,搭配地瓜薯條。午餐時間香氣四溢,排隊人潮不斷。",
+      "fr": "Le poulet popcorn légendaire près de Taipei 101. Bouchées de poulet frit croustillant au basilic, avec frites de patate douce en accompagnement. L'odeur attire les foules à l'heure du déjeuner.",
+      "ja": "台北101近くにある伝説のポップコーンチキン店。バジル香るサクサクの唐揚げに、さつまいもフライを添えて。ランチタイムには香りに誘われた行列ができる。",
+      "es": "El pollo popcorn legendario cerca de Taipei 101. Bocados de pollo frito crujiente con albahaca, acompañados de papas fritas de batata. El aroma atrae colas a la hora del almuerzo."
+    },
     "maps_url": "https://www.google.com/maps/search/Zha+Nan+Crispy+Chicken+Xinyi+Taipei",
     "menu": [],
     "reviews": []
@@ -731,7 +857,13 @@
       "michelin"
     ],
     "badge": "🌟 Michelin",
-    "description": "The most-visited Din Tai Fung on earth, inside Taipei 101. Glass-walled kitchen, perfect xiaolongbao, best dim sum in the world according to many.",
+    "description": {
+      "en": "The most-visited Din Tai Fung on earth, inside Taipei 101. Glass-walled kitchen, perfect xiaolongbao, best dim sum in the world according to many.",
+      "zh": "全球造訪人數最多的鼎泰豐分店,就在台北101內。玻璃透明廚房、完美小籠包,許多人心中的世界第一點心。",
+      "fr": "Le Din Tai Fung le plus visité au monde, à l'intérieur de Taipei 101. Cuisine aux murs vitrés, xiaolongbao parfaits, le meilleur dim sum au monde selon beaucoup.",
+      "ja": "台北101内にある、世界で最も来店客数の多い鼎泰豊。ガラス張りの厨房、完璧な小籠包。多くの人が「世界一の点心」と称賛する。",
+      "es": "El Din Tai Fung más visitado del mundo, dentro de Taipei 101. Cocina con paredes de cristal, xiaolongbao perfectos, el mejor dim sum del mundo según muchos."
+    },
     "maps_url": "https://www.google.com/maps/search/Din+Tai+Fung+Taipei+101+Xinyi",
     "menu": [],
     "reviews": []
@@ -765,7 +897,13 @@
       "american"
     ],
     "badge": null,
-    "description": "New York steakhouse legend in Xinyi. USDA prime dry-aged cuts, Caesar salad at the table, and a wine list that means business.",
+    "description": {
+      "en": "New York steakhouse legend in Xinyi. USDA prime dry-aged cuts, Caesar salad at the table, and a wine list that means business.",
+      "zh": "紐約傳奇牛排館進駐信義區。美國農業部認證極佳等級乾式熟成牛排、桌邊現做凱薩沙拉,酒單陣容堅強。",
+      "fr": "La légende du steakhouse new-yorkais à Xinyi. Viandes maturées à sec USDA Prime, salade César préparée à table, et une carte des vins qui ne plaisante pas.",
+      "ja": "ニューヨークの伝説的ステーキハウスが信義区に上陸。USDAプライム格付けのドライエイジングビーフ、テーブルサイドで仕上げるシーザーサラダ、本格派のワインリスト。",
+      "es": "La leyenda del steakhouse neoyorquino en Xinyi. Cortes USDA prime madurados en seco, ensalada César preparada en mesa y una carta de vinos que va en serio."
+    },
     "maps_url": "https://www.google.com/maps/search/Smith+Wollensky+Taipei+Xinyi",
     "menu": [],
     "reviews": []
@@ -800,7 +938,13 @@
       "seafood"
     ],
     "badge": "💎 NT$720/person",
-    "description": "Legendary dim sum buffet in Shilin. Shrimp dumplings, BBQ pork buns, roast duck, Häagen-Dazs ice cream. NT$720/person. Book ahead.",
+    "description": {
+      "en": "Legendary dim sum buffet in Shilin. Shrimp dumplings, BBQ pork buns, roast duck, Häagen-Dazs ice cream. NT$720/person. Book ahead.",
+      "zh": "士林傳奇點心吃到飽。蝦餃、叉燒包、烤鴨、哈根達斯冰淇淋一應俱全。每人720元台幣。務必提前訂位。",
+      "fr": "Le buffet de dim sum légendaire à Shilin. Raviolis aux crevettes, petits pains char siu, canard rôti, glace Häagen-Dazs. 720 NT$/personne. Réservation recommandée.",
+      "ja": "士林の伝説の飲茶食べ放題。海老餃子、チャーシューまん、ローストダック、ハーゲンダッツアイスクリームまで揃う。一人720台湾ドル。要事前予約。",
+      "es": "El legendario bufé de dim sum de Shilin. Dumplings de gamba, panecillos de cerdo asado, pato asado, helado Häagen-Dazs. 720 NT$ por persona. Reserva con antelación."
+    },
     "maps_url": "https://www.google.com/maps/search/點心廚房+Shilin+Taipei",
     "menu": [],
     "reviews": []
@@ -833,7 +977,13 @@
       "latenight"
     ],
     "badge": "🌃 Taipei's #1 Night Market",
-    "description": "The most famous night market in Asia. Stinky tofu, oyster omelettes, scallion pancakes, bubble tea. Go hungry, leave happy.",
+    "description": {
+      "en": "The most famous night market in Asia. Stinky tofu, oyster omelettes, scallion pancakes, bubble tea. Go hungry, leave happy.",
+      "zh": "亞洲最知名的夜市。臭豆腐、蚵仔煎、蔥油餅、珍珠奶茶。空腹前往,滿足而歸。",
+      "fr": "Le marché nocturne le plus célèbre d'Asie. Tofu puant, omelette aux huîtres, galettes à la ciboule, thé aux perles. Venez affamé, repartez comblé.",
+      "ja": "アジアで最も有名な夜市。臭豆腐、牡蠣オムレツ、葱油餅、タピオカミルクティー。空腹で訪れて、満腹で帰る。",
+      "es": "El mercado nocturno más famoso de Asia. Tofu apestoso, tortilla de ostras, panqueques de cebolleta, té de burbujas. Ve con hambre, sal feliz."
+    },
     "maps_url": "https://www.google.com/maps/search/Shilin+Night+Market+Taipei",
     "menu": [],
     "reviews": []
@@ -866,7 +1016,13 @@
       "dinner"
     ],
     "badge": null,
-    "description": "No-fuss neighbourhood noodle house in Shilin. Braised beef noodles, wontons, and cold sesame noodles that locals return to weekly.",
+    "description": {
+      "en": "No-fuss neighbourhood noodle house in Shilin. Braised beef noodles, wontons, and cold sesame noodles that locals return to weekly.",
+      "zh": "士林街坊間樸實無華的麵館。滷牛肉麵、餛飩,還有在地人每週都要吃的涼拌芝麻麵。",
+      "fr": "Restaurant de nouilles de quartier sans prétention à Shilin. Nouilles au bœuf braisé, wontons, et nouilles froides au sésame que les habitants viennent chercher chaque semaine.",
+      "ja": "士林の気取らない街の麺屋。牛肉麺、ワンタン、そして地元民が毎週通う冷やし胡麻麺。",
+      "es": "Casa de fideos de barrio sin pretensiones en Shilin. Fideos con ternera estofada, wontons y fideos fríos de sésamo a los que los locales vuelven cada semana."
+    },
     "maps_url": "https://www.google.com/maps/search/Good+Friend+Noodle+House+Shilin+Taipei",
     "menu": [],
     "reviews": []
@@ -900,7 +1056,13 @@
       "street food"
     ],
     "badge": null,
-    "description": "Neighbourhood fried chicken joint in Songshan with a cult following. Giant crispy cutlets seasoned with five-spice, basil, and garlic.",
+    "description": {
+      "en": "Neighbourhood fried chicken joint in Songshan with a cult following. Giant crispy cutlets seasoned with five-spice, basil, and garlic.",
+      "zh": "松山區擁有死忠粉絲的巷口鹹酥雞店。巨大酥脆雞排,五香、九層塔、蒜香調味。",
+      "fr": "Rôtisserie de poulet frit de quartier à Songshan avec une base de fans inconditionnels. Immenses escalopes croustillantes assaisonnées aux cinq épices, basilic et ail.",
+      "ja": "松山区にある、熱狂的なファンを持つ街角の唐揚げ店。五香粉、バジル、にんにくで味付けした巨大でサクサクのカツ。",
+      "es": "Local de barrio de pollo frito en Songshan con seguidores fieles. Enormes filetes crujientes sazonados con cinco especias, albahaca y ajo."
+    },
     "maps_url": "https://www.google.com/maps/search/Zhang+Nan+Fried+Chicken+Songshan+Taipei",
     "menu": [],
     "reviews": []
@@ -933,7 +1095,13 @@
       "lunch"
     ],
     "badge": "🌳 Fujin St. Icon",
-    "description": "The anchor of Taipei's most charming café street. All-day brunch in a Japanese-influenced space with tree-lined outdoor seating. Weekend queues form early.",
+    "description": {
+      "en": "The anchor of Taipei's most charming café street. All-day brunch in a Japanese-influenced space with tree-lined outdoor seating. Weekend queues form early.",
+      "zh": "台北最迷人咖啡街的指標店家。日式風格空間裡供應全天候早午餐,戶外座位綠樹成蔭。週末一早就開始排隊。",
+      "fr": "Le pilier de la rue de cafés la plus charmante de Taipei. Brunch toute la journée dans un espace d'influence japonaise avec terrasse ombragée d'arbres. Files d'attente dès le matin le week-end.",
+      "ja": "台北で最も魅力的なカフェストリートの中心的存在。日本の影響を受けた空間で一日中楽しめるブランチ、木々に囲まれた屋外席。週末は朝から行列。",
+      "es": "El pilar de la calle de cafeterías más encantadora de Taipéi. Brunch disponible todo el día en un espacio de inspiración japonesa con terraza bajo los árboles. Las colas de fin de semana empiezan temprano."
+    },
     "maps_url": "https://www.google.com/maps/search/Fujin+Tree+353+Songshan+Taipei",
     "menu": [],
     "reviews": []
@@ -967,7 +1135,13 @@
       "dinner"
     ],
     "badge": null,
-    "description": "Fall-off-the-bone ribs, hand-cut steaks, and legendary rolls. Popular with expat families and anyone who needs a serious amount of meat.",
+    "description": {
+      "en": "Fall-off-the-bone ribs, hand-cut steaks, and legendary rolls. Popular with expat families and anyone who needs a serious amount of meat.",
+      "zh": "骨肉分離的肋排、手切牛排,還有經典麵包捲。深受外派家庭與需要大量肉食者的喜愛。",
+      "fr": "Côtes fondantes, steaks coupés à la main, et petits pains légendaires. Prisé des familles expatriées et de quiconque a besoin d'une sérieuse quantité de viande.",
+      "ja": "骨からほろりと外れるリブ、手切りのステーキ、そして名物のロールパン。駐在員家族や大量の肉を求める人々に人気。",
+      "es": "Costillas que se deshacen del hueso, filetes cortados a mano y los legendarios panecillos. Popular entre familias expatriadas y cualquiera que necesite una cantidad seria de carne."
+    },
     "maps_url": "https://www.google.com/maps/search/Texas+Roadhouse+Taipei+Songshan",
     "menu": [],
     "reviews": []
@@ -999,7 +1173,13 @@
       "dinner"
     ],
     "badge": null,
-    "description": "Cozy ramen shop a short walk from Xinbeitou hot springs. Rich tonkotsu broth, perfectly cooked chashu pork, and soft-boiled eggs. Warm up after the baths.",
+    "description": {
+      "en": "Cozy ramen shop a short walk from Xinbeitou hot springs. Rich tonkotsu broth, perfectly cooked chashu pork, and soft-boiled eggs. Warm up after the baths.",
+      "zh": "溫馨拉麵店,距離新北投溫泉步行僅需幾分鐘。濃郁豚骨湯頭、完美叉燒、溏心蛋。泡湯後暖胃暖心。",
+      "fr": "Ramen-ya chaleureux à deux pas des sources chaudes de Xinbeitou. Bouillon tonkotsu riche, chashu parfaitement cuit, œufs mollets. Se réchauffer après le bain.",
+      "ja": "新北投温泉から歩いてすぐの、居心地の良いラーメン店。濃厚な豚骨スープ、絶妙な火加減のチャーシュー、半熟卵。温泉の後に体を温めてくれる。",
+      "es": "Acogedora tienda de ramen a pocos pasos de las aguas termales de Xinbeitou. Caldo tonkotsu intenso, chashu perfectamente cocinado y huevos a medio cocer. Para entrar en calor después del baño."
+    },
     "maps_url": "https://www.google.com/maps/search/Shuang+Yue+Ramen+Beitou+Taipei",
     "menu": [],
     "reviews": []
@@ -1033,7 +1213,13 @@
       "dinner"
     ],
     "badge": null,
-    "description": "Affordable ramen shop in central Beitou. Local favourite for light soy-based broth and generous toppings. Best budget bowl in the hot spring district.",
+    "description": {
+      "en": "Affordable ramen shop in central Beitou. Local favourite for light soy-based broth and generous toppings. Best budget bowl in the hot spring district.",
+      "zh": "北投中心平價拉麵店。清爽醬油湯底與豐盛配料是在地人的最愛。溫泉區最超值的一碗麵。",
+      "fr": "Ramen-ya abordable au centre de Beitou. Favori local pour son bouillon léger à base de soja et ses généreuses garnitures. Le meilleur bol économique du quartier des sources chaudes.",
+      "ja": "北投中心にある手頃な価格のラーメン店。あっさりした醤油ベースのスープと豪華なトッピングが地元で人気。温泉街で一番お得な一杯。",
+      "es": "Tienda de ramen económica en el centro de Beitou. Favorita local por su caldo ligero a base de soja y generosos ingredientes. El mejor tazón económico del distrito de aguas termales."
+    },
     "maps_url": "https://www.google.com/maps/search/Man+Lai+Ramen+Beitou+Taipei",
     "menu": [],
     "reviews": []
@@ -1066,7 +1252,13 @@
       "dinner"
     ],
     "badge": null,
-    "description": "Stylish Sichuan-influenced Taiwanese cuisine in Beitou's hot spring area. Cold noodles with peanut sauce, spicy mapo tofu, and fried chicken rice are the must-orders.",
+    "description": {
+      "en": "Stylish Sichuan-influenced Taiwanese cuisine in Beitou's hot spring area. Cold noodles with peanut sauce, spicy mapo tofu, and fried chicken rice are the must-orders.",
+      "zh": "北投溫泉區時尚川味台菜餐廳。花生醬涼麵、麻婆豆腐、炸雞腿飯是必點招牌。",
+      "fr": "Cuisine taïwanaise élégante d'influence sichuanaise dans le quartier des sources chaudes de Beitou. Nouilles froides sauce cacahuète, mapo tofu épicé et riz au poulet frit sont incontournables.",
+      "ja": "北投温泉エリアにあるおしゃれな四川風台湾料理店。ピーナッツソース冷やし麺、麻婆豆腐、フライドチキンご飯は必食。",
+      "es": "Elegante cocina taiwanesa con influencia sichuanesa en la zona de aguas termales de Beitou. Los fideos fríos con salsa de cacahuete, el mapo tofu picante y el arroz con pollo frito son imprescindibles."
+    },
     "maps_url": "https://www.google.com/maps/search/Kiki+Restaurant+Beitou+Taipei",
     "menu": [],
     "reviews": []
@@ -1099,7 +1291,13 @@
       "vegetarian"
     ],
     "badge": "🌶 Best Curry in Taipei",
-    "description": "Authentic northern Indian cooking run by a Rajasthani family. Butter chicken, garlic naan, and dal makhani that rivals anything in New Delhi.",
+    "description": {
+      "en": "Authentic northern Indian cooking run by a Rajasthani family. Butter chicken, garlic naan, and dal makhani that rivals anything in New Delhi.",
+      "zh": "拉賈斯坦家族經營的道地北印度料理。奶油雞、蒜香烤餅、黑扁豆咖哩,水準媲美新德里。",
+      "fr": "Cuisine authentique du nord de l'Inde tenue par une famille rajasthanie. Poulet au beurre, naan à l'ail et dal makhani qui rivalisent avec ceux de New Delhi.",
+      "ja": "ラジャスタン出身の家族が営む本格的な北インド料理店。バターチキン、ガーリックナン、ダルマカニはニューデリーに引けを取らない味わい。",
+      "es": "Auténtica cocina del norte de India dirigida por una familia rajastaní. Pollo a la mantequilla, naan de ajo y dal makhani que rivalizan con cualquier cosa de Nueva Delhi."
+    },
     "maps_url": "https://www.google.com/maps/search/Mayur+Indian+Kitchen+Neihu+Taipei",
     "menu": [],
     "reviews": []
@@ -1132,7 +1330,13 @@
       "western"
     ],
     "badge": null,
-    "description": "Modern seafood restaurant in Neihu. Seasonal market-fresh catches, wood-fire cooking, and a lovely lakeside terrace. Corporate lunch favourite with real substance.",
+    "description": {
+      "en": "Modern seafood restaurant in Neihu. Seasonal market-fresh catches, wood-fire cooking, and a lovely lakeside terrace. Corporate lunch favourite with real substance.",
+      "zh": "內湖現代海鮮餐廳。當季市場鮮貨、柴燒烹調,還有迷人的湖畔露台。深受商務午餐族喜愛,實力紮實。",
+      "fr": "Restaurant de fruits de mer moderne à Neihu. Produits frais de saison, cuisson au feu de bois, et une charmante terrasse au bord du lac. Favori des déjeuners d'affaires, avec du contenu.",
+      "ja": "内湖にあるモダンなシーフードレストラン。市場直送の旬の魚介、薪火調理、そして湖畔の美しいテラス。ビジネスランチに人気で、内容も本格的。",
+      "es": "Moderno restaurante de mariscos en Neihu. Capturas frescas de temporada, cocina a leña y una encantadora terraza junto al lago. Favorito para almuerzos de negocios, con calidad real."
+    },
     "maps_url": "https://www.google.com/maps/search/Aqua+Kiss+Neihu+Taipei",
     "menu": [],
     "reviews": []
@@ -1167,7 +1371,13 @@
       "bagels"
     ],
     "badge": "🥯 Expat Favourite",
-    "description": "The closest thing to a real New York bagel in Taipei. Boiled then baked, loaded with cream cheese and smoked salmon. Also makes the best coffee in Neihu.",
+    "description": {
+      "en": "The closest thing to a real New York bagel in Taipei. Boiled then baked, loaded with cream cheese and smoked salmon. Also makes the best coffee in Neihu.",
+      "zh": "台北最接近道地紐約貝果的店。先水煮再烘烤,搭配滿滿奶油乳酪與煙燻鮭魚。也是內湖最好喝的咖啡。",
+      "fr": "Ce qui se rapproche le plus d'un vrai bagel new-yorkais à Taipei. Bouilli puis cuit au four, garni de cream cheese et de saumon fumé. Fait aussi le meilleur café de Neihu.",
+      "ja": "台北で本場ニューヨークのベーグルに最も近い味。茹でてから焼き上げ、クリームチーズとスモークサーモンをたっぷりと。内湖で一番美味しいコーヒーも自慢。",
+      "es": "Lo más parecido a un auténtico bagel neoyorquino en Taipéi. Hervido y luego horneado, cargado de queso crema y salmón ahumado. También sirve el mejor café de Neihu."
+    },
     "maps_url": "https://www.google.com/maps/search/NY+Bagels+Cafe+Neihu+Taipei",
     "menu": [],
     "reviews": []
@@ -1200,7 +1410,13 @@
       "fine dining"
     ],
     "badge": null,
-    "description": "French-trained chef rotisserie in Nangang. Free-range chickens roasted over cherry wood, served with pommes gratin and green salad. Beautifully simple.",
+    "description": {
+      "en": "French-trained chef rotisserie in Nangang. Free-range chickens roasted over cherry wood, served with pommes gratin and green salad. Beautifully simple.",
+      "zh": "法式訓練主廚坐鎮的南港烤雞餐廳。放養雞隻以櫻桃木燒烤,搭配焗烤馬鈴薯與生菜沙拉。簡單卻美好。",
+      "fr": "Rôtisserie tenue par un chef formé en France, à Nangang. Poulets fermiers rôtis au bois de cerisier, servis avec gratin de pommes de terre et salade verte. D'une simplicité magnifique.",
+      "ja": "南港にある、フランスで修業したシェフによるロティサリー(丸焼き)専門店。放し飼いの鶏を桜の薪で焼き上げ、ポテトグラタンとグリーンサラダを添えて。美しいまでにシンプル。",
+      "es": "Rotisería dirigida por un chef formado en Francia, en Nangang. Pollos de corral asados sobre madera de cerezo, servidos con gratín de patatas y ensalada verde. Bellamente sencillo."
+    },
     "maps_url": "https://www.google.com/maps/search/La+Rotisserie+Nangang+Taipei",
     "menu": [],
     "reviews": []
@@ -1233,7 +1449,13 @@
       "lunch"
     ],
     "badge": null,
-    "description": "Light-filled café above the Nangang business district. Single-origin pour-over coffee, avocado toast, and the kind of calm that tech workers in Nangang crave.",
+    "description": {
+      "en": "Light-filled café above the Nangang business district. Single-origin pour-over coffee, avocado toast, and the kind of calm that tech workers in Nangang crave.",
+      "zh": "位於南港商業區樓上,採光極佳的咖啡館。單品手沖咖啡、酪梨吐司,還有南港科技業上班族渴望的那份寧靜。",
+      "fr": "Café baigné de lumière au-dessus du quartier d'affaires de Nangang. Café filtre single origin, toast à l'avocat, et le genre de calme dont rêvent les travailleurs de la tech à Nangang.",
+      "ja": "南港ビジネス街の上階にある、光あふれるカフェ。シングルオリジンのハンドドリップコーヒー、アボカドトースト、そして南港で働くテック業界の人々が求める静けさ。",
+      "es": "Cafetería luminosa sobre el distrito de negocios de Nangang. Café de filtro de origen único, tostadas de aguacate, y el tipo de calma que anhelan los trabajadores tecnológicos de Nangang."
+    },
     "maps_url": "https://www.google.com/maps/search/Second+Floor+Cafe+Nangang+Taipei",
     "menu": [],
     "reviews": []
@@ -1266,7 +1488,13 @@
       "dinner"
     ],
     "badge": null,
-    "description": "Affordable Taiwanese set-meal lunch destination for Nangang's office crowd. Three-dish plate with soup, rice, braised pork, and seasonal vegetables.",
+    "description": {
+      "en": "Affordable Taiwanese set-meal lunch destination for Nangang's office crowd. Three-dish plate with soup, rice, braised pork, and seasonal vegetables.",
+      "zh": "南港上班族平價台式便當店。三菜一湯,配上白飯、滷肉與時令蔬菜。",
+      "fr": "Adresse abordable de plats taïwanais à la carte pour les employés de bureau de Nangang. Assiette trois plats avec soupe, riz, porc braisé et légumes de saison.",
+      "ja": "南港のオフィスワーカーに人気の、手頃な価格の台湾式定食店。スープ、ご飯、滷肉、季節の野菜が付いた三菜一湯セット。",
+      "es": "Destino económico de comidas taiwanesas tipo menú para los oficinistas de Nangang. Plato de tres guarniciones con sopa, arroz, cerdo estofado y verduras de temporada."
+    },
     "maps_url": "https://www.google.com/maps/search/Moon+Moon+Taiwanese+Set+Meals+Nangang+Taipei",
     "menu": [],
     "reviews": []
@@ -1299,7 +1527,13 @@
       "dinner"
     ],
     "badge": "🚡 Gondola Views",
-    "description": "Mountain teahouse accessible via the Maokong Gondola. Tieguanyin tea grown on-site, Taiwanese snack platters, and sweeping views over Taipei at dusk.",
+    "description": {
+      "en": "Mountain teahouse accessible via the Maokong Gondola. Tieguanyin tea grown on-site, Taiwanese snack platters, and sweeping views over Taipei at dusk.",
+      "zh": "貓空纜車可達的山間茶館。現場種植的鐵觀音茶、台式小點拼盤,還有黃昏時分俯瞰台北的壯闊景色。",
+      "fr": "Maison de thé de montagne accessible par le téléphérique de Maokong. Thé Tieguanyin cultivé sur place, plateaux de collations taïwanaises, et vue panoramique sur Taipei au crépuscule.",
+      "ja": "猫空ゴンドラでアクセスできる山間の茶館。自家栽培の鉄観音茶、台湾式おつまみの盛り合わせ、そして夕暮れ時に広がる台北の絶景。",
+      "es": "Casa de té de montaña accesible en el teleférico de Maokong. Té Tieguanyin cultivado in situ, bandejas de aperitivos taiwaneses y vistas panorámicas de Taipéi al atardecer."
+    },
     "maps_url": "https://www.google.com/maps/search/Maokong+Teahouse+Wenshan+Taipei",
     "menu": [],
     "reviews": []
@@ -1332,7 +1566,13 @@
       "dinner"
     ],
     "badge": null,
-    "description": "Family-run Italian pasta restaurant in Muzha. Handmade tagliatelle, carbonara, and pesto with a cheerful neighbourhood feel. Good value in a quiet part of Taipei.",
+    "description": {
+      "en": "Family-run Italian pasta restaurant in Muzha. Handmade tagliatelle, carbonara, and pesto with a cheerful neighbourhood feel. Good value in a quiet part of Taipei.",
+      "zh": "木柵家族經營的義式手工麵食餐廳。手工寬麵、卡邦納拉、青醬,街坊氛圍輕鬆愉快。台北靜謐一隅的超值美味。",
+      "fr": "Restaurant familial de pâtes italiennes à Muzha. Tagliatelles maison, carbonara et pesto dans une ambiance de quartier chaleureuse. Bon rapport qualité-prix dans un coin tranquille de Taipei.",
+      "ja": "木柵にある家族経営のイタリアンパスタレストラン。手作りタリアテッレ、カルボナーラ、ペストが、明るい下町の雰囲気の中で楽しめる。台北の静かなエリアでコスパも良し。",
+      "es": "Restaurante familiar de pasta italiana en Muzha. Tagliatelle casera, carbonara y pesto con un ambiente alegre de barrio. Buena relación calidad-precio en una zona tranquila de Taipéi."
+    },
     "maps_url": "https://www.google.com/maps/search/Four+Ways+Pasta+Wenshan+Taipei",
     "menu": [],
     "reviews": []
@@ -1366,7 +1606,13 @@
       "dinner"
     ],
     "badge": "🌱 100% Vegetarian",
-    "description": "Temple-adjacent vegetarian kitchen near Zhinan Temple. Freshly cooked plant-based Taiwanese food — braised mock pork, tofu stew, vegetable rice. Pilgrims and locals eat here daily.",
+    "description": {
+      "en": "Temple-adjacent vegetarian kitchen near Zhinan Temple. Freshly cooked plant-based Taiwanese food — braised mock pork, tofu stew, vegetable rice. Pilgrims and locals eat here daily.",
+      "zh": "緊鄰指南宮的素食廚房。現做植物性台式料理——滷素肉、豆腐煲、菜飯。香客與在地人天天光顧。",
+      "fr": "Cuisine végétarienne adjacente au temple, près du temple de Zhinan. Cuisine taïwanaise végétale fraîchement préparée — faux porc braisé, ragoût de tofu, riz aux légumes. Pèlerins et habitants y mangent chaque jour.",
+      "ja": "指南宮のすぐそばにある精進料理の店。作りたての植物性台湾料理——滷味の擬似肉、豆腐の煮込み、菜飯。参拝者や地元の人々が毎日通う。",
+      "es": "Cocina vegetariana junto al templo, cerca del Templo Zhinan. Comida taiwanesa a base de plantas recién cocinada: cerdo simulado estofado, guiso de tofu, arroz con verduras. Peregrinos y locales comen aquí a diario."
+    },
     "maps_url": "https://www.google.com/maps/search/Zhinan+Vegetarian+Kitchen+Wenshan+Taipei",
     "menu": [],
     "reviews": []
@@ -1400,7 +1646,13 @@
       "drinks"
     ],
     "badge": "🧋 Brown Sugar Original",
-    "description": "The bubble tea shop that started the brown sugar pearl milk tea craze. Hand-shaken drinks with tiger-striped cups. Queues wrap around the block in Ximending.",
+    "description": {
+      "en": "The bubble tea shop that started the brown sugar pearl milk tea craze. Hand-shaken drinks with tiger-striped cups. Queues wrap around the block in Ximending.",
+      "zh": "掀起黑糖珍珠奶茶風潮的手搖飲店。虎紋杯身,手搖現調。西門町排隊人潮繞了整條街。",
+      "fr": "Le salon de thé aux perles qui a lancé la mode du thé au lait aux perles au sucre brun. Boissons shakées à la main dans des gobelets tigrés. Les files d'attente font le tour du pâté de maisons à Ximending.",
+      "ja": "黒糖タピオカミルクティーブームの火付け役となった店。タイガー柄カップに手作りシェイクドリンク。西門町では行列が街区を一周する。",
+      "es": "La tienda de té de burbujas que inició la moda del té con leche de perlas y azúcar moreno. Bebidas agitadas a mano en vasos con rayas de tigre. Las colas rodean la manzana en Ximending."
+    },
     "maps_url": "https://www.google.com/maps/search/幸福堂+Ximending+Taipei",
     "menu": [],
     "reviews": []
@@ -1435,7 +1687,13 @@
       "cafe"
     ],
     "badge": "🧋 Inventor of Bubble Tea",
-    "description": "The Taichung teahouse credited with inventing bubble tea in the 1980s. Classic pearl milk tea, dan dan noodles, and an elegant atmosphere in Xinyi.",
+    "description": {
+      "en": "The Taichung teahouse credited with inventing bubble tea in the 1980s. Classic pearl milk tea, dan dan noodles, and an elegant atmosphere in Xinyi.",
+      "zh": "台中發跡的茶館,1980年代發明珍珠奶茶的元祖。經典珍珠奶茶、擔擔麵,信義區優雅氛圍。",
+      "fr": "La maison de thé de Taichung à qui l'on attribue l'invention du bubble tea dans les années 1980. Thé aux perles classique, nouilles dan dan, et une ambiance élégante à Xinyi.",
+      "ja": "1980年代にタピオカミルクティーを発明したとされる台中発の茶館。クラシックな珍珠奶茶、担々麺、そして信義区の上品な雰囲気。",
+      "es": "La casa de té de Taichung a la que se atribuye la invención del té de burbujas en los años 80. Té clásico con leche de perlas, fideos dan dan y un ambiente elegante en Xinyi."
+    },
     "maps_url": "https://www.google.com/maps/search/春水堂+Xinyi+Taipei",
     "menu": [],
     "reviews": []
@@ -1469,7 +1727,13 @@
       "vegetarian"
     ],
     "badge": "🥄 NT$55",
-    "description": "Traditional silken tofu pudding on Yongkang Street. Served warm or cold with peanuts, red bean, or grass jelly. Unassuming, beloved, and perfectly simple.",
+    "description": {
+      "en": "Traditional silken tofu pudding on Yongkang Street. Served warm or cold with peanuts, red bean, or grass jelly. Unassuming, beloved, and perfectly simple.",
+      "zh": "永康街傳統嫩豆花。溫熱或冰涼皆宜,搭配花生、紅豆或仙草。樸實無華,深受喜愛,簡單完美。",
+      "fr": "Pudding de tofu soyeux traditionnel dans la rue Yongkang. Servi chaud ou froid avec cacahuètes, haricots rouges ou gelée d'herbe. Discret, apprécié, et d'une simplicité parfaite.",
+      "ja": "永康街にある伝統的な絹ごし豆花(豆腐プリン)の店。温かくても冷たくても、ピーナッツ、小豆、仙草ゼリーと共に。控えめながら愛され、完璧なまでにシンプル。",
+      "es": "Pudín tradicional de tofu sedoso en la calle Yongkang. Se sirve caliente o frío con cacahuetes, judías rojas o gelatina de hierba. Modesto, muy querido y perfectamente sencillo."
+    },
     "maps_url": "https://www.google.com/maps/search/白水豆花+Yongkang+Da'an+Taipei",
     "menu": [],
     "reviews": []
@@ -1502,7 +1766,13 @@
       "taro"
     ],
     "badge": "🍡 Taro Specialist",
-    "description": "Yongkang Street staple for taro lovers. Taro balls, shaved ice, and warm taro soup. Regulars claim their taro is the best in Taipei — hard to argue.",
+    "description": {
+      "en": "Yongkang Street staple for taro lovers. Taro balls, shaved ice, and warm taro soup. Regulars claim their taro is the best in Taipei — hard to argue.",
+      "zh": "永康街芋頭愛好者的必訪店家。芋圓、剉冰、溫熱芋頭湯。老顧客都說這裡的芋頭是台北最好吃的——很難反駁。",
+      "fr": "Un incontournable de la rue Yongkang pour les amateurs de taro. Boules de taro, glace pilée, et soupe de taro chaude. Les habitués affirment que leur taro est le meilleur de Taipei — difficile de les contredire.",
+      "ja": "永康街でタロイモ好きが集う定番店。タロイモ団子、かき氷、温かいタロイモスープ。常連客いわく「台北で一番のタロイモ」——反論の余地はなさそうだ。",
+      "es": "Un clásico de la calle Yongkang para los amantes del taro. Bolitas de taro, hielo raspado y sopa caliente de taro. Los habituales afirman que su taro es el mejor de Taipéi, difícil de contradecir."
+    },
     "maps_url": "https://www.google.com/maps/search/芋頭大王+Yongkang+Da'an+Taipei",
     "menu": [],
     "reviews": []
@@ -1536,7 +1806,13 @@
       "fruit"
     ],
     "badge": "🥭 Mango Shaved Ice",
-    "description": "The original mango shaved ice shop on Yongkang Street. Towering bowls of fresh Taiwanese mango, condensed milk, and mango sorbet. A summer pilgrimage.",
+    "description": {
+      "en": "The original mango shaved ice shop on Yongkang Street. Towering bowls of fresh Taiwanese mango, condensed milk, and mango sorbet. A summer pilgrimage.",
+      "zh": "永康街芒果冰創始店。堆得像座山的新鮮台灣芒果、煉乳與芒果雪酪。夏日必朝聖之地。",
+      "fr": "La toute première boutique de glace pilée à la mangue de la rue Yongkang. Bols généreux de mangue taïwanaise fraîche, lait concentré et sorbet à la mangue. Un pèlerinage estival.",
+      "ja": "永康街のマンゴーかき氷発祥の店。台湾産新鮮マンゴーを山盛りにし、練乳とマンゴーシャーベットを添えて。夏の巡礼地。",
+      "es": "La tienda original de hielo raspado de mango en la calle Yongkang. Cuencos rebosantes de mango taiwanés fresco, leche condensada y sorbete de mango. Una peregrinación de verano."
+    },
     "maps_url": "https://www.google.com/maps/search/思慕昔+Yongkang+Da'an+Taipei",
     "menu": [],
     "reviews": []
@@ -1570,7 +1846,13 @@
       "cafe"
     ],
     "badge": "🥐 Since 1971",
-    "description": "Beloved Taiwanese bakery chain with roots in 1971. Pineapple buns, polo bread, and milk toast made fresh daily. Morning queue staple near Dongmen Station.",
+    "description": {
+      "en": "Beloved Taiwanese bakery chain with roots in 1971. Pineapple buns, polo bread, and milk toast made fresh daily. Morning queue staple near Dongmen Station.",
+      "zh": "深受喜愛的台灣連鎖麵包店,創立於1971年。菠蘿麵包、波蘿油、牛奶吐司每日新鮮出爐。東門站附近早晨排隊常客。",
+      "fr": "Chaîne de boulangerie taïwanaise appréciée, fondée en 1971. Petits pains ananas, pain polo et pain de mie au lait, faits frais chaque jour. Un incontournable des files matinales près de la station Dongmen.",
+      "ja": "1971年創業、愛され続ける台湾のベーカリーチェーン。パイナップルパン、ポーロパン、ミルク食パンを毎日焼きたてで。東門駅近くでは朝から行列ができる定番店。",
+      "es": "Querida cadena de panaderías taiwanesas con raíces desde 1971. Panecillos de piña, pan polo y pan de leche horneados frescos cada día. Un clásico de las colas matutinas cerca de la estación Dongmen."
+    },
     "maps_url": "https://www.google.com/maps/search/聖瑪莉東門店+Da'an+Taipei",
     "menu": [],
     "reviews": []
